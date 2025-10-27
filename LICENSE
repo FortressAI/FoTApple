@@ -1,0 +1,53 @@
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
+
+Copyright (C) 2025 FortressAI - Field of Truth Apple Platform
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Additional Terms under AGPL Section 7:
+
+1. COMMERCIAL USE RESTRICTION
+   If you wish to use this software in a commercial product or service,
+   you must either:
+   a) Contribute all modifications back to FortressAI under AGPL v3, OR
+   b) Obtain a separate commercial license from FortressAI
+
+2. NETWORK USE PROVISION
+   If you run a modified version of this software on a server and allow
+   users to interact with it remotely through a computer network, you must
+   make the complete source code of your modified version available under
+   AGPL v3.
+
+3. TRADEMARK NOTICE
+   The names "Field of Truth", "FoT Apple", "SafeAICoin", "Quantum for All",
+   and "FortressAI" are trademarks of FortressAI. Use of these names requires
+   prior written permission.
+
+4. PATENT GRANT
+   Contributors grant a perpetual, worldwide, non-exclusive, royalty-free
+   patent license for any patent claims that are necessarily infringed by
+   their contributions to this software.
+
+5. WARRANTY DISCLAIMER
+   This software is provided "as is" for use in high-stakes applications
+   including but not limited to: healthcare, legal analysis, and financial
+   systems. Users assume all liability for clinical decisions, legal advice,
+   or financial recommendations made using this software.
+
+For commercial licensing inquiries, contact: licensing@fortressai.com
+
+Full AGPL v3 License Text:
+https://www.gnu.org/licenses/agpl-3.0.html
+

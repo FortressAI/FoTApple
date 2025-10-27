@@ -1,0 +1,91 @@
+# Xcode
+.DS_Store
+*.xcuserstate
+*.xcodeproj
+xcuserdata/
+DerivedData/
+*.xcworkspace
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# SPM Build artifacts
+/.build
+/Packages
+/*.xcodeproj
+
+# CocoaPods
+Pods/
+*.podspec
+
+# Carthage
+Carthage/Build/
+
+# Build products
+*.o
+*.lo
+*.la
+*.al
+.libs
+*.so
+*.dylib
+*.a
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Testing
+.testRun/
+*.profraw
+*.profdata
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Secrets and keys
+*.pem
+*.key
+*.p12
+*.mobileprovision
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
