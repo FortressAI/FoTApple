@@ -7,7 +7,7 @@ import AppIntents
 // MARK: - Record Assignment Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct RecordAssignmentIntent: AppIntent {
+public struct RecordAssignmentIntent: AppIntent {
     static var title: LocalizedStringResource = "Record Assignment"
     static var description = IntentDescription("Add a new assignment for a student")
     
@@ -59,7 +59,7 @@ struct RecordAssignmentIntent: AppIntent {
 // MARK: - Track Virtue Score Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct TrackVirtueScoreIntent: AppIntent {
+public struct TrackVirtueScoreIntent: AppIntent {
     static var title: LocalizedStringResource = "Track Virtue Development"
     static var description = IntentDescription("Record Aristotelian virtue scores for character development")
     
@@ -97,7 +97,7 @@ struct TrackVirtueScoreIntent: AppIntent {
 // MARK: - IEP Accommodation Check Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct CheckIEPAccommodationsIntent: AppIntent {
+public struct CheckIEPAccommodationsIntent: AppIntent {
     static var title: LocalizedStringResource = "Check IEP Accommodations"
     static var description = IntentDescription("Review required accommodations for a student")
     
@@ -114,7 +114,7 @@ struct CheckIEPAccommodationsIntent: AppIntent {
 // MARK: - Check Schedule Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct CheckScheduleIntent: AppIntent {
+public struct CheckScheduleIntent: AppIntent {
     static var title: LocalizedStringResource = "Check My Schedule"
     static var description = IntentDescription("View upcoming classes, assignments, and school events")
     
@@ -147,7 +147,7 @@ struct CheckScheduleIntent: AppIntent {
 // MARK: - Track Progress Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct TrackProgressIntent: AppIntent {
+public struct TrackProgressIntent: AppIntent {
     static var title: LocalizedStringResource = "Track My Progress"
     static var description = IntentDescription("Summarize academic progress, grades, and virtue development")
     
@@ -197,7 +197,7 @@ struct TrackProgressIntent: AppIntent {
 // MARK: - Request Tutor Support Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct RequestTutorSupportIntent: AppIntent {
+public struct RequestTutorSupportIntent: AppIntent {
     static var title: LocalizedStringResource = "Request Tutor Help"
     static var description = IntentDescription("Ask for tutoring or additional academic support")
     
@@ -260,7 +260,7 @@ struct RequestTutorSupportIntent: AppIntent {
 // MARK: - Submit Document Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct SubmitDocumentIntent: AppIntent {
+public struct SubmitDocumentIntent: AppIntent {
     static var title: LocalizedStringResource = "Submit Assignment Document"
     static var description = IntentDescription("Upload homework, project photos, or assignment files")
     static var openAppWhenRun: Bool = true
@@ -310,7 +310,7 @@ struct SubmitDocumentIntent: AppIntent {
 // MARK: - Record Attendance Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct RecordAttendanceIntent: AppIntent {
+public struct RecordAttendanceIntent: AppIntent {
     static var title: LocalizedStringResource = "Record Class Attendance"
     static var description = IntentDescription("Mark attendance for students in a class period")
     
@@ -360,7 +360,7 @@ struct RecordAttendanceIntent: AppIntent {
 // MARK: - Schedule Parent Meeting Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct ScheduleParentMeetingIntent: AppIntent {
+public struct ScheduleParentMeetingIntent: AppIntent {
     static var title: LocalizedStringResource = "Schedule Parent Meeting"
     static var description = IntentDescription("Arrange parent-teacher conference")
     
@@ -417,7 +417,7 @@ struct ScheduleParentMeetingIntent: AppIntent {
 // MARK: - Grade Assignment Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct GradeAssignmentIntent: AppIntent {
+public struct GradeAssignmentIntent: AppIntent {
     static var title: LocalizedStringResource = "Grade Student Assignment"
     static var description = IntentDescription("Record grade and feedback for student work")
     
@@ -482,7 +482,7 @@ struct GradeAssignmentIntent: AppIntent {
 // MARK: - Document Behavior Incident Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct DocumentBehaviorIncidentIntent: AppIntent {
+public struct DocumentBehaviorIncidentIntent: AppIntent {
     static var title: LocalizedStringResource = "Document Behavior Incident"
     static var description = IntentDescription("Record student behavior incident with witnesses and actions taken")
     
@@ -586,7 +586,7 @@ struct DocumentBehaviorIncidentIntent: AppIntent {
 // MARK: - Send Class Announcement Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct SendClassAnnouncementIntent: AppIntent {
+public struct SendClassAnnouncementIntent: AppIntent {
     static var title: LocalizedStringResource = "Send Class Announcement"
     static var description = IntentDescription("Broadcast message to students and optionally parents")
     
@@ -641,7 +641,7 @@ struct SendClassAnnouncementIntent: AppIntent {
 // MARK: - Create Lesson Plan Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct CreateLessonPlanIntent: AppIntent {
+public struct CreateLessonPlanIntent: AppIntent {
     static var title: LocalizedStringResource = "Create Lesson Plan"
     static var description = IntentDescription("Plan lesson with objectives, activities, and assessments")
     
@@ -724,7 +724,7 @@ struct CreateLessonPlanIntent: AppIntent {
 // MARK: - Update Progress Report Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct UpdateProgressReportIntent: AppIntent {
+public struct UpdateProgressReportIntent: AppIntent {
     static var title: LocalizedStringResource = "Update Progress Report"
     static var description = IntentDescription("Document student progress for report card or IEP")
     
@@ -805,7 +805,7 @@ struct UpdateProgressReportIntent: AppIntent {
 // MARK: - Log Assignment Status Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct LogAssignmentStatusIntent: AppIntent {
+public struct LogAssignmentStatusIntent: AppIntent {
     static var title: LocalizedStringResource = "Log Assignment Status"
     static var description = IntentDescription("Mark homework as completed, in progress, or need help")
     
@@ -869,7 +869,7 @@ struct LogAssignmentStatusIntent: AppIntent {
 // MARK: - Request Extension Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct RequestExtensionIntent: AppIntent {
+public struct RequestExtensionIntent: AppIntent {
     static var title: LocalizedStringResource = "Request Assignment Extension"
     static var description = IntentDescription("Ask teacher for deadline extension with reason")
     
@@ -913,7 +913,7 @@ struct RequestExtensionIntent: AppIntent {
 // MARK: - View Grades Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct ViewGradesIntent: AppIntent {
+public struct ViewGradesIntent: AppIntent {
     static var title: LocalizedStringResource = "View My Grades"
     static var description = IntentDescription("Check current grades and GPA")
     
@@ -954,7 +954,7 @@ struct ViewGradesIntent: AppIntent {
 // MARK: - Log Study Session Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct LogStudySessionIntent: AppIntent {
+public struct LogStudySessionIntent: AppIntent {
     static var title: LocalizedStringResource = "Log Study Session"
     static var description = IntentDescription("Track study time and topics covered")
     
@@ -1013,7 +1013,7 @@ struct LogStudySessionIntent: AppIntent {
 // MARK: - Reflect on Virtue Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct ReflectOnVirtueIntent: AppIntent {
+public struct ReflectOnVirtueIntent: AppIntent {
     static var title: LocalizedStringResource = "Reflect on Character Virtue"
     static var description = IntentDescription("Self-assess Aristotelian virtue development")
     
@@ -1080,7 +1080,7 @@ struct ReflectOnVirtueIntent: AppIntent {
 // MARK: - Ask Teacher Question Intent
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-struct AskTeacherQuestionIntent: AppIntent {
+public struct AskTeacherQuestionIntent: AppIntent {
     static var title: LocalizedStringResource = "Ask Teacher a Question"
     static var description = IntentDescription("Submit question to teacher about assignment or topic")
     
