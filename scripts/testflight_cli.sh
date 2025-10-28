@@ -65,7 +65,9 @@ xcodebuild archive \
     -destination "generic/platform=iOS" \
     -allowProvisioningUpdates \
     DEVELOPMENT_TEAM="$TEAM_ID" \
-    CODE_SIGN_STYLE=Automatic
+    CODE_SIGN_STYLE=Automatic \
+    CODE_SIGN_IDENTITY="Apple Distribution" \
+    PROVISIONING_PROFILE_SPECIFIER=""
 
 if [ $? -eq 0 ]; then
     echo "✅ Archive created successfully"
