@@ -8,6 +8,9 @@ import AppIntents
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewStudentProgressIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "View My Child's Progress"
     public static var description = IntentDescription("Check student's grades, attendance, and behavior")
     
@@ -77,6 +80,9 @@ public struct ViewStudentProgressIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CheckAssignmentsDueIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Check Child's Assignments Due"
     public static var description = IntentDescription("View upcoming homework and project deadlines")
     
@@ -140,6 +146,9 @@ public struct CheckAssignmentsDueIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ParentScheduleTeacherMeetingIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Request Parent-Teacher Meeting"
     public static var description = IntentDescription("Schedule conference with child's teacher")
     
@@ -225,6 +234,9 @@ public struct ParentScheduleTeacherMeetingIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewBehaviorReportsIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "View Child's Behavior Reports"
     public static var description = IntentDescription("Check behavior incidents and positive notes")
     
@@ -294,6 +306,9 @@ public struct ViewBehaviorReportsIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct UpdateEmergencyContactIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Update Emergency Contact Info"
     public static var description = IntentDescription("Modify emergency contact information for student")
     
@@ -363,6 +378,9 @@ public struct UpdateEmergencyContactIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewAttendanceIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "View Child's Attendance"
     public static var description = IntentDescription("Check attendance record and absences")
     
@@ -436,6 +454,9 @@ public struct ViewAttendanceIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ApproveFieldTripIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Approve Field Trip"
     public static var description = IntentDescription("Grant permission for student to attend field trip")
     
@@ -510,6 +531,9 @@ public struct ApproveFieldTripIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewIEPPlanIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "View Child's IEP"
     public static var description = IntentDescription("Access Individualized Education Program plan and progress")
     

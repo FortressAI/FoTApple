@@ -8,9 +8,12 @@ import AppIntents
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CaptureEvidenceIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Capture Legal Evidence"
     public static var description = IntentDescription("Document evidence with photo, location, and cryptographic receipt")
-    static var openAppWhenRun: Bool = true
+    public static var openAppWhenRun: Bool = true
     
     @Parameter(title: "Case Number")
     var caseNumber: String?
@@ -61,6 +64,9 @@ public struct CaptureEvidenceIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct DocumentIncidentIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Document Legal Incident"
     public static var description = IntentDescription("Record an incident with timestamp and location proof")
     
@@ -117,6 +123,9 @@ public struct DocumentIncidentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct AddTimelineEventIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Add Legal Timeline Event"
     public static var description = IntentDescription("Add an event to your case timeline")
     
@@ -159,6 +168,9 @@ public struct AddTimelineEventIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct AskLegalQuestionIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Ask Legal Question"
     public static var description = IntentDescription("Get general legal information on common topics (not legal advice)")
     
@@ -211,6 +223,9 @@ public struct AskLegalQuestionIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct FindLegalAidIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Find Legal Aid"
     public static var description = IntentDescription("Locate pro-bono or low-cost legal services near you")
     
@@ -272,6 +287,9 @@ public struct FindLegalAidIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct LogCommunicationIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Log Legal Communication"
     public static var description = IntentDescription("Document conversations with landlords, employers, or other parties")
     
@@ -333,6 +351,9 @@ public struct LogCommunicationIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct SummarizePersonalCaseIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Summarize My Case"
     public static var description = IntentDescription("Get comprehensive summary of evidence, communications, and timeline")
     
@@ -385,6 +406,9 @@ public struct SummarizePersonalCaseIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CreatePersonalCaseIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Create Personal Case"
     public static var description = IntentDescription("Start tracking a new personal legal matter")
     
@@ -453,6 +477,9 @@ public struct CreatePersonalCaseIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CreateClientCaseIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Create Client Case"
     public static var description = IntentDescription("Open new case file for client representation")
     
@@ -538,6 +565,9 @@ public struct CreateClientCaseIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RecordBillableTimeIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Record Billable Time"
     public static var description = IntentDescription("Log time spent on client matter for billing")
     
@@ -593,6 +623,9 @@ public struct RecordBillableTimeIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ScheduleDepositionIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Schedule Deposition"
     public static var description = IntentDescription("Arrange deposition with witness and court reporter")
     
@@ -648,6 +681,9 @@ public struct ScheduleDepositionIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct FileCourtDocumentIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "File Court Document"
     public static var description = IntentDescription("E-file document with court and serve opposing counsel")
     
@@ -724,6 +760,9 @@ public struct FileCourtDocumentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RecordClientConsultationIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Record Client Consultation"
     public static var description = IntentDescription("Document attorney-client meeting with notes")
     
@@ -806,6 +845,9 @@ public struct RecordClientConsultationIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct GenerateLegalMemoIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Generate Legal Memo"
     public static var description = IntentDescription("AI-assisted legal research memo generation")
     
@@ -866,6 +908,9 @@ public struct GenerateLegalMemoIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct SearchCaseLawIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Search Case Law"
     public static var description = IntentDescription("Research legal precedents and statutes")
     
@@ -939,6 +984,9 @@ public struct SearchCaseLawIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ManageDiscoveryIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Manage Discovery"
     public static var description = IntentDescription("Track discovery requests, responses, and deadlines")
     
@@ -1019,6 +1067,9 @@ public struct ManageDiscoveryIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct PrepareWitnessIntent: AppIntent {
+    public init() {}
+
+    public init() {}
     public static var title: LocalizedStringResource = "Prepare Witness"
     public static var description = IntentDescription("Document witness preparation session and key points")
     
