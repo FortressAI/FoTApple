@@ -33,6 +33,8 @@ targets:
         product: PrivacyPHI
       - package: FoTPackages
         product: DataAdapters
+      - package: FoTPackages
+        product: FoTAppIntents
     settings:
       base:
         INFOPLIST_FILE: FoTClinician/Info.plist

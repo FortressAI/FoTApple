@@ -64,6 +64,12 @@
     <string>Set reminders for assignment deadlines and school events</string>
     <key>NSContactsUsageDescription</key>
     <string>Update emergency contact information</string>
+    
+    <!-- App Intents Package -->
+    <key>NSAppIntentsPackages</key>
+    <array>
+        <string>FieldOfTruth</string>
+    </array>
 </dict>
 </plist>
 

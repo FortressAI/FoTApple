@@ -23,6 +23,8 @@ targets:
         product: FoTEducationK18
       - package: FoTPackages
         product: VQbitSubstrate
+      - package: FoTPackages
+        product: FoTAppIntents
     settings:
       base:
         INFOPLIST_FILE: FoTParent/Info.plist

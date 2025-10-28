@@ -49,7 +49,7 @@ struct RecordAssignmentIntent: AppIntent {
         + (dueDate.map { ". Due: \($0.formatted(date: .abbreviated, time: .omitted))" } ?? "")
         + ". Cryptographic receipt generated."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -87,7 +87,7 @@ struct TrackVirtueScoreIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "\(virtue.rawValue) recorded for \(studentName): \(String(format: "%.2f", score)). Character development tracking with cryptographic attestation."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -104,7 +104,7 @@ struct CheckIEPAccommodationsIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "Retrieving IEP accommodations for \(studentName). This will show all required accommodations, strengths, challenges, and learning style preferences."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -137,7 +137,7 @@ struct CheckScheduleIntent: AppIntent {
         • Student council meeting - 3:30 PM
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -187,7 +187,7 @@ struct TrackProgressIntent: AppIntent {
         Cryptographic validation: All scores verified
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -250,7 +250,7 @@ struct RequestTutorSupportIntent: AppIntent {
         Your learning support team has been notified.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -298,7 +298,7 @@ struct SubmitDocumentIntent: AppIntent {
         This serves as tamper-proof proof of submission.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -350,7 +350,7 @@ struct RecordAttendanceIntent: AppIntent {
         response += "\n\nCryptographic receipt: \(receiptID.prefix(8))"
         response += "\nTimestamp verified and signed."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -407,7 +407,7 @@ struct ScheduleParentMeetingIntent: AppIntent {
         All meeting notes will be cryptographically signed and accessible to authorized parties only.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -472,7 +472,7 @@ struct GradeAssignmentIntent: AppIntent {
         Student and parent notified.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -576,7 +576,7 @@ struct DocumentBehaviorIncidentIntent: AppIntent {
         This record is legally admissible and tamper-proof.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -631,7 +631,7 @@ struct SendClassAnnouncementIntent: AppIntent {
         Read receipts will be tracked.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -713,7 +713,7 @@ struct CreateLessonPlanIntent: AppIntent {
         Ready to share with co-teachers or administrators.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -792,7 +792,7 @@ struct UpdateProgressReportIntent: AppIntent {
         • IEP team (if applicable)
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -858,7 +858,7 @@ struct LogAssignmentStatusIntent: AppIntent {
         
         response += "\n\nProgress logged with cryptographic timestamp."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -902,7 +902,7 @@ struct RequestExtensionIntent: AppIntent {
         💡 Tip: Continue working on the assignment while waiting for approval.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -943,7 +943,7 @@ struct ViewGradesIntent: AppIntent {
         All grades cryptographically verified by teachers.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -1002,7 +1002,7 @@ struct LogStudySessionIntent: AppIntent {
         Session logged with receipt: \(receiptID.prefix(8))
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -1069,7 +1069,7 @@ struct ReflectOnVirtueIntent: AppIntent {
         Your privacy is protected.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -1146,7 +1146,7 @@ struct AskTeacherQuestionIntent: AppIntent {
         • Ask a study buddy
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 

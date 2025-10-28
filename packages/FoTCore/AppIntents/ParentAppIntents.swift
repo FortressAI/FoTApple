@@ -69,7 +69,7 @@ struct ViewStudentProgressIntent: AppIntent {
         All data cryptographically verified by teachers.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -132,7 +132,7 @@ struct CheckAssignmentsDueIntent: AppIntent {
         All assignments tracked with cryptographic timestamps.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -217,7 +217,7 @@ struct ParentScheduleTeacherMeetingIntent: AppIntent {
         Meeting notes will be cryptographically signed and shared with both parties.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -286,7 +286,7 @@ struct ViewBehaviorReportsIntent: AppIntent {
         All reports cryptographically signed by teachers and accessible for parent records.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -355,7 +355,7 @@ struct UpdateEmergencyContactIntent: AppIntent {
         Change logged with cryptographic signature for security and compliance.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -428,7 +428,7 @@ struct ViewAttendanceIntent: AppIntent {
         All attendance data cryptographically verified by school office.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -502,7 +502,7 @@ struct ApproveFieldTripIntent: AppIntent {
         • SMS when bus returns
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -572,7 +572,7 @@ struct ViewIEPPlanIntent: AppIntent {
         All IEP documentation is legally binding and cryptographically signed.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 

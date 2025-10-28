@@ -53,7 +53,7 @@ struct CaptureEvidenceIntent: AppIntent {
         response += "Cryptographic receipt: \(receiptID.prefix(8)). "
         response += "This evidence is now tamper-proof and legally admissible."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -109,7 +109,7 @@ struct DocumentIncidentIntent: AppIntent {
         response += "Cryptographic receipt: \(receiptID.prefix(8)). "
         response += "Location and timestamp verified. This documentation is legally admissible."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -151,7 +151,7 @@ struct AddTimelineEventIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "Timeline event added to case \(caseNumber): \(eventType.rawValue) - \(eventDescription). Cryptographically attested for legal record."
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -203,7 +203,7 @@ struct AskLegalQuestionIntent: AppIntent {
         Would you like to: Create a personal case, Find legal aid, or Capture evidence?
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -264,7 +264,7 @@ struct FindLegalAidIntent: AppIntent {
         Privacy: Minimal location data logged (city only).
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -325,7 +325,7 @@ struct LogCommunicationIntent: AppIntent {
         You can add transcripts or screenshots later.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -377,7 +377,7 @@ struct SummarizePersonalCaseIntent: AppIntent {
         Export options: PDF, Encrypted Archive, Court-Ready Package
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -443,7 +443,7 @@ struct CreatePersonalCaseIntent: AppIntent {
         All actions will be automatically associated with this case and cryptographically linked for court admissibility.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -530,7 +530,7 @@ struct CreateClientCaseIntent: AppIntent {
         All case actions will be cryptographically logged for ethical compliance and malpractice protection.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -585,7 +585,7 @@ struct RecordBillableTimeIntent: AppIntent {
         Client invoice automatically updated.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -640,7 +640,7 @@ struct ScheduleDepositionIntent: AppIntent {
         All scheduling logged with cryptographic proof for procedural compliance.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -716,7 +716,7 @@ struct FileCourtDocumentIntent: AppIntent {
         All filing records maintained for bar association compliance.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -798,7 +798,7 @@ struct RecordClientConsultationIntent: AppIntent {
         All consultation notes protected by attorney-client privilege.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -858,7 +858,7 @@ struct GenerateLegalMemoIntent: AppIntent {
         Ready for attorney review and client delivery.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -931,7 +931,7 @@ struct SearchCaseLawIntent: AppIntent {
         Export options: PDF, Word, cite format
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -1011,7 +1011,7 @@ struct ManageDiscoveryIntent: AppIntent {
         All discovery tracked with cryptographic timestamps for procedural protection and sanctions avoidance.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 
@@ -1092,7 +1092,7 @@ struct PrepareWitnessIntent: AppIntent {
         All witness preparation notes protected as attorney work product.
         """
         
-        return .result(dialog: IntentDialog(response))
+        return .result(dialog: IntentDialog(stringLiteral: response))
     }
 }
 

@@ -30,6 +30,9 @@ let package = Package(
         .library(name: "FoTLegalUS", targets: ["FoTLegalUS"]),
         .library(name: "FoTEducationK18", targets: ["FoTEducationK18"]),
         
+        // App Intents (64 voice commands)
+        .library(name: "FoTAppIntents", targets: ["FoTAppIntents"]),
+        
         // Apps will be built as Xcode projects with full UI
     ],
     dependencies: [
@@ -57,6 +60,16 @@ let package = Package(
             name: "FoTUI",
             dependencies: [],
             path: "Sources/FoTUI"
+        ),
+        
+        // FoTAppIntents - All 64 voice commands for Siri integration
+        .target(
+            name: "FoTAppIntents",
+            dependencies: ["FoTCore"],
+            path: "packages/FoTCore/AppIntents",
+            swiftSettings: [
+                .enableUpcomingFeature("BareSlashRegexLiterals")
+            ]
         ),
         
         // AKG - Audit Knowledge Graph with Cypher frontend

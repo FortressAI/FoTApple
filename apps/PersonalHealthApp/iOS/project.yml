@@ -21,6 +21,8 @@ targets:
         product: FoTUI
       - package: FoTPackages
         product: VQbitSubstrate
+      - package: FoTPackages
+        product: FoTAppIntents
     settings:
       base:
         INFOPLIST_FILE: PersonalHealth/Info.plist
