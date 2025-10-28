@@ -581,23 +581,24 @@ struct ViewIEPPlanIntent: AppIntent {
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 struct ParentAppShortcutsProvider: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
-        AppShortcut(
-            intent: ViewStudentProgressIntent(),
-            phrases: [
-                "How is my child doing in school",
-                "Check my child's grades",
-                "Show student progress"
-            ],
-            shortTitle: "Student Progress",
-            systemImageName: "chart.bar.fill"
-        )
+        [
+            AppShortcut(
+                intent: ViewStudentProgressIntent(),
+                phrases: [
+                    "How is my child doing in school in \(.applicationName)",
+                    "Check my child's grades in \(.applicationName)",
+                    "Show student progress in \(.applicationName)"
+                ],
+                shortTitle: "Student Progress",
+                systemImageName: "chart.bar.fill"
+            ),
         
         AppShortcut(
             intent: CheckAssignmentsDueIntent(),
             phrases: [
-                "What homework does my child have",
-                "Check assignments due",
-                "Show upcoming homework"
+                "What homework does my child have in \(.applicationName)",
+                "Check assignments due in \(.applicationName)",
+                "Show upcoming homework in \(.applicationName)"
             ],
             shortTitle: "Assignments Due",
             systemImageName: "book.fill"
@@ -606,9 +607,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
         AppShortcut(
             intent: ParentScheduleTeacherMeetingIntent(),
             phrases: [
-                "Schedule parent teacher meeting",
-                "Request teacher conference",
-                "Meet with teacher"
+                "Schedule parent teacher meeting in \(.applicationName)",
+                "Request teacher conference in \(.applicationName)",
+                "Meet with teacher in \(.applicationName)"
             ],
             shortTitle: "Teacher Meeting",
             systemImageName: "person.2.fill"
@@ -617,9 +618,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
         AppShortcut(
             intent: ViewBehaviorReportsIntent(),
             phrases: [
-                "Check my child's behavior",
-                "Show behavior reports",
-                "Any behavior incidents"
+                "Check my child's behavior in \(.applicationName)",
+                "Show behavior reports in \(.applicationName)",
+                "Any behavior incidents in \(.applicationName)"
             ],
             shortTitle: "Behavior Reports",
             systemImageName: "hand.raised.fill"
@@ -628,9 +629,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
         AppShortcut(
             intent: UpdateEmergencyContactIntent(),
             phrases: [
-                "Update emergency contact",
-                "Change emergency phone number",
-                "Modify emergency info"
+                "Update emergency contact in \(.applicationName)",
+                "Change emergency phone number in \(.applicationName)",
+                "Modify emergency info in \(.applicationName)"
             ],
             shortTitle: "Emergency Contact",
             systemImageName: "phone.circle.fill"
@@ -639,9 +640,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
         AppShortcut(
             intent: ViewAttendanceIntent(),
             phrases: [
-                "Check my child's attendance",
-                "Show attendance record",
-                "Any absences"
+                "Check my child's attendance in \(.applicationName)",
+                "Show attendance record in \(.applicationName)",
+                "Any absences in \(.applicationName)"
             ],
             shortTitle: "Attendance",
             systemImageName: "calendar.badge.checkmark"
@@ -650,24 +651,25 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
         AppShortcut(
             intent: ApproveFieldTripIntent(),
             phrases: [
-                "Approve field trip",
-                "Grant field trip permission",
-                "Sign permission slip"
+                "Approve field trip in \(.applicationName)",
+                "Grant field trip permission in \(.applicationName)",
+                "Sign permission slip in \(.applicationName)"
             ],
             shortTitle: "Field Trip",
             systemImageName: "bus.fill"
         )
         
-        AppShortcut(
-            intent: ViewIEPPlanIntent(),
-            phrases: [
-                "Show my child's IEP",
-                "View IEP plan",
-                "Check IEP progress"
-            ],
-            shortTitle: "View IEP",
-            systemImageName: "doc.text.fill"
-        )
+            AppShortcut(
+                intent: ViewIEPPlanIntent(),
+                phrases: [
+                    "Show my child's IEP in \(.applicationName)",
+                    "View IEP plan in \(.applicationName)",
+                    "Check IEP progress in \(.applicationName)"
+                ],
+                shortTitle: "View IEP",
+                systemImageName: "doc.text.fill"
+            )
+        ]
     }
 }
 
