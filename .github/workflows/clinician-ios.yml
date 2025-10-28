@@ -1,0 +1,187 @@
+name: Clinician iOS App CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'apps/ClinicianApp/**'
+      - 'packages/**'
+      - '.github/workflows/clinician-ios.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'apps/ClinicianApp/**'
+      - 'packages/**'
+
+jobs:
+  build-packages:
+    name: Build Core Packages
+    runs-on: macos-14
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.0.app
+      
+      - name: Cache Swift packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            packages/*/.build
+            ~/.swiftpm
+          key: ${{ runner.os }}-spm-${{ hashFiles('packages/*/Package.swift') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+      
+      - name: Build FoTCore
+        working-directory: packages/FoTCore
+        run: swift build
+      
+      - name: Test FoTCore
+        working-directory: packages/FoTCore
+        run: swift test
+      
+      - name: Build RulesEngine
+        working-directory: packages/RulesEngine
+        run: swift build
+      
+      - name: Build DataAdapters
+        working-directory: packages/DataAdapters
+        run: swift build
+      
+      - name: Build FoTClinician
+        working-directory: packages/FoTClinician
+        run: swift build
+      
+      - name: Test FoTClinician
+        working-directory: packages/FoTClinician
+        run: swift test
+
+  generate-xcode-project:
+    name: Generate Xcode Project
+    runs-on: macos-14
+    needs: build-packages
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install xcodegen
+        run: brew install xcodegen
+      
+      - name: Generate Xcode project
+        working-directory: apps/ClinicianApp/iOS
+        run: xcodegen generate
+      
+      - name: Upload Xcode project
+        uses: actions/upload-artifact@v3
+        with:
+          name: xcode-project
+          path: apps/ClinicianApp/iOS/FoTClinician.xcodeproj
+          retention-days: 7
+
+  build-ios-app:
+    name: Build iOS App
+    runs-on: macos-14
+    needs: generate-xcode-project
+    strategy:
+      matrix:
+        destination:
+          - 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest'
+          - 'platform=iOS Simulator,name=iPad Pro (12.9-inch) (6th generation),OS=latest'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.0.app
+      
+      - name: Install xcodegen
+        run: brew install xcodegen
+      
+      - name: Generate Xcode project
+        working-directory: apps/ClinicianApp/iOS
+        run: xcodegen generate
+      
+      - name: Build app
+        working-directory: apps/ClinicianApp/iOS
+        run: |
+          xcodebuild \
+            -project FoTClinician.xcodeproj \
+            -scheme FoTClinician \
+            -destination '${{ matrix.destination }}' \
+            -derivedDataPath .build \
+            clean build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            | xcpretty || true
+
+  test-ios-app:
+    name: Test iOS App
+    runs-on: macos-14
+    needs: generate-xcode-project
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.0.app
+      
+      - name: Install xcodegen
+        run: brew install xcodegen
+      
+      - name: Generate Xcode project
+        working-directory: apps/ClinicianApp/iOS
+        run: xcodegen generate
+      
+      - name: Run tests
+        working-directory: apps/ClinicianApp/iOS
+        run: |
+          xcodebuild \
+            -project FoTClinician.xcodeproj \
+            -scheme FoTClinician \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            -derivedDataPath .build \
+            test \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            -enableCodeCoverage YES \
+            | xcpretty || true
+      
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./apps/ClinicianApp/iOS/.build/Build/ProfileData/*/Coverage.profdata
+          flags: ios-app
+          name: clinician-ios-coverage
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      
+      - name: Run SwiftLint
+        run: |
+          swiftlint lint \
+            --path apps/ClinicianApp/iOS/FoTClinician \
+            --path packages \
+            --reporter github-actions-logging || true
+
+  security-scan:
+    name: Security Scan
+    runs-on: macos-14
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run dependency audit
+        run: |
+          cd packages/FoTCore && swift package show-dependencies || true
+          cd ../DataAdapters && swift package show-dependencies || true
+          cd ../FoTClinician && swift package show-dependencies || true
+

@@ -1,0 +1,31 @@
+Field of Truth Clinician for Mac - your comprehensive clinical workspace.
+
+When you need the full picture, when you're doing deep clinical work, you need the power of the Mac.
+
+The three-panel interface puts everything at your fingertips. Patient list on the left, detailed records in the center, quick actions on the right.
+
+Select a patient and see their complete medical history instantly. Demographics, vital signs, allergies, medications, active problems - comprehensive electronic medical records.
+
+Click into medications and see the full medication list with detailed information. Drug name, dose, route, frequency - clinical precision at every level.
+
+Add a new medication and watch the real-time interaction checking. Multiple medications? Field of Truth checks every combination against the NIH RxNav database.
+
+The SOAP note editor gives you the space to think. Full keyboard, large display, distraction-free documentation.
+
+Use templates for common encounters, or build your own. The AI assists but never interrupts - it's your clinical judgment, amplified by intelligence.
+
+Multi-window support means you can have multiple patients open, reference clinical guidelines, review lab results - true professional workflow.
+
+The Mac's processing power enables advanced features. Population health analytics, quality metrics, compliance dashboards - insights that drive better care.
+
+Research integration brings medical literature right into your workflow. Citation lookup, evidence summaries, clinical pathways - all without leaving the app.
+
+Export options for every need. PDF for sharing, CSV for analysis, encrypted bundles for archival, cryptographic proof packets for audits.
+
+Batch operations let you update multiple records efficiently. Update protocols across your patient panel, refresh medication interactions, generate compliance reports.
+
+Everything synchronized seamlessly across all your devices. Start on Mac, review on iPhone, check on Watch - continuous clinical workflow.
+
+Field of Truth Clinician for Mac - because complex clinical work deserves a professional tool.
+
+Native Apple Silicon support for blazing performance. Requires macOS 14 Sonoma or later.

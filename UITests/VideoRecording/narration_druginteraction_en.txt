@@ -1,0 +1,9 @@
+Open patient already taking Warfarin
+View current medication list
+Attempt to add Aspirin three twenty-five milligrams
+Critical drug interaction alert triggered
+System displays: Warfarin plus Aspirin increases bleeding risk significantly
+View alternative medication recommendations
+Document clinical justification for override
+Verify interaction override appears in cryptographic receipt
+

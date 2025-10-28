@@ -1,158 +1,217 @@
 // swift-tools-version: 5.9
+// Field of Truth - Master Package
+// Complete Apple ecosystem for Clinician, Legal US, and Education K-18 domains
+
 import PackageDescription
 
 let package = Package(
-    name: "FoTApple",
+    name: "FieldOfTruth",
     platforms: [
-        .macOS(.v14),
         .iOS(.v17),
+        .macOS(.v14),
         .watchOS(.v10),
         .visionOS(.v1)
     ],
     products: [
-        // Core library with VQbit substrate and AKG service
-        .library(
-            name: "FoTCore",
-            targets: ["FoTCore"]
-        ),
-        // Domain-specific packs
-        .library(
-            name: "FoTDomainPacks",
-            targets: [
-                "FoTProtein",
-                "FoTChemistry", 
-                "FoTFluidDynamics",
-                "FoTLegalUS",
-                "FoTClinicalTrials",
-                "FoTClinician"
-            ]
-        ),
-        // SafeAICoin blockchain integration
-        .library(
-            name: "SafeAICoinBridge",
-            targets: ["SafeAICoinBridge"]
-        ),
-        // SwiftUI components
-        .library(
-            name: "FoTUI",
-            targets: ["FoTUI"]
-        ),
-        // Command-line tool
-        .executable(
-            name: "fotctl",
-            targets: ["FoTCLI"]
-        )
+        // Core Libraries
+        .library(name: "FoTCore", targets: ["FoTCore"]),
+        .library(name: "FoTUI", targets: ["FoTUI"]),
+        .library(name: "AKG", targets: ["AKG"]),
+        .library(name: "VQbitSubstrate", targets: ["VQbitSubstrate"]),
+        .library(name: "RulesEngine", targets: ["RulesEngine"]),
+        .library(name: "EthicsProvenance", targets: ["EthicsProvenance"]),
+        .library(name: "PrivacyPHI", targets: ["PrivacyPHI"]),
+        .library(name: "DataAdapters", targets: ["DataAdapters"]),
+        .library(name: "SearchRetrieval", targets: ["SearchRetrieval"]),
+        .library(name: "ReasonGraph", targets: ["ReasonGraph"]),
+        
+        // Domain Libraries
+        .library(name: "FoTClinician", targets: ["FoTClinician"]),
+        .library(name: "FoTLegalUS", targets: ["FoTLegalUS"]),
+        .library(name: "FoTEducationK18", targets: ["FoTEducationK18"]),
+        
+        // Apps will be built as Xcode projects with full UI
     ],
     dependencies: [
-        // SQLite database
-        .package(url: "https://github.com/groue/GRDB.swift", from: "6.26.0"),
-        // HTTP server
-        .package(url: "https://github.com/apple/swift-nio", from: "2.60.0"),
-        // Algorithms
-        .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
-        // Numerics
-        .package(url: "https://github.com/apple/swift-numerics", from: "1.0.0"),
-        // Crypto utilities
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: "1.8.0")
+        // No external dependencies - 100% native Apple frameworks
     ],
     targets: [
-        // MARK: - Core Targets
+        // ================================================================
+        // CORE PLATFORM TARGETS
+        // ================================================================
+        
         .target(
             name: "FoTCore",
-            dependencies: [
-                .product(name: "GRDB", package: "GRDB.swift"),
-                .product(name: "NIO", package: "swift-nio"),
-                .product(name: "NIOHTTP1", package: "swift-nio"),
-                .product(name: "NIOWebSocket", package: "swift-nio"),
-                .product(name: "Algorithms", package: "swift-algorithms"),
-                .product(name: "Numerics", package: "swift-numerics"),
-                .product(name: "CryptoSwift", package: "CryptoSwift")
-            ],
-            resources: [.process("AKG/Storage/Schema.sql")]
+            dependencies: [],
+            path: "packages/FoTCore/Sources",
+            resources: [.process("Resources")]
         ),
-        
-        // MARK: - Domain Pack Targets
-        .target(
-            name: "FoTProtein",
-            dependencies: ["FoTCore"],
-            path: "Sources/DomainPacks/FoTProtein"
-        ),
-        .target(
-            name: "FoTChemistry",
-            dependencies: ["FoTCore"],
-            path: "Sources/DomainPacks/FoTChemistry"
-        ),
-        .target(
-            name: "FoTFluidDynamics",
-            dependencies: ["FoTCore"],
-            path: "Sources/DomainPacks/FoTFluidDynamics"
-        ),
-        .target(
-            name: "FoTLegalUS",
-            dependencies: ["FoTCore"],
-            path: "Sources/DomainPacks/FoTLegalUS"
-        ),
-        .target(
-            name: "FoTClinicalTrials",
-            dependencies: ["FoTCore"],
-            path: "Sources/DomainPacks/FoTClinicalTrials"
-        ),
-        .target(
-            name: "FoTClinician",
-            dependencies: ["FoTCore"],
-            path: "Sources/DomainPacks/FoTClinician"
-        ),
-        
-        // MARK: - SafeAICoin Bridge
-        .target(
-            name: "SafeAICoinBridge",
-            dependencies: [
-                "FoTCore",
-                .product(name: "NIO", package: "swift-nio")
-            ]
-        ),
-        
-        // MARK: - UI Components
-        .target(
-            name: "FoTUI",
-            dependencies: ["FoTCore"]
-        ),
-        
-        // MARK: - CLI Tool
-        .executableTarget(
-            name: "FoTCLI",
-            dependencies: [
-                "FoTCore",
-                "FoTProtein",
-                "FoTChemistry",
-                "FoTFluidDynamics",
-                "FoTLegalUS",
-                "FoTClinicalTrials",
-                "FoTClinician",
-                "SafeAICoinBridge"
-            ]
-        ),
-        
-        // MARK: - Tests
         .testTarget(
             name: "FoTCoreTests",
-            dependencies: ["FoTCore"]
+            dependencies: ["FoTCore"],
+            path: "packages/FoTCore/Tests"
+        ),
+        
+        // FoTUI - Glass morphism UI components
+        .target(
+            name: "FoTUI",
+            dependencies: [],
+            path: "Sources/FoTUI"
+        ),
+        
+        // AKG - Audit Knowledge Graph with Cypher frontend
+        .target(
+            name: "AKG",
+            dependencies: ["FoTCore"],
+            path: "packages/AKG/Sources"
         ),
         .testTarget(
-            name: "FoTDomainPacksTests",
+            name: "AKGTests",
+            dependencies: ["AKG"],
+            path: "packages/AKG/Tests"
+        ),
+        
+        // VQbit Substrate - Quantum-inspired optimization using Metal
+        .target(
+            name: "VQbitSubstrate",
+            dependencies: ["FoTCore"],
+            path: "packages/VQbitSubstrate/Sources",
+            resources: [.process("Shaders")]
+        ),
+        .testTarget(
+            name: "VQbitSubstrateTests",
+            dependencies: ["VQbitSubstrate"],
+            path: "packages/VQbitSubstrate/Tests"
+        ),
+        
+        // Rules Engine - Domain-specific rules and compliance
+        .target(
+            name: "RulesEngine",
+            dependencies: ["FoTCore", "AKG"],
+            path: "packages/RulesEngine/Sources"
+        ),
+        .testTarget(
+            name: "RulesEngineTests",
+            dependencies: ["RulesEngine"],
+            path: "packages/RulesEngine/Tests"
+        ),
+        
+        // Ethics Provenance - Cryptographic proof generation
+        .target(
+            name: "EthicsProvenance",
+            dependencies: ["FoTCore", "AKG"],
+            path: "packages/EthicsProvenance/Sources"
+        ),
+        .testTarget(
+            name: "EthicsProvenanceTests",
+            dependencies: ["EthicsProvenance"],
+            path: "packages/EthicsProvenance/Tests"
+        ),
+        
+        // Privacy PHI - HIPAA-compliant encryption
+        .target(
+            name: "PrivacyPHI",
+            dependencies: ["FoTCore"],
+            path: "packages/PrivacyPHI/Sources"
+        ),
+        .testTarget(
+            name: "PrivacyPHITests",
+            dependencies: ["PrivacyPHI"],
+            path: "packages/PrivacyPHI/Tests"
+        ),
+        
+        // Data Adapters - External API integration (RxNav, etc.)
+        .target(
+            name: "DataAdapters",
+            dependencies: ["FoTCore"],
+            path: "packages/DataAdapters/Sources"
+        ),
+        .testTarget(
+            name: "DataAdaptersTests",
+            dependencies: ["DataAdapters"],
+            path: "packages/DataAdapters/Tests"
+        ),
+        
+        // Search Retrieval - Vector search and semantic retrieval
+        .target(
+            name: "SearchRetrieval",
+            dependencies: ["FoTCore", "AKG", "VQbitSubstrate"],
+            path: "packages/SearchRetrieval/Sources"
+        ),
+        .testTarget(
+            name: "SearchRetrievalTests",
+            dependencies: ["SearchRetrieval"],
+            path: "packages/SearchRetrieval/Tests"
+        ),
+        
+        // Reason Graph - Graph-based reasoning and provenance
+        .target(
+            name: "ReasonGraph",
+            dependencies: ["FoTCore", "AKG", "EthicsProvenance"],
+            path: "packages/ReasonGraph/Sources"
+        ),
+        .testTarget(
+            name: "ReasonGraphTests",
+            dependencies: ["ReasonGraph"],
+            path: "packages/ReasonGraph/Tests"
+        ),
+        
+        // ================================================================
+        // DOMAIN-SPECIFIC TARGETS
+        // ================================================================
+        
+        // Clinician Domain
+        .target(
+            name: "FoTClinician",
             dependencies: [
-                "FoTProtein",
-                "FoTChemistry",
-                "FoTFluidDynamics",
-                "FoTLegalUS",
-                "FoTClinicalTrials",
-                "FoTClinician"
-            ]
+                "FoTCore",
+                "AKG",
+                "RulesEngine",
+                "DataAdapters",
+                "PrivacyPHI",
+                "EthicsProvenance",
+                "ReasonGraph"
+            ],
+            path: "packages/FoTClinician/Sources",
+            resources: [.copy("Persistence/PatientStore.swift.grdb_version")]
         ),
         .testTarget(
-            name: "SafeAICoinBridgeTests",
-            dependencies: ["SafeAICoinBridge"]
-        )
+            name: "FoTClinicianTests",
+            dependencies: ["FoTClinician"],
+            path: "packages/FoTClinician/Tests"
+        ),
+        
+        // Legal US Domain
+        .target(
+            name: "FoTLegalUS",
+            dependencies: [
+                "FoTCore",
+                "AKG",
+                "RulesEngine",
+                "EthicsProvenance",
+                "ReasonGraph"
+            ],
+            path: "packages/FoTLegalUS/Sources"
+        ),
+        
+        // Education K-18 Domain
+        .target(
+            name: "FoTEducationK18",
+            dependencies: [
+                "FoTCore",
+                "AKG",
+                "RulesEngine",
+                "EthicsProvenance",
+                "ReasonGraph",
+                "VQbitSubstrate"
+            ],
+            path: "packages/FoTEducationK18/Sources"
+        ),
+        
+        // ================================================================
+        // APPLICATION TARGETS
+        // ================================================================
+        // Apps are built as separate Xcode projects with full SwiftUI UIs
+        // They import the domain libraries defined above
     ]
 )
-

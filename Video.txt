@@ -1,0 +1,270 @@
+Yes—you can make this turnkey on a Mac: run UI functional tests, auto-record the screen, and auto-lay in a prewritten narration + captions. Here’s a clean, reproducible pipeline you can drop into any Apple-native app.
+
+# Option A (best for iOS/iPadOS): Simulator + XCUITest + simctl video
+
+## What you’ll use
+
+* **XCUITest** for functional UI tests
+* **`simctl recordVideo`** to capture the Simulator screen (H.264/HEVC)
+* **`say`** (built-in) to render a narration script to audio
+* **`ffmpeg`** (brew) to mux video + audio and burn subtitles (SRT)
+
+### 1) Add a UI test that logs “steps” with timestamps
+
+Create `UITests/FlowTests.swift`:
+
+```swift
+import XCTest
+
+final class FlowTests: XCTestCase {
+    private let logger = StepLogger()
+
+    override func setUp() {
+        continueAfterFailure = false
+    }
+
+    func test_demoFlow_enUS() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launch()
+
+        step("Open Home") {
+            XCTAssertTrue(app.staticTexts["Welcome"].waitForExistence(timeout: 5))
+        }
+        step("Search Items") {
+            app.searchFields.firstMatch.tap()
+            app.typeText("Quantum Echo\n")
+            XCTAssertTrue(app.cells.firstMatch.waitForExistence(timeout: 5))
+        }
+        step("Open Detail") {
+            app.cells.firstMatch.tap()
+            XCTAssertTrue(app.staticTexts["Details"].waitForExistence(timeout: 5))
+        }
+        logger.flush() // writes steps.json into /tmp by default
+    }
+
+    private func step(_ name: String, _ block: () -> Void) {
+        let t0 = Date()
+        block()
+        let t1 = Date()
+        logger.add(name: name, start: t0, end: t1)
+    }
+}
+
+final class StepLogger {
+    private var steps: [[String: Any]] = []
+    private let outURL = URL(fileURLWithPath: "/tmp/steps.json")
+    func add(name: String, start: Date, end: Date) {
+        steps.append([
+            "name": name,
+            "start": start.timeIntervalSince1970,
+            "end": end.timeIntervalSince1970
+        ])
+    }
+    func flush() {
+        let data = try! JSONSerialization.data(withJSONObject: steps, options: [.prettyPrinted])
+        try! data.write(to: outURL)
+    }
+}
+```
+
+### 2) Write your narration script (per language)
+
+`narration_en.txt`:
+
+```
+Open Home
+Search Items
+Open Detail
+```
+
+(One line per step, aligned to your test steps. Duplicate per locale, e.g., `narration_es.txt`.)
+
+### 3) Build a runner script that records, tests, narrates, and muxes
+
+`run_ui_demo.sh`:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_SCHEME="YourApp"
+TEST_SCHEME="YourAppUITests"
+DEST='platform=iOS Simulator,name=iPhone 15'
+VIDEO="/tmp/ui_demo.mp4"
+VOICE="Samantha"         # change per language (e.g., "Monica" es-ES)
+NARR="/path/to/narration_en.txt"
+AUDIO="/tmp/narration.m4a"
+SRT="/tmp/captions.srt"
+OUT="./Demo_enUS.mp4"
+
+# 0) deps
+command -v ffmpeg >/dev/null || { echo "brew install ffmpeg"; exit 1; }
+
+# 1) boot simulator
+xcrun simctl bootstatus -b "$DEST"
+
+# 2) start recording (background)
+xcrun simctl io booted recordVideo --codec=h264 "$VIDEO" &
+REC_PID=$!
+
+# 3) run only the demo test
+xcodebuild -scheme "$TEST_SCHEME" -destination "$DEST" \
+  -only-testing:"$TEST_SCHEME/FlowTests/test_demoFlow_enUS" test | xcpretty
+
+# 4) stop recording
+kill -INT $REC_PID || true
+wait $REC_PID || true
+
+# 5) render narration audio
+say -v "$VOICE" -f "$NARR" -o "$AUDIO"
+
+# 6) build captions from steps.json and narration
+python3 ./steps_to_srt.py /tmp/steps.json "$VIDEO" "$NARR" > "$SRT"
+
+# 7) mux everything
+ffmpeg -y -i "$VIDEO" -i "$AUDIO" -shortest \
+  -c:v copy -c:a aac -movflags +faststart \
+  -vf "subtitles=${SRT// /\\ }" "$OUT"
+
+echo "✅ Done: $OUT"
+```
+
+### 4) Convert step timings → SRT captions
+
+`steps_to_srt.py`:
+
+```python
+import json, sys, subprocess, math
+from datetime import timedelta
+
+steps_json, video_path, narration_path = sys.argv[1], sys.argv[2], sys.argv[3]
+
+def ffprobe_duration(path):
+    cmd = ['ffprobe','-v','error','-show_entries','format=duration','-of','default=nw=1:nk=1',path]
+    return float(subprocess.check_output(cmd).decode().strip())
+
+def fmt(ts):
+    ms = int((ts - int(ts)) * 1000)
+    t = timedelta(seconds=int(ts))
+    h, rem = divmod(t.seconds, 3600)
+    m, s = divmod(rem, 60)
+    return f"{t.days*24+h:02}:{m:02}:{s:02},{ms:03}"
+
+steps = json.load(open(steps_json))
+video_dur = ffprobe_duration(video_path)
+lines = [l.strip() for l in open(narration_path).read().splitlines() if l.strip()]
+
+# map each narration line to its step timing window (by test timestamps)
+assert len(lines) == len(steps), "Narration lines must equal steps count"
+
+# Normalize step times to video timeline
+t0 = steps[0]["start"]; tN = steps[-1]["end"]
+scale = video_dur / (tN - t0)
+
+print("")  # SRT on stdout
+for i,(line, st) in enumerate(zip(lines, steps), 1):
+    start = (st["start"] - t0) * scale
+    end   = (st["end"]   - t0) * scale
+    # pad a bit for readability
+    end = max(end, start + 1.0)
+    print(i)
+    print(f"{fmt(start)} --> {fmt(end)}")
+    print(line)
+    print()
+```
+
+> Run: `bash run_ui_demo.sh`
+> This boots the simulator, records the flow, runs the test, generates narration audio + aligned captions, and outputs a ready-to-share MP4.
+
+---
+
+# Option B (macOS app): UI tests + QuickTime/ffmpeg recording
+
+* Use **XCUITest for macOS** (`platform=macOS`) with the same step logger.
+
+* **Record screen** via:
+
+  * **QuickTime + AppleScript** (GUI automation), or
+  * **ffmpeg AVFoundation** (pure CLI):
+
+    ```bash
+    ffmpeg -f avfoundation -i "1:none" -pix_fmt yuv420p -framerate 60 -video_size 1920x1080 /tmp/macos_demo.mp4
+    ```
+
+    (Run `ffmpeg -f avfoundation -list_devices true -i ""` to discover screen/audio IDs. Grant Screen Recording in System Settings.)
+
+* Reuse the **`say` + `ffmpeg` + SRT** steps to produce the final video.
+
+---
+
+# Multi-language runs (scripted)
+
+* Duplicate the test with different `-AppleLanguages` & `-AppleLocale`, e.g. `test_demoFlow_esES()`, `narration_es.txt`, choose a Spanish voice (e.g., `-v "Monica"`), and set output `Demo_esES.mp4`.
+* You can parameterize language in the shell via env vars and pass it into `xcodebuild`/`say`.
+
+---
+
+# Why this works well
+
+* Fully **scriptable/reproducible**: every video comes from a test that can run in CI.
+* **Deterministic timing**: captions align to test step timestamps, not manual guessing.
+* **On-device**: keeps PHI/privileged data local; no cloud upload needed.
+* **Polish-ready**: if you want extra sheen, you can still drop the final MP4 into Screen Studio for cursor smoothing/zooms—your core capture is already automated.
+
+Tailor these snippets to your actual scheme/targets and add a **Makefile + Fastlane lane** so one command builds all languages (`make demos`).
+Totally—on macOS you can use any system TTS voice that `say` exposes. Two things:
+
+## Quick way to see what’s on *your* Mac
+
+```bash
+# List installed voices with language codes
+say -v "?"
+
+# Filter by a locale (e.g., English US)
+say -v "?" | grep -E 'en_US'
+
+# Test a specific voice
+say -v Samantha "This is a test in US English."
+```
+
+## Good, commonly available voices (by language)
+
+> (Names can vary by macOS version; if one isn’t installed, add it in System Settings → Accessibility → Spoken Content → System Voice → Manage Voices, then run `say -v "?"` again.)
+
+* **English (US):** `Samantha`, `Alex`, `Victoria`
+* **English (UK):** `Daniel`
+* **English (AU):** `Karen`
+* **English (IE):** `Moira`
+* **English (ZA):** `Tessa`
+* **Spanish (Spain):** `Monica`, `Jorge`
+* **Spanish (Mexico):** `Paulina`, `Diego`
+* **French (France):** `Thomas`
+* **French (Canada):** `Amelie`
+* **German:** `Anna`
+* **Italian:** `Alice`
+* **Portuguese (Brazil):** `Luciana`
+* **Portuguese (Portugal):** `Joana`
+* **Japanese:** `Kyoko`, `Otoya`
+* **Korean:** `Yuna`
+* **Chinese (Mainland):** `Ting-Ting`
+* **Chinese (Taiwan):** `Mei-Jia`
+* **Chinese (Hong Kong/Cantonese):** `Sin-Ji`
+
+### Pro tips for your automation
+
+* Pick a default with fallbacks:
+
+  ```bash
+  for v in Samantha Alex Victoria; do
+    if say -v "$v" >/dev/null 2>&1; then VOICE="$v"; break; fi
+  done
+  say -v "$VOICE" -o /tmp/narration.m4a -f narration_en.txt
+  ```
+* Control rate and pitch:
+
+  ```bash
+  say -v Samantha -r 200 "Faster speech";  # ~words per minute
+  ```
+
+If you tell me the target languages, I’ll drop a tiny map in your script that selects the best voice per locale automatically.

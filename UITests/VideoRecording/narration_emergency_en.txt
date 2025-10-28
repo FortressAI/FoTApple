@@ -1,0 +1,9 @@
+Launch Emergency Mode
+Rapid Patient Entry with minimal demographics
+Enter critical vital signs: heart rate one twenty, blood pressure one eighty over one hundred
+Upload and analyze ECG for interpretation
+AI detects ST elevation in inferior leads
+Emergency STEMI Protocol automatically activated
+Cath Lab activation recommended
+Decision made in under thirty seconds
+

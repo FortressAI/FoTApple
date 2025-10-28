@@ -1,0 +1,17 @@
+Launch Clinician App
+Authenticate User
+Open Patient List
+Search for Patient
+Open Patient Record
+Enter Chief Complaint: chest pain, substernal, two hours duration
+Enter Vital Signs: blood pressure one forty over ninety, heart rate ninety-five
+Generate Differential Diagnosis using quantum AI engine
+Review Clinical Reasoning with virtue-guided decision support
+Select Primary Diagnosis: Unstable Angina
+Check Drug Interactions against existing medications
+Prescribe Medication: Nitroglycerin point four milligrams sublingual as needed
+Generate Clinical Receipt with cryptographic proof
+View Cryptographic Proof: BLAKE3 hash, Merkle root, and Ed25519 signature
+Close Encounter and save to audit trail
+Verify Blockchain Anchor for immutable record
+

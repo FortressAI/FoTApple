@@ -1,0 +1,17 @@
+Lancer l'application clinicien
+Authentifier l'utilisateur
+Ouvrir la liste des patients
+Rechercher un patient
+Ouvrir le dossier du patient
+Entrer la plainte principale: douleur thoracique, sous-sternale, durée de deux heures
+Entrer les signes vitaux: tension artérielle cent quarante sur quatre-vingt-dix, fréquence cardiaque quatre-vingt-quinze
+Générer un diagnostic différentiel en utilisant le moteur d'intelligence artificielle quantique
+Examiner le raisonnement clinique avec aide à la décision guidée par les vertus
+Sélectionner le diagnostic primaire: Angine Instable
+Vérifier les interactions médicamenteuses par rapport aux médicaments existants
+Prescrire un médicament: Nitroglycérine zéro virgule quatre milligrammes sublingual au besoin
+Générer un reçu clinique avec preuve cryptographique
+Voir la preuve cryptographique: hash BLAKE3, racine Merkle, et signature Ed25519
+Fermer la rencontre et sauvegarder dans le journal d'audit
+Vérifier l'ancrage blockchain pour l'enregistrement immuable
+

@@ -1,0 +1,17 @@
+Iniciar aplicación de médico
+Autenticar usuario
+Abrir lista de pacientes
+Buscar paciente
+Abrir registro del paciente
+Ingresar queja principal: dolor de pecho, subesternal, dos horas de duración
+Ingresar signos vitales: presión arterial ciento cuarenta sobre noventa, frecuencia cardíaca noventa y cinco
+Generar diagnóstico diferencial usando motor de inteligencia artificial cuántica
+Revisar razonamiento clínico con soporte de decisión guiado por virtudes
+Seleccionar diagnóstico primario: Angina Inestable
+Verificar interacciones de medicamentos contra medicaciones existentes
+Prescribir medicamento: Nitroglicerina punto cuatro miligramos sublingual según sea necesario
+Generar recibo clínico con prueba criptográfica
+Ver prueba criptográfica: hash BLAKE3, raíz Merkle, y firma Ed25519
+Cerrar encuentro y guardar en registro de auditoría
+Verificar ancla de blockchain para registro inmutable
+

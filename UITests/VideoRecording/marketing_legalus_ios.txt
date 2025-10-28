@@ -1,0 +1,33 @@
+Field of Truth Legal US for iOS - legal practice management with cryptographic proof.
+
+In law, deadlines aren't suggestions, they're absolutes. Miss one and your case is over. Field of Truth ensures that never happens.
+
+Welcome to the case dashboard. Each case shows status, key dates, and upcoming deadlines at a glance.
+
+Select a case and see the complete timeline. Filing dates, discovery deadlines, hearing schedules, statute of limitations - all automatically calculated.
+
+Watch this - I'm creating a new case in federal court, civil complaint filed today.
+
+Field of Truth immediately calculates all federal civil procedure deadlines. Answer date, discovery cutoffs, motion deadlines - Rule 26, Rule 12, Rule 56 - all computed automatically.
+
+Change the jurisdiction to California state court and watch the deadlines recalculate instantly. Different rules, different timelines, zero errors.
+
+Every calculation is cryptographically signed. That deadline? Provably computed using the official rules as of today's date. No disputes, no malpractice claims.
+
+Document management built right in. Attach pleadings, evidence, correspondence - everything organized by case, indexed, searchable.
+
+Legal research integrated seamlessly. Search case law, statutes, regulations - cite checking happens automatically as you type.
+
+Template library for common filings. Motions, discovery requests, notices - customize and generate professional documents in seconds.
+
+Time tracking that actually works. One tap to start billable time, automatic categorization, instant client invoicing.
+
+Client portal integration. Your clients see case status, uploaded documents, billing - transparency builds trust.
+
+And that cryptographic proof? Every document timestamp, every deadline calculation, every research query - complete audit trail for ethics compliance and malpractice defense.
+
+Encrypted client communications. Attorney-client privilege protected with AES-256 encryption, secure by design.
+
+Field of Truth Legal US for iOS - because your practice deserves tools as rigorous as the law itself.
+
+Never miss another deadline. Learn more at foundation-of-truth dot com.

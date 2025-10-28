@@ -112,7 +112,7 @@ final class MedicalBoardExamTests: XCTestCase {
                      "Should note dangerous hyperkalemia")
         
         // Verify the system detects critical lab values
-        let observation = Observation(
+        let _ = Observation(
             id: ULID().string,
             encounterID: "test",
             loincCode: "2160-0", // Creatinine
@@ -341,12 +341,15 @@ final class MedicalBoardExamTests: XCTestCase {
             chiefComplaint: "chest pain"
         )
         
-        measure {
-            let _ = try? await engine.generateDifferentialDiagnosis(patient)
-        }
+        // Performance test: Should complete in < 1 second
+        let startTime = Date()
+        let _ = try? await engine.generateDifferentialDiagnosis(patient)
+        let elapsed = Date().timeIntervalSince(startTime)
         
-        // Should complete in < 1 second for usability
-        // XCTest measure will report performance metrics
+        XCTAssertLessThan(elapsed, 1.0, "Differential diagnosis should complete within 1 second")
+        
+        // Note: XCTest measure blocks don't support async operations
+        // For performance testing, use XCTPerformance or manual timing as above
     }
     
     // MARK: - Helper Functions

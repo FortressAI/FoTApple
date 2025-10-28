@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field of Truth - Professional Marketing Videos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .tech-info {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tech-info p {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        
+        .domain-section {
+            margin-bottom: 80px;
+        }
+        
+        .domain-header {
+            background: rgba(0,0,0,0.2);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .domain-header h2 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .domain-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .video-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        
+        .video-card video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h3 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+        }
+        
+        .video-info p {
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+        
+        .platform-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .badge-ios {
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+        }
+        
+        .badge-watchos {
+            background: linear-gradient(135deg, #FF3B30, #FF9500);
+        }
+        
+        .badge-macos {
+            background: linear-gradient(135deg, #5856D6, #00C7BE);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Field of Truth</h1>
+            <p class="subtitle">Professional Marketing Videos</p>
+            <div class="tech-info">
+                <p><strong>Voice:</strong> Samantha (Apple Neural TTS)</p>
+                <p><strong>Rate:</strong> 175 WPM (Professional Clarity)</p>
+                <p><strong>Quality:</strong> 1080p • H.264 • AAC 192kbps</p>
+                <p><strong>Total Size:</strong> 38 MB across 9 videos</p>
+            </div>
+        </header>
+
+        <!-- Clinician Domain -->
+        <section class="domain-section">
+            <div class="domain-header">
+                <h2>🏥 FoT Clinician</h2>
+                <p>Clinical Decision Support That Proves Its Work</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/Clinician_iOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Clinician for iPhone</h3>
+                        <p>Complete clinical workflow with drug interaction checking, SOAP note generation, and cryptographic proof of every decision.</p>
+                        <span class="platform-badge badge-ios">iOS Edition</span>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/Clinician_watchOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Clinician for Apple Watch</h3>
+                        <p>Critical patient data, drug alerts, and emergency protocols accessible at a glance from your wrist.</p>
+                        <span class="platform-badge badge-watchos">watchOS Edition</span>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/Clinician_macOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Clinician for Mac</h3>
+                        <p>Comprehensive clinical workspace with full patient management, encounter documentation, and audit trail generation.</p>
+                        <span class="platform-badge badge-macos">macOS Edition</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal US Domain -->
+        <section class="domain-section">
+            <div class="domain-header">
+                <h2>⚖️ FoT Legal US</h2>
+                <p>Legal Practice Management With Proof</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/LegalUS_iOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Legal US for iPhone</h3>
+                        <p>Case management, deadline tracking, and verifiable legal research on the go.</p>
+                        <span class="platform-badge badge-ios">iOS Edition</span>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/LegalUS_watchOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Legal US for Apple Watch</h3>
+                        <p>Deadline alerts, case summaries, and urgent legal notifications on your wrist.</p>
+                        <span class="platform-badge badge-watchos">watchOS Edition</span>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/LegalUS_macOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Legal US for Mac</h3>
+                        <p>Complete legal practice suite with case analysis, document generation, and cryptographic provenance.</p>
+                        <span class="platform-badge badge-macos">macOS Edition</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education K-18 Domain -->
+        <section class="domain-section">
+            <div class="domain-header">
+                <h2>📚 FoT Education K-18</h2>
+                <p>Virtue-Guided Learning For Every Student</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/EducationK18_iOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Education K-18 for iPhone</h3>
+                        <p>Adaptive learning based on Aristotelian virtues, Socratic dialectic, and Wittgenstein's language games.</p>
+                        <span class="platform-badge badge-ios">iOS Edition</span>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/EducationK18_watchOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Education for Apple Watch</h3>
+                        <p>Learning companion with gentle reminders, progress tracking, and virtue development.</p>
+                        <span class="platform-badge badge-watchos">watchOS Edition</span>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="final_professional/EducationK18_macOS.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3>FoT Education for Mac</h3>
+                        <p>Complete adaptive learning environment with immersive lessons, progress analytics, and virtue-guided assessment.</p>
+                        <span class="platform-badge badge-macos">macOS Edition</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p><strong>Field of Truth Platform</strong></p>
+            <p>Apple Native • VQbit Substrate • SafeAICoin Compliant</p>
+            <p>Built entirely in Swift for watchOS, iOS, iPadOS, macOS, and visionOS</p>
+            <p style="margin-top: 20px; opacity: 0.6;">Generated: October 27, 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
+

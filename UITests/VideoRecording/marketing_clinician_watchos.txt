@@ -1,0 +1,23 @@
+Field of Truth Clinician for Apple Watch - critical clinical data on your wrist.
+
+In emergency situations, seconds matter. Having the right information instantly accessible can save lives.
+
+Raise your wrist and see your patient's vital information immediately - allergies, current medications, active problems - all at a glance.
+
+Critical allergy alert - this patient has a life-threatening Penicillin allergy. No searching through charts, no unlocking phones - instant visibility.
+
+Current medications displayed with dosing information. Tap for full details including RxNav identifiers for verification.
+
+Watch integration means real-time health metrics. Heart rate from Apple Health, respiratory rate, activity levels - all feeding into the clinical picture.
+
+Set medication reminders with haptic feedback. Your watch gently alerts you when it's time for patient rounds or medication administration.
+
+Emergency protocols at your fingertips. STEMI guidelines, stroke assessment, anaphylaxis treatment - instant reference when you need it most.
+
+And just like the iPhone app, every interaction is cryptographically logged. That medication check? Timestamped and signed.
+
+Privacy first - all patient data stays on your devices, encrypted end-to-end, HIPAA compliant even on your wrist.
+
+Field of Truth Clinician for watchOS - because critical decisions shouldn't wait for you to find your phone.
+
+Available on Apple Watch Series 4 and later.

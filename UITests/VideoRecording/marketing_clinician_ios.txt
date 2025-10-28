@@ -1,0 +1,41 @@
+Welcome to Field of Truth Clinician for iOS - clinical decision support that proves its work.
+
+In healthcare, trust isn't optional. Every decision must be verifiable, auditable, and correct. Field of Truth delivers exactly that.
+
+Let's start with the patient dashboard. Here you see John Doe, a 45-year-old patient with a comprehensive medical history.
+
+Notice the allergy alert - Penicillin with anaphylaxis risk. This critical information is always front and center, protecting patient safety.
+
+Now let's review his current medications. He's currently taking Aspirin, 81 milligrams once daily.
+
+Watch what happens when we add a new medication. I'll add Warfarin, a common blood thinner.
+
+The system immediately queries the NIH RxNav API in real-time - no mocks, no simulations, real live data.
+
+And there's the alert - critical drug interaction detected. Aspirin plus Warfarin significantly increases bleeding risk.
+
+But Field of Truth doesn't just warn you - it explains why, provides evidence, and offers alternatives, all powered by our VQbit quantum-inspired reasoning engine.
+
+Every recommendation is weighted by four Aristotelian virtues - Justice, Temperance, Prudence, and Fortitude - ensuring ethical, balanced clinical decisions.
+
+Now let's document this encounter with a SOAP note. I can use voice input for the chief complaint.
+
+The AI assists with structured documentation, but you remain in full control. This isn't automation replacing judgment - it's intelligence amplifying expertise.
+
+And here's what makes Field of Truth different - every clinical action is cryptographically signed with a tamper-proof receipt.
+
+This SOAP note, this drug interaction check, this recommendation - all recorded in an immutable audit trail, anchored to the SafeAICoin blockchain.
+
+For regulatory compliance, for malpractice protection, for patient safety - complete provenance of every clinical decision.
+
+Let's export the proof bundle. This cryptographic package contains the complete audit trail, ready for review by any regulatory body, any auditor, any court.
+
+Field of Truth Clinician runs entirely on-device. Your patient data never leaves your iPhone. HIPAA compliant by design, with AES-256 encryption for all protected health information.
+
+But it's still connected when you need it - real-time drug databases, clinical guidelines, evidence-based protocols - all integrated seamlessly.
+
+This is the future of clinical practice. Intelligent decision support, cryptographic proof, complete privacy, and native iOS performance.
+
+Field of Truth Clinician for iOS - because in healthcare, proof isn't paranoia, it's professional responsibility.
+
+Learn more at foundation-of-truth dot com.

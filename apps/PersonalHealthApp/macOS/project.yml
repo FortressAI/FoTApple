@@ -1,0 +1,34 @@
+name: PersonalHealthMac
+options:
+  bundleIdPrefix: com.fot
+  deploymentTarget:
+    macOS: 14.0
+
+packages:
+  FoTPackages:
+    path: ../../..
+
+targets:
+  PersonalHealthMac:
+    type: application
+    platform: macOS
+    sources:
+      - PersonalHealthMac
+    dependencies:
+      - package: FoTPackages
+        product: FoTCore
+      - package: FoTPackages
+        product: FoTUI
+      - package: FoTPackages
+        product: VQbitSubstrate
+    settings:
+      base:
+        INFOPLIST_FILE: PersonalHealthMac/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.fot.PersonalHealthMac
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.9"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        INFOPLIST_KEY_NSCameraUsageDescription: "Capture health-related photos"
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Save health records"
+

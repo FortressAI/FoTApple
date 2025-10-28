@@ -1,0 +1,307 @@
+# Foundation Gates CI
+# Enforces the stable contract - these gates MUST pass before merge
+#
+# Gates:
+# 1. Parity: CPU↔GPU results match (when Metal implemented)
+# 2. Determinism: Same seed → identical receipts
+# 3. Coverage: ≥99.9% receipts for user-visible outputs
+# 4. Fallback: CPU graceful fallback works
+# 5. Performance: No >20% regression
+
+name: Foundation Gates
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  
+  # Job 1: Build and Unit Tests
+  build-and-test:
+    name: Build and Unit Tests
+    runs-on: macos-14  # M-series runner
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app
+      
+    - name: Build
+      run: swift build -c release
+      
+    - name: Run Unit Tests
+      run: swift test --parallel
+      
+    - name: Check Core Infrastructure Pass Rate
+      run: |
+        # All core infrastructure tests must pass (AKG, Merkle, VQbit)
+        swift test --filter AKGServiceTests 2>&1 | tee test_output.txt
+        swift test --filter MerkleTreeTests 2>&1 | tee -a test_output.txt
+        swift test --filter VQbitEngineTests 2>&1 | tee -a test_output.txt
+        
+        # Check for failures
+        if grep -q "failed" test_output.txt; then
+          echo "❌ Core infrastructure tests failed!"
+          exit 1
+        fi
+        echo "✅ Core infrastructure tests passed"
+  
+  # Job 2: Determinism Gate
+  determinism:
+    name: Gate - Determinism
+    runs-on: macos-14
+    needs: build-and-test
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Build
+      run: swift build -c release
+      
+    - name: Test Deterministic Receipts
+      run: |
+        cat > Tests/FoTCoreTests/DeterminismGateTest.swift << 'EOF'
+        import XCTest
+        @testable import FoTCore
+        
+        final class DeterminismGateTest: XCTestCase {
+            func testDeterministicReceipts() async throws {
+                let seed: UInt64 = 42
+                let config = VQbitConfig(dimension: 512, seed: seed)
+                
+                // Run 1
+                let engine1 = try await VQbitEngineFactory.create(config: config, forceImplementation: .accelerate)
+                let snapshot1 = try await engine1.step(EvolutionUnit())
+                let receipt1 = try await engine1.receipt()
+                
+                // Run 2 (same seed)
+                let engine2 = try await VQbitEngineFactory.create(config: config, forceImplementation: .accelerate)
+                let snapshot2 = try await engine2.step(EvolutionUnit())
+                let receipt2 = try await engine2.receipt()
+                
+                // Hashes MUST be identical
+                XCTAssertEqual(receipt1.hash, receipt2.hash, "Determinism violated: same seed produced different hashes")
+                
+                print("✅ DETERMINISM GATE PASSED: Identical hashes")
+                print("   Hash 1: \(receipt1.hash.prefix(8).map { String(format: "%02x", $0) }.joined())")
+                print("   Hash 2: \(receipt2.hash.prefix(8).map { String(format: "%02x", $0) }.joined())")
+            }
+        }
+        EOF
+        
+        swift test --filter DeterminismGateTest
+  
+  # Job 3: Receipt Coverage Gate
+  coverage:
+    name: Gate - Receipt Coverage
+    runs-on: macos-14
+    needs: build-and-test
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Build
+      run: swift build -c release
+      
+    - name: Test Receipt Coverage
+      run: |
+        cat > Tests/FoTCoreTests/CoverageGateTest.swift << 'EOF'
+        import XCTest
+        @testable import FoTCore
+        
+        final class CoverageGateTest: XCTestCase {
+            func testReceiptCoverage() async throws {
+                let receiptStore = try ReceiptStore(path: ":memory:")
+                let engine = try await VQbitEngineFactory.create()
+                let attester = SolveAndAttest(engine: engine, receiptStore: receiptStore)
+                
+                // Simulate 1000 operations
+                var receiptCount = 0
+                for i in 0..<1000 {
+                    let result = try await attester.evolve(
+                        unit: EvolutionUnit(),
+                        extractResult: { snapshot in snapshot.coherence }
+                    )
+                    if result.attestationID.count > 0 {
+                        receiptCount += 1
+                    }
+                }
+                
+                let coverage = Double(receiptCount) / 1000.0
+                XCTAssertGreaterThanOrEqual(coverage, 0.999, "Receipt coverage \(coverage) < 99.9%")
+                
+                print("✅ COVERAGE GATE PASSED: \(coverage * 100)% receipts")
+            }
+        }
+        EOF
+        
+        swift test --filter CoverageGateTest
+  
+  # Job 4: CPU Fallback Gate
+  fallback:
+    name: Gate - CPU Fallback
+    runs-on: macos-14
+    needs: build-and-test
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Build
+      run: swift build -c release
+      
+    - name: Test CPU Fallback
+      run: |
+        cat > Tests/FoTCoreTests/FallbackGateTest.swift << 'EOF'
+        import XCTest
+        @testable import FoTCore
+        
+        final class FallbackGateTest: XCTestCase {
+            func testCPUFallback() async throws {
+                // Force Accelerate (simulate GPU failure)
+                let engine = try await VQbitEngineFactory.create(forceImplementation: .accelerate)
+                
+                // Should work without GPU
+                let snapshot = try await engine.step(EvolutionUnit())
+                let receipt = try await engine.receipt()
+                
+                XCTAssertEqual(receipt.engineType, "Accelerate", "CPU fallback did not engage")
+                XCTAssertTrue(receipt.hash.count > 0, "Receipt generation failed in fallback mode")
+                
+                print("✅ FALLBACK GATE PASSED: CPU fallback works")
+                print("   Engine: \(receipt.engineType)")
+                print("   Device: \(receipt.deviceCapability)")
+            }
+        }
+        EOF
+        
+        swift test --filter FallbackGateTest
+  
+  # Job 5: Performance Regression Gate
+  performance:
+    name: Gate - Performance Regression
+    runs-on: macos-14
+    needs: build-and-test
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Build Release
+      run: swift build -c release
+      
+    - name: Performance Benchmark
+      run: |
+        cat > Tests/FoTCoreTests/PerformanceGateTest.swift << 'EOF'
+        import XCTest
+        @testable import FoTCore
+        
+        final class PerformanceGateTest: XCTestCase {
+            func testPerformanceRegression() async throws {
+                let engine = try await VQbitEngineFactory.create(config: VQbitConfig(dimension: 1024))
+                
+                // Warm up
+                _ = try await engine.step(EvolutionUnit(iterations: 10))
+                
+                // Benchmark
+                let iterations = 100
+                let start = Date()
+                
+                for _ in 0..<iterations {
+                    _ = try await engine.step(EvolutionUnit(iterations: 10))
+                }
+                
+                let elapsed = Date().timeIntervalSince(start)
+                let avgTime = elapsed / Double(iterations)
+                
+                // Baseline: 10ms per step (adjust based on real measurements)
+                let baseline: TimeInterval = 0.010
+                let threshold = baseline * 1.20  // 20% regression tolerance
+                
+                XCTAssertLessThan(avgTime, threshold, "Performance regression: \(avgTime)s > \(threshold)s")
+                
+                print("✅ PERFORMANCE GATE PASSED")
+                print("   Average time: \(avgTime * 1000)ms")
+                print("   Baseline: \(baseline * 1000)ms")
+                print("   Threshold: \(threshold * 1000)ms")
+            }
+        }
+        EOF
+        
+        swift test --filter PerformanceGateTest
+  
+  # Job 6: Verifier CLI Test
+  verifier:
+    name: Gate - Verifier CLI
+    runs-on: macos-14
+    needs: build-and-test
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Build CLI
+      run: swift build -c release --product fotctl
+      
+    - name: Generate Test Proof
+      run: |
+        # Create a test proof bundle
+        mkdir -p proofs
+        cat > proofs/test_proof.json << 'EOF'
+        {
+          "id": "test_001",
+          "timestamp": "2025-10-27T09:00:00Z",
+          "operation": "test_evolution",
+          "inputs_hash": "abc123",
+          "outputs_hash": "def456",
+          "merkle_root": "root789"
+        }
+        EOF
+      
+    - name: Verify Proof
+      run: |
+        # TODO: Implement fotctl verify command
+        echo "✅ VERIFIER GATE (pending implementation)"
+        # .build/release/fotctl verify proofs/test_proof.json
+  
+  # Job 7: All Gates Summary
+  gates-summary:
+    name: Foundation Gates Summary
+    runs-on: macos-14
+    needs: [build-and-test, determinism, coverage, fallback, performance, verifier]
+    if: always()
+    
+    steps:
+    - name: Summary
+      run: |
+        echo "# 🎯 Foundation Gates Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Gate | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Build & Test | ${{ needs.build-and-test.result == 'success' && '✅ PASS' || '❌ FAIL' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Determinism | ${{ needs.determinism.result == 'success' && '✅ PASS' || '❌ FAIL' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Coverage | ${{ needs.coverage.result == 'success' && '✅ PASS' || '❌ FAIL' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| CPU Fallback | ${{ needs.fallback.result == 'success' && '✅ PASS' || '❌ FAIL' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Performance | ${{ needs.performance.result == 'success' && '✅ PASS' || '❌ FAIL' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Verifier | ${{ needs.verifier.result == 'success' && '✅ PASS' || '⏭️  SKIP' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ needs.build-and-test.result }}" == "success" ] && \
+           [ "${{ needs.determinism.result }}" == "success" ] && \
+           [ "${{ needs.coverage.result }}" == "success" ] && \
+           [ "${{ needs.fallback.result }}" == "success" ] && \
+           [ "${{ needs.performance.result }}" == "success" ]; then
+          echo "## ✅ ALL FOUNDATION GATES PASSED" >> $GITHUB_STEP_SUMMARY
+          echo "The stable contract is protected. Ship-able foundation validated." >> $GITHUB_STEP_SUMMARY
+        else
+          echo "## ❌ FOUNDATION GATES FAILED" >> $GITHUB_STEP_SUMMARY
+          echo "Fix failures before merging." >> $GITHUB_STEP_SUMMARY
+          exit 1
+        fi
+

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <g stroke="#78F0FF" stroke-width="20" fill="none" transform="translate(512,512)">
+    <circle r="260"/>
+    <circle r="160"/>
+    <line x1="-260" y1="0" x2="260" y2="0" />
+    <line x1="0" y1="-260" x2="0" y2="260" />
+    <path d="M 0 -95 L 95 0 L 0 95 L -95 0 Z" />
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "619ADFCD-5848-42FB-906F-62CD7D5DCAB5",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DataAdaptersTests",
+        "name" : "DataAdaptersTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FoTClinicianTests",
+        "name" : "FoTClinicianTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FoTCoreTests",
+        "name" : "FoTCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

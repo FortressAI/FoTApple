@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field of Truth - Professional Marketing Videos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1600px; margin: 0 auto; }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
+        }
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .stat {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+        }
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .domain-section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease;
+        }
+        .domain-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+        .domain-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .video-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.4);
+        }
+        .video-card:hover::before {
+            opacity: 1;
+        }
+        
+        .video-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .platform-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ios { background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%); }
+        .watchos { background: linear-gradient(135deg, #FF3B30 0%, #FF9500 100%); }
+        .macos { background: linear-gradient(135deg, #5856D6 0%, #00C7BE 100%); }
+        
+        .video-card video {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: #000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        
+        .video-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .duration {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .download-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: scale(1.05);
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 60px 40px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 20px 50px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .tagline { font-size: 1.2rem; }
+            .video-grid { grid-template-columns: 1fr; }
+            .stats { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Field of Truth</h1>
+            <p class="tagline">Professional Marketing Videos</p>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Professional Videos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Commercial Domains</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Apple Platforms</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="domain-section">
+            <h2>🏥 Clinician - Clinical Decision Support</h2>
+            <p class="domain-description">Clinical decision support that cryptographically proves every action, ensuring patient safety and regulatory compliance.</p>
+            <div class="video-grid">
+                <div class="video-card">
+                    <h3>iPhone & iPad</h3>
+                    <span class="platform-badge ios">iOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/Clinician_iOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/Clinician_iOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Apple Watch</h3>
+                    <span class="platform-badge watchos">watchOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/Clinician_watchOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/Clinician_watchOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Mac</h3>
+                    <span class="platform-badge macos">macOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/Clinician_macOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/Clinician_macOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="domain-section">
+            <h2>⚖️ Legal US - Legal Practice Management</h2>
+            <p class="domain-description">Complete legal practice management with automated deadline calculation and cryptographic proof of every action.</p>
+            <div class="video-grid">
+                <div class="video-card">
+                    <h3>iPhone & iPad</h3>
+                    <span class="platform-badge ios">iOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/LegalUS_iOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/LegalUS_iOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Apple Watch</h3>
+                    <span class="platform-badge watchos">watchOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/LegalUS_watchOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/LegalUS_watchOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Mac</h3>
+                    <span class="platform-badge macos">macOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/LegalUS_macOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/LegalUS_macOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="domain-section">
+            <h2>🎓 Education K-18 - Adaptive Learning</h2>
+            <p class="domain-description">Virtue-guided adaptive learning powered by Socratic dialogue, Wittgenstein language games, and Aristotelian ethics.</p>
+            <div class="video-grid">
+                <div class="video-card">
+                    <h3>iPhone & iPad</h3>
+                    <span class="platform-badge ios">iOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/EducationK18_iOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/EducationK18_iOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Apple Watch</h3>
+                    <span class="platform-badge watchos">watchOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/EducationK18_watchOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/EducationK18_watchOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Mac</h3>
+                    <span class="platform-badge macos">macOS</span>
+                    <video controls preload="metadata">
+                        <source src="final/EducationK18_macOS.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <span class="duration">Professional Narration</span>
+                        <a href="final/EducationK18_macOS.mp4" download class="download-btn">
+                            ⬇ Download MP4
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Ready to Experience Field of Truth?</h2>
+            <p>Join the revolution in verifiable, trustworthy AI</p>
+            <a href="https://foundation-of-truth.com" class="cta-btn">Learn More →</a>
+        </div>
+    </div>
+</body>
+</html>

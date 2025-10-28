@@ -77,10 +77,15 @@ final class CanonicalJSONTests: XCTestCase {
         let canonical = try CanonicalJSON.canonicalize(input)
         let string = String(data: canonical, encoding: .utf8)!
         
-        // Numbers should be properly formatted
-        XCTAssertTrue(string.contains("42"))
-        XCTAssertTrue(string.contains("3.14159"))
-        XCTAssertTrue(string.contains("0"))
+        // Parse back and verify values are preserved
+        let parsed = try JSONSerialization.jsonObject(with: canonical) as! [String: Any]
+        XCTAssertEqual(parsed["int"] as? Int, 42)
+        XCTAssertEqual(parsed["zero"] as? Int, 0)
+        
+        // For doubles, check approximate equality (floating point precision)
+        let doubleValue = parsed["double"] as? Double
+        XCTAssertNotNil(doubleValue)
+        XCTAssertEqual(doubleValue!, 3.14159, accuracy: 0.00001)
     }
     
     func testHashConsistency() throws {

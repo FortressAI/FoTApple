@@ -1,0 +1,294 @@
+# This script generates the **core** domain artwork set according to the user's spec.
+# It creates SVG masters and PNG exports for:
+# - App Icon (master SVG + 1024 PNG + optional sizes)
+# - Launch Screen (2732 PNG)
+# - Badges/Tiles (64/96/128/192/256 PNGs with 20% corner radius)
+# - Domain Glyph (1024 SVG)
+# - Dynamic glass references (2 PNGs at 1920×1080)
+#
+# NOTE: All assets are created under /mnt/data/Design/... so they can be downloaded directly.
+
+import os, math, json, io, textwrap
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
+
+BASE = "/mnt/data/Design"
+DOM_DIR = os.path.join(BASE, "Icons", "FoTCore")
+EXPORTS = os.path.join(DOM_DIR, "Exports")
+LAUNCH_DIR = os.path.join(BASE, "Launch")
+BADGES_DIR = os.path.join(BASE, "Badges")
+REF_DIR = os.path.join(BASE, "References")
+
+for d in [DOM_DIR, EXPORTS, LAUNCH_DIR, BADGES_DIR, REF_DIR]:
+    os.makedirs(d, exist_ok=True)
+
+# ----------------------
+# Token-like constants for the "core" domain
+# ----------------------
+colors = {
+    "bg_dark": (8, 20, 40),       # deep blue-black
+    "bg_primary": (20, 96, 220),  # electric blue
+    "bg_light": (140, 200, 255),  # light accent
+    "glyph_accent": (120, 240, 255),  # cyan accent
+    "highlight": (255, 255, 255, 18)  # 7% white in RGBA
+}
+
+materials = {
+    "glass_blur": 30,
+    "glass_opacity": 0.75,
+    "glass_saturation": 1.12,  # not used directly; aesthetic only
+    "glass_noise": 0.025,      # % of noise amplitude
+    "card_blur": 28,
+    "card_opacity": 0.72,
+    "inner_glow": 0.05
+}
+
+# Utility: vertical gradient
+def vertical_gradient(size, top_color, mid_color, bottom_color):
+    w, h = size
+    img = Image.new("RGB", (w, h), color=top_color)
+    draw = ImageDraw.Draw(img)
+    for y in range(h):
+        t = y / (h - 1)
+        # 3-stop gradient (top->mid->bottom)
+        if t < 0.5:
+            u = t / 0.5
+            r = int(top_color[0] + u * (mid_color[0] - top_color[0]))
+            g = int(top_color[1] + u * (mid_color[1] - top_color[1]))
+            b = int(top_color[2] + u * (mid_color[2] - top_color[2]))
+        else:
+            u = (t - 0.5) / 0.5
+            r = int(mid_color[0] + u * (bottom_color[0] - mid_color[0]))
+            g = int(mid_color[1] + u * (bottom_color[1] - mid_color[1]))
+            b = int(mid_color[2] + u * (bottom_color[2] - mid_color[2]))
+        draw.line([(0, y), (w, y)], fill=(r, g, b))
+    return img
+
+# Utility: add glass panel
+def add_glass(img, bbox, blur_px, opacity, noise_level=0.02):
+    w, h = img.size
+    x0, y0, x1, y1 = bbox
+    # Extract region and blur
+    region = img.crop((max(int(x0 - blur_px),0), max(int(y0 - blur_px),0), min(int(x1 + blur_px),w), min(int(y1 + blur_px),h)))
+    region = region.filter(ImageFilter.GaussianBlur(blur_px))
+    # Add subtle white tint
+    overlay = Image.new("RGBA", region.size, (255,255,255,int(255*opacity*0.6)))
+    region = Image.alpha_composite(region.convert("RGBA"), overlay)
+    # Add film grain
+    if noise_level > 0:
+        import numpy as np
+        arr = np.array(region).astype('int16')
+        noise = np.random.normal(0, 255*noise_level, arr.shape[:2] + (1,))
+        arr[..., :3] = np.clip(arr[..., :3] + noise, 0, 255)
+        region = Image.fromarray(arr.astype('uint8'), 'RGBA')
+    # Paste back with rounded rectangle mask (superellipse-like rounded rect)
+    mask = Image.new("L", region.size, 0)
+    mask_draw = ImageDraw.Draw(mask)
+    rx = int(min(region.size)*0.08)
+    mask_draw.rounded_rectangle((0,0,region.size[0]-1, region.size[1]-1), radius=rx, fill=255)
+    img.alpha_composite(region, (max(int(x0 - blur_px),0), max(int(y0 - blur_px),0)), mask)
+    return img
+
+# Utility: draw specular highlight
+def add_specular(img, center, radius, strength=0.03):
+    overlay = Image.new("RGBA", img.size, (0,0,0,0))
+    odraw = ImageDraw.Draw(overlay)
+    cx, cy = center
+    for r in range(radius, 0, -1):
+        a = int(255 * strength * (r / radius) ** 2)
+        odraw.ellipse((cx-r, cy-r, cx+r, cy+r), fill=(255,255,255,a))
+    img.alpha_composite(overlay)
+    return img
+
+# Utility: draw the FoT "field" glyph (clean geometric vector-like)
+def draw_core_glyph(draw, center, scale, color):
+    # Concentric, intersecting arcs and a central diamond — kept simple for vector cleanliness.
+    cx, cy = center
+    s = scale
+    line = max(2, int(s*0.02))
+    # Outer circle
+    draw.ellipse((cx - s, cy - s, cx + s, cy + s), outline=color, width=line)
+    # Inner circle
+    draw.ellipse((cx - s*0.6, cy - s*0.6, cx + s*0.6, cy + s*0.6), outline=color, width=line)
+    # Vertical and horizontal axes
+    draw.line((cx - s, cy, cx + s, cy), fill=color, width=line)
+    draw.line((cx, cy - s, cx, cy + s), fill=color, width=line)
+    # Central diamond
+    d = s*0.18
+    draw.line((cx, cy-d, cx+d, cy), fill=color, width=line)
+    draw.line((cx+d, cy, cx, cy+d), fill=color, width=line)
+    draw.line((cx, cy+d, cx-d, cy), fill=color, width=line)
+    draw.line((cx-d, cy, cx, cy-d), fill=color, width=line)
+
+# ----------------------
+# 1) Create App Icon Master PNG (1024) + variants; also store SVG master placeholder
+# ----------------------
+def create_app_icon_png(size=1024):
+    bg = vertical_gradient((size, size), colors["bg_dark"], colors["bg_primary"], colors["bg_light"])
+    img = bg.convert("RGBA")
+
+    # Glass panel within safe area (84% of canvas)
+    pad = int(size*(1-0.84)/2)
+    bbox = (pad, pad, size-pad, size-pad)
+    img = add_glass(img, bbox, materials["glass_blur"], materials["glass_opacity"], noise_level=materials["glass_noise"])
+
+    # Glyph centered
+    draw = ImageDraw.Draw(img)
+    draw_core_glyph(draw, (size//2, size//2), scale=int(size*0.26), color=colors["glyph_accent"])
+
+    # Specular highlight
+    img = add_specular(img, (int(size*0.62), int(size*0.34)), radius=int(size*0.38), strength=0.035)
+
+    return img
+
+# Save master PNG and variants
+master_1024 = create_app_icon_png(1024)
+master_1024.save(os.path.join(EXPORTS, "FoT_core_1024.png"))
+
+for s in [512, 256, 128, 64, 32]:
+    im = master_1024.resize((s,s), Image.LANCZOS)
+    im.save(os.path.join(EXPORTS, f"FoT_core_{s:03d}.png"))
+
+# Create minimal SVG master & glyph vector (paths kept simple; PNGs are the deliverables for runtime)
+svg_master_path = os.path.join(DOM_DIR, "FoT_core_Master.svg")
+with open(svg_master_path, "w") as f:
+    f.write(textwrap.dedent(f"""
+    <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+      <defs>
+        <linearGradient id="bggrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgb{colors['bg_dark']}" />
+          <stop offset="50%" stop-color="rgb{colors['bg_primary']}" />
+          <stop offset="100%" stop-color="rgb{colors['bg_light']}" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="1024" height="1024" fill="url(#bggrad)"/>
+      <!-- Glass + specular are approximated visually in PNG exports -->
+      <!-- Center glyph reference -->
+      <g stroke="rgb{colors['glyph_accent']}" stroke-width="20" fill="none" transform="translate(512,512)">
+        <circle r="260"/>
+        <circle r="160"/>
+        <line x1="-260" y1="0" x2="260" y2="0" />
+        <line x1="0" y1="-260" x2="0" y2="260" />
+        <path d="M 0 -95 L 95 0 L 0 95 L -95 0 Z" />
+      </g>
+    </svg>
+    """).strip())
+
+# ----------------------
+# 2) Create Launch Screen (2732)
+# ----------------------
+launch_size = 2732
+launch = vertical_gradient((launch_size, launch_size), colors["bg_dark"], colors["bg_primary"], colors["bg_light"]).convert("RGBA")
+
+# Watermark glyph (8–12% opacity)
+wm = Image.new("RGBA", (launch_size, launch_size), (0,0,0,0))
+wd = ImageDraw.Draw(wm)
+draw_core_glyph(wd, (launch_size//2, launch_size//2), scale=int(launch_size*0.28), color=(255,255,255,28))
+launch.alpha_composite(wm)
+
+# Foreground glass card
+card_w = int(launch_size*0.66)
+card_h = int(launch_size*0.42)
+x0 = (launch_size - card_w)//2
+y0 = (launch_size - card_h)//2
+launch = add_glass(launch, (x0, y0, x0+card_w, y0+card_h), materials["card_blur"], materials["card_opacity"], noise_level=materials["glass_noise"])
+
+launch_path = os.path.join(LAUNCH_DIR, "FoT_core_LaunchMaster.png")
+launch.save(launch_path)
+
+# ----------------------
+# 3) Badges/Tiles
+# ----------------------
+def create_badge(size):
+    bg = vertical_gradient((size, size), colors["bg_dark"], colors["bg_primary"], colors["bg_light"]).convert("RGBA")
+    # Card glass across full tile with rounded corners = 20% size
+    rad = int(size*0.2)
+    # Build a glass tile
+    glass = bg.filter(ImageFilter.GaussianBlur(materials["card_blur"] if size>=192 else max(6, int(materials["card_blur"]*size/2732))))
+    overlay = Image.new("RGBA", (size, size), (255,255,255,int(255*materials["card_opacity"]*0.6)))
+    glass = Image.alpha_composite(glass, overlay)
+    # Mask with rounded corners
+    mask = Image.new("L", (size,size), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0,0,size-1,size-1), radius=rad, fill=255)
+    out = Image.new("RGBA", (size,size))
+    out.paste(glass, (0,0), mask)
+    # Glyph centered
+    d = ImageDraw.Draw(out)
+    draw_core_glyph(d, (size//2, size//2), scale=int(size*0.28), color=colors["glyph_accent"])
+    return out
+
+for s in [64, 96, 128, 192, 256]:
+    badge = create_badge(s)
+    badge.save(os.path.join(BADGES_DIR, f"FoT_core_Badge_{s}.png"))
+
+# ----------------------
+# 4) Glyph SVG (1024×1024)
+# ----------------------
+glyph_svg_path = os.path.join(DOM_DIR, "FoT_core_Glyph.svg")
+with open(glyph_svg_path, "w") as f:
+    f.write(textwrap.dedent(f"""
+    <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+      <g stroke="rgb{colors['glyph_accent']}" stroke-width="20" fill="none" transform="translate(512,512)">
+        <circle r="260"/>
+        <circle r="160"/>
+        <line x1="-260" y1="0" x2="260" y2="0" />
+        <line x1="0" y1="-260" x2="0" y2="260" />
+        <path d="M 0 -95 L 95 0 L 0 95 L -95 0 Z" />
+      </g>
+    </svg>
+    """).strip())
+
+# ----------------------
+# 5) Dynamic Glass QA References (1920×1080)
+# ----------------------
+def glass_reference(w=1920, h=1080, seed=1):
+    import random, numpy as np
+    random.seed(seed)
+    img = vertical_gradient((w,h), colors["bg_dark"], colors["bg_primary"], colors["bg_light"]).convert("RGBA")
+    # Add flowing streaks as if from a shader (simple sine curves)
+    overlay = Image.new("RGBA", (w,h), (0,0,0,0))
+    d = ImageDraw.Draw(overlay)
+    for i in range(12):
+        y = int(h*(0.1 + 0.8*random.random()))
+        amp = random.randint(20,80)
+        thickness = random.randint(2,5)
+        for x in range(0, w, 6):
+            yy = y + int(amp*math.sin(2*math.pi*(x/w)*random.uniform(1.0,3.0) + random.random()*math.pi))
+            d.line((x,yy, x+6, yy), fill=(255,255,255,18), width=thickness)
+    # Subtle blur to blend
+    overlay = overlay.filter(ImageFilter.GaussianBlur(2))
+    img.alpha_composite(overlay)
+    # Place a centered glass card
+    cw, ch = int(w*0.46), int(h*0.5)
+    x0, y0 = (w-cw)//2, (h-ch)//2
+    img = add_glass(img, (x0, y0, x0+cw, y0+ch), 22, 0.72, noise_level=materials["glass_noise"])
+    return img
+
+ref1 = glass_reference(1920,1080,seed=11)
+ref2 = glass_reference(1920,1080,seed=27)
+ref1.save(os.path.join(REF_DIR, "FoT_core_DynamicGlass_01.png"))
+ref2.save(os.path.join(REF_DIR, "FoT_core_DynamicGlass_02.png"))
+
+# ----------------------
+# Summary of generated paths
+# ----------------------
+outputs = [
+    os.path.join(DOM_DIR, "FoT_core_Master.svg"),
+    os.path.join(EXPORTS, "FoT_core_1024.png"),
+    os.path.join(EXPORTS, "FoT_core_512.png"),
+    os.path.join(EXPORTS, "FoT_core_256.png"),
+    os.path.join(EXPORTS, "FoT_core_128.png"),
+    os.path.join(EXPORTS, "FoT_core_064.png"),
+    os.path.join(EXPORTS, "FoT_core_032.png"),
+    os.path.join(DOM_DIR, "FoT_core_Glyph.svg"),
+    os.path.join(LAUNCH_DIR, "FoT_core_LaunchMaster.png"),
+    os.path.join(BADGES_DIR, "FoT_core_Badge_64.png"),
+    os.path.join(BADGES_DIR, "FoT_core_Badge_96.png"),
+    os.path.join(BADGES_DIR, "FoT_core_Badge_128.png"),
+    os.path.join(BADGES_DIR, "FoT_core_Badge_192.png"),
+    os.path.join(BADGES_DIR, "FoT_core_Badge_256.png"),
+    os.path.join(REF_DIR, "FoT_core_DynamicGlass_01.png"),
+    os.path.join(REF_DIR, "FoT_core_DynamicGlass_02.png"),
+]
+
+outputs
+
