@@ -592,8 +592,8 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
                 shortTitle: "Student Progress",
                 systemImageName: "chart.bar.fill"
             ),
-        
-        AppShortcut(
+            
+            AppShortcut(
             intent: CheckAssignmentsDueIntent(),
             phrases: [
                 "What homework does my child have in \(.applicationName)",
@@ -602,9 +602,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Assignments Due",
             systemImageName: "book.fill"
-        )
-        
-        AppShortcut(
+        ),
+            
+            AppShortcut(
             intent: ParentScheduleTeacherMeetingIntent(),
             phrases: [
                 "Schedule parent teacher meeting in \(.applicationName)",
@@ -613,9 +613,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Teacher Meeting",
             systemImageName: "person.2.fill"
-        )
-        
-        AppShortcut(
+        ),
+            
+            AppShortcut(
             intent: ViewBehaviorReportsIntent(),
             phrases: [
                 "Check my child's behavior in \(.applicationName)",
@@ -624,9 +624,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Behavior Reports",
             systemImageName: "hand.raised.fill"
-        )
-        
-        AppShortcut(
+        ),
+            
+            AppShortcut(
             intent: UpdateEmergencyContactIntent(),
             phrases: [
                 "Update emergency contact in \(.applicationName)",
@@ -635,9 +635,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Emergency Contact",
             systemImageName: "phone.circle.fill"
-        )
-        
-        AppShortcut(
+        ),
+            
+            AppShortcut(
             intent: ViewAttendanceIntent(),
             phrases: [
                 "Check my child's attendance in \(.applicationName)",
@@ -646,9 +646,9 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Attendance",
             systemImageName: "calendar.badge.checkmark"
-        )
-        
-        AppShortcut(
+        ),
+            
+            AppShortcut(
             intent: ApproveFieldTripIntent(),
             phrases: [
                 "Approve field trip in \(.applicationName)",
@@ -657,8 +657,8 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Field Trip",
             systemImageName: "bus.fill"
-        )
-        
+        ),
+            
             AppShortcut(
                 intent: ViewIEPPlanIntent(),
                 phrases: [
