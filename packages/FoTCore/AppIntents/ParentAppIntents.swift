@@ -581,7 +581,7 @@ struct ViewIEPPlanIntent: AppIntent {
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 struct ParentAppShortcutsProvider: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
-        [
+        return [
             AppShortcut(
                 intent: ViewStudentProgressIntent(),
                 phrases: [
