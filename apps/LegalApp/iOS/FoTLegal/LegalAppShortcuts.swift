@@ -4,6 +4,7 @@
 import Foundation
 import AppIntents
 import FoTCore
+import FoTAppIntents
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 struct LegalAppShortcutsProvider: AppShortcutsProvider {
