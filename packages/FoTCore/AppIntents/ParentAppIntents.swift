@@ -601,5 +601,3 @@ public struct ViewIEPPlanIntent: AppIntent {
 
 // MARK: - Parent App Shortcuts
 
-@available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
-
