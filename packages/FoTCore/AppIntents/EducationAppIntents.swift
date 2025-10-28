@@ -8,8 +8,8 @@ import AppIntents
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RecordAssignmentIntent: AppIntent {
-    static var title: LocalizedStringResource = "Record Assignment"
-    static var description = IntentDescription("Add a new assignment for a student")
+    public static var title: LocalizedStringResource = "Record Assignment"
+    public static var description = IntentDescription("Add a new assignment for a student")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -47,7 +47,7 @@ public struct RecordAssignmentIntent: AppIntent {
         
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "Assignment recorded for \(studentName): \(assignmentTitle) in \(subject.rawValue)"
         + (dueDate.map { ". Due: \($0.formatted(date: .abbreviated, time: .omitted))" } ?? "")
         + ". Cryptographic receipt generated."
@@ -60,8 +60,8 @@ public struct RecordAssignmentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct TrackVirtueScoreIntent: AppIntent {
-    static var title: LocalizedStringResource = "Track Virtue Development"
-    static var description = IntentDescription("Record Aristotelian virtue scores for character development")
+    public static var title: LocalizedStringResource = "Track Virtue Development"
+    public static var description = IntentDescription("Record Aristotelian virtue scores for character development")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -87,7 +87,7 @@ public struct TrackVirtueScoreIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "\(virtue.rawValue) recorded for \(studentName): \(String(format: "%.2f", score)). Character development tracking with cryptographic attestation."
         
         return .result(dialog: IntentDialog(stringLiteral: response))
@@ -98,13 +98,13 @@ public struct TrackVirtueScoreIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CheckIEPAccommodationsIntent: AppIntent {
-    static var title: LocalizedStringResource = "Check IEP Accommodations"
-    static var description = IntentDescription("Review required accommodations for a student")
+    public static var title: LocalizedStringResource = "Check IEP Accommodations"
+    public static var description = IntentDescription("Review required accommodations for a student")
     
     @Parameter(title: "Student Name")
     var studentName: String
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "Retrieving IEP accommodations for \(studentName). This will show all required accommodations, strengths, challenges, and learning style preferences."
         
         return .result(dialog: IntentDialog(stringLiteral: response))
@@ -115,13 +115,13 @@ public struct CheckIEPAccommodationsIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CheckScheduleIntent: AppIntent {
-    static var title: LocalizedStringResource = "Check My Schedule"
-    static var description = IntentDescription("View upcoming classes, assignments, and school events")
+    public static var title: LocalizedStringResource = "Check My Schedule"
+    public static var description = IntentDescription("View upcoming classes, assignments, and school events")
     
     @Parameter(title: "Date")
     var date: Date?
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let dateString = date?.formatted(date: .abbreviated, time: .omitted) ?? "today"
         
         let response = """
@@ -148,8 +148,8 @@ public struct CheckScheduleIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct TrackProgressIntent: AppIntent {
-    static var title: LocalizedStringResource = "Track My Progress"
-    static var description = IntentDescription("Summarize academic progress, grades, and virtue development")
+    public static var title: LocalizedStringResource = "Track My Progress"
+    public static var description = IntentDescription("Summarize academic progress, grades, and virtue development")
     
     @Parameter(title: "Time Period")
     var timePeriod: TimePeriod
@@ -169,7 +169,7 @@ public struct TrackProgressIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Progress Summary (\(timePeriod.rawValue)):
         
@@ -198,8 +198,8 @@ public struct TrackProgressIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RequestTutorSupportIntent: AppIntent {
-    static var title: LocalizedStringResource = "Request Tutor Help"
-    static var description = IntentDescription("Ask for tutoring or additional academic support")
+    public static var title: LocalizedStringResource = "Request Tutor Help"
+    public static var description = IntentDescription("Ask for tutoring or additional academic support")
     
     @Parameter(title: "Subject")
     var subject: Subject
@@ -237,7 +237,7 @@ public struct RequestTutorSupportIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let urgencyText = urgency?.rawValue ?? "Medium"
         
         let response = """
@@ -261,8 +261,8 @@ public struct RequestTutorSupportIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct SubmitDocumentIntent: AppIntent {
-    static var title: LocalizedStringResource = "Submit Assignment Document"
-    static var description = IntentDescription("Upload homework, project photos, or assignment files")
+    public static var title: LocalizedStringResource = "Submit Assignment Document"
+    public static var description = IntentDescription("Upload homework, project photos, or assignment files")
     static var openAppWhenRun: Bool = true
     
     @Parameter(title: "Assignment Title")
@@ -286,7 +286,7 @@ public struct SubmitDocumentIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let receiptID = UUID().uuidString
         
         let response = """
@@ -311,8 +311,8 @@ public struct SubmitDocumentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RecordAttendanceIntent: AppIntent {
-    static var title: LocalizedStringResource = "Record Class Attendance"
-    static var description = IntentDescription("Mark attendance for students in a class period")
+    public static var title: LocalizedStringResource = "Record Class Attendance"
+    public static var description = IntentDescription("Mark attendance for students in a class period")
     
     @Parameter(title: "Class Name")
     var className: String
@@ -326,7 +326,7 @@ public struct RecordAttendanceIntent: AppIntent {
     @Parameter(title: "Absent Students")
     var absentStudents: [String]?
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -361,8 +361,8 @@ public struct RecordAttendanceIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ScheduleParentMeetingIntent: AppIntent {
-    static var title: LocalizedStringResource = "Schedule Parent Meeting"
-    static var description = IntentDescription("Arrange parent-teacher conference")
+    public static var title: LocalizedStringResource = "Schedule Parent Meeting"
+    public static var description = IntentDescription("Arrange parent-teacher conference")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -393,7 +393,7 @@ public struct ScheduleParentMeetingIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Parent meeting scheduled for \(studentName)
         
@@ -418,8 +418,8 @@ public struct ScheduleParentMeetingIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct GradeAssignmentIntent: AppIntent {
-    static var title: LocalizedStringResource = "Grade Student Assignment"
-    static var description = IntentDescription("Record grade and feedback for student work")
+    public static var title: LocalizedStringResource = "Grade Student Assignment"
+    public static var description = IntentDescription("Record grade and feedback for student work")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -436,7 +436,7 @@ public struct GradeAssignmentIntent: AppIntent {
     @Parameter(title: "Feedback")
     var feedback: String?
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let percentage = (score / maxScore) * 100
         let letterGrade: String
         
@@ -483,8 +483,8 @@ public struct GradeAssignmentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct DocumentBehaviorIncidentIntent: AppIntent {
-    static var title: LocalizedStringResource = "Document Behavior Incident"
-    static var description = IntentDescription("Record student behavior incident with witnesses and actions taken")
+    public static var title: LocalizedStringResource = "Document Behavior Incident"
+    public static var description = IntentDescription("Record student behavior incident with witnesses and actions taken")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -540,7 +540,7 @@ public struct DocumentBehaviorIncidentIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -587,8 +587,8 @@ public struct DocumentBehaviorIncidentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct SendClassAnnouncementIntent: AppIntent {
-    static var title: LocalizedStringResource = "Send Class Announcement"
-    static var description = IntentDescription("Broadcast message to students and optionally parents")
+    public static var title: LocalizedStringResource = "Send Class Announcement"
+    public static var description = IntentDescription("Broadcast message to students and optionally parents")
     
     @Parameter(title: "Class Name")
     var className: String
@@ -615,7 +615,7 @@ public struct SendClassAnnouncementIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         
         let response = """
@@ -642,8 +642,8 @@ public struct SendClassAnnouncementIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CreateLessonPlanIntent: AppIntent {
-    static var title: LocalizedStringResource = "Create Lesson Plan"
-    static var description = IntentDescription("Plan lesson with objectives, activities, and assessments")
+    public static var title: LocalizedStringResource = "Create Lesson Plan"
+    public static var description = IntentDescription("Plan lesson with objectives, activities, and assessments")
     
     @Parameter(title: "Subject")
     var subject: Subject
@@ -684,7 +684,7 @@ public struct CreateLessonPlanIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let receiptID = UUID().uuidString
         
         var response = """
@@ -725,8 +725,8 @@ public struct CreateLessonPlanIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct UpdateProgressReportIntent: AppIntent {
-    static var title: LocalizedStringResource = "Update Progress Report"
-    static var description = IntentDescription("Document student progress for report card or IEP")
+    public static var title: LocalizedStringResource = "Update Progress Report"
+    public static var description = IntentDescription("Document student progress for report card or IEP")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -758,7 +758,7 @@ public struct UpdateProgressReportIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -806,8 +806,8 @@ public struct UpdateProgressReportIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct LogAssignmentStatusIntent: AppIntent {
-    static var title: LocalizedStringResource = "Log Assignment Status"
-    static var description = IntentDescription("Mark homework as completed, in progress, or need help")
+    public static var title: LocalizedStringResource = "Log Assignment Status"
+    public static var description = IntentDescription("Mark homework as completed, in progress, or need help")
     
     @Parameter(title: "Assignment Title")
     var assignmentTitle: String
@@ -836,7 +836,7 @@ public struct LogAssignmentStatusIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         
         var response = """
@@ -870,8 +870,8 @@ public struct LogAssignmentStatusIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RequestExtensionIntent: AppIntent {
-    static var title: LocalizedStringResource = "Request Assignment Extension"
-    static var description = IntentDescription("Ask teacher for deadline extension with reason")
+    public static var title: LocalizedStringResource = "Request Assignment Extension"
+    public static var description = IntentDescription("Ask teacher for deadline extension with reason")
     
     @Parameter(title: "Assignment Title")
     var assignmentTitle: String
@@ -885,7 +885,7 @@ public struct RequestExtensionIntent: AppIntent {
     @Parameter(title: "Reason")
     var reason: String
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         
         let response = """
@@ -914,13 +914,13 @@ public struct RequestExtensionIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewGradesIntent: AppIntent {
-    static var title: LocalizedStringResource = "View My Grades"
-    static var description = IntentDescription("Check current grades and GPA")
+    public static var title: LocalizedStringResource = "View My Grades"
+    public static var description = IntentDescription("Check current grades and GPA")
     
     @Parameter(title: "Subject Filter")
     var subject: String?
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         // In real implementation, this would fetch actual grades
         let response = """
         Current Grades Summary
@@ -955,8 +955,8 @@ public struct ViewGradesIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct LogStudySessionIntent: AppIntent {
-    static var title: LocalizedStringResource = "Log Study Session"
-    static var description = IntentDescription("Track study time and topics covered")
+    public static var title: LocalizedStringResource = "Log Study Session"
+    public static var description = IntentDescription("Track study time and topics covered")
     
     @Parameter(title: "Subject")
     var subject: String
@@ -970,7 +970,7 @@ public struct LogStudySessionIntent: AppIntent {
     @Parameter(title: "Effectiveness (1-5)")
     var effectiveness: Int?
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -1014,8 +1014,8 @@ public struct LogStudySessionIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ReflectOnVirtueIntent: AppIntent {
-    static var title: LocalizedStringResource = "Reflect on Character Virtue"
-    static var description = IntentDescription("Self-assess Aristotelian virtue development")
+    public static var title: LocalizedStringResource = "Reflect on Character Virtue"
+    public static var description = IntentDescription("Self-assess Aristotelian virtue development")
     
     @Parameter(title: "Virtue")
     var virtue: VirtueType
@@ -1041,7 +1041,7 @@ public struct ReflectOnVirtueIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let percentage = score * 100
         
@@ -1081,8 +1081,8 @@ public struct ReflectOnVirtueIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct AskTeacherQuestionIntent: AppIntent {
-    static var title: LocalizedStringResource = "Ask Teacher a Question"
-    static var description = IntentDescription("Submit question to teacher about assignment or topic")
+    public static var title: LocalizedStringResource = "Ask Teacher a Question"
+    public static var description = IntentDescription("Submit question to teacher about assignment or topic")
     
     @Parameter(title: "Subject")
     var subject: String
@@ -1109,7 +1109,7 @@ public struct AskTeacherQuestionIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         
         var response = """

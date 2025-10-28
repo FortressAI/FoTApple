@@ -8,8 +8,8 @@ import AppIntents
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewStudentProgressIntent: AppIntent {
-    static var title: LocalizedStringResource = "View My Child's Progress"
-    static var description = IntentDescription("Check student's grades, attendance, and behavior")
+    public static var title: LocalizedStringResource = "View My Child's Progress"
+    public static var description = IntentDescription("Check student's grades, attendance, and behavior")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -34,7 +34,7 @@ public struct ViewStudentProgressIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Progress Report for \(studentName)
         Period: \(timePeriod.rawValue)
@@ -77,8 +77,8 @@ public struct ViewStudentProgressIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CheckAssignmentsDueIntent: AppIntent {
-    static var title: LocalizedStringResource = "Check Child's Assignments Due"
-    static var description = IntentDescription("View upcoming homework and project deadlines")
+    public static var title: LocalizedStringResource = "Check Child's Assignments Due"
+    public static var description = IntentDescription("View upcoming homework and project deadlines")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -103,7 +103,7 @@ public struct CheckAssignmentsDueIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Assignments for \(studentName) - \(timeRange.rawValue)
         
@@ -140,8 +140,8 @@ public struct CheckAssignmentsDueIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ParentScheduleTeacherMeetingIntent: AppIntent {
-    static var title: LocalizedStringResource = "Request Parent-Teacher Meeting"
-    static var description = IntentDescription("Schedule conference with child's teacher")
+    public static var title: LocalizedStringResource = "Request Parent-Teacher Meeting"
+    public static var description = IntentDescription("Schedule conference with child's teacher")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -171,7 +171,7 @@ public struct ParentScheduleTeacherMeetingIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         
         var response = """
@@ -225,8 +225,8 @@ public struct ParentScheduleTeacherMeetingIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewBehaviorReportsIntent: AppIntent {
-    static var title: LocalizedStringResource = "View Child's Behavior Reports"
-    static var description = IntentDescription("Check behavior incidents and positive notes")
+    public static var title: LocalizedStringResource = "View Child's Behavior Reports"
+    public static var description = IntentDescription("Check behavior incidents and positive notes")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -247,7 +247,7 @@ public struct ViewBehaviorReportsIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let type = reportType?.rawValue ?? "All Reports"
         
         let response = """
@@ -294,8 +294,8 @@ public struct ViewBehaviorReportsIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct UpdateEmergencyContactIntent: AppIntent {
-    static var title: LocalizedStringResource = "Update Emergency Contact Info"
-    static var description = IntentDescription("Modify emergency contact information for student")
+    public static var title: LocalizedStringResource = "Update Emergency Contact Info"
+    public static var description = IntentDescription("Modify emergency contact information for student")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -327,7 +327,7 @@ public struct UpdateEmergencyContactIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -363,8 +363,8 @@ public struct UpdateEmergencyContactIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewAttendanceIntent: AppIntent {
-    static var title: LocalizedStringResource = "View Child's Attendance"
-    static var description = IntentDescription("Check attendance record and absences")
+    public static var title: LocalizedStringResource = "View Child's Attendance"
+    public static var description = IntentDescription("Check attendance record and absences")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -389,7 +389,7 @@ public struct ViewAttendanceIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Attendance Report for \(studentName)
         Period: \(timePeriod.rawValue)
@@ -436,8 +436,8 @@ public struct ViewAttendanceIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ApproveFieldTripIntent: AppIntent {
-    static var title: LocalizedStringResource = "Approve Field Trip"
-    static var description = IntentDescription("Grant permission for student to attend field trip")
+    public static var title: LocalizedStringResource = "Approve Field Trip"
+    public static var description = IntentDescription("Grant permission for student to attend field trip")
     
     @Parameter(title: "Student Name")
     var studentName: String
@@ -454,7 +454,7 @@ public struct ApproveFieldTripIntent: AppIntent {
     @Parameter(title: "Emergency Contact Override")
     var emergencyContactOverride: String?
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -510,13 +510,13 @@ public struct ApproveFieldTripIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ViewIEPPlanIntent: AppIntent {
-    static var title: LocalizedStringResource = "View Child's IEP"
-    static var description = IntentDescription("Access Individualized Education Program plan and progress")
+    public static var title: LocalizedStringResource = "View Child's IEP"
+    public static var description = IntentDescription("Access Individualized Education Program plan and progress")
     
     @Parameter(title: "Student Name")
     var studentName: String
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         IEP Summary for \(studentName)
         

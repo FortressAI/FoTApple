@@ -8,8 +8,8 @@ import AppIntents
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CaptureEvidenceIntent: AppIntent {
-    static var title: LocalizedStringResource = "Capture Legal Evidence"
-    static var description = IntentDescription("Document evidence with photo, location, and cryptographic receipt")
+    public static var title: LocalizedStringResource = "Capture Legal Evidence"
+    public static var description = IntentDescription("Document evidence with photo, location, and cryptographic receipt")
     static var openAppWhenRun: Bool = true
     
     @Parameter(title: "Case Number")
@@ -38,7 +38,7 @@ public struct CaptureEvidenceIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let receiptID = UUID().uuidString
         let timestamp = Date()
         
@@ -61,8 +61,8 @@ public struct CaptureEvidenceIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct DocumentIncidentIntent: AppIntent {
-    static var title: LocalizedStringResource = "Document Legal Incident"
-    static var description = IntentDescription("Record an incident with timestamp and location proof")
+    public static var title: LocalizedStringResource = "Document Legal Incident"
+    public static var description = IntentDescription("Record an incident with timestamp and location proof")
     
     @Parameter(title: "Incident Type")
     var incidentType: IncidentType
@@ -94,7 +94,7 @@ public struct DocumentIncidentIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -117,8 +117,8 @@ public struct DocumentIncidentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct AddTimelineEventIntent: AppIntent {
-    static var title: LocalizedStringResource = "Add Legal Timeline Event"
-    static var description = IntentDescription("Add an event to your case timeline")
+    public static var title: LocalizedStringResource = "Add Legal Timeline Event"
+    public static var description = IntentDescription("Add an event to your case timeline")
     
     @Parameter(title: "Case Number")
     var caseNumber: String
@@ -148,7 +148,7 @@ public struct AddTimelineEventIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "Timeline event added to case \(caseNumber): \(eventType.rawValue) - \(eventDescription). Cryptographically attested for legal record."
         
         return .result(dialog: IntentDialog(stringLiteral: response))
@@ -159,8 +159,8 @@ public struct AddTimelineEventIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct AskLegalQuestionIntent: AppIntent {
-    static var title: LocalizedStringResource = "Ask Legal Question"
-    static var description = IntentDescription("Get general legal information on common topics (not legal advice)")
+    public static var title: LocalizedStringResource = "Ask Legal Question"
+    public static var description = IntentDescription("Get general legal information on common topics (not legal advice)")
     
     @Parameter(title: "Legal Topic")
     var topic: LegalTopic
@@ -184,7 +184,7 @@ public struct AskLegalQuestionIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         General information on \(topic.rawValue):
         
@@ -211,8 +211,8 @@ public struct AskLegalQuestionIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct FindLegalAidIntent: AppIntent {
-    static var title: LocalizedStringResource = "Find Legal Aid"
-    static var description = IntentDescription("Locate pro-bono or low-cost legal services near you")
+    public static var title: LocalizedStringResource = "Find Legal Aid"
+    public static var description = IntentDescription("Locate pro-bono or low-cost legal services near you")
     
     @Parameter(title: "Case Type")
     var caseType: CaseType
@@ -236,7 +236,7 @@ public struct FindLegalAidIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Legal aid resources for \(caseType.rawValue):
         
@@ -272,8 +272,8 @@ public struct FindLegalAidIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct LogCommunicationIntent: AppIntent {
-    static var title: LocalizedStringResource = "Log Legal Communication"
-    static var description = IntentDescription("Document conversations with landlords, employers, or other parties")
+    public static var title: LocalizedStringResource = "Log Legal Communication"
+    public static var description = IntentDescription("Document conversations with landlords, employers, or other parties")
     
     @Parameter(title: "Party Name")
     var partyName: String
@@ -301,7 +301,7 @@ public struct LogCommunicationIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -333,13 +333,13 @@ public struct LogCommunicationIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct SummarizePersonalCaseIntent: AppIntent {
-    static var title: LocalizedStringResource = "Summarize My Case"
-    static var description = IntentDescription("Get comprehensive summary of evidence, communications, and timeline")
+    public static var title: LocalizedStringResource = "Summarize My Case"
+    public static var description = IntentDescription("Get comprehensive summary of evidence, communications, and timeline")
     
     @Parameter(title: "Case ID or Name")
     var caseIdentifier: String
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Case Summary: \(caseIdentifier)
         
@@ -385,8 +385,8 @@ public struct SummarizePersonalCaseIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CreatePersonalCaseIntent: AppIntent {
-    static var title: LocalizedStringResource = "Create Personal Case"
-    static var description = IntentDescription("Start tracking a new personal legal matter")
+    public static var title: LocalizedStringResource = "Create Personal Case"
+    public static var description = IntentDescription("Start tracking a new personal legal matter")
     
     @Parameter(title: "Case Title")
     var caseTitle: String
@@ -416,7 +416,7 @@ public struct CreatePersonalCaseIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let caseID = "CASE-\(UUID().uuidString.prefix(8).uppercased())"
         let opposingText = opposingParty.map { " vs. \($0)" } ?? ""
         
@@ -453,8 +453,8 @@ public struct CreatePersonalCaseIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct CreateClientCaseIntent: AppIntent {
-    static var title: LocalizedStringResource = "Create Client Case"
-    static var description = IntentDescription("Open new case file for client representation")
+    public static var title: LocalizedStringResource = "Create Client Case"
+    public static var description = IntentDescription("Open new case file for client representation")
     
     @Parameter(title: "Client Name")
     var clientName: String
@@ -494,7 +494,7 @@ public struct CreateClientCaseIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let caseID = "CASE-\(UUID().uuidString.prefix(8).uppercased())"
         let timestamp = Date()
         
@@ -538,8 +538,8 @@ public struct CreateClientCaseIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RecordBillableTimeIntent: AppIntent {
-    static var title: LocalizedStringResource = "Record Billable Time"
-    static var description = IntentDescription("Log time spent on client matter for billing")
+    public static var title: LocalizedStringResource = "Record Billable Time"
+    public static var description = IntentDescription("Log time spent on client matter for billing")
     
     @Parameter(title: "Client/Case")
     var caseIdentifier: String
@@ -553,7 +553,7 @@ public struct RecordBillableTimeIntent: AppIntent {
     @Parameter(title: "Billing Rate Override")
     var rateOverride: Double?
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -593,8 +593,8 @@ public struct RecordBillableTimeIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ScheduleDepositionIntent: AppIntent {
-    static var title: LocalizedStringResource = "Schedule Deposition"
-    static var description = IntentDescription("Arrange deposition with witness and court reporter")
+    public static var title: LocalizedStringResource = "Schedule Deposition"
+    public static var description = IntentDescription("Arrange deposition with witness and court reporter")
     
     @Parameter(title: "Case")
     var caseIdentifier: String
@@ -611,7 +611,7 @@ public struct ScheduleDepositionIntent: AppIntent {
     @Parameter(title: "Court Reporter Needed")
     var courtReporterNeeded: Bool
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = """
         Deposition scheduled
         
@@ -648,8 +648,8 @@ public struct ScheduleDepositionIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct FileCourtDocumentIntent: AppIntent {
-    static var title: LocalizedStringResource = "File Court Document"
-    static var description = IntentDescription("E-file document with court and serve opposing counsel")
+    public static var title: LocalizedStringResource = "File Court Document"
+    public static var description = IntentDescription("E-file document with court and serve opposing counsel")
     
     @Parameter(title: "Case Number")
     var caseNumber: String
@@ -683,7 +683,7 @@ public struct FileCourtDocumentIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let filingID = "EFIL-\(UUID().uuidString.prefix(10).uppercased())"
         
@@ -724,8 +724,8 @@ public struct FileCourtDocumentIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct RecordClientConsultationIntent: AppIntent {
-    static var title: LocalizedStringResource = "Record Client Consultation"
-    static var description = IntentDescription("Document attorney-client meeting with notes")
+    public static var title: LocalizedStringResource = "Record Client Consultation"
+    public static var description = IntentDescription("Document attorney-client meeting with notes")
     
     @Parameter(title: "Client Name")
     var clientName: String
@@ -759,7 +759,7 @@ public struct RecordClientConsultationIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
@@ -806,8 +806,8 @@ public struct RecordClientConsultationIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct GenerateLegalMemoIntent: AppIntent {
-    static var title: LocalizedStringResource = "Generate Legal Memo"
-    static var description = IntentDescription("AI-assisted legal research memo generation")
+    public static var title: LocalizedStringResource = "Generate Legal Memo"
+    public static var description = IntentDescription("AI-assisted legal research memo generation")
     
     @Parameter(title: "Case")
     var caseIdentifier: String
@@ -818,7 +818,7 @@ public struct GenerateLegalMemoIntent: AppIntent {
     @Parameter(title: "Jurisdiction")
     var jurisdiction: String
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let memoID = "MEMO-\(UUID().uuidString.prefix(8).uppercased())"
         
@@ -866,8 +866,8 @@ public struct GenerateLegalMemoIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct SearchCaseLawIntent: AppIntent {
-    static var title: LocalizedStringResource = "Search Case Law"
-    static var description = IntentDescription("Research legal precedents and statutes")
+    public static var title: LocalizedStringResource = "Search Case Law"
+    public static var description = IntentDescription("Research legal precedents and statutes")
     
     @Parameter(title: "Search Query")
     var query: String
@@ -893,7 +893,7 @@ public struct SearchCaseLawIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let jur = jurisdiction ?? "All jurisdictions"
         let range = dateRange?.rawValue ?? "Any time"
         
@@ -939,8 +939,8 @@ public struct SearchCaseLawIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct ManageDiscoveryIntent: AppIntent {
-    static var title: LocalizedStringResource = "Manage Discovery"
-    static var description = IntentDescription("Track discovery requests, responses, and deadlines")
+    public static var title: LocalizedStringResource = "Manage Discovery"
+    public static var description = IntentDescription("Track discovery requests, responses, and deadlines")
     
     @Parameter(title: "Case")
     var caseIdentifier: String
@@ -981,7 +981,7 @@ public struct ManageDiscoveryIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         
         let response = """
@@ -1019,8 +1019,8 @@ public struct ManageDiscoveryIntent: AppIntent {
 
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 public struct PrepareWitnessIntent: AppIntent {
-    static var title: LocalizedStringResource = "Prepare Witness"
-    static var description = IntentDescription("Document witness preparation session and key points")
+    public static var title: LocalizedStringResource = "Prepare Witness"
+    public static var description = IntentDescription("Document witness preparation session and key points")
     
     @Parameter(title: "Case")
     var caseIdentifier: String
@@ -1049,7 +1049,7 @@ public struct PrepareWitnessIntent: AppIntent {
         ]
     }
     
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         let timestamp = Date()
         let receiptID = UUID().uuidString
         
