@@ -30,6 +30,8 @@ public struct CaptureEvidenceIntent: AppIntent {
         case audio = "Audio Recording"
         case testimony = "Testimony"
         
+        static var persistentIdentifier:String = "legal.CaptureEvidenceIntent.EvidenceType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Evidence Type")
         static var caseDisplayRepresentations: [EvidenceType: DisplayRepresentation] = [
             .photo: "Photo",
@@ -87,6 +89,8 @@ public struct DocumentIncidentIntent: AppIntent {
         case contract = "Contract Dispute"
         case other = "Other Incident"
         
+        static var persistentIdentifier:String = "legal.DocumentIncidentIntent.IncidentType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Incident Type")
         static var caseDisplayRepresentations: [IncidentType: DisplayRepresentation] = [
             .workplaceInjury: "Workplace Injury",
@@ -145,6 +149,8 @@ public struct AddTimelineEventIntent: AppIntent {
         case negotiation = "Negotiation"
         case correspondence = "Correspondence"
         
+        static var persistentIdentifier:String = "legal.AddTimelineEventIntent.EventType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Event Type")
         static var caseDisplayRepresentations: [EventType: DisplayRepresentation] = [
             .filing: "Court Filing",
@@ -184,6 +190,8 @@ public struct AskLegalQuestionIntent: AppIntent {
         case criminal = "Criminal Law Basics"
         case civilRights = "Civil Rights"
         
+        static var persistentIdentifier:String = "legal.AskLegalQuestionIntent.LegalTopic"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Legal Topic")
         static var caseDisplayRepresentations: [LegalTopic: DisplayRepresentation] = [
             .tenant: "Tenant Rights",
@@ -239,6 +247,8 @@ public struct FindLegalAidIntent: AppIntent {
         case housing = "Housing/Tenant"
         case immigration = "Immigration"
         
+        static var persistentIdentifier:String = "legal.FindLegalAidIntent.CaseType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Case Type")
         static var caseDisplayRepresentations: [CaseType: DisplayRepresentation] = [
             .civil: "Civil Matters",
@@ -308,6 +318,8 @@ public struct LogCommunicationIntent: AppIntent {
         case inPerson = "In Person"
         case letter = "Written Letter"
         
+        static var persistentIdentifier:String = "legal.LogCommunicationIntent.CommunicationMethod"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Method")
         static var caseDisplayRepresentations: [CommunicationMethod: DisplayRepresentation] = [
             .phone: "Phone Call",
@@ -428,6 +440,8 @@ public struct CreatePersonalCaseIntent: AppIntent {
         case civil = "Civil Dispute"
         case other = "Other"
         
+        static var persistentIdentifier:String = "legal.CreatePersonalCaseIntent.PersonalCaseType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Case Type")
         static var caseDisplayRepresentations: [PersonalCaseType: DisplayRepresentation] = [
             .tenant: "Tenant/Housing Dispute",
@@ -507,6 +521,8 @@ public struct CreateClientCaseIntent: AppIntent {
         case employment = "Employment Law"
         case personal_injury = "Personal Injury"
         
+        static var persistentIdentifier:String = "legal.CreateClientCaseIntent.ProfessionalCaseType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Case Type")
         static var caseDisplayRepresentations: [ProfessionalCaseType: DisplayRepresentation] = [
             .civil: "Civil Litigation",
@@ -705,6 +721,8 @@ public struct FileCourtDocumentIntent: AppIntent {
         case notice = "Notice"
         case order = "Proposed Order"
         
+        static var persistentIdentifier:String = "legal.FileCourtDocumentIntent.DocumentType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Document Type")
         static var caseDisplayRepresentations: [DocumentType: DisplayRepresentation] = [
             .complaint: "Complaint/Petition",
@@ -787,6 +805,8 @@ public struct RecordClientConsultationIntent: AppIntent {
         case settlement = "Settlement Discussion"
         case trial_prep = "Trial Preparation"
         
+        static var persistentIdentifier:String = "legal.RecordClientConsultationIntent.ConsultationType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Consultation Type")
         static var caseDisplayRepresentations: [ConsultationType: DisplayRepresentation] = [
             .initial: "Initial Consultation",
@@ -928,6 +948,8 @@ public struct SearchCaseLawIntent: AppIntent {
         case last5Years = "Last 5 Years"
         case last10Years = "Last 10 Years"
         
+        static var persistentIdentifier:String = "legal.SearchCaseLawIntent.DateRange"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Date Range")
         static var caseDisplayRepresentations: [DateRange: DisplayRepresentation] = [
             .anyTime: "Any Time",
@@ -1004,6 +1026,8 @@ public struct ManageDiscoveryIntent: AppIntent {
         case trackDeadline = "Track Deadline"
         case logObjection = "Log Objection"
         
+        static var persistentIdentifier:String = "legal.ManageDiscoveryIntent.DiscoveryAction"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Action")
         static var caseDisplayRepresentations: [DiscoveryAction: DisplayRepresentation] = [
             .send: "Send Discovery Request",
@@ -1019,6 +1043,8 @@ public struct ManageDiscoveryIntent: AppIntent {
         case requestsForAdmission = "Requests for Admission"
         case depositions = "Depositions"
         
+        static var persistentIdentifier:String = "legal.ManageDiscoveryIntent.DiscoveryType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Discovery Type")
         static var caseDisplayRepresentations: [DiscoveryType: DisplayRepresentation] = [
             .interrogatories: "Interrogatories",
@@ -1090,6 +1116,8 @@ public struct PrepareWitnessIntent: AppIntent {
         case hearing = "Hearing"
         case arbitration = "Arbitration"
         
+        static var persistentIdentifier:String = "legal.PrepareWitnessIntent.TestimonyType"
+
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Testimony Type")
         static var caseDisplayRepresentations: [TestimonyType: DisplayRepresentation] = [
             .deposition: "Deposition",

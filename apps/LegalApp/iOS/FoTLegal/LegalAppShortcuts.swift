@@ -23,7 +23,7 @@ struct LegalAppShortcutsProvider: AppShortcutsProvider {
             ),
             
             AppShortcut(
-                intent: RecordEvidenceIntent(),
+                intent: CaptureEvidenceIntent(),
                 phrases: [
                     "Record evidence in \(.applicationName)",
                     "Document evidence in \(.applicationName)",
@@ -34,7 +34,7 @@ struct LegalAppShortcutsProvider: AppShortcutsProvider {
             ),
             
             AppShortcut(
-                intent: FindLegalHelpIntent(),
+                intent: FindLegalAidIntent(),
                 phrases: [
                     "Find legal help in \(.applicationName)",
                     "Get legal assistance in \(.applicationName)",
