@@ -115,7 +115,7 @@ struct CheckScheduleIntent: AppIntent {
     static var title: LocalizedStringResource = "Check My Schedule"
     static var description = IntentDescription("View upcoming classes, assignments, and school events")
     
-    @Parameter(title: "Date", default: Date())
+    @Parameter(title: "Date")
     var date: Date?
     
     func perform() async throws -> some IntentResult & ProvidesDialog {
