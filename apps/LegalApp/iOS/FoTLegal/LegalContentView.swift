@@ -11,12 +11,7 @@ struct LegalContentView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            GlassShowcaseView(
-                domain: .legal,
-                appIconName: "FoT_legal_AppIcon_1024",
-                badgeIconName: "FoT_legal_Badge_128",
-                appDisplayName: "FoT Legal US"
-            )
+            GlassShowcaseView(domain: .legal)
             .tabItem {
                 Label("Showcase", systemImage: "sparkles")
             }

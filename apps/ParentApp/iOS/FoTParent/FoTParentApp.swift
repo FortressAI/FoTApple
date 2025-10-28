@@ -37,14 +37,14 @@ class ParentAppState: ObservableObject {
         children = [
             StudentInfo(
                 name: "Emma Smith",
-                gradeLevel: .ninth,
+                gradeLevel: .grade9,
                 gpa: 3.65,
                 attendance: 96.0,
                 behaviorRating: .excellent
             ),
             StudentInfo(
                 name: "Liam Smith",
-                gradeLevel: .sixth,
+                gradeLevel: .grade6,
                 gpa: 3.45,
                 attendance: 94.0,
                 behaviorRating: .good
@@ -54,13 +54,22 @@ class ParentAppState: ObservableObject {
     }
 }
 
-struct StudentInfo: Identifiable {
+struct StudentInfo: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let gradeLevel: GradeLevel
     let gpa: Double
     let attendance: Double
     let behaviorRating: BehaviorRating
+    
+    // Implement Hashable
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: StudentInfo, rhs: StudentInfo) -> Bool {
+        lhs.id == rhs.id
+    }
     
     enum BehaviorRating: String {
         case excellent = "Excellent"
