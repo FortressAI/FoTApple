@@ -45,7 +45,6 @@ struct RecordAssignmentIntent: AppIntent {
             .pe: "Physical Education"
         ]
         
-        static let typeIdentifier = "com.fot.education.LogAssignmentStatusIntent.Subject"
     }
     
     func perform() async throws -> some IntentResult & ProvidesDialog {
@@ -670,7 +669,6 @@ struct CreateLessonPlanIntent: AppIntent {
         case music = "Music"
         case pe = "Physical Education"
         
-        static let typeIdentifier = "com.fot.education.LogAssignmentStatusIntent.Subject"
         case other = "Other"
         
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Subject")
