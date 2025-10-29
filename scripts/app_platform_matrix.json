@@ -47,12 +47,14 @@
   },
   "LegalApp": {
     "schemes": {
-      "iOS": "FoTLegalApp"
+      "iOS": "FoTLegalApp",
+      "macOS": "FoTLegalMac"
     },
     "bundleIds": {
-      "iOS": "com.fot.LegalApp"
+      "iOS": "com.fot.LegalApp",
+      "macOS": "com.fot.LegalMac"
     },
-    "platforms": ["iOS"],
+    "platforms": ["iOS", "macOS"],
     "directory": "LegalApp"
   }
 }
