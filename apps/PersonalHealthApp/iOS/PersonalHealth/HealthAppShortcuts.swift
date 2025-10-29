@@ -74,6 +74,51 @@ struct HealthAppShortcutsProvider: AppShortcutsProvider {
                 ],
                 shortTitle: "Log Mood",
                 systemImageName: "face.smiling"
+            ),
+            
+            // NEW: Proactive Health Guidance (Ask Questions & Guide Users Using AKG GNN)
+            AppShortcut(
+                intent: AskHealthQuestionsIntent(),
+                phrases: [
+                    "Ask me health questions in \(.applicationName)",
+                    "Check my health with questions in \(.applicationName)",
+                    "Assess my wellbeing in \(.applicationName)"
+                ],
+                shortTitle: "Health Questions",
+                systemImageName: "questionmark.circle.fill"
+            ),
+            
+            AppShortcut(
+                intent: GuideToMentalHealthIntent(),
+                phrases: [
+                    "Guide me to mental health in \(.applicationName)",
+                    "Help with mental health in \(.applicationName)",
+                    "Mental health guidance in \(.applicationName)"
+                ],
+                shortTitle: "Mental Health Guide",
+                systemImageName: "brain.head.profile"
+            ),
+            
+            AppShortcut(
+                intent: GuideToPhysicalHealthIntent(),
+                phrases: [
+                    "Guide me to physical health in \(.applicationName)",
+                    "Help with physical health in \(.applicationName)",
+                    "Physical health guidance in \(.applicationName)"
+                ],
+                shortTitle: "Physical Health Guide",
+                systemImageName: "heart.circle.fill"
+            ),
+            
+            AppShortcut(
+                intent: ProactiveHealthCheckIntent(),
+                phrases: [
+                    "Do a health check in \(.applicationName)",
+                    "Check my overall health in \(.applicationName)",
+                    "Assess my health in \(.applicationName)"
+                ],
+                shortTitle: "Health Check",
+                systemImageName: "checkmark.shield.fill"
             )
         ]
     }
