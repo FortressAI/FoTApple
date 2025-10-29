@@ -34,11 +34,10 @@ class WatchAppState: ObservableObject {
             firstName: "John",
             lastName: "Doe",
             dateOfBirth: Calendar.current.date(byAdding: .year, value: -45, to: Date())!,
-            gender: "Male",
-            bloodType: "O+",
+            sex: .male,
             allergies: [],
-            currentMedications: [],
-            problems: []
+            activeProblems: [],
+            medications: []
         )
         
         recentPatients = [patient1]

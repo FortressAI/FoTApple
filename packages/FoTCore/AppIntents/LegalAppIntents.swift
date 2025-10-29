@@ -30,7 +30,7 @@ public struct CaptureEvidenceIntent: AppIntent {
         case audio = "Audio Recording"
         case testimony = "Testimony"
         
-        static var persistentIdentifier:String = "legal.CaptureEvidenceIntent.EvidenceType"
+        static var persistentIdentifier:String = "legal_CaptureEvidenceIntent_EvidenceType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Evidence Type")
         static var caseDisplayRepresentations: [EvidenceType: DisplayRepresentation] = [
@@ -55,7 +55,7 @@ public struct CaptureEvidenceIntent: AppIntent {
         
         response += "Timestamped at \(timestamp.formatted(date: .abbreviated, time: .shortened)). "
         response += "Cryptographic receipt: \(receiptID.prefix(8)). "
-        response += "This evidence is now tamper-proof and legally admissible."
+        response += "This evidence is now tamper-proof and legally admissible_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -89,7 +89,7 @@ public struct DocumentIncidentIntent: AppIntent {
         case contract = "Contract Dispute"
         case other = "Other Incident"
         
-        static var persistentIdentifier:String = "legal.DocumentIncidentIntent.IncidentType"
+        static var persistentIdentifier:String = "legal_DocumentIncidentIntent_IncidentType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Incident Type")
         static var caseDisplayRepresentations: [IncidentType: DisplayRepresentation] = [
@@ -116,7 +116,7 @@ public struct DocumentIncidentIntent: AppIntent {
         }
         
         response += "Cryptographic receipt: \(receiptID.prefix(8)). "
-        response += "Location and timestamp verified. This documentation is legally admissible."
+        response += "Location and timestamp verified. This documentation is legally admissible_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -149,7 +149,7 @@ public struct AddTimelineEventIntent: AppIntent {
         case negotiation = "Negotiation"
         case correspondence = "Correspondence"
         
-        static var persistentIdentifier:String = "legal.AddTimelineEventIntent.EventType"
+        static var persistentIdentifier:String = "legal_AddTimelineEventIntent_EventType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Event Type")
         static var caseDisplayRepresentations: [EventType: DisplayRepresentation] = [
@@ -163,7 +163,7 @@ public struct AddTimelineEventIntent: AppIntent {
     }
     
     public func perform() async throws -> some IntentResult & ProvidesDialog {
-        let response = "Timeline event added to case \(caseNumber): \(eventType.rawValue) - \(eventDescription). Cryptographically attested for legal record."
+        let response = "Timeline event added to case \(caseNumber): \(eventType.rawValue) - \(eventDescription). Cryptographically attested for legal record_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -190,7 +190,7 @@ public struct AskLegalQuestionIntent: AppIntent {
         case criminal = "Criminal Law Basics"
         case civilRights = "Civil Rights"
         
-        static var persistentIdentifier:String = "legal.AskLegalQuestionIntent.LegalTopic"
+        static var persistentIdentifier:String = "legal_AskLegalQuestionIntent_LegalTopic"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Legal Topic")
         static var caseDisplayRepresentations: [LegalTopic: DisplayRepresentation] = [
@@ -247,7 +247,7 @@ public struct FindLegalAidIntent: AppIntent {
         case housing = "Housing/Tenant"
         case immigration = "Immigration"
         
-        static var persistentIdentifier:String = "legal.FindLegalAidIntent.CaseType"
+        static var persistentIdentifier:String = "legal_FindLegalAidIntent_CaseType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Case Type")
         static var caseDisplayRepresentations: [CaseType: DisplayRepresentation] = [
@@ -318,7 +318,7 @@ public struct LogCommunicationIntent: AppIntent {
         case inPerson = "In Person"
         case letter = "Written Letter"
         
-        static var persistentIdentifier:String = "legal.LogCommunicationIntent.CommunicationMethod"
+        static var persistentIdentifier:String = "legal_LogCommunicationIntent_CommunicationMethod"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Method")
         static var caseDisplayRepresentations: [CommunicationMethod: DisplayRepresentation] = [
@@ -440,7 +440,7 @@ public struct CreatePersonalCaseIntent: AppIntent {
         case civil = "Civil Dispute"
         case other = "Other"
         
-        static var persistentIdentifier:String = "legal.CreatePersonalCaseIntent.PersonalCaseType"
+        static var persistentIdentifier:String = "legal_CreatePersonalCaseIntent_PersonalCaseType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Case Type")
         static var caseDisplayRepresentations: [PersonalCaseType: DisplayRepresentation] = [
@@ -521,7 +521,7 @@ public struct CreateClientCaseIntent: AppIntent {
         case employment = "Employment Law"
         case personal_injury = "Personal Injury"
         
-        static var persistentIdentifier:String = "legal.CreateClientCaseIntent.ProfessionalCaseType"
+        static var persistentIdentifier:String = "legal_CreateClientCaseIntent_ProfessionalCaseType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Case Type")
         static var caseDisplayRepresentations: [ProfessionalCaseType: DisplayRepresentation] = [
@@ -721,7 +721,7 @@ public struct FileCourtDocumentIntent: AppIntent {
         case notice = "Notice"
         case order = "Proposed Order"
         
-        static var persistentIdentifier:String = "legal.FileCourtDocumentIntent.DocumentType"
+        static var persistentIdentifier:String = "legal_FileCourtDocumentIntent_DocumentType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Document Type")
         static var caseDisplayRepresentations: [DocumentType: DisplayRepresentation] = [
@@ -805,7 +805,7 @@ public struct RecordClientConsultationIntent: AppIntent {
         case settlement = "Settlement Discussion"
         case trial_prep = "Trial Preparation"
         
-        static var persistentIdentifier:String = "legal.RecordClientConsultationIntent.ConsultationType"
+        static var persistentIdentifier:String = "legal_RecordClientConsultationIntent_ConsultationType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Consultation Type")
         static var caseDisplayRepresentations: [ConsultationType: DisplayRepresentation] = [
@@ -948,7 +948,7 @@ public struct SearchCaseLawIntent: AppIntent {
         case last5Years = "Last 5 Years"
         case last10Years = "Last 10 Years"
         
-        static var persistentIdentifier:String = "legal.SearchCaseLawIntent.DateRange"
+        static var persistentIdentifier:String = "legal_SearchCaseLawIntent_DateRange"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Date Range")
         static var caseDisplayRepresentations: [DateRange: DisplayRepresentation] = [
@@ -973,15 +973,15 @@ public struct SearchCaseLawIntent: AppIntent {
         📚 Top Results:
         
         1. Smith v. Jones, 123 F.3d 456 (9th Cir. 2020)
-           "Court held that reasonable expectation of privacy applies..."
+           "Court held that reasonable expectation of privacy applies.._"
            Citations: 47 | Relevance: 0.94
         
         2. Johnson v. State, 567 U.S. 890 (2019)
-           "Supreme Court clarified standard for..."
+           "Supreme Court clarified standard for.._"
            Citations: 152 | Relevance: 0.88
         
         3. Williams v. County Board, 234 Cal.App.4th 567 (2021)
-           "Appellate court reversed trial court finding..."
+           "Appellate court reversed trial court finding.._"
            Citations: 23 | Relevance: 0.85
         
         📖 Related Statutes:
@@ -1026,7 +1026,7 @@ public struct ManageDiscoveryIntent: AppIntent {
         case trackDeadline = "Track Deadline"
         case logObjection = "Log Objection"
         
-        static var persistentIdentifier:String = "legal.ManageDiscoveryIntent.DiscoveryAction"
+        static var persistentIdentifier:String = "legal_ManageDiscoveryIntent_DiscoveryAction"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Action")
         static var caseDisplayRepresentations: [DiscoveryAction: DisplayRepresentation] = [
@@ -1043,7 +1043,7 @@ public struct ManageDiscoveryIntent: AppIntent {
         case requestsForAdmission = "Requests for Admission"
         case depositions = "Depositions"
         
-        static var persistentIdentifier:String = "legal.ManageDiscoveryIntent.DiscoveryType"
+        static var persistentIdentifier:String = "legal_ManageDiscoveryIntent_DiscoveryType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Discovery Type")
         static var caseDisplayRepresentations: [DiscoveryType: DisplayRepresentation] = [
@@ -1116,7 +1116,7 @@ public struct PrepareWitnessIntent: AppIntent {
         case hearing = "Hearing"
         case arbitration = "Arbitration"
         
-        static var persistentIdentifier:String = "legal.PrepareWitnessIntent.TestimonyType"
+        static var persistentIdentifier:String = "legal_PrepareWitnessIntent_TestimonyType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Testimony Type")
         static var caseDisplayRepresentations: [TestimonyType: DisplayRepresentation] = [

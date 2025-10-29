@@ -8,6 +8,8 @@
 	<string>My Health</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -19,13 +21,18 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>7</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.medical</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>14.0</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Capture health photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save health records</string>
+	<key>NSAppIntentsPackages</key>
+	<array>
+		<string>FieldOfTruth</string>
+	</array>
 </dict>
 </plist>
-

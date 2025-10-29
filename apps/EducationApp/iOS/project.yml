@@ -14,6 +14,8 @@ targets:
     platform: iOS
     sources:
       - FoTEducation
+    resources:
+      - FoTEducation/Assets.xcassets
     dependencies:
       - package: FoTPackages
         product: FoTCore

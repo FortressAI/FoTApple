@@ -72,7 +72,7 @@ def generate_token():
     return token
 
 # Get or create bundle IDs
-def get_or_create_bundle_id(token, bundle_id, name):
+def get_or_create_bundle_id(token, bundle_id, name, platform='IOS'):
     headers = {
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json'
@@ -98,7 +98,7 @@ def get_or_create_bundle_id(token, bundle_id, name):
             'attributes': {
                 'identifier': bundle_id,
                 'name': name,
-                'platform': 'IOS'
+                'platform': platform
             }
         }
     }
@@ -178,32 +178,58 @@ print("Generating JWT token...")
 token = generate_token()
 print("✓ Token generated\n")
 
-# App configurations
+# App configurations (iOS + macOS + watchOS)
 apps = [
+    # iOS apps
     {
         'name': 'Personal Health Monitor',
         'bundle_id': 'com.fot.PersonalHealth',
-        'sku': 'FOTH-001'
+        'sku': 'FOTH-001',
+        'platform': 'IOS'
     },
     {
         'name': 'Field of Truth Clinician',
         'bundle_id': 'com.fot.ClinicianApp',
-        'sku': 'FOTC-002'
+        'sku': 'FOTC-002',
+        'platform': 'IOS'
     },
     {
         'name': 'Field of Truth Parent',
         'bundle_id': 'com.fot.ParentApp',
-        'sku': 'FOTP-003'
+        'sku': 'FOTP-003',
+        'platform': 'IOS'
     },
     {
         'name': 'Field of Truth Education',
         'bundle_id': 'com.fot.EducationApp',
-        'sku': 'FOTE-004'
+        'sku': 'FOTE-004',
+        'platform': 'IOS'
     },
     {
         'name': 'Field of Truth Legal',
         'bundle_id': 'com.fot.LegalApp',
-        'sku': 'FOTL-005'
+        'sku': 'FOTL-005',
+        'platform': 'IOS'
+    },
+    # macOS apps
+    {
+        'name': 'Personal Health Monitor Mac',
+        'bundle_id': 'com.fot.PersonalHealthMac',
+        'sku': 'FOTH-001-MAC',
+        'platform': 'MAC_OS'
+    },
+    {
+        'name': 'Field of Truth Clinician Mac',
+        'bundle_id': 'com.fot.ClinicianMac',
+        'sku': 'FOTC-002-MAC',
+        'platform': 'MAC_OS'
+    },
+    # watchOS apps
+    {
+        'name': 'Field of Truth Clinician Watch',
+        'bundle_id': 'com.fot.ClinicianWatch',
+        'sku': 'FOTC-002-WATCH',
+        'platform': 'WATCH_OS'
     }
 ]
 
@@ -215,7 +241,8 @@ for app in apps:
     bundle_id_resource_id = get_or_create_bundle_id(
         token,
         app['bundle_id'],
-        app['name']
+        app['name'],
+        app.get('platform', 'IOS')
     )
     
     if not bundle_id_resource_id:

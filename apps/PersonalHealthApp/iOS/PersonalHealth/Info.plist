@@ -8,6 +8,8 @@
 	<string>My Health</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -19,11 +21,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>7</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Capture photos of symptoms, injuries, or medications for your personal health record</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Save health-related photos to your library</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Read your activity, heart rate, and other health data</string>
 	<key>NSHealthUpdateUsageDescription</key>
@@ -32,6 +32,8 @@
 	<string>Record location when documenting health incidents</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Detect falls and track activity levels</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Save health-related photos to your library</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -42,6 +44,19 @@
 		<key>UIColorName</key>
 		<string>LaunchScreenBackground</string>
 	</dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 </dict>
 </plist>
-

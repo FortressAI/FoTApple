@@ -23,7 +23,7 @@ class NaturalSpeechChunk:
 def parse_narration_to_chunks(text, base_rate=175):
     """
     Parse narration text into natural speech chunks with varied prosody.
-    
+    https://testflight.apple.com/
     CRITICAL FOR NATURAL SOUND: Split at commas, colons, semicolons - NOT just sentences!
     From professional guide example:
         "To make voice sound natural," → pause → 

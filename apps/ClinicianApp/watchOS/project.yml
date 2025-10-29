@@ -1,0 +1,33 @@
+name: FoTClinicianWatch
+options:
+  bundleIdPrefix: com.fot
+  deploymentTarget:
+    watchOS: 10.0
+
+packages:
+  FoTPackages:
+    path: ../../..
+
+targets:
+  FoTClinicianWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - FoTClinicianWatch
+    resources:
+      - FoTClinicianWatch/Assets.xcassets
+    dependencies:
+      - package: FoTPackages
+        product: FoTCore
+      - package: FoTPackages
+        product: FoTUI
+      - package: FoTPackages
+        product: FoTClinician
+    settings:
+      base:
+        INFOPLIST_FILE: FoTClinicianWatch/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.fot.ClinicianWatch
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.9"
+        WATCHOS_DEPLOYMENT_TARGET: "10.0"

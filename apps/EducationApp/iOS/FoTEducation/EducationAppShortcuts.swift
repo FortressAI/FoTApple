@@ -76,6 +76,62 @@ struct EducationAppShortcutsProvider: AppShortcutsProvider {
                 ],
                 shortTitle: "My Schedule",
                 systemImageName: "calendar"
+            ),
+            
+            // NEW: Intelligent Helper Shortcuts (Transform from Record-Keeper to Learning Partner)
+            AppShortcut(
+                intent: ExplainConceptIntent(),
+                phrases: [
+                    "Explain \(\.conceptName) in \(.applicationName)",
+                    "Help me understand \(\.conceptName) in \(.applicationName)",
+                    "What is \(\.conceptName) in \(.applicationName)"
+                ],
+                shortTitle: "Explain Concept",
+                systemImageName: "brain.head.profile"
+            ),
+            
+            AppShortcut(
+                intent: AnswerQuestionIntent(),
+                phrases: [
+                    "Answer my question in \(.applicationName)",
+                    "Help me with \(\.question) in \(.applicationName)",
+                    "Explain \(\.question) in \(.applicationName)"
+                ],
+                shortTitle: "Ask Question",
+                systemImageName: "questionmark.circle.fill"
+            ),
+            
+            AppShortcut(
+                intent: GenerateLearningPathIntent(),
+                phrases: [
+                    "Create learning path for \(\.topic) in \(.applicationName)",
+                    "Help me learn \(\.topic) in \(.applicationName)",
+                    "Generate study plan for \(\.topic) in \(.applicationName)"
+                ],
+                shortTitle: "Learning Path",
+                systemImageName: "map.fill"
+            ),
+            
+            AppShortcut(
+                intent: GetTutoringHelpIntent(),
+                phrases: [
+                    "Tutor me on \(\.topic) in \(.applicationName)",
+                    "Help me with \(\.topic) in \(.applicationName)",
+                    "I'm struggling with \(\.topic) in \(.applicationName)"
+                ],
+                shortTitle: "Get Tutoring",
+                systemImageName: "person.2.fill"
+            ),
+            
+            AppShortcut(
+                intent: ExploreTopicConnectionsIntent(),
+                phrases: [
+                    "How does \(\.topic1) relate to \(\.topic2) in \(.applicationName)",
+                    "Connect \(\.topic1) and \(\.topic2) in \(.applicationName)",
+                    "Show connections between topics in \(.applicationName)"
+                ],
+                shortTitle: "Topic Connections",
+                systemImageName: "network"
             )
         ]
     }

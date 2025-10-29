@@ -1,0 +1,59 @@
+{
+  "PersonalHealthApp": {
+    "schemes": {
+      "iOS": "PersonalHealthApp",
+      "macOS": "PersonalHealthMac"
+    },
+    "bundleIds": {
+      "iOS": "com.fot.PersonalHealth",
+      "macOS": "com.fot.PersonalHealthMac"
+    },
+    "platforms": ["iOS", "macOS"],
+    "directory": "PersonalHealthApp"
+  },
+  "ClinicianApp": {
+    "schemes": {
+      "iOS": "FoTClinicianApp",
+      "macOS": "FoTClinicianMac",
+      "watchOS": "FoTClinicianWatch"
+    },
+    "bundleIds": {
+      "iOS": "com.fot.ClinicianApp",
+      "macOS": "com.fot.ClinicianMac",
+      "watchOS": "com.fot.ClinicianWatch"
+    },
+    "platforms": ["iOS", "macOS", "watchOS"],
+    "directory": "ClinicianApp"
+  },
+  "ParentApp": {
+    "schemes": {
+      "iOS": "FoTParentApp"
+    },
+    "bundleIds": {
+      "iOS": "com.fot.ParentApp"
+    },
+    "platforms": ["iOS"],
+    "directory": "ParentApp"
+  },
+  "EducationApp": {
+    "schemes": {
+      "iOS": "FoTEducationApp"
+    },
+    "bundleIds": {
+      "iOS": "com.fot.EducationApp"
+    },
+    "platforms": ["iOS"],
+    "directory": "EducationApp"
+  },
+  "LegalApp": {
+    "schemes": {
+      "iOS": "FoTLegalApp"
+    },
+    "bundleIds": {
+      "iOS": "com.fot.LegalApp"
+    },
+    "platforms": ["iOS"],
+    "directory": "LegalApp"
+  }
+}
+

@@ -1,0 +1,490 @@
+// PatientStore.swift
+// Data persistence layer for patient records using SQLite
+
+import Foundation
+import GRDB
+import FoTCore
+
+/// Actor-isolated patient data store with SQLite backend
+public actor PatientStore {
+    private let dbQueue: DatabaseQueue
+    private let logger = FoTLogger(subsystem: "com.fot.clinician", category: "PatientStore")
+    
+    public init(path: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/patients.db") throws {
+        self.dbQueue = try DatabaseQueue(path: path)
+        try createSchema()
+        // Note: Logging moved to first operation to avoid actor isolation in init
+    }
+    
+    private func createSchema() throws {
+        try dbQueue.write { db in
+            // Patients table
+            try db.create(table: "patients", ifNotExists: true) { t in
+                t.column("id", .text).primaryKey()
+                t.column("mrn", .text).notNull().unique()
+                t.column("firstName", .text).notNull()
+                t.column("lastName", .text).notNull()
+                t.column("dateOfBirth", .datetime).notNull()
+                t.column("sex", .text).notNull()
+                t.column("createdAt", .datetime).notNull()
+                t.column("updatedAt", .datetime).notNull()
+            }
+            
+            // Allergies table
+            try db.create(table: "allergies", ifNotExists: true) { t in
+                t.column("id", .text).primaryKey()
+                t.column("patientId", .text).notNull().references("patients", onDelete: .cascade)
+                t.column("allergen", .text).notNull()
+                t.column("reaction", .text).notNull()
+                t.column("severity", .text).notNull()
+                t.column("dateRecorded", .datetime).notNull()
+            }
+            
+            // Active problems table
+            try db.create(table: "problems", ifNotExists: true) { t in
+                t.column("id", .text).primaryKey()
+                t.column("patientId", .text).notNull().references("patients", onDelete: .cascade)
+                t.column("name", .text).notNull()
+                t.column("icd10Code", .text)
+                t.column("dateOnset", .datetime).notNull()
+                t.column("status", .text).notNull()
+            }
+            
+            // Medications table
+            try db.create(table: "medications", ifNotExists: true) { t in
+                t.column("id", .text).primaryKey()
+                t.column("patientId", .text).notNull().references("patients", onDelete: .cascade)
+                t.column("name", .text).notNull()
+                t.column("rxcui", .text)
+                t.column("dose", .text).notNull()
+                t.column("route", .text).notNull()
+                t.column("frequency", .text).notNull()
+                t.column("dateStarted", .datetime).notNull()
+                t.column("indication", .text)
+            }
+            
+            // Encounters table
+            try db.create(table: "encounters", ifNotExists: true) { t in
+                t.column("id", .text).primaryKey()
+                t.column("patientId", .text).notNull().references("patients", onDelete: .cascade)
+                t.column("date", .datetime).notNull()
+                t.column("type", .text).notNull()
+                t.column("chiefComplaint", .text).notNull()
+                t.column("status", .text).notNull()
+                t.column("createdAt", .datetime).notNull()
+                t.column("updatedAt", .datetime).notNull()
+            }
+            
+            // Vital signs table
+            try db.create(table: "vital_signs", ifNotExists: true) { t in
+                t.column("id", .text).primaryKey()
+                t.column("encounterId", .text).notNull().references("encounters", onDelete: .cascade)
+                t.column("temperature", .double)
+                t.column("heartRate", .integer)
+                t.column("bloodPressureSystolic", .integer)
+                t.column("bloodPressureDiastolic", .integer)
+                t.column("respiratoryRate", .integer)
+                t.column("oxygenSaturation", .integer)
+                t.column("weight", .double)
+                t.column("height", .double)
+                t.column("timestamp", .datetime).notNull()
+            }
+            
+            // SOAP notes table
+            try db.create(table: "soap_notes", ifNotExists: true) { t in
+                t.column("id", .text).primaryKey()
+                t.column("encounterId", .text).notNull().references("encounters", onDelete: .cascade)
+                t.column("patientId", .text).notNull().references("patients", onDelete: .cascade)
+                t.column("date", .datetime).notNull()
+                t.column("subjective", .text).notNull()
+                t.column("objective", .text).notNull()
+                t.column("assessment", .text).notNull()
+                t.column("plan", .text).notNull()
+                t.column("signature", .text)
+                t.column("signedAt", .datetime)
+                t.column("createdAt", .datetime).notNull()
+                t.column("updatedAt", .datetime).notNull()
+            }
+            
+            logger.info("Database schema created successfully")
+        }
+    }
+    
+    // MARK: - Patient Operations
+    
+    public func savePatient(_ patient: Patient) async throws {
+        try await dbQueue.write { db in
+            try db.execute(
+                sql: """
+                INSERT OR REPLACE INTO patients (id, mrn, firstName, lastName, dateOfBirth, sex, createdAt, updatedAt)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                arguments: [
+                    patient.id.uuidString,
+                    patient.mrn,
+                    patient.firstName,
+                    patient.lastName,
+                    patient.dateOfBirth,
+                    patient.sex.rawValue,
+                    Date(),
+                    Date()
+                ]
+            )
+            
+            // Save allergies
+            try db.execute(sql: "DELETE FROM allergies WHERE patientId = ?", arguments: [patient.id.uuidString])
+            for allergy in patient.allergies {
+                try db.execute(
+                    sql: """
+                    INSERT INTO allergies (id, patientId, allergen, reaction, severity, dateRecorded)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    arguments: [
+                        allergy.id.uuidString,
+                        patient.id.uuidString,
+                        allergy.allergen,
+                        allergy.reaction,
+                        allergy.severity.rawValue,
+                        allergy.dateRecorded
+                    ]
+                )
+            }
+            
+            // Save problems
+            try db.execute(sql: "DELETE FROM problems WHERE patientId = ?", arguments: [patient.id.uuidString])
+            for problem in patient.activeProblems {
+                try db.execute(
+                    sql: """
+                    INSERT INTO problems (id, patientId, name, icd10Code, dateOnset, status)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    arguments: [
+                        problem.id.uuidString,
+                        patient.id.uuidString,
+                        problem.name,
+                        problem.icd10Code,
+                        problem.dateOnset,
+                        problem.status.rawValue
+                    ]
+                )
+            }
+            
+            // Save medications
+            try db.execute(sql: "DELETE FROM medications WHERE patientId = ?", arguments: [patient.id.uuidString])
+            for medication in patient.medications {
+                try db.execute(
+                    sql: """
+                    INSERT INTO medications (id, patientId, name, rxcui, dose, route, frequency, dateStarted, indication)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    arguments: [
+                        medication.id.uuidString,
+                        patient.id.uuidString,
+                        medication.name,
+                        medication.rxcui,
+                        medication.dose,
+                        medication.route,
+                        medication.frequency,
+                        medication.dateStarted,
+                        medication.indication
+                    ]
+                )
+            }
+        }
+        logger.info("Saved patient: \(patient.fullName)")
+    }
+    
+    public func loadPatient(id: UUID) async throws -> Patient? {
+        return try await dbQueue.read { db in
+            guard let row = try Row.fetchOne(db, sql: "SELECT * FROM patients WHERE id = ?", arguments: [id.uuidString]) else {
+                return nil
+            }
+            
+            // Load allergies
+            let allergies = try Row.fetchAll(db, sql: "SELECT * FROM allergies WHERE patientId = ?", arguments: [id.uuidString]).map { row in
+                Allergy(
+                    id: UUID(uuidString: row["id"])!,
+                    allergen: row["allergen"],
+                    reaction: row["reaction"],
+                    severity: AllergySeverity(rawValue: row["severity"])!,
+                    dateRecorded: row["dateRecorded"]
+                )
+            }
+            
+            // Load problems
+            let problems = try Row.fetchAll(db, sql: "SELECT * FROM problems WHERE patientId = ?", arguments: [id.uuidString]).map { row in
+                Problem(
+                    id: UUID(uuidString: row["id"])!,
+                    name: row["name"],
+                    icd10Code: row["icd10Code"],
+                    dateOnset: row["dateOnset"],
+                    status: ProblemStatus(rawValue: row["status"])!
+                )
+            }
+            
+            // Load medications
+            let medications = try Row.fetchAll(db, sql: "SELECT * FROM medications WHERE patientId = ?", arguments: [id.uuidString]).map { row in
+                Medication(
+                    id: UUID(uuidString: row["id"])!,
+                    name: row["name"],
+                    rxcui: row["rxcui"],
+                    dose: row["dose"],
+                    route: row["route"],
+                    frequency: row["frequency"],
+                    dateStarted: row["dateStarted"],
+                    indication: row["indication"]
+                )
+            }
+            
+            return Patient(
+                id: id,
+                mrn: row["mrn"],
+                firstName: row["firstName"],
+                lastName: row["lastName"],
+                dateOfBirth: row["dateOfBirth"],
+                sex: BiologicalSex(rawValue: row["sex"])!,
+                allergies: allergies,
+                activeProblems: problems,
+                medications: medications,
+                lastUpdated: row["updatedAt"]
+            )
+        }
+    }
+    
+    public func loadAllPatients() async throws -> [Patient] {
+        return try await dbQueue.read { db in
+            let patientRows = try Row.fetchAll(db, sql: "SELECT * FROM patients ORDER BY lastName, firstName")
+            var patients: [Patient] = []
+            
+            for row in patientRows {
+                let id = UUID(uuidString: row["id"])!
+                if let patient = try await loadPatient(id: id) {
+                    patients.append(patient)
+                }
+            }
+            
+            return patients
+        }
+    }
+    
+    public func deletePatient(id: UUID) async throws {
+        try await dbQueue.write { db in
+            try db.execute(sql: "DELETE FROM patients WHERE id = ?", arguments: [id.uuidString])
+        }
+        logger.info("Deleted patient: \(id)")
+    }
+    
+    public func searchPatients(query: String) async throws -> [Patient] {
+        let searchTerm = "%\(query)%"
+        return try await dbQueue.read { db in
+            let patientRows = try Row.fetchAll(
+                db,
+                sql: """
+                SELECT * FROM patients
+                WHERE firstName LIKE ? OR lastName LIKE ? OR mrn LIKE ?
+                ORDER BY lastName, firstName
+                """,
+                arguments: [searchTerm, searchTerm, searchTerm]
+            )
+            
+            var patients: [Patient] = []
+            for row in patientRows {
+                let id = UUID(uuidString: row["id"])!
+                if let patient = try await loadPatient(id: id) {
+                    patients.append(patient)
+                }
+            }
+            
+            return patients
+        }
+    }
+    
+    // MARK: - Encounter Operations
+    
+    public func saveEncounter(_ encounter: ClinicalEncounter) async throws {
+        try await dbQueue.write { db in
+            try db.execute(
+                sql: """
+                INSERT OR REPLACE INTO encounters (id, patientId, date, type, chiefComplaint, status, createdAt, updatedAt)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                arguments: [
+                    encounter.id.uuidString,
+                    encounter.patientId.uuidString,
+                    encounter.date,
+                    encounter.type.rawValue,
+                    encounter.chiefComplaint,
+                    encounter.status.rawValue,
+                    encounter.createdAt,
+                    Date()
+                ]
+            )
+            
+            // Save vital signs if present
+            if let vitals = encounter.vitals {
+                try db.execute(sql: "DELETE FROM vital_signs WHERE encounterId = ?", arguments: [encounter.id.uuidString])
+                try db.execute(
+                    sql: """
+                    INSERT INTO vital_signs (id, encounterId, temperature, heartRate, bloodPressureSystolic,
+                                           bloodPressureDiastolic, respiratoryRate, oxygenSaturation,
+                                           weight, height, timestamp)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    arguments: [
+                        UUID().uuidString,
+                        encounter.id.uuidString,
+                        vitals.temperature,
+                        vitals.heartRate,
+                        vitals.bloodPressureSystolic,
+                        vitals.bloodPressureDiastolic,
+                        vitals.respiratoryRate,
+                        vitals.oxygenSaturation,
+                        vitals.weight,
+                        vitals.height,
+                        vitals.timestamp
+                    ]
+                )
+            }
+        }
+        logger.info("Saved encounter: \(encounter.id)")
+    }
+    
+    public func loadEncounter(id: UUID) async throws -> ClinicalEncounter? {
+        return try await dbQueue.read { db in
+            guard let row = try Row.fetchOne(db, sql: "SELECT * FROM encounters WHERE id = ?", arguments: [id.uuidString]) else {
+                return nil
+            }
+            
+            // Load vital signs
+            let vitals: VitalSigns? = try Row.fetchOne(
+                db,
+                sql: "SELECT * FROM vital_signs WHERE encounterId = ?",
+                arguments: [id.uuidString]
+            ).map { row in
+                VitalSigns(
+                    temperature: row["temperature"],
+                    heartRate: row["heartRate"],
+                    bloodPressureSystolic: row["bloodPressureSystolic"],
+                    bloodPressureDiastolic: row["bloodPressureDiastolic"],
+                    respiratoryRate: row["respiratoryRate"],
+                    oxygenSaturation: row["oxygenSaturation"],
+                    weight: row["weight"],
+                    height: row["height"],
+                    timestamp: row["timestamp"]
+                )
+            }
+            
+            return ClinicalEncounter(
+                id: id,
+                patientId: UUID(uuidString: row["patientId"])!,
+                date: row["date"],
+                type: EncounterType(rawValue: row["type"])!,
+                chiefComplaint: row["chiefComplaint"],
+                vitals: vitals,
+                status: EncounterStatus(rawValue: row["status"])!,
+                createdAt: row["createdAt"],
+                updatedAt: row["updatedAt"]
+            )
+        }
+    }
+    
+    public func loadEncounters(forPatient patientId: UUID) async throws -> [ClinicalEncounter] {
+        return try await dbQueue.read { db in
+            let encounterRows = try Row.fetchAll(
+                db,
+                sql: "SELECT * FROM encounters WHERE patientId = ? ORDER BY date DESC",
+                arguments: [patientId.uuidString]
+            )
+            
+            var encounters: [ClinicalEncounter] = []
+            for row in encounterRows {
+                let id = UUID(uuidString: row["id"])!
+                if let encounter = try await loadEncounter(id: id) {
+                    encounters.append(encounter)
+                }
+            }
+            
+            return encounters
+        }
+    }
+    
+    // MARK: - SOAP Note Operations
+    
+    public func saveSOAPNote(_ note: SOAPNote) async throws {
+        try await dbQueue.write { db in
+            try db.execute(
+                sql: """
+                INSERT OR REPLACE INTO soap_notes (id, encounterId, patientId, date, subjective, objective,
+                                                   assessment, plan, signature, signedAt, createdAt, updatedAt)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                arguments: [
+                    note.id.uuidString,
+                    note.encounterId.uuidString,
+                    note.patientId.uuidString,
+                    note.date,
+                    note.subjective,
+                    note.objective,
+                    note.assessment,
+                    note.plan,
+                    note.signature,
+                    note.signedAt,
+                    note.createdAt,
+                    Date()
+                ]
+            )
+        }
+        logger.info("Saved SOAP note: \(note.id)")
+    }
+    
+    public func loadSOAPNote(id: UUID) async throws -> SOAPNote? {
+        return try await dbQueue.read { db in
+            guard let row = try Row.fetchOne(db, sql: "SELECT * FROM soap_notes WHERE id = ?", arguments: [id.uuidString]) else {
+                return nil
+            }
+            
+            return SOAPNote(
+                id: id,
+                encounterId: UUID(uuidString: row["encounterId"])!,
+                patientId: UUID(uuidString: row["patientId"])!,
+                date: row["date"],
+                subjective: row["subjective"],
+                objective: row["objective"],
+                assessment: row["assessment"],
+                plan: row["plan"],
+                signature: row["signature"],
+                signedAt: row["signedAt"],
+                createdAt: row["createdAt"],
+                updatedAt: row["updatedAt"]
+            )
+        }
+    }
+    
+    public func loadSOAPNotes(forPatient patientId: UUID) async throws -> [SOAPNote] {
+        return try await dbQueue.read { db in
+            let noteRows = try Row.fetchAll(
+                db,
+                sql: "SELECT * FROM soap_notes WHERE patientId = ? ORDER BY date DESC",
+                arguments: [patientId.uuidString]
+            )
+            
+            return noteRows.compactMap { row in
+                SOAPNote(
+                    id: UUID(uuidString: row["id"])!,
+                    encounterId: UUID(uuidString: row["encounterId"])!,
+                    patientId: UUID(uuidString: row["patientId"])!,
+                    date: row["date"],
+                    subjective: row["subjective"],
+                    objective: row["objective"],
+                    assessment: row["assessment"],
+                    plan: row["plan"],
+                    signature: row["signature"],
+                    signedAt: row["signedAt"],
+                    createdAt: row["createdAt"],
+                    updatedAt: row["updatedAt"]
+                )
+            }
+        }
+    }
+}
+

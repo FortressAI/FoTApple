@@ -18,9 +18,14 @@ struct WatchContentView: View {
                     }
                     
                     NavigationLink(destination: AlertsView()) {
-                        Label("Alerts", systemImage: "bell.fill")
-                            .foregroundColor(.orange)
-                            .badge(appState.upcomingAlerts.count)
+                        HStack {
+                            Label("Alerts", systemImage: "bell.fill")
+                                .foregroundColor(.orange)
+                            Spacer()
+                            Text("\(appState.upcomingAlerts.count)")
+                                .foregroundColor(.orange)
+                                .font(.caption)
+                        }
                     }
                 }
                 
@@ -60,8 +65,6 @@ struct QuickVitalsView: View {
                         .font(.caption)
                         .foregroundColor(.red)
                     TextField("bpm", text: $heartRate)
-                        .keyboardType(.numberPad)
-                        .textFieldStyle(.roundedBorder)
                 }
                 
                 // Blood Pressure
@@ -71,12 +74,8 @@ struct QuickVitalsView: View {
                         .foregroundColor(.blue)
                     HStack {
                         TextField("Sys", text: $bloodPressureSystolic)
-                            .keyboardType(.numberPad)
-                            .textFieldStyle(.roundedBorder)
                         Text("/")
                         TextField("Dia", text: $bloodPressureDiastolic)
-                            .keyboardType(.numberPad)
-                            .textFieldStyle(.roundedBorder)
                     }
                 }
                 
@@ -86,8 +85,6 @@ struct QuickVitalsView: View {
                         .font(.caption)
                         .foregroundColor(.orange)
                     TextField("°F", text: $temperature)
-                        .keyboardType(.decimalPad)
-                        .textFieldStyle(.roundedBorder)
                 }
                 
                 Button(action: saveVitals) {
@@ -158,12 +155,6 @@ struct PatientDetailWatch: View {
                 
                 Divider()
                 
-                // Blood Type
-                if let bloodType = patient.bloodType {
-                    Label(bloodType, systemImage: "drop.fill")
-                        .foregroundColor(.red)
-                }
-                
                 // Allergies
                 if !patient.allergies.isEmpty {
                     VStack(alignment: .leading, spacing: 4) {
@@ -178,12 +169,12 @@ struct PatientDetailWatch: View {
                 }
                 
                 // Medications
-                if !patient.currentMedications.isEmpty {
+                if !patient.medications.isEmpty {
                     VStack(alignment: .leading, spacing: 4) {
                         Label("Medications", systemImage: "pills.fill")
                             .font(.caption)
                             .foregroundColor(.blue)
-                        ForEach(patient.currentMedications) { med in
+                        ForEach(patient.medications) { med in
                             Text("• \(med.name)")
                                 .font(.caption)
                         }

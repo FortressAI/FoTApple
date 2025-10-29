@@ -45,6 +45,32 @@ Features:
 
 **Platforms:** iOS, macOS (watchOS Q1 2026)
 
+## 🚀 TestFlight Deployment
+
+### Multi-Platform Deployment
+
+Deploy all apps across all available platforms to TestFlight:
+
+```bash
+# Deploy all apps × all platforms
+./scripts/deploy_all_platforms_testflight.sh
+
+# Deploy single app/platform
+./scripts/deploy_single_app_platform.sh PersonalHealthApp iOS
+
+# Run diagnostics
+./scripts/diagnose.sh
+```
+
+**Supported Platforms:**
+- PersonalHealthApp: iOS, macOS
+- ClinicianApp: iOS, macOS, watchOS
+- ParentApp: iOS
+- EducationApp: iOS
+- LegalApp: iOS
+
+See [docs/testflight/MULTI_PLATFORM_DEPLOYMENT.md](docs/testflight/MULTI_PLATFORM_DEPLOYMENT.md) for complete documentation.
+
 ### FoT Legal US
 **US legal practice management**
 

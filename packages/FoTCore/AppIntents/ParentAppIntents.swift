@@ -26,7 +26,7 @@ public struct ViewStudentProgressIntent: AppIntent {
         case thisSemester = "This Semester"
         case yearToDate = "Year to Date"
         
-        static var persistentIdentifier:String = "parent.ViewStudentProgressIntent.TimePeriod"
+        static var persistentIdentifier:String = "parent_ViewStudentProgressIntent_TimePeriod"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Time Period")
         static var caseDisplayRepresentations: [TimePeriod: DisplayRepresentation] = [
@@ -68,7 +68,7 @@ public struct ViewStudentProgressIntent: AppIntent {
         • Fortitude: 0.90 (Excellent)
         
         📝 Recent Teacher Comments:
-        "\(studentName) is a joy to have in class. Participates actively and helps peers."
+        "\(studentName) is a joy to have in class. Participates actively and helps peers_"
         
         All data cryptographically verified by teachers.
         """
@@ -100,7 +100,7 @@ public struct CheckAssignmentsDueIntent: AppIntent {
         case nextWeek = "Next Week"
         case all = "All Upcoming"
         
-        static var persistentIdentifier:String = "parent.CheckAssignmentsDueIntent.TimeRange"
+        static var persistentIdentifier:String = "parent_CheckAssignmentsDueIntent_TimeRange"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Time Range")
         static var caseDisplayRepresentations: [TimeRange: DisplayRepresentation] = [
@@ -175,7 +175,7 @@ public struct ParentScheduleTeacherMeetingIntent: AppIntent {
         case important = "Important - Within Week"
         case urgent = "Urgent - ASAP"
         
-        static var persistentIdentifier:String = "parent.ParentScheduleTeacherMeetingIntent.UrgencyLevel"
+        static var persistentIdentifier:String = "parent_ParentScheduleTeacherMeetingIntent_UrgencyLevel"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Urgency")
         static var caseDisplayRepresentations: [UrgencyLevel: DisplayRepresentation] = [
@@ -256,7 +256,7 @@ public struct ViewBehaviorReportsIntent: AppIntent {
         case positive = "Positive Notes Only"
         case concerns = "Concerns Only"
         
-        static var persistentIdentifier:String = "parent.ViewBehaviorReportsIntent.ReportType"
+        static var persistentIdentifier:String = "parent_ViewBehaviorReportsIntent_ReportType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Report Type")
         static var caseDisplayRepresentations: [ReportType: DisplayRepresentation] = [
@@ -340,7 +340,7 @@ public struct UpdateEmergencyContactIntent: AppIntent {
         case emergency = "Emergency Only"
         case medical = "Medical Authorization"
         
-        static var persistentIdentifier:String = "parent.UpdateEmergencyContactIntent.ContactType"
+        static var persistentIdentifier:String = "parent_UpdateEmergencyContactIntent_ContactType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Contact Type")
         static var caseDisplayRepresentations: [ContactType: DisplayRepresentation] = [
@@ -406,7 +406,7 @@ public struct ViewAttendanceIntent: AppIntent {
         case thisSemester = "This Semester"
         case yearToDate = "Year to Date"
         
-        static var persistentIdentifier:String = "parent.ViewAttendanceIntent.TimePeriod"
+        static var persistentIdentifier:String = "parent_ViewAttendanceIntent_TimePeriod"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Time Period")
         static var caseDisplayRepresentations: [TimePeriod: DisplayRepresentation] = [

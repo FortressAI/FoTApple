@@ -34,7 +34,7 @@ public struct RecordAssignmentIntent: AppIntent {
         case music = "Music"
         case pe = "Physical Education"
         
-        static var persistentIdentifier:String = "education.RecordAssignmentIntent.Subject"
+        static var persistentIdentifier:String = "education_RecordAssignmentIntent_Subject"
         
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Subject")
         static var caseDisplayRepresentations: [Subject: DisplayRepresentation] = [
@@ -52,7 +52,7 @@ public struct RecordAssignmentIntent: AppIntent {
     public func perform() async throws -> some IntentResult & ProvidesDialog {
         let response = "Assignment recorded for \(studentName): \(assignmentTitle) in \(subject.rawValue)"
         + (dueDate.map { ". Due: \($0.formatted(date: .abbreviated, time: .omitted))" } ?? "")
-        + ". Cryptographic receipt generated."
+        + ". Cryptographic receipt generated_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -83,7 +83,7 @@ public struct TrackVirtueScoreIntent: AppIntent {
         case prudence = "Prudence"
         case fortitude = "Fortitude"
         
-        static var persistentIdentifier:String = "education.TrackVirtueScoreIntent.VirtueType"
+        static var persistentIdentifier:String = "education_TrackVirtueScoreIntent_VirtueType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Virtue")
         static var caseDisplayRepresentations: [VirtueType: DisplayRepresentation] = [
@@ -95,7 +95,7 @@ public struct TrackVirtueScoreIntent: AppIntent {
     }
     
     public func perform() async throws -> some IntentResult & ProvidesDialog {
-        let response = "\(virtue.rawValue) recorded for \(studentName): \(String(format: "%.2f", score)). Character development tracking with cryptographic attestation."
+        let response = "\(virtue.rawValue) recorded for \(studentName): \(String(format: "%.2f", score)). Character development tracking with cryptographic attestation_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -115,7 +115,7 @@ public struct CheckIEPAccommodationsIntent: AppIntent {
     var studentName: String
     
     public func perform() async throws -> some IntentResult & ProvidesDialog {
-        let response = "Retrieving IEP accommodations for \(studentName). This will show all required accommodations, strengths, challenges, and learning style preferences."
+        let response = "Retrieving IEP accommodations for \(studentName). This will show all required accommodations, strengths, challenges, and learning style preferences_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -176,7 +176,7 @@ public struct TrackProgressIntent: AppIntent {
         case semester = "This Semester"
         case year = "This Year"
         
-        static var persistentIdentifier:String = "education.TrackProgressIntent.TimePeriod"
+        static var persistentIdentifier:String = "education_TrackProgressIntent_TimePeriod"
         
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Time Period")
         static var caseDisplayRepresentations: [TimePeriod: DisplayRepresentation] = [
@@ -235,7 +235,7 @@ public struct RequestTutorSupportIntent: AppIntent {
         case socialStudies = "Social Studies"
         case foreignLanguage = "Foreign Language"
         
-        static var persistentIdentifier:String = "education.RequestTutorSupportIntent.Subject"
+        static var persistentIdentifier:String = "education_RequestTutorSupportIntent_Subject"
         
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Subject")
         static var caseDisplayRepresentations: [Subject: DisplayRepresentation] = [
@@ -252,7 +252,7 @@ public struct RequestTutorSupportIntent: AppIntent {
         case medium = "Medium - Upcoming Test"
         case high = "High - Struggling"
         
-        static var persistentIdentifier:String = "education.RequestTutorSupportIntent.UrgencyLevel"
+        static var persistentIdentifier:String = "education_RequestTutorSupportIntent_UrgencyLevel"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Urgency")
         static var caseDisplayRepresentations: [UrgencyLevel: DisplayRepresentation] = [
@@ -305,7 +305,7 @@ public struct SubmitDocumentIntent: AppIntent {
         case video = "Video"
         case audio = "Audio Recording"
         
-        static var persistentIdentifier:String = "education.SubmitDocumentIntent.DocumentType"
+        static var persistentIdentifier:String = "education_SubmitDocumentIntent_DocumentType"
         
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Document Type")
         static var caseDisplayRepresentations: [DocumentType: DisplayRepresentation] = [
@@ -380,11 +380,11 @@ public struct RecordAttendanceIntent: AppIntent {
         
         if let absent = absentStudents, !absent.isEmpty {
             response += "\n\nAbsent students:\n" + absent.map { "• \($0)" }.joined(separator: "\n")
-            response += "\n\nParent notifications will be sent automatically."
+            response += "\n\nParent notifications will be sent automatically_"
         }
         
         response += "\n\nCryptographic receipt: \(receiptID.prefix(8))"
-        response += "\nTimestamp verified and signed."
+        response += "\nTimestamp verified and signed_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -419,7 +419,7 @@ public struct ScheduleParentMeetingIntent: AppIntent {
         case general = "General Check-in"
         case urgent = "Urgent Matter"
         
-        static var persistentIdentifier:String = "education.ScheduleParentMeetingIntent.MeetingPurpose"
+        static var persistentIdentifier:String = "education_ScheduleParentMeetingIntent_MeetingPurpose"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Purpose")
         static var caseDisplayRepresentations: [MeetingPurpose: DisplayRepresentation] = [
@@ -557,7 +557,7 @@ public struct DocumentBehaviorIncidentIntent: AppIntent {
         case safety = "Safety Violation"
         case other = "Other"
         
-        static var persistentIdentifier:String = "education.DocumentBehaviorIncidentIntent.IncidentType"
+        static var persistentIdentifier:String = "education_DocumentBehaviorIncidentIntent_IncidentType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Incident Type")
         static var caseDisplayRepresentations: [IncidentType: DisplayRepresentation] = [
@@ -577,7 +577,7 @@ public struct DocumentBehaviorIncidentIntent: AppIntent {
         case serious = "Serious"
         case severe = "Severe"
         
-        static var persistentIdentifier:String = "education.DocumentBehaviorIncidentIntent.SeverityLevel"
+        static var persistentIdentifier:String = "education_DocumentBehaviorIncidentIntent_SeverityLevel"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Severity")
         static var caseDisplayRepresentations: [SeverityLevel: DisplayRepresentation] = [
@@ -658,7 +658,7 @@ public struct SendClassAnnouncementIntent: AppIntent {
         case important = "Important"
         case urgent = "Urgent"
         
-        static var persistentIdentifier:String = "education.SendClassAnnouncementIntent.AnnouncementPriority"
+        static var persistentIdentifier:String = "education_SendClassAnnouncementIntent_AnnouncementPriority"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Priority")
         static var caseDisplayRepresentations: [AnnouncementPriority: DisplayRepresentation] = [
@@ -727,7 +727,7 @@ public struct CreateLessonPlanIntent: AppIntent {
         
         case other = "Other"
         
-        static var persistentIdentifier:String = "education.CreateLessonPlanIntent.Subject"
+        static var persistentIdentifier:String = "education_CreateLessonPlanIntent_Subject"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Subject")
         static var caseDisplayRepresentations: [Subject: DisplayRepresentation] = [
@@ -810,7 +810,7 @@ public struct UpdateProgressReportIntent: AppIntent {
         case iep = "IEP Progress Report"
         case annual = "Annual Review"
         
-        static var persistentIdentifier:String = "education.UpdateProgressReportIntent.ReportType"
+        static var persistentIdentifier:String = "education_UpdateProgressReportIntent_ReportType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Report Type")
         static var caseDisplayRepresentations: [ReportType: DisplayRepresentation] = [
@@ -893,7 +893,7 @@ public struct LogAssignmentStatusIntent: AppIntent {
         case needHelp = "Need Help"
         case notStarted = "Not Started"
         
-        static var persistentIdentifier:String = "education.LogAssignmentStatusIntent.AssignmentStatus"
+        static var persistentIdentifier:String = "education_LogAssignmentStatusIntent_AssignmentStatus"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Status")
         static var caseDisplayRepresentations: [AssignmentStatus: DisplayRepresentation] = [
@@ -921,14 +921,14 @@ public struct LogAssignmentStatusIntent: AppIntent {
         }
         
         if status == .needHelp {
-            response += "\n\n🆘 Help requested - Teacher notified\nTutor matching in progress..."
+            response += "\n\n🆘 Help requested - Teacher notified\nTutor matching in progress.._"
         }
         
         if status == .completed {
             response += "\n\n✅ Great job! Keep up the good work!"
         }
         
-        response += "\n\nProgress logged with cryptographic timestamp."
+        response += "\n\nProgress logged with cryptographic timestamp_"
         
         return .result(dialog: IntentDialog(stringLiteral: response))
     }
@@ -1112,7 +1112,7 @@ public struct ReflectOnVirtueIntent: AppIntent {
         case prudence = "Prudence (Wisdom)"
         case fortitude = "Fortitude (Courage)"
         
-        static var persistentIdentifier:String = "education.ReflectOnVirtueIntent.VirtueType"
+        static var persistentIdentifier:String = "education_ReflectOnVirtueIntent_VirtueType"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Virtue")
         static var caseDisplayRepresentations: [VirtueType: DisplayRepresentation] = [
@@ -1186,7 +1186,7 @@ public struct AskTeacherQuestionIntent: AppIntent {
         case needSoonBeforeTest = "Need Soon (test coming)"
         case urgent = "Urgent (stuck on homework)"
         
-        static var persistentIdentifier:String = "education.AskTeacherQuestionIntent.UrgencyLevel"
+        static var persistentIdentifier:String = "education_AskTeacherQuestionIntent_UrgencyLevel"
 
         static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Urgency")
         static var caseDisplayRepresentations: [UrgencyLevel: DisplayRepresentation] = [
