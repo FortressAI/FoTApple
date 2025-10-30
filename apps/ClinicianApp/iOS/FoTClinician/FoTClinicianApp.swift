@@ -4,10 +4,12 @@
 import SwiftUI
 import FoTCore
 import FoTClinician
+import FoTUI
 
 @main
 struct FoTClinicianApp: App {
     @StateObject private var appState = AppState()
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     init() {
         // Configure app
@@ -19,8 +21,15 @@ struct FoTClinicianApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(appState)
+            if !hasCompletedOnboarding {
+                ClinicianOnboardingFlow {
+                    hasCompletedOnboarding = true
+                }
+            } else {
+                ContentView()
+                    .environmentObject(appState)
+                    .interactiveHelp(.clinicianDashboard)
+            }
         }
     }
 }

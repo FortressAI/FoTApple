@@ -9,6 +9,7 @@ import FoTUI
 @main
 struct FoTLegalApp: App {
     @StateObject private var appState = LegalAppState()
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     init() {
         AppConfig.shared.features.useLocalLLM = false
@@ -18,8 +19,15 @@ struct FoTLegalApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LegalContentView()
-                .environmentObject(appState)
+            if !hasCompletedOnboarding {
+                LegalOnboardingFlow {
+                    hasCompletedOnboarding = true
+                }
+            } else {
+                LegalContentView()
+                    .environmentObject(appState)
+                    .interactiveHelp(.legalDashboard)
+            }
         }
     }
 }

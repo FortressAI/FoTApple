@@ -21,21 +21,22 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>13.0</string>
+	<key>NSAppIntentsPackages</key>
+	<array>
+		<string>FieldOfTruth</string>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Capture evidence photos and documents for legal cases</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Record location for incident documentation</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save legal evidence and documentation</string>
-	<key>NSAppIntentsPackages</key>
-	<array>
-		<string>FieldOfTruth</string>
-	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
-

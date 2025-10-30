@@ -33,6 +33,9 @@ let package = Package(
         // App Intents (64 voice commands)
         .library(name: "FoTAppIntents", targets: ["FoTAppIntents"]),
         
+        // SafeAICoin Bridge - Optional blockchain integration for knowledge sharing
+        .library(name: "SafeAICoinBridge", targets: ["SafeAICoinBridge"]),
+        
         // Apps will be built as Xcode projects with full UI
     ],
     dependencies: [
@@ -167,6 +170,13 @@ let package = Package(
             name: "ReasonGraphTests",
             dependencies: ["ReasonGraph"],
             path: "packages/ReasonGraph/Tests"
+        ),
+        
+        // SafeAICoin Bridge - Blockchain integration for knowledge sharing (OPTIONAL)
+        .target(
+            name: "SafeAICoinBridge",
+            dependencies: ["FoTCore"],
+            path: "Sources/SafeAICoinBridge"
         ),
         
         // ================================================================

@@ -9,6 +9,7 @@ import FoTUI
 @main
 struct FoTEducationApp: App {
     @StateObject private var appState = EducationAppState()
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     init() {
         AppConfig.shared.features.useLocalLLM = false
@@ -18,8 +19,15 @@ struct FoTEducationApp: App {
     
     var body: some Scene {
         WindowGroup {
-            EducationContentView()
-                .environmentObject(appState)
+            if !hasCompletedOnboarding {
+                EducationOnboardingFlow {
+                    hasCompletedOnboarding = true
+                }
+            } else {
+                EducationContentView()
+                    .environmentObject(appState)
+                    .interactiveHelp(.educationDashboard)
+            }
         }
     }
 }

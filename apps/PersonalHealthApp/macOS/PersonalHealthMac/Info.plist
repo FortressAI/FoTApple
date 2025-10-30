@@ -34,5 +34,7 @@
 	<string>Capture health photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save health records</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

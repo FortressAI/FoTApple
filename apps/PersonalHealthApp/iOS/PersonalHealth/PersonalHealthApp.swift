@@ -8,6 +8,7 @@ import FoTUI
 @main
 struct PersonalHealthApp: App {
     @StateObject private var healthState = HealthState()
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     init() {
         FoTLogger.app.info("My Health starting - Personal health monitor for individuals")
@@ -15,8 +16,15 @@ struct PersonalHealthApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PersonalHealthContentView()
-                .environmentObject(healthState)
+            if !hasCompletedOnboarding {
+                PersonalHealthOnboardingFlow {
+                    hasCompletedOnboarding = true
+                }
+            } else {
+                PersonalHealthContentView()
+                    .environmentObject(healthState)
+                    .interactiveHelp(.personalHealthDashboard)
+            }
         }
     }
 }

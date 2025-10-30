@@ -1,92 +1,63 @@
 # Xcode
-.DS_Store
-*.xcuserstate
-*.xcodeproj
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
 xcuserdata/
+*.xccheckout
+*.moved-aside
 DerivedData/
-*.xcworkspace
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace/
 
 # Swift Package Manager
 .build/
-.swiftpm/
+Packages/
+Package.pins
 Package.resolved
-
-# SPM Build artifacts
-/.build
-/Packages
-/*.xcodeproj
+*.xcodeproj
+.swiftpm/
 
 # CocoaPods
 Pods/
-*.podspec
 
 # Carthage
 Carthage/Build/
 
-# Build products
-*.o
-*.lo
-*.la
-*.al
-.libs
-*.so
-*.dylib
-*.a
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Credentials and Secrets
+credentials.txt
+*.key
+*.pem
+*.p8
+AuthKey_*.p8
+.env
+.env.*
+
+# SafeAICoin
+.safeaicoin/
+**/credentials.txt
+**/node-key.txt
+**/*_credentials.txt
 
 # macOS
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# Testing
-.testRun/
-*.profraw
-*.profdata
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Database
-*.db
-*.db-shm
-*.db-wal
-*.sqlite
-*.sqlite3
-
-# Secrets and keys
-*.pem
-*.key
-*.p12
-*.mobileprovision
+# Node
+node_modules/
 
 # Logs
 *.log
-
-# Temporary files
-tmp/
-temp/
-*.tmp
-.apple-keys/
