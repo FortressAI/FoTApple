@@ -2,7 +2,7 @@
 # Deploy All FoT Apps to TestFlight
 # This script builds, archives, and uploads all 5 Field of Truth apps
 
-set -euo pipefail
+set -eo pipefail
 
 # Colors for output
 BLUE='\033[0;34m'

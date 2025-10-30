@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Multimodal AI Integration - Sensors, Vision, Audio, Video">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Multimodal AI Integration - Sensors, Vision, Audio, Video - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Multimodal AI Integration - Sensors, Vision, Audio, Video</h1>
+        </header>
+        
+        <main>
+            <h1 id="multimodal-ai-integration-sensors-vision-audio-video">Multimodal AI Integration - Sensors, Vision, Audio, Video</h1>
+<p><strong>FoT Apple</strong> leverages every sensor, camera, microphone, and platform-specific capability across the entire Apple ecosystem to provide real-time, context-aware AI assistance.</p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p><strong>Multimodal AI</strong> means processing multiple types of input simultaneously:
+- 📷 <strong>Vision</strong>: Camera, LiDAR, depth sensors
+- 🎤 <strong>Audio</strong>: Microphone, spatial audio, voice recognition
+- 📊 <strong>Sensors</strong>: Health sensors, accelerometer, gyroscope, GPS, barometer
+- ✋ <strong>Gestures</strong>: Hand tracking, eye tracking, Apple Pencil
+- 🧠 <strong>Context</strong>: Time, location, user activity, environmental conditions</p>
+<p><strong>All integrated with VQbit substrate and blockchain attestation.</strong></p>
+<hr />
+<h2 id="platform-capabilities-matrix">Platform Capabilities Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Watch</th>
+<th>iPhone</th>
+<th>iPad</th>
+<th>Mac</th>
+<th>Vision Pro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Health Sensors</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Heart Rate</td>
+<td>✅ Continuous</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>ECG</td>
+<td>✅ On-demand</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Blood Oxygen</td>
+<td>✅ Continuous</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>✅ Wrist</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Sleep Stages</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>Vision</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>❌</td>
+<td>✅ 48MP + Ultra Wide</td>
+<td>✅ 12MP + Ultra Wide</td>
+<td>✅ 1080p</td>
+<td>✅ Stereo 3D</td>
+</tr>
+<tr>
+<td>LiDAR</td>
+<td>❌</td>
+<td>✅ Pro models</td>
+<td>✅ Pro models</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Depth</td>
+<td>❌</td>
+<td>✅ (Portrait mode)</td>
+<td>✅ (Portrait mode)</td>
+<td>❌</td>
+<td>✅ High precision</td>
+</tr>
+<tr>
+<td><strong>Audio</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅ Spatial</td>
+</tr>
+<tr>
+<td>Spatial Audio</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅ Native</td>
+</tr>
+<tr>
+<td>Voice Isolation</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Motion</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Accelerometer</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Gyroscope</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Compass</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>Input</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Touch</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅ (Trackpad)</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Apple Pencil</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Hand Tracking</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Eye Tracking</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GPS</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅ (Cellular)</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Wi-Fi Positioning</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Ultra Wideband</td>
+<td>✅ Series 6+</td>
+<td>✅ 11+</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Barometer</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Ambient Light</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="architecture-overview">Architecture Overview</h2>
+<div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
+│                    Multimodal AI Pipeline                     │
+└─────────────────────────────────────────────────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        ▼                     ▼                     ▼
+   ┌────────┐           ┌────────┐           ┌────────┐
+   │ Vision │           │ Audio  │           │Sensors │
+   │  AI    │           │  AI    │           │ Fusion │
+   └────────┘           └────────┘           └────────┘
+        │                     │                     │
+        └─────────────────────┼─────────────────────┘
+                              ▼
+                    ┌──────────────────┐
+                    │  Feature Fusion  │
+                    │  (VQbit Encoder) │
+                    └──────────────────┘
+                              │
+                              ▼
+                    ┌──────────────────┐
+                    │  VQbit Substrate │
+                    │  (8096-dim)      │
+                    └──────────────────┘
+                              │
+                              ▼
+                    ┌──────────────────┐
+                    │  Domain Packs    │
+                    │  (Specialized AI)│
+                    └──────────────────┘
+                              │
+                              ▼
+                    ┌──────────────────┐
+                    │  AKG + Validator │
+                    │  + Blockchain    │
+                    └──────────────────┘
+</code></pre></div>
+
+<hr />
+<h2 id="vision-ai">Vision AI</h2>
+<h3 id="capabilities">Capabilities</h3>
+<p><strong>Image Classification</strong>
+- Medical: Skin lesions, wounds, X-rays, pill identification
+- Legal: Document classification, evidence tagging
+- General: Object detection, scene understanding</p>
+<p><strong>Image Segmentation</strong>
+- Medical: Wound boundaries, tumor segmentation
+- Legal: Redaction areas, signature extraction</p>
+<p><strong>Optical Character Recognition (OCR)</strong>
+- Medical: Lab reports, prescription labels, medical charts
+- Legal: Contracts, court documents, handwritten notes</p>
+<p><strong>Video Analysis</strong>
+- Medical: Gait analysis, tremor detection, wound healing progression
+- Legal: Video evidence analysis, deposition review</p>
+<h3 id="implementation">Implementation</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">Vision</span>
+<span class="kd">import</span><span class="w"> </span><span class="nc">CoreML</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">VisionAI</span><span class="p">:</span><span class="w"> </span><span class="p">@</span><span class="n">unchecked</span><span class="w"> </span><span class="n">Sendable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">vqbitEngine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">models</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="bp">VNCoreMLModel</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[:]</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">init</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">vqbitEngine</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">engine</span>
+
+<span class="w">        </span><span class="c1">// Load domain-specific models</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">loadModel</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SkinLesionClassifier&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;clinician&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">loadModel</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DocumentClassifier&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;legal&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">loadModel</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MolecularStructureDetector&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;chemistry&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Image Analysis</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">analyzeImage</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                            </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">])</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AnalysisResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">cgImage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">VisionError</span><span class="p">.</span><span class="n">invalidImage</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 1. Run Vision framework classification</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">visionResults</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">classifyImage</span><span class="p">(</span><span class="n">cgImage</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="n">domain</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 2. Extract features (using Vision)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">features</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractFeatures</span><span class="p">(</span><span class="n">cgImage</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 3. Encode features into VQbit substrate</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">vqbitState</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">encodeToVQbit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Domain-specific interpretation</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">interpretation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">interpretWithDomain</span><span class="p">(</span><span class="n">vqbitState</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="n">domain</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 5. Generate analysis result</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">AnalysisResult</span><span class="p">(</span>
+<span class="w">            </span><span class="n">classification</span><span class="p">:</span><span class="w"> </span><span class="n">visionResults</span><span class="p">.</span><span class="n">topResult</span><span class="p">,</span>
+<span class="w">            </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="n">visionResults</span><span class="p">.</span><span class="n">confidence</span><span class="p">,</span>
+<span class="w">            </span><span class="n">features</span><span class="p">:</span><span class="w"> </span><span class="n">features</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interpretation</span><span class="p">:</span><span class="w"> </span><span class="n">interpretation</span><span class="p">,</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">metadata</span><span class="p">:</span><span class="w"> </span><span class="n">ImageMetadata</span><span class="p">(</span>
+<span class="w">                </span><span class="n">dimensions</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">),</span>
+<span class="w">                </span><span class="n">captureDevice</span><span class="p">:</span><span class="w"> </span><span class="n">context</span><span class="p">[</span><span class="s">&quot;device&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">                </span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="n">context</span><span class="p">[</span><span class="s">&quot;location&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="bp">CLLocation</span><span class="p">,</span>
+<span class="w">                </span><span class="n">lighting</span><span class="p">:</span><span class="w"> </span><span class="n">context</span><span class="p">[</span><span class="s">&quot;lighting&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 6. Store in AKG with blockchain attestation</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">storeInAKG</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">result</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Real-time Video Processing</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">processVideoStream</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">stream</span><span class="p">:</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">CMSampleBuffer</span><span class="p">&gt;,</span>
+<span class="w">                                   </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">AnalysisResult</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">sampleBuffer</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">imageBuffer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CMSampleBufferGetImageBuffer</span><span class="p">(</span><span class="n">sampleBuffer</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="k">continue</span>
+<span class="w">                    </span><span class="p">}</span>
+
+<span class="w">                    </span><span class="c1">// Process frame</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">processFrame</span><span class="p">(</span><span class="n">imageBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="n">domain</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">continuation</span><span class="p">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Medical Image Analysis (Clinician Domain)</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">analyzeSkinLesion</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                 </span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">SkinLesionAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Classify lesion type</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">classification</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">classifyImage</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;clinician&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 2. Segment lesion boundary</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">segmentation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">segmentLesion</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+
+<span class="w">        </span><span class="c1">// 3. Extract ABCDE features (Asymmetry, Border, Color, Diameter, Evolving)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">abcde</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractABCDEFeatures</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!,</span><span class="w"> </span><span class="n">segmentation</span><span class="p">:</span><span class="w"> </span><span class="n">segmentation</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Risk assessment</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">riskScore</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateMelanomaRisk</span><span class="p">(</span><span class="n">abcde</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 5. Generate report</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">analysis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SkinLesionAnalysis</span><span class="p">(</span>
+<span class="w">            </span><span class="n">classification</span><span class="p">:</span><span class="w"> </span><span class="n">classification</span><span class="p">.</span><span class="n">topResult</span><span class="p">,</span>
+<span class="w">            </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="n">classification</span><span class="p">.</span><span class="n">confidence</span><span class="p">,</span>
+<span class="w">            </span><span class="n">asymmetry</span><span class="p">:</span><span class="w"> </span><span class="n">abcde</span><span class="p">.</span><span class="n">asymmetry</span><span class="p">,</span>
+<span class="w">            </span><span class="n">borderIrregularity</span><span class="p">:</span><span class="w"> </span><span class="n">abcde</span><span class="p">.</span><span class="n">border</span><span class="p">,</span>
+<span class="w">            </span><span class="n">colorVariation</span><span class="p">:</span><span class="w"> </span><span class="n">abcde</span><span class="p">.</span><span class="n">color</span><span class="p">,</span>
+<span class="w">            </span><span class="n">diameter</span><span class="p">:</span><span class="w"> </span><span class="n">abcde</span><span class="p">.</span><span class="n">diameter</span><span class="p">,</span>
+<span class="w">            </span><span class="n">evolution</span><span class="p">:</span><span class="w"> </span><span class="n">abcde</span><span class="p">.</span><span class="n">evolving</span><span class="p">,</span>
+<span class="w">            </span><span class="n">riskScore</span><span class="p">:</span><span class="w"> </span><span class="n">riskScore</span><span class="p">,</span>
+<span class="w">            </span><span class="n">recommendation</span><span class="p">:</span><span class="w"> </span><span class="n">generateRecommendation</span><span class="p">(</span><span class="n">riskScore</span><span class="p">),</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 6. Encrypt PHI and store</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">encrypted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">PHIEncryption</span><span class="p">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">analysis</span><span class="p">)</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">node</span><span class="p">:</span><span class="w"> </span><span class="n">encrypted</span><span class="p">,</span><span class="w"> </span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="n">patientID</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 7. Blockchain attestation</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">analysis</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Document Analysis (Legal Domain)</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">analyzeDocument</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">documentType</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">DocumentAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. OCR extraction</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractText</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+
+<span class="w">        </span><span class="c1">// 2. Classify document type</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">classification</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">classifyDocument</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 3. Extract structured data</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">entities</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractEntities</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">classification</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Legal citation extraction</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">citations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">extractLegalCitations</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 5. Risk analysis (for contracts)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">risks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">classification</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="s">&quot;contract&quot;</span><span class="w"> </span><span class="p">?</span><span class="w"> </span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">analyzeContractRisks</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="w">        </span><span class="c1">// 6. Generate analysis</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">analysis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">DocumentAnalysis</span><span class="p">(</span>
+<span class="w">            </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">classification</span><span class="p">,</span>
+<span class="w">            </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span>
+<span class="w">            </span><span class="n">entities</span><span class="p">:</span><span class="w"> </span><span class="n">entities</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citations</span><span class="p">:</span><span class="w"> </span><span class="n">citations</span><span class="p">,</span>
+<span class="w">            </span><span class="n">risks</span><span class="p">:</span><span class="w"> </span><span class="n">risks</span><span class="p">,</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 7. Store and attest</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">storeInAKG</span><span class="p">(</span><span class="n">analysis</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">analysis</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: - Medical-Specific Vision AI</span>
+
+<span class="kd">extension</span><span class="w"> </span><span class="nc">VisionAI</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Wound healing progression</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">trackWoundHealing</span><span class="p">(</span><span class="n">images</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="bp">UIImage</span><span class="p">],</span><span class="w"> </span>
+<span class="w">                                 </span><span class="n">dates</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Date</span><span class="p">])</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">HealingProgression</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">measurements</span><span class="p">:</span><span class="w"> </span><span class="p">[(</span><span class="n">date</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">,</span><span class="w"> </span><span class="n">area</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">,</span><span class="w"> </span><span class="n">redness</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">)]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">images</span><span class="p">,</span><span class="w"> </span><span class="n">dates</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">segmentation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">segmentWound</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">area</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateArea</span><span class="p">(</span><span class="n">segmentation</span><span class="p">)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">redness</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateRedness</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!,</span><span class="w"> </span><span class="n">mask</span><span class="p">:</span><span class="w"> </span><span class="n">segmentation</span><span class="p">)</span>
+
+<span class="w">            </span><span class="n">measurements</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">redness</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Fit healing curve</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">healingRate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateHealingRate</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">predictedHealing</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">predictHealingCompletion</span><span class="p">(</span><span class="n">healingRate</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">HealingProgression</span><span class="p">(</span>
+<span class="w">            </span><span class="n">measurements</span><span class="p">:</span><span class="w"> </span><span class="n">measurements</span><span class="p">,</span>
+<span class="w">            </span><span class="n">healingRate</span><span class="p">:</span><span class="w"> </span><span class="n">healingRate</span><span class="p">,</span>
+<span class="w">            </span><span class="n">predictedCompletion</span><span class="p">:</span><span class="w"> </span><span class="n">predictedHealing</span><span class="p">,</span>
+<span class="w">            </span><span class="n">trend</span><span class="p">:</span><span class="w"> </span><span class="n">healingRate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="p">.</span><span class="n">improving</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">worsening</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Pill identification</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">identifyPill</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">PillIdentification</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Extract visual features (shape, color, imprint)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">detectPillShape</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">color</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">extractDominantColor</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">imprint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractImprint</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+
+<span class="w">        </span><span class="c1">// Match against RxNorm database</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">matches</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">matchPillDatabase</span><span class="p">(</span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="n">shape</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                                  </span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                                  </span><span class="n">imprint</span><span class="p">:</span><span class="w"> </span><span class="n">imprint</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">topMatch</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">matches</span><span class="p">.</span><span class="bp">first</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">VisionError</span><span class="p">.</span><span class="n">noPillMatch</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">PillIdentification</span><span class="p">(</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">topMatch</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+<span class="w">            </span><span class="n">rxcui</span><span class="p">:</span><span class="w"> </span><span class="n">topMatch</span><span class="p">.</span><span class="n">rxcui</span><span class="p">,</span>
+<span class="w">            </span><span class="n">strength</span><span class="p">:</span><span class="w"> </span><span class="n">topMatch</span><span class="p">.</span><span class="n">strength</span><span class="p">,</span>
+<span class="w">            </span><span class="n">manufacturer</span><span class="p">:</span><span class="w"> </span><span class="n">topMatch</span><span class="p">.</span><span class="n">manufacturer</span><span class="p">,</span>
+<span class="w">            </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="n">topMatch</span><span class="p">.</span><span class="n">confidence</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Gait analysis from video</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">analyzeGait</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">video</span><span class="p">:</span><span class="w"> </span><span class="n">URL</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">GaitAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Extract frames</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">frames</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractFrames</span><span class="p">(</span><span class="n">video</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 2. Pose estimation (body keypoints)</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">poses</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="n">CGPoint</span><span class="p">]]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">frames</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">pose</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">estimatePose</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+<span class="w">            </span><span class="n">poses</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 3. Calculate gait parameters</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">strideLength</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateStrideLength</span><span class="p">(</span><span class="n">poses</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">cadence</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateCadence</span><span class="p">(</span><span class="n">poses</span><span class="p">,</span><span class="w"> </span><span class="n">fps</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">symmetry</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateGaitSymmetry</span><span class="p">(</span><span class="n">poses</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">stability</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateGaitStability</span><span class="p">(</span><span class="n">poses</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Detect abnormalities</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">abnormalities</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">detectGaitAbnormalities</span><span class="p">(</span>
+<span class="w">            </span><span class="n">strideLength</span><span class="p">:</span><span class="w"> </span><span class="n">strideLength</span><span class="p">,</span>
+<span class="w">            </span><span class="n">cadence</span><span class="p">:</span><span class="w"> </span><span class="n">cadence</span><span class="p">,</span>
+<span class="w">            </span><span class="n">symmetry</span><span class="p">:</span><span class="w"> </span><span class="n">symmetry</span><span class="p">,</span>
+<span class="w">            </span><span class="n">stability</span><span class="p">:</span><span class="w"> </span><span class="n">stability</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">GaitAnalysis</span><span class="p">(</span>
+<span class="w">            </span><span class="n">strideLength</span><span class="p">:</span><span class="w"> </span><span class="n">strideLength</span><span class="p">,</span>
+<span class="w">            </span><span class="n">cadence</span><span class="p">:</span><span class="w"> </span><span class="n">cadence</span><span class="p">,</span>
+<span class="w">            </span><span class="n">symmetry</span><span class="p">:</span><span class="w"> </span><span class="n">symmetry</span><span class="p">,</span>
+<span class="w">            </span><span class="n">stability</span><span class="p">:</span><span class="w"> </span><span class="n">stability</span><span class="p">,</span>
+<span class="w">            </span><span class="n">abnormalities</span><span class="p">:</span><span class="w"> </span><span class="n">abnormalities</span><span class="p">,</span>
+<span class="w">            </span><span class="n">recommendation</span><span class="p">:</span><span class="w"> </span><span class="n">abnormalities</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">?</span><span class="w"> </span>
+<span class="w">                </span><span class="s">&quot;Normal gait pattern&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>
+<span class="w">                </span><span class="s">&quot;Consider neurology evaluation for gait abnormalities&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: - Legal-Specific Vision AI</span>
+
+<span class="kd">extension</span><span class="w"> </span><span class="nc">VisionAI</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Signature verification</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">verifySignature</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">signature</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">reference</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">SignatureVerification</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">features1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractSignatureFeatures</span><span class="p">(</span><span class="n">signature</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">features2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractSignatureFeatures</span><span class="p">(</span><span class="n">reference</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">similarity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateCosineSimilarity</span><span class="p">(</span><span class="n">features1</span><span class="p">,</span><span class="w"> </span><span class="n">features2</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">SignatureVerification</span><span class="p">(</span>
+<span class="w">            </span><span class="n">match</span><span class="p">:</span><span class="w"> </span><span class="n">similarity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.85</span><span class="p">,</span>
+<span class="w">            </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="n">similarity</span><span class="p">,</span>
+<span class="w">            </span><span class="n">reason</span><span class="p">:</span><span class="w"> </span><span class="n">similarity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.85</span><span class="w"> </span><span class="p">?</span><span class="w"> </span>
+<span class="w">                </span><span class="s">&quot;Signatures match within acceptable threshold&quot;</span><span class="w"> </span><span class="p">:</span>
+<span class="w">                </span><span class="s">&quot;Significant differences detected&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Redaction detection</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">detectRedactions</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">document</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">RedactionArea</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Detect black/white boxes (common redaction method)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">boxes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">detectRectangles</span><span class="p">(</span><span class="n">document</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">redactions</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">RedactionArea</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">boxes</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Check if box is solid color (likely redaction)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">isSolid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">checkSolidColor</span><span class="p">(</span><span class="n">document</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!,</span><span class="w"> </span><span class="n">region</span><span class="p">:</span><span class="w"> </span><span class="n">box</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">isSolid</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">redactions</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">RedactionArea</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">bounds</span><span class="p">:</span><span class="w"> </span><span class="n">box</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">manual</span>
+<span class="w">                </span><span class="p">))</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">redactions</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="audio-ai">Audio AI</h2>
+<h3 id="capabilities_1">Capabilities</h3>
+<p><strong>Speech Recognition</strong>
+- Medical: Clinical notes dictation, patient interviews
+- Legal: Deposition transcription, oral arguments
+- General: Voice commands, search queries</p>
+<p><strong>Speaker Identification</strong>
+- Medical: Multi-speaker patient consultations
+- Legal: Witness identification in recordings</p>
+<p><strong>Audio Classification</strong>
+- Medical: Cough detection, heart sounds, lung sounds
+- Legal: Audio evidence classification</p>
+<p><strong>Emotion Detection</strong>
+- Medical: Patient distress detection
+- Legal: Witness credibility analysis (tone, stress)</p>
+<h3 id="implementation_1">Implementation</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">Speech</span>
+<span class="kd">import</span><span class="w"> </span><span class="nc">AVFoundation</span>
+<span class="kd">import</span><span class="w"> </span><span class="nc">SoundAnalysis</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">AudioAI</span><span class="p">:</span><span class="w"> </span><span class="p">@</span><span class="n">unchecked</span><span class="w"> </span><span class="n">Sendable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">vqbitEngine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">speechRecognizer</span><span class="p">:</span><span class="w"> </span><span class="bp">SFSpeechRecognizer</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">init</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">vqbitEngine</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">engine</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">speechRecognizer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">SFSpeechRecognizer</span><span class="p">(</span><span class="n">locale</span><span class="p">:</span><span class="w"> </span><span class="n">Locale</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;en-US&quot;</span><span class="p">))</span><span class="o">!</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Speech Recognition</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">transcribe</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">audioURL</span><span class="p">:</span><span class="w"> </span><span class="n">URL</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">speakers</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">TranscriptionResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Speech recognition</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">request</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">SFSpeechURLRecognitionRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="n">audioURL</span><span class="p">)</span>
+<span class="w">        </span><span class="n">request</span><span class="p">.</span><span class="n">shouldReportPartialResults</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="n">request</span><span class="p">.</span><span class="n">requiresOnDeviceRecognition</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// Privacy!</span>
+
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">speechRecognizer</span><span class="p">.</span><span class="n">recognitionTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span><span class="w"> </span><span class="n">request</span><span class="p">).</span><span class="n">finish</span><span class="p">()</span>
+
+<span class="w">        </span><span class="c1">// 2. Speaker diarization (if multiple speakers)</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">segments</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">TranscriptSegment</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">speakers</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">segments</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">diarizeSpeakers</span><span class="p">(</span><span class="n">audioURL</span><span class="p">,</span><span class="w"> </span><span class="n">speakerCount</span><span class="p">:</span><span class="w"> </span><span class="n">speakers</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">segments</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">TranscriptSegment</span><span class="p">(</span>
+<span class="w">                </span><span class="n">speaker</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Speaker 1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">bestTranscription</span><span class="p">.</span><span class="n">formattedString</span><span class="p">,</span>
+<span class="w">                </span><span class="n">startTime</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="n">endTime</span><span class="p">:</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">speechRecognitionMetadata</span><span class="p">?.</span><span class="n">speechDuration</span><span class="w"> </span><span class="p">??</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">bestTranscription</span><span class="p">.</span><span class="n">segments</span><span class="p">.</span><span class="bp">map</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">confidence</span><span class="p">).</span><span class="n">average</span><span class="p">()</span>
+<span class="w">            </span><span class="p">)]</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 3. Domain-specific post-processing</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">domain</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="s">&quot;clinician&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">segments</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">enhanceMedicalTerminology</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">domain</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="s">&quot;legal&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">segments</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">enhanceLegalTerminology</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 4. Extract entities</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">entities</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">extractEntities</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="n">domain</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 5. Generate structured result</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">transcription</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TranscriptionResult</span><span class="p">(</span>
+<span class="w">            </span><span class="n">segments</span><span class="p">:</span><span class="w"> </span><span class="n">segments</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fullText</span><span class="p">:</span><span class="w"> </span><span class="n">segments</span><span class="p">.</span><span class="bp">map</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">text</span><span class="p">).</span><span class="n">joined</span><span class="p">(</span><span class="n">separator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">entities</span><span class="p">:</span><span class="w"> </span><span class="n">entities</span><span class="p">,</span>
+<span class="w">            </span><span class="n">language</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;en-US&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">duration</span><span class="p">:</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">speechRecognitionMetadata</span><span class="p">?.</span><span class="n">speechDuration</span><span class="w"> </span><span class="p">??</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 6. Store and attest</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">storeInAKG</span><span class="p">(</span><span class="n">transcription</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">transcription</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Real-time Transcription</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">transcribeRealtime</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nv">audioEngine</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">AVAudioEngine</span><span class="p">()</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nv">request</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">SFSpeechAudioBufferRecognitionRequest</span><span class="p">()</span>
+<span class="w">                </span><span class="n">request</span><span class="p">.</span><span class="n">shouldReportPartialResults</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">                </span><span class="n">request</span><span class="p">.</span><span class="n">requiresOnDeviceRecognition</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
+
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nv">inputNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">audioEngine</span><span class="p">.</span><span class="n">inputNode</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nv">recordingFormat</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">inputNode</span><span class="p">.</span><span class="n">outputFormat</span><span class="p">(</span><span class="n">forBus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+
+<span class="w">                </span><span class="n">inputNode</span><span class="p">.</span><span class="n">installTap</span><span class="p">(</span><span class="n">onBus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">bufferSize</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">:</span><span class="w"> </span><span class="n">recordingFormat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="kc">_</span><span class="w"> </span><span class="k">in</span>
+<span class="w">                    </span><span class="n">request</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="n">audioEngine</span><span class="p">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="w">                </span><span class="k">try</span><span class="p">?</span><span class="w"> </span><span class="n">audioEngine</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="w">                </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">speechRecognizer</span><span class="p">.</span><span class="n">recognitionTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span><span class="w"> </span><span class="n">request</span><span class="p">).</span><span class="n">results</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">bestTranscription</span><span class="p">.</span><span class="n">formattedString</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Medical Audio Analysis</span>
+
+<span class="w">    </span><span class="c1">// Cough detection and classification</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">analyzeCough</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">audioURL</span><span class="p">:</span><span class="w"> </span><span class="n">URL</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">CoughAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Detect cough events</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">coughs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">detectCoughEvents</span><span class="p">(</span><span class="n">audioURL</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 2. Classify cough type (dry, wet, whooping, etc.)</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">classifications</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">CoughClassification</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">cough</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">coughs</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">classifyCough</span><span class="p">(</span><span class="n">cough</span><span class="p">.</span><span class="n">audioSegment</span><span class="p">)</span>
+<span class="w">            </span><span class="n">classifications</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">type</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 3. Calculate metrics</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">frequency</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">Double</span><span class="p">(</span><span class="n">coughs</span><span class="p">.</span><span class="bp">count</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getAudioDuration</span><span class="p">(</span><span class="n">audioURL</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">severity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateCoughSeverity</span><span class="p">(</span><span class="n">classifications</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">CoughAnalysis</span><span class="p">(</span>
+<span class="w">            </span><span class="n">coughCount</span><span class="p">:</span><span class="w"> </span><span class="n">coughs</span><span class="p">.</span><span class="bp">count</span><span class="p">,</span>
+<span class="w">            </span><span class="n">frequency</span><span class="p">:</span><span class="w"> </span><span class="n">frequency</span><span class="p">,</span><span class="w"> </span><span class="c1">// coughs per minute</span>
+<span class="w">            </span><span class="n">types</span><span class="p">:</span><span class="w"> </span><span class="n">classifications</span><span class="p">,</span>
+<span class="w">            </span><span class="n">severity</span><span class="p">:</span><span class="w"> </span><span class="n">severity</span><span class="p">,</span>
+<span class="w">            </span><span class="n">recommendation</span><span class="p">:</span><span class="w"> </span><span class="n">severity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.7</span><span class="w"> </span><span class="p">?</span><span class="w"> </span>
+<span class="w">                </span><span class="s">&quot;Persistent cough - consider chest X-ray&quot;</span><span class="w"> </span><span class="p">:</span>
+<span class="w">                </span><span class="s">&quot;Monitor symptoms&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Heart sound analysis (stethoscope audio)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">analyzeHeartSounds</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">audioURL</span><span class="p">:</span><span class="w"> </span><span class="n">URL</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">HeartSoundAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Detect S1 and S2 heart sounds</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">heartBeats</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">detectHeartBeats</span><span class="p">(</span><span class="n">audioURL</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 2. Calculate heart rate</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">heartRate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateHeartRate</span><span class="p">(</span><span class="n">heartBeats</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 3. Detect abnormal sounds (murmurs, gallops, etc.)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">abnormalities</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">detectHeartAbnormalities</span><span class="p">(</span><span class="n">audioURL</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Generate analysis</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">HeartSoundAnalysis</span><span class="p">(</span>
+<span class="w">            </span><span class="n">heartRate</span><span class="p">:</span><span class="w"> </span><span class="n">heartRate</span><span class="p">,</span>
+<span class="w">            </span><span class="n">rhythm</span><span class="p">:</span><span class="w"> </span><span class="n">detectRhythm</span><span class="p">(</span><span class="n">heartBeats</span><span class="p">),</span>
+<span class="w">            </span><span class="n">abnormalities</span><span class="p">:</span><span class="w"> </span><span class="n">abnormalities</span><span class="p">,</span>
+<span class="w">            </span><span class="n">recommendation</span><span class="p">:</span><span class="w"> </span><span class="n">abnormalities</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">?</span>
+<span class="w">                </span><span class="s">&quot;Normal heart sounds&quot;</span><span class="w"> </span><span class="p">:</span>
+<span class="w">                </span><span class="s">&quot;Abnormal heart sounds detected - recommend echocardiogram&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Patient distress detection</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">detectDistress</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">audioStream</span><span class="p">:</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">AVAudioBuffer</span><span class="p">&gt;)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">DistressAlert</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">audioStream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Analyze voice features (pitch, intensity, speech rate)</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">pitch</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">extractPitch</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">intensity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">extractIntensity</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">speechRate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">extractSpeechRate</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+
+<span class="w">                    </span><span class="c1">// Detect distress indicators</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">distressScore</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateDistressScore</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">pitch</span><span class="p">:</span><span class="w"> </span><span class="n">pitch</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">intensity</span><span class="p">:</span><span class="w"> </span><span class="n">intensity</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">speechRate</span><span class="p">:</span><span class="w"> </span><span class="n">speechRate</span>
+<span class="w">                    </span><span class="p">)</span>
+
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="n">distressScore</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">DistressAlert</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">                            </span><span class="n">score</span><span class="p">:</span><span class="w"> </span><span class="n">distressScore</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">indicators</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;elevated_pitch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;increased_intensity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rapid_speech&quot;</span><span class="p">]</span>
+<span class="w">                        </span><span class="p">))</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">continuation</span><span class="p">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="sensor-fusion">Sensor Fusion</h2>
+<h3 id="health-sensors-apple-watch">Health Sensors (Apple Watch)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">HealthKit</span>
+<span class="kd">import</span><span class="w"> </span><span class="nc">CoreMotion</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">HealthSensorFusion</span><span class="p">:</span><span class="w"> </span><span class="p">@</span><span class="n">unchecked</span><span class="w"> </span><span class="n">Sendable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">healthStore</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">HKHealthStore</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">motionManager</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">CMMotionManager</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">vqbitEngine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">init</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">vqbitEngine</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">engine</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Real-time Vital Signs Monitoring</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">monitorVitals</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">VitalSigns</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Request authorization</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nv">types</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="p">&lt;</span><span class="bp">HKSampleType</span><span class="p">&gt;</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="bp">HKQuantityType</span><span class="p">.</span><span class="n">quantityType</span><span class="p">(</span><span class="n">forIdentifier</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">heartRate</span><span class="p">)</span><span class="o">!</span><span class="p">,</span>
+<span class="w">                    </span><span class="bp">HKQuantityType</span><span class="p">.</span><span class="n">quantityType</span><span class="p">(</span><span class="n">forIdentifier</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">oxygenSaturation</span><span class="p">)</span><span class="o">!</span><span class="p">,</span>
+<span class="w">                    </span><span class="bp">HKQuantityType</span><span class="p">.</span><span class="n">quantityType</span><span class="p">(</span><span class="n">forIdentifier</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">bodyTemperature</span><span class="p">)</span><span class="o">!</span><span class="p">,</span>
+<span class="w">                    </span><span class="bp">HKQuantityType</span><span class="p">.</span><span class="n">quantityType</span><span class="p">(</span><span class="n">forIdentifier</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">respiratoryRate</span><span class="p">)</span><span class="o">!</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">healthStore</span><span class="p">.</span><span class="n">requestAuthorization</span><span class="p">(</span><span class="n">toShare</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="n">read</span><span class="p">:</span><span class="w"> </span><span class="n">types</span><span class="p">)</span>
+
+<span class="w">                </span><span class="c1">// Start continuous monitoring</span>
+<span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">heartRate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getLatestHeartRate</span><span class="p">()</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">spo2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getLatestSpO2</span><span class="p">()</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">temp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getLatestTemperature</span><span class="p">()</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">respRate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getLatestRespiratoryRate</span><span class="p">()</span>
+
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">vitals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">VitalSigns</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">heartRate</span><span class="p">:</span><span class="w"> </span><span class="n">heartRate</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">spo2</span><span class="p">:</span><span class="w"> </span><span class="n">spo2</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">temperature</span><span class="p">:</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">respiratoryRate</span><span class="p">:</span><span class="w"> </span><span class="n">respRate</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">                    </span><span class="p">)</span>
+
+<span class="w">                    </span><span class="c1">// Detect abnormalities</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">alert</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">detectAbnormalVitals</span><span class="p">(</span><span class="n">vitals</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="k">await</span><span class="w"> </span><span class="n">sendAlert</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+
+<span class="w">                    </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">vitals</span><span class="p">)</span>
+
+<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="k">for</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="c1">// Update every 5s</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Fall Detection</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">enableFallDetection</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="n">motionManager</span><span class="p">.</span><span class="n">isDeviceMotionAvailable</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">SensorError</span><span class="p">.</span><span class="n">notAvailable</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">motionManager</span><span class="p">.</span><span class="n">deviceMotionUpdateInterval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="c1">// 10 Hz</span>
+<span class="w">        </span><span class="n">motionManager</span><span class="p">.</span><span class="n">startDeviceMotionUpdates</span><span class="p">(</span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">main</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="kr">weak</span><span class="w"> </span><span class="kc">self</span><span class="p">]</span><span class="w"> </span><span class="n">motion</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">motion</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">motion</span><span class="p">,</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">self</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">self</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Detect sudden acceleration (fall)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">acceleration</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">motion</span><span class="p">.</span><span class="n">userAcceleration</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">magnitude</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span>
+<span class="w">                </span><span class="n">pow</span><span class="p">(</span><span class="n">acceleration</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="n">pow</span><span class="p">(</span><span class="n">acceleration</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="n">pow</span><span class="p">(</span><span class="n">acceleration</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+
+<span class="w">            </span><span class="c1">// Fall threshold (&gt; 2.5g)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">magnitude</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">2.5</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">await</span><span class="w"> </span><span class="kc">self</span><span class="p">.</span><span class="n">handleFallDetected</span><span class="p">(</span><span class="n">motion</span><span class="p">:</span><span class="w"> </span><span class="n">motion</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">handleFallDetected</span><span class="p">(</span><span class="n">motion</span><span class="p">:</span><span class="w"> </span><span class="bp">CMDeviceMotion</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Wait 60 seconds for user response</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">alert</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">FallAlert</span><span class="p">(</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">acceleration</span><span class="p">:</span><span class="w"> </span><span class="n">motion</span><span class="p">.</span><span class="n">userAcceleration</span><span class="p">,</span>
+<span class="w">            </span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="k">try</span><span class="p">?</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getCurrentLocation</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// If no response, call emergency services</span>
+<span class="w">        </span><span class="k">try</span><span class="p">?</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="k">for</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">60</span><span class="p">))</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="n">callEmergencyServices</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Activity Recognition</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">recognizeActivity</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">Activity</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">motion</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getMotionData</span><span class="p">()</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nv">activity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">classifyActivity</span><span class="p">(</span><span class="n">motion</span><span class="p">)</span>
+
+<span class="w">                    </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span>
+
+<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="k">for</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">classifyActivity</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">motion</span><span class="p">:</span><span class="w"> </span><span class="bp">CMDeviceMotion</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Activity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Simple activity classification based on accelerometer</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">accel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">motion</span><span class="p">.</span><span class="n">userAcceleration</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">magnitude</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">magnitude</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">stationary</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">magnitude</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">walking</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">magnitude</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">running</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">intense_activity</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - ECG Analysis</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">performECG</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">ECGAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Request ECG authorization</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">ecgType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">HKQuantityType</span><span class="p">.</span><span class="n">electrocardiogramType</span><span class="p">()</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">healthStore</span><span class="p">.</span><span class="n">requestAuthorization</span><span class="p">(</span><span class="n">toShare</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="n">read</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ecgType</span><span class="p">])</span>
+
+<span class="w">        </span><span class="c1">// Get latest ECG</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">query</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">HKSampleQuery</span><span class="p">(</span>
+<span class="w">            </span><span class="n">sampleType</span><span class="p">:</span><span class="w"> </span><span class="n">ecgType</span><span class="p">,</span>
+<span class="w">            </span><span class="n">predicate</span><span class="p">:</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">            </span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">sortDescriptors</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="bp">NSSortDescriptor</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="n">HKSampleSortIdentifierStartDate</span><span class="p">,</span><span class="w"> </span><span class="n">ascending</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">)]</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">_</span><span class="p">,</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="c1">// Process ECG</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">healthStore</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Analyze ECG waveform</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">ecg</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getLatestECG</span><span class="p">()</span>
+
+<span class="w">        </span><span class="c1">// Detect arrhythmias</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">rhythm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">analyzeRhythm</span><span class="p">(</span><span class="n">ecg</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">qrs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">detectQRS</span><span class="p">(</span><span class="n">ecg</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">intervals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateIntervals</span><span class="p">(</span><span class="n">ecg</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ECGAnalysis</span><span class="p">(</span>
+<span class="w">            </span><span class="n">rhythm</span><span class="p">:</span><span class="w"> </span><span class="n">rhythm</span><span class="p">,</span>
+<span class="w">            </span><span class="n">heartRate</span><span class="p">:</span><span class="w"> </span><span class="n">calculateHeartRateFromECG</span><span class="p">(</span><span class="n">qrs</span><span class="p">),</span>
+<span class="w">            </span><span class="n">prInterval</span><span class="p">:</span><span class="w"> </span><span class="n">intervals</span><span class="p">.</span><span class="n">pr</span><span class="p">,</span>
+<span class="w">            </span><span class="n">qrsInterval</span><span class="p">:</span><span class="w"> </span><span class="n">intervals</span><span class="p">.</span><span class="n">qrs</span><span class="p">,</span>
+<span class="w">            </span><span class="n">qtInterval</span><span class="p">:</span><span class="w"> </span><span class="n">intervals</span><span class="p">.</span><span class="n">qt</span><span class="p">,</span>
+<span class="w">            </span><span class="n">abnormalities</span><span class="p">:</span><span class="w"> </span><span class="n">detectECGAbnormalities</span><span class="p">(</span><span class="n">rhythm</span><span class="p">,</span><span class="w"> </span><span class="n">intervals</span><span class="p">),</span>
+<span class="w">            </span><span class="n">recommendation</span><span class="p">:</span><span class="w"> </span><span class="n">rhythm</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="p">.</span><span class="n">sinus</span><span class="w"> </span><span class="p">?</span><span class="w"> </span>
+<span class="w">                </span><span class="s">&quot;Normal sinus rhythm&quot;</span><span class="w"> </span><span class="p">:</span>
+<span class="w">                </span><span class="s">&quot;Abnormal rhythm detected - consult cardiologist&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="vision-pro-spatial-computing">Vision Pro Spatial Computing</h2>
+<h3 id="eye-tracking-hand-tracking">Eye Tracking &amp; Hand Tracking</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">RealityKit</span>
+<span class="kd">import</span><span class="w"> </span><span class="nc">ARKit</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">SpatialAI</span><span class="p">:</span><span class="w"> </span><span class="p">@</span><span class="n">unchecked</span><span class="w"> </span><span class="n">Sendable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">vqbitEngine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">arSession</span><span class="p">:</span><span class="w"> </span><span class="n">ARKitSession</span><span class="p">?</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">init</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">vqbitEngine</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">engine</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Eye Tracking</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">enableEyeTracking</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">EyeGaze</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ARKitSession</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">eyeTracking</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">EyeTrackingProvider</span><span class="p">()</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">eyeTracking</span><span class="p">])</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">update</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">eyeTracking</span><span class="p">.</span><span class="n">anchorUpdates</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">anchor</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">update</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="n">EyeTrackingAnchor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nv">gaze</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">EyeGaze</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">origin</span><span class="p">:</span><span class="w"> </span><span class="n">anchor</span><span class="p">.</span><span class="n">originFromAnchorTransform</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">direction</span><span class="p">:</span><span class="w"> </span><span class="n">anchor</span><span class="p">.</span><span class="n">lookAtPoint</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">gaze</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Hand Tracking</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">enableHandTracking</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">HandPose</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ARKitSession</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">handTracking</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">HandTrackingProvider</span><span class="p">()</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">handTracking</span><span class="p">])</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">Task</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">update</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">handTracking</span><span class="p">.</span><span class="n">anchorUpdates</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">anchor</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">update</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="n">HandAnchor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nv">pose</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">HandPose</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">chirality</span><span class="p">:</span><span class="w"> </span><span class="n">anchor</span><span class="p">.</span><span class="n">chirality</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">joints</span><span class="p">:</span><span class="w"> </span><span class="n">extractJoints</span><span class="p">(</span><span class="n">anchor</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">gesture</span><span class="p">:</span><span class="w"> </span><span class="n">recognizeGesture</span><span class="p">(</span><span class="n">anchor</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                        </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Medical Visualization</span>
+
+<span class="w">    </span><span class="c1">// 3D anatomy visualization</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">visualizeAnatomy</span><span class="p">(</span><span class="n">organ</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="n">patientData</span><span class="p">:</span><span class="w"> </span><span class="n">PatientData</span><span class="p">?)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Load 3D model of organ</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">model</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">loadAnatomyModel</span><span class="p">(</span><span class="n">organ</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Overlay patient-specific data (if available)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">patientData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">overlayPatientData</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Enable interactive gestures</span>
+<span class="w">        </span><span class="n">model</span><span class="p">.</span><span class="n">components</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">InputTargetComponent</span><span class="p">())</span>
+<span class="w">        </span><span class="n">model</span><span class="p">.</span><span class="n">components</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">CollisionComponent</span><span class="p">(</span><span class="n">shapes</span><span class="p">:</span><span class="w"> </span><span class="p">[.</span><span class="n">generateConvex</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="n">model</span><span class="p">)]))</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">model</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// AR overlay of patient vitals</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">createVitalsOverlay</span><span class="p">(</span><span class="n">vitals</span><span class="p">:</span><span class="w"> </span><span class="n">VitalSigns</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">overlay</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Entity</span><span class="p">()</span>
+
+<span class="w">        </span><span class="c1">// Create text displays for each vital</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">hrText</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">createTextEntity</span><span class="p">(</span><span class="s">&quot;HR: </span><span class="si">\(</span><span class="n">vitals</span><span class="p">.</span><span class="n">heartRate</span><span class="si">)</span><span class="s"> bpm&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">spo2Text</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">createTextEntity</span><span class="p">(</span><span class="s">&quot;SpO2: </span><span class="si">\(</span><span class="n">vitals</span><span class="p">.</span><span class="n">spo2</span><span class="si">)</span><span class="s">%&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">tempText</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">createTextEntity</span><span class="p">(</span><span class="s">&quot;Temp: </span><span class="si">\(</span><span class="n">vitals</span><span class="p">.</span><span class="n">temperature</span><span class="si">)</span><span class="s">°F&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Position texts in space</span>
+<span class="w">        </span><span class="n">hrText</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SIMD3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="w">        </span><span class="n">spo2Text</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SIMD3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="w">        </span><span class="n">tempText</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SIMD3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">overlay</span><span class="p">.</span><span class="n">addChild</span><span class="p">(</span><span class="n">hrText</span><span class="p">)</span>
+<span class="w">        </span><span class="n">overlay</span><span class="p">.</span><span class="n">addChild</span><span class="p">(</span><span class="n">spo2Text</span><span class="p">)</span>
+<span class="w">        </span><span class="n">overlay</span><span class="p">.</span><span class="n">addChild</span><span class="p">(</span><span class="n">tempText</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">overlay</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MARK: - Legal Document Visualization</span>
+
+<span class="w">    </span><span class="c1">// 3D document network (cases citing each other)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">visualizeCaseLaw</span><span class="p">(</span><span class="n">rootCase</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Query case law network</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">network</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">queryCaseNetwork</span><span class="p">(</span><span class="n">rootCase</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Create 3D graph</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">graph</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Entity</span><span class="p">()</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">case</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">network</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">node</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">createCaseNode</span><span class="p">(</span><span class="k">case</span><span class="p">)</span>
+<span class="w">            </span><span class="n">node</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">position</span>
+<span class="w">            </span><span class="n">graph</span><span class="p">.</span><span class="n">addChild</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Add edges (citations)</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">network</span><span class="p">.</span><span class="n">citations</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">edge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">createEdge</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="n">to</span><span class="p">)</span>
+<span class="w">            </span><span class="n">graph</span><span class="p">.</span><span class="n">addChild</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">graph</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="domain-pack-integration-patterns">Domain Pack Integration Patterns</h2>
+<h3 id="clinician-domain-pack-sensors">Clinician Domain Pack + Sensors</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">extension</span><span class="w"> </span><span class="nc">ClinicianDomainPack</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Integrate all sensors for patient monitoring</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">enablePatientMonitoring</span><span class="p">(</span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Health sensors (Watch)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">vitals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">healthSensors</span><span class="p">.</span><span class="n">monitorVitals</span><span class="p">()</span>
+
+<span class="w">        </span><span class="c1">// 2. Camera (iPhone)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">woundImages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">visionAI</span><span class="p">.</span><span class="n">processVideoStream</span><span class="p">(</span><span class="n">camera</span><span class="p">.</span><span class="n">stream</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;clinician&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 3. Microphone (iPhone)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">clinicalNotes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">audioAI</span><span class="p">.</span><span class="n">transcribeRealtime</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;clinician&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Combine all streams</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="p">(</span><span class="n">vital</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">vitals</span><span class="p">,</span><span class="w"> </span><span class="n">woundImages</span><span class="p">,</span><span class="w"> </span><span class="n">clinicalNotes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Fuse multimodal data into VQbit state</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">fuse</span><span class="p">(</span><span class="n">vital</span><span class="p">:</span><span class="w"> </span><span class="n">vital</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="n">note</span><span class="p">)</span>
+
+<span class="w">            </span><span class="c1">// Run clinical reasoning</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">assessment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">assessPatient</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="n">patientID</span><span class="p">)</span>
+
+<span class="w">            </span><span class="c1">// Detect critical conditions</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">assessment</span><span class="p">.</span><span class="n">severity</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="p">.</span><span class="n">critical</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">await</span><span class="w"> </span><span class="n">sendAlert</span><span class="p">(</span><span class="n">assessment</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="n">clinicalTeam</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Store encrypted PHI</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">storeEncryptedPHI</span><span class="p">(</span><span class="n">assessment</span><span class="p">,</span><span class="w"> </span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="n">patientID</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="legalus-domain-pack-visionaudio">LegalUS Domain Pack + Vision/Audio</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">extension</span><span class="w"> </span><span class="nc">LegalUSDomainPack</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Integrate camera for document scanning</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">scanDocument</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="bp">UIImage</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">LegalDocument</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. OCR extraction</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">visionAI</span><span class="p">.</span><span class="n">extractText</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cgImage</span><span class="p">!)</span>
+
+<span class="w">        </span><span class="c1">// 2. Classify document type</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">classifyLegalDocument</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 3. Extract citations</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">citations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">extractLegalCitations</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Validate citations</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">citation</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">citations</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">valid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">validateCitation</span><span class="p">(</span><span class="n">citation</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">valid</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="n">LegalError</span><span class="p">.</span><span class="n">invalidCitation</span><span class="p">(</span><span class="n">citation</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 5. Store in AKG</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">doc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">LegalDocument</span><span class="p">(</span>
+<span class="w">            </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">type</span><span class="p">,</span>
+<span class="w">            </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citations</span><span class="p">:</span><span class="w"> </span><span class="n">citations</span><span class="p">,</span>
+<span class="w">            </span><span class="n">hash</span><span class="p">:</span><span class="w"> </span><span class="n">BLAKE3</span><span class="p">.</span><span class="n">hashHex</span><span class="p">(</span><span class="n">text</span><span class="p">),</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">node</span><span class="p">:</span><span class="w"> </span><span class="n">doc</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">doc</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Integrate microphone for deposition transcription</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">transcribeDeposition</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Deposition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Multi-speaker transcription</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">transcript</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">audioAI</span><span class="p">.</span><span class="n">transcribe</span><span class="p">(</span>
+<span class="w">            </span><span class="n">audioURL</span><span class="p">,</span>
+<span class="w">            </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;legal&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">speakers</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c1">// Attorney, witness, court reporter</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 2. Extract testimony</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">testimony</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">extractTestimony</span><span class="p">(</span><span class="n">transcript</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 3. Identify objections</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">objections</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">identifyObjections</span><span class="p">(</span><span class="n">transcript</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 4. Generate deposition record</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">deposition</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Deposition</span><span class="p">(</span>
+<span class="w">            </span><span class="n">transcript</span><span class="p">:</span><span class="w"> </span><span class="n">transcript</span><span class="p">,</span>
+<span class="w">            </span><span class="n">testimony</span><span class="p">:</span><span class="w"> </span><span class="n">testimony</span><span class="p">,</span>
+<span class="w">            </span><span class="n">objections</span><span class="p">:</span><span class="w"> </span><span class="n">objections</span><span class="p">,</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// 5. Blockchain attestation</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">deposition</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">deposition</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="privacy-security">Privacy &amp; Security</h2>
+<h3 id="on-device-processing">On-Device Processing</h3>
+<p><strong>All AI processing happens on-device</strong> (no cloud):
+- ✅ Vision: Apple Vision framework (on-device Core ML)
+- ✅ Speech: Apple Speech framework (on-device recognition)
+- ✅ Health: HealthKit (device-local storage)
+- ✅ VQbit: Local computation (CPU/GPU/Neural Engine)</p>
+<p><strong>No data leaves device without explicit user consent.</strong></p>
+<h3 id="phi-encryption-for-sensor-data">PHI Encryption for Sensor Data</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// All health sensor data encrypted before storage</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">vitals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">healthSensors</span><span class="p">.</span><span class="n">getLatestVitals</span><span class="p">()</span>
+
+<span class="c1">// Encrypt with AES-256-GCM</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">encrypted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">PHIEncryption</span><span class="p">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">vitals</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="n">patientKey</span><span class="p">)</span>
+
+<span class="c1">// Store encrypted</span>
+<span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">node</span><span class="p">:</span><span class="w"> </span><span class="n">encrypted</span><span class="p">,</span><span class="w"> </span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="n">patientID</span><span class="p">)</span>
+
+<span class="c1">// Blockchain attestation (only hash, not data)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">attestation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">encrypted</span><span class="p">.</span><span class="n">hash</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="performance-optimization">Performance Optimization</h2>
+<h3 id="neural-engine-acceleration">Neural Engine Acceleration</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Use Metal Performance Shaders for VQbit operations</span>
+<span class="kd">import</span><span class="w"> </span><span class="nc">MetalPerformanceShaders</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nv">device</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MTLCreateSystemDefaultDevice</span><span class="p">()</span><span class="o">!</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">commandQueue</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">device</span><span class="p">.</span><span class="n">makeCommandQueue</span><span class="p">()</span><span class="o">!</span>
+
+<span class="c1">// Accelerate matrix operations on Neural Engine</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">matrix</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MPSMatrix</span><span class="p">(</span><span class="n">device</span><span class="p">:</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">:</span><span class="w"> </span><span class="n">descriptor</span><span class="p">)</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">kernel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MPSMatrixMultiplication</span><span class="p">(</span><span class="n">device</span><span class="p">:</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span>
+</code></pre></div>
+
+<h3 id="streaming-architecture">Streaming Architecture</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Low-latency streaming pipeline</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">pipeline</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">captureOutput</span>
+<span class="w">        </span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">visionAI</span><span class="p">.</span><span class="n">analyze</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">vqbit</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">domain</span><span class="p">.</span><span class="n">interpret</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="n">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="testing-strategy">Testing Strategy</h2>
+<h3 id="sensor-simulation">Sensor Simulation</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Simulate sensor data for testing</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MockHealthSensors</span><span class="p">:</span><span class="w"> </span><span class="n">HealthSensorFusion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">override</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">monitorVitals</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AsyncStream</span><span class="p">&lt;</span><span class="n">VitalSigns</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">AsyncStream</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">continuation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="c1">// Generate realistic vital signs</span>
+<span class="w">            </span><span class="n">continuation</span><span class="p">.</span><span class="n">yield</span><span class="p">(</span><span class="n">VitalSigns</span><span class="p">(</span>
+<span class="w">                </span><span class="n">heartRate</span><span class="p">:</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span>
+<span class="w">                </span><span class="n">spo2</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
+<span class="w">                </span><span class="n">temperature</span><span class="p">:</span><span class="w"> </span><span class="mf">98.6</span><span class="p">,</span>
+<span class="w">                </span><span class="n">respiratoryRate</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">                </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">            </span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="roadmap">Roadmap</h2>
+<h3 id="q4-2025">Q4 2025</h3>
+<ul>
+<li>✅ Vision AI (image classification, OCR)</li>
+<li>✅ Audio AI (speech recognition, transcription)</li>
+<li>✅ Health sensors (Watch vitals monitoring)</li>
+<li>🔄 Sensor fusion architecture</li>
+</ul>
+<h3 id="q1-2026">Q1 2026</h3>
+<ul>
+<li>📋 Vision Pro integration (eye tracking, hand tracking, 3D visualization)</li>
+<li>📋 Advanced medical imaging (X-ray, MRI analysis)</li>
+<li>📋 Real-time video analysis (gait, tremor, wound healing)</li>
+</ul>
+<h3 id="q2-2026">Q2 2026</h3>
+<ul>
+<li>📋 Multi-sensor fusion (combine camera + lidar + health sensors)</li>
+<li>📋 Environmental sensing (barometer for altitude, ambient light for circadian rhythm)</li>
+<li>📋 Emotion AI (facial expression + voice tone analysis)</li>
+</ul>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<p>See <a href="contributing.html">Contributing Guide</a> for how to:
+- Add new sensor integrations
+- Improve AI models
+- Optimize performance
+- Write multimodal tests</p>
+<hr />
+<p><strong>All sensor data processed on-device. All PHI encrypted. All decisions blockchain-attested.</strong></p>
+<p><strong>Next</strong>: <a href="platform-features.html">Platform-Specific Features</a></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

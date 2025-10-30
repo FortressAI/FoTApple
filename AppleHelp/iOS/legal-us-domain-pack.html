@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="FoTLegalUS Domain Pack - Implementation Guide">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>FoTLegalUS Domain Pack - Implementation Guide - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>FoTLegalUS Domain Pack - Implementation Guide</h1>
+        </header>
+        
+        <main>
+            <h1 id="fotlegalus-domain-pack-implementation-guide">FoTLegalUS Domain Pack - Implementation Guide</h1>
+<p><strong>Status</strong>: 🎯 Next Priority<br />
+<strong>Version</strong>: 0.1.0 (planned)<br />
+<strong>Purpose</strong>: Legal reasoning and constitutional analysis for US jurisprudence<br />
+<strong>License</strong>: AGPL v3.0</p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>The <strong>FoTLegalUS</strong> domain pack brings constitutional AI to the masses. It provides:</p>
+<ol>
+<li><strong>Constitutional Analysis</strong>: Every action validated against US Constitution + 27 Amendments</li>
+<li><strong>Oath Enforcement</strong>: Presidential, judicial, and military oath compliance checking</li>
+<li><strong>Case Law Search</strong>: Access to Supreme Court opinions and precedent</li>
+<li><strong>Statute Validation</strong>: USC (United States Code) and CFR (Code of Federal Regulations) compliance</li>
+<li><strong>Contract Analysis</strong>: Automated clause extraction and risk assessment</li>
+<li><strong>Legal Citation Validation</strong>: Bluebook format checking</li>
+<li><strong>Blockchain Attestation</strong>: Every legal opinion cryptographically proven</li>
+</ol>
+<hr />
+<h2 id="architecture">Architecture</h2>
+<h3 id="component-overview">Component Overview</h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">FoTLegalUS</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">LegalUSDomainPack</span><span class="p">.</span><span class="nx">swift</span><span class="w">         </span><span class="err">#</span><span class="w"> </span><span class="nx">Main</span><span class="w"> </span><span class="nx">domain</span><span class="w"> </span><span class="nx">pack</span><span class="w"> </span><span class="nx">implementation</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">ConstitutionalAnalysis</span><span class="p">.</span><span class="nx">swift</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">US</span><span class="w"> </span><span class="nx">Constitution</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">Amendments</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">OathEnforcement</span><span class="p">.</span><span class="nx">swift</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="nx">Presidential</span><span class="o">/</span><span class="nx">Judicial</span><span class="o">/</span><span class="nx">Military</span><span class="w"> </span><span class="nx">oaths</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">CaseLaw</span><span class="p">.</span><span class="nx">swift</span><span class="w">                   </span><span class="err">#</span><span class="w"> </span><span class="nx">Supreme</span><span class="w"> </span><span class="nx">Court</span><span class="w"> </span><span class="nx">opinions</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">StatuteValidation</span><span class="p">.</span><span class="nx">swift</span><span class="w">         </span><span class="err">#</span><span class="w"> </span><span class="nx">USC</span><span class="o">/</span><span class="nx">CFR</span><span class="w"> </span><span class="nx">compliance</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">ContractAnalysis</span><span class="p">.</span><span class="nx">swift</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="nx">Contract</span><span class="w"> </span><span class="nx">parsing</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">risk</span><span class="w"> </span><span class="nx">assessment</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">LegalCitation</span><span class="p">.</span><span class="nx">swift</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="nx">Bluebook</span><span class="w"> </span><span class="nx">citation</span><span class="w"> </span><span class="nx">validation</span>
+<span class="err">└──</span><span class="w"> </span><span class="nx">LegalModels</span><span class="p">.</span><span class="nx">swift</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="nx">Data</span><span class="w"> </span><span class="nx">models</span><span class="w"> </span><span class="p">(</span><span class="nx">Case</span><span class="p">,</span><span class="w"> </span><span class="nx">Statute</span><span class="p">,</span><span class="w"> </span><span class="nx">Contract</span><span class="p">,</span><span class="w"> </span><span class="nx">etc</span><span class="p">.)</span>
+
+<span class="nx">Tests</span><span class="o">/</span>
+<span class="err">└──</span><span class="w"> </span><span class="nx">FoTLegalUSTests</span><span class="o">/</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="nx">ConstitutionalAnalysisTests</span><span class="p">.</span><span class="nx">swift</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="nx">OathEnforcementTests</span><span class="p">.</span><span class="nx">swift</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="nx">CaseLawTests</span><span class="p">.</span><span class="nx">swift</span>
+<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="nx">BarExamTests</span><span class="p">.</span><span class="nx">swift</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="nx">MBE</span><span class="w"> </span><span class="nx">Constitutional</span><span class="w"> </span><span class="nx">Law</span><span class="w"> </span><span class="nx">questions</span>
+</code></pre></div>
+
+<hr />
+<h2 id="validation-rules">Validation Rules</h2>
+<h3 id="1-valid-legal-citation-bluebook-format">1. Valid Legal Citation (Bluebook Format)</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;valid_citation&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                 </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Invalid legal citation format (must follow Bluebook)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">citation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;citation&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Bluebook patterns</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">patterns</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="c1">// Supreme Court: Case v. Case, Volume U.S. Page (Year)</span>
+<span class="w">        </span><span class="p">#</span><span class="s">&quot;^.+\s+v\.\s+.+,\s+\d{1,3}\s+U\.S\.\s+\d{1,4}\s+</span><span class="si">\(</span><span class="err">\</span><span class="n">d</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="err">\</span><span class="si">)</span><span class="s">$&quot;</span><span class="p">#,</span>
+
+<span class="w">        </span><span class="c1">// Federal statute: Title U.S.C. § Section (Year)</span>
+<span class="w">        </span><span class="p">#</span><span class="s">&quot;^\d{1,2}\s+U\.S\.C\.\s+§\s*\d+(</span><span class="si">\(</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="n">z</span><span class="p">]</span><span class="err">\</span><span class="si">)</span><span class="s">)?(</span><span class="si">\(</span><span class="err">\</span><span class="n">d</span><span class="o">+</span><span class="err">\</span><span class="si">)</span><span class="s">)?\s+</span><span class="si">\(</span><span class="err">\</span><span class="n">d</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="err">\</span><span class="si">)</span><span class="s">$&quot;</span><span class="p">#,</span>
+
+<span class="w">        </span><span class="c1">// CFR: Title C.F.R. § Section (Year)</span>
+<span class="w">        </span><span class="p">#</span><span class="s">&quot;^\d{1,2}\s+C\.F\.R\.\s+§\s*\d+\.\d+\s+</span><span class="si">\(</span><span class="err">\</span><span class="n">d</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="err">\</span><span class="si">)</span><span class="s">$&quot;</span><span class="p">#,</span>
+
+<span class="w">        </span><span class="c1">// Constitution: U.S. Const. art./amend. Section</span>
+<span class="w">        </span><span class="p">#</span><span class="s">&quot;^U\.S\.\s+Const\.\s+(art\.|amend\.)\s+[IVX]+,?\s*§?\s*\d*$&quot;</span><span class="p">#</span>
+<span class="w">    </span><span class="p">]</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">patterns</span><span class="p">.</span><span class="bp">contains</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="k">in</span>
+<span class="w">        </span><span class="n">citation</span><span class="p">.</span><span class="n">range</span><span class="p">(</span><span class="n">of</span><span class="p">:</span><span class="w"> </span><span class="n">pattern</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">regularExpression</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Examples</strong>:
+- ✅ <code>Marbury v. Madison, 5 U.S. 137 (1803)</code>
+- ✅ <code>42 U.S.C. § 1983 (2018)</code>
+- ✅ <code>45 C.F.R. § 164.312 (2023)</code>
+- ✅ <code>U.S. Const. art. I, § 8</code>
+- ✅ <code>U.S. Const. amend. I</code>
+- ❌ <code>Marbury vs Madison</code> (wrong format)
+- ❌ <code>First Amendment</code> (not Bluebook style)</p>
+<hr />
+<h3 id="2-constitutional-authority-enumerated-powers">2. Constitutional Authority (Enumerated Powers)</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;constitutional_authority&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Action lacks constitutional authority&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">action</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;action&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nv">authority</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;authority&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Validate authority is an enumerated power</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">enumeratedPowers</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="c1">// Article I, Section 8 (Congressional powers)</span>
+<span class="w">        </span><span class="s">&quot;tax&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;borrow&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;commerce&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;naturalization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bankruptcy&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;coin_money&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;counterfeiting&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;post_office&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;copyright&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;courts&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;piracy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;war&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;army&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;navy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;militia&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;district_of_columbia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;necessary_and_proper&quot;</span><span class="p">,</span>
+
+<span class="w">        </span><span class="c1">// Article II (Executive powers)</span>
+<span class="w">        </span><span class="s">&quot;commander_in_chief&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pardon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;treaty&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;appointment&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;state_of_union&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;convene_congress&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;receive_ambassadors&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;take_care&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;commission_officers&quot;</span><span class="p">,</span>
+
+<span class="w">        </span><span class="c1">// Article III (Judicial powers)</span>
+<span class="w">        </span><span class="s">&quot;judicial_review&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;jurisdiction&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;trial_by_jury&quot;</span><span class="p">,</span>
+
+<span class="w">        </span><span class="c1">// Amendments</span>
+<span class="w">        </span><span class="s">&quot;amendment_13_abolish_slavery&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;amendment_14_equal_protection&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;amendment_15_voting_rights&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;amendment_19_womens_suffrage&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;amendment_26_voting_age_18&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">enumeratedPowers</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="n">authority</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Example</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Valid: Commerce Clause</span>
+<span class="p">[</span><span class="s">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;regulate_interstate_trucking&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="s">&quot;authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;commerce&quot;</span><span class="p">]</span><span class="w"> </span><span class="c1">// ✅ Valid</span>
+
+<span class="c1">// Invalid: No constitutional authority</span>
+<span class="p">[</span><span class="s">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mandate_health_insurance&quot;</span><span class="p">,</span>
+<span class="w"> </span><span class="s">&quot;authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;general_welfare&quot;</span><span class="p">]</span><span class="w"> </span><span class="c1">// ❌ Invalid (not enumerated power)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="3-oath-compliance">3. Oath Compliance</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;oath_compliance&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Action violates sworn oath&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">action</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;action&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nv">oath</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;oath_type&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="n">oath</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;presidential&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// &quot;preserve, protect and defend the Constitution&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">checkPresidentialOathCompliance</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;judicial&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// &quot;administer justice without respect to persons&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">checkJudicialOathCompliance</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;military&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// &quot;support and defend the Constitution against all enemies&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">checkMilitaryOathCompliance</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;naturalization&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// &quot;bear arms on behalf of the United States&quot;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">checkNaturalizationOathCompliance</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">default</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nf">checkPresidentialOathCompliance</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Check if action preserves, protects, or defends Constitution</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">violations</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s">&quot;ignore_supreme_court_order&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;refuse_to_execute_law&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;establish_religion&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;suspend_habeas_corpus_unlawfully&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;grant_title_of_nobility&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">violations</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Presidential Oath</strong> (Article II, Section 1):</p>
+<blockquote>
+<p>"I do solemnly swear (or affirm) that I will faithfully execute the Office of President of the United States, and will to the best of my ability, preserve, protect and defend the Constitution of the United States."</p>
+</blockquote>
+<p><strong>Examples</strong>:
+- ✅ <code>sign_constitutional_bill</code> → Compliant
+- ✅ <code>veto_unconstitutional_bill</code> → Compliant (defend Constitution)
+- ❌ <code>ignore_supreme_court_order</code> → Oath violation
+- ❌ <code>suspend_constitution</code> → Oath violation</p>
+<hr />
+<h3 id="4-jurisdiction-valid-court-jurisdiction">4. Jurisdiction (Valid Court Jurisdiction)</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jurisdiction&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Court lacks jurisdiction&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">court</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;court&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nv">caseType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;case_type&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="n">court</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;supreme_court&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// Article III + appellate jurisdiction</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;constitutional&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;federal_question&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;diversity&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="s">&quot;admiralty&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ambassador&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_dispute&quot;</span><span class="p">].</span><span class="bp">contains</span><span class="p">(</span><span class="n">caseType</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;federal_district&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// Federal question or diversity</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;federal_question&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;diversity&quot;</span><span class="p">].</span><span class="bp">contains</span><span class="p">(</span><span class="n">caseType</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;state_court&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// State law matters (unless preempted)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;state_law&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_constitution&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;local_ordinance&quot;</span><span class="p">].</span><span class="bp">contains</span><span class="p">(</span><span class="n">caseType</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">default</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="5-standing-plaintiff-has-legal-standing">5. Standing (Plaintiff Has Legal Standing)</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;standing&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Plaintiff lacks standing (no injury-in-fact)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">injury</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;injury&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nv">causation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;causation&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">Bool</span><span class="p">,</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nv">redressability</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;redressability&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Lujan v. Defenders of Wildlife (1992): Three requirements</span>
+<span class="w">    </span><span class="c1">// 1. Injury in fact (concrete and particularized)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hasInjury</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">!</span><span class="n">injury</span><span class="p">.</span><span class="bp">isEmpty</span>
+
+<span class="w">    </span><span class="c1">// 2. Causation (fairly traceable to defendant&#39;s conduct)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hasCausation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">causation</span>
+
+<span class="w">    </span><span class="c1">// 3. Redressability (likely to be redressed by favorable decision)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hasRedressability</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">redressability</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">hasInjury</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">hasCausation</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">hasRedressability</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Example</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Valid standing</span>
+<span class="p">[</span><span class="s">&quot;injury&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;unconstitutional_search_violated_4th_amendment&quot;</span><span class="p">,</span>
+<span class="w"> </span><span class="s">&quot;causation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w"> </span><span class="s">&quot;redressability&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">]</span><span class="w"> </span><span class="c1">// ✅ Valid</span>
+
+<span class="c1">// No standing (generalized grievance)</span>
+<span class="p">[</span><span class="s">&quot;injury&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;government_wasting_tax_dollars&quot;</span><span class="p">,</span>
+<span class="w"> </span><span class="s">&quot;causation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w"> </span><span class="s">&quot;redressability&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">]</span><span class="w"> </span><span class="c1">// ❌ No standing</span>
+</code></pre></div>
+
+<hr />
+<h3 id="6-precedent-binding-precedent-identified">6. Precedent (Binding Precedent Identified)</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;precedent&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;No binding precedent found&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">currentCourt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;current_court&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">          </span><span class="kd">let</span><span class="w"> </span><span class="nv">precedentCourt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;precedent_court&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Precedent hierarchy</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">bindingPrecedent</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s">&quot;supreme_court&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;supreme_court&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Only SCOTUS binds SCOTUS</span>
+<span class="w">        </span><span class="s">&quot;circuit_court&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;supreme_court&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;circuit_court&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// SCOTUS + own circuit</span>
+<span class="w">        </span><span class="s">&quot;district_court&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;supreme_court&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;circuit_court&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;district_court&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// All higher</span>
+<span class="w">        </span><span class="s">&quot;state_supreme&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;supreme_court&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_supreme&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// SCOTUS + own state</span>
+<span class="w">        </span><span class="s">&quot;state_appellate&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;supreme_court&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_supreme&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_appellate&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="s">&quot;state_trial&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;supreme_court&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_supreme&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_appellate&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state_trial&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">]</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bindingPrecedent</span><span class="p">[</span><span class="n">currentCourt</span><span class="p">]?.</span><span class="bp">contains</span><span class="p">(</span><span class="n">precedentCourt</span><span class="p">)</span><span class="w"> </span><span class="p">??</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="ontology-schema">Ontology Schema</h2>
+<h3 id="node-types">Node Types</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Constitutional Documents</span>
+<span class="p">(:</span><span class="n">Constitution</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">adopted</span><span class="p">:</span><span class="w"> </span><span class="n">date</span><span class="p">(</span><span class="s">&quot;1787-09-17&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">ratified</span><span class="p">:</span><span class="w"> </span><span class="n">date</span><span class="p">(</span><span class="s">&quot;1788-06-21&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">effective</span><span class="p">:</span><span class="w"> </span><span class="n">date</span><span class="p">(</span><span class="s">&quot;1789-03-04&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">preamble</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;We the People...&quot;</span>
+<span class="p">})</span>
+
+<span class="p">(:</span><span class="n">Article</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span><span class="w">           </span><span class="c1">// I, II, III, IV, V, VI, VII</span>
+<span class="w">  </span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">String</span>
+<span class="p">})</span>
+
+<span class="p">(:</span><span class="n">Section</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">article</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">String</span>
+<span class="p">})</span>
+
+<span class="p">(:</span><span class="n">Amendment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span><span class="w">           </span><span class="c1">// 1-27</span>
+<span class="w">  </span><span class="n">ratified</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">,</span>
+<span class="w">  </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">popular_name</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w">   </span><span class="c1">// &quot;Free Speech&quot;, &quot;Right to Bear Arms&quot;, etc.</span>
+<span class="p">})</span>
+
+<span class="c1">// Case Law</span>
+<span class="p">(:</span><span class="k">Case</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">            </span><span class="c1">// &quot;marbury_v_madison_1803&quot;</span>
+<span class="w">  </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">          </span><span class="c1">// &quot;Marbury v. Madison&quot;</span>
+<span class="w">  </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">      </span><span class="c1">// &quot;5 U.S. 137 (1803)&quot;</span>
+<span class="w">  </span><span class="n">court</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">         </span><span class="c1">// &quot;supreme_court&quot;</span>
+<span class="w">  </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">       </span><span class="c1">// Short summary</span>
+<span class="w">  </span><span class="n">reasoning</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">     </span><span class="c1">// Full opinion text</span>
+<span class="w">  </span><span class="n">votes</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">         </span><span class="c1">// &quot;5-4&quot;, &quot;9-0&quot;, etc.</span>
+<span class="w">  </span><span class="n">majority_author</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">dissent_authors</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="n">String</span><span class="o">]</span><span class="p">,</span>
+<span class="w">  </span><span class="n">overturned</span><span class="p">:</span><span class="w"> </span><span class="n">Bool</span><span class="p">,</span>
+<span class="w">  </span><span class="n">overturned_by</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="err">?</span>
+<span class="p">})</span>
+
+<span class="c1">// Statutes</span>
+<span class="p">(:</span><span class="n">Statute</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span><span class="w">            </span><span class="c1">// e.g., 42 (Public Health and Social Welfare)</span>
+<span class="w">  </span><span class="n">section</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">       </span><span class="c1">// e.g., &quot;1983&quot;</span>
+<span class="w">  </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">enacted</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">,</span>
+<span class="w">  </span><span class="n">amended</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="err">?</span><span class="p">,</span>
+<span class="w">  </span><span class="n">repealed</span><span class="p">:</span><span class="w"> </span><span class="n">Bool</span>
+<span class="p">})</span>
+
+<span class="p">(:</span><span class="n">Regulation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span><span class="w">            </span><span class="c1">// CFR title</span>
+<span class="w">  </span><span class="n">section</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">       </span><span class="c1">// e.g., &quot;164.312&quot;</span>
+<span class="w">  </span><span class="n">agency</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">        </span><span class="c1">// &quot;HHS&quot;, &quot;EPA&quot;, etc.</span>
+<span class="w">  </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">effective</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="p">})</span>
+
+<span class="c1">// Contracts</span>
+<span class="p">(:</span><span class="n">Contract</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">parties</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="n">String</span><span class="o">]</span><span class="p">,</span>
+<span class="w">  </span><span class="n">effective_date</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">,</span>
+<span class="w">  </span><span class="n">expiration_date</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="err">?</span><span class="p">,</span>
+<span class="w">  </span><span class="n">governing_law</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="c1">// &quot;New York&quot;, &quot;Delaware&quot;, etc.</span>
+<span class="w">  </span><span class="n">hash</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w">           </span><span class="c1">// BLAKE3 of contract text</span>
+<span class="p">})</span>
+
+<span class="p">(:</span><span class="n">Clause</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">          </span><span class="c1">// &quot;indemnification&quot;, &quot;limitation_of_liability&quot;, etc.</span>
+<span class="w">  </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">risk_level</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w">     </span><span class="c1">// &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;</span>
+<span class="p">})</span>
+
+<span class="c1">// Oaths</span>
+<span class="p">(:</span><span class="n">Oath</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">          </span><span class="c1">// &quot;presidential&quot;, &quot;judicial&quot;, &quot;military&quot;</span>
+<span class="w">  </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span>
+<span class="w">  </span><span class="n">source</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w">         </span><span class="c1">// Constitutional or statutory authority</span>
+<span class="p">})</span>
+
+<span class="c1">// Rights and Powers</span>
+<span class="p">(:</span><span class="n">Right</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">          </span><span class="c1">// &quot;free_speech&quot;, &quot;due_process&quot;, etc.</span>
+<span class="w">  </span><span class="n">amendment</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="err">?</span><span class="p">,</span><span class="w">       </span><span class="c1">// Which amendment (if applicable)</span>
+<span class="w">  </span><span class="n">article</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="err">?</span><span class="p">,</span><span class="w">         </span><span class="c1">// Which article (if applicable)</span>
+<span class="w">  </span><span class="n">description</span><span class="p">:</span><span class="w"> </span><span class="n">String</span>
+<span class="p">})</span>
+
+<span class="p">(:</span><span class="n">Power</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">          </span><span class="c1">// &quot;commerce&quot;, &quot;tax&quot;, &quot;war&quot;, etc.</span>
+<span class="w">  </span><span class="n">branch</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w">        </span><span class="c1">// &quot;legislative&quot;, &quot;executive&quot;, &quot;judicial&quot;</span>
+<span class="w">  </span><span class="n">article</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">section</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">enumerated</span><span class="p">:</span><span class="w"> </span><span class="n">Bool</span>
+<span class="p">})</span>
+</code></pre></div>
+
+<h3 id="relationship-types">Relationship Types</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Constitutional structure</span>
+<span class="p">(:</span><span class="n">Article</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">CONTAINS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Section</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Constitution</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">AMENDED_BY</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Amendment</span><span class="p">)</span>
+
+<span class="c1">// Legal interpretation</span>
+<span class="p">(:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">INTERPRETS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Amendment</span><span class="p">)</span>
+<span class="p">(:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">INTERPRETS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Article</span><span class="p">)</span>
+<span class="p">(:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">INTERPRETS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Statute</span><span class="p">)</span>
+<span class="p">(:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">OVERTURNS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="k">Case</span><span class="p">)</span>
+<span class="p">(:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">DISTINGUISHES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="k">Case</span><span class="p">)</span>
+<span class="p">(:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">FOLLOWS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="k">Case</span><span class="p">)</span>
+<span class="p">(:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">CITES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="k">Case</span><span class="p">)</span>
+
+<span class="c1">// Constitutional relationships</span>
+<span class="p">(:</span><span class="n">Amendment</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">PROTECTS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Right</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Article</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">GRANTS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Power</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Power</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">LIMITED_BY</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Amendment</span><span class="p">)</span>
+
+<span class="c1">// Statutory relationships</span>
+<span class="p">(:</span><span class="n">Statute</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">IMPLEMENTS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Amendment</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Regulation</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">IMPLEMENTS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Statute</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Statute</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">PREEMPTS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">StateLaw</span><span class="p">)</span>
+
+<span class="c1">// Contract relationships</span>
+<span class="p">(:</span><span class="n">Contract</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">CONTAINS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Clause</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Contract</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">GOVERNED_BY</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Statute</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Clause</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">VIOLATES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Statute</span><span class="p">)</span>
+
+<span class="c1">// Oath relationships</span>
+<span class="p">(:</span><span class="n">Oath</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">REQUIRES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Action</span><span class="w"> </span><span class="p">{</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;preserve_constitution&quot;</span><span class="p">})</span>
+<span class="p">(:</span><span class="n">Oath</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">PROHIBITS</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Action</span><span class="w"> </span><span class="p">{</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;violate_constitution&quot;</span><span class="p">})</span>
+<span class="p">(:</span><span class="n">Action</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">VIOLATES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Oath</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">Action</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COMPLIES_WITH</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Oath</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="cypher-queries">Cypher Queries</h2>
+<h3 id="find-binding-precedent">Find Binding Precedent</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Find all cases interpreting the First Amendment</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">INTERPRETS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="n">Amendment</span><span class="w"> </span><span class="p">{</span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="p">})</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">overturned</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">false</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">citation</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">holding</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">year</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+
+<p><strong>Example Result</strong>:</p>
+<div class="codehilite"><pre><span></span><code>c.name                              | c.citation          | c.year | c.holding
+----------------------------------- | ------------------- | ------ | ---------
+Mahanoy Area School v. B.L.        | 594 U.S. ___ (2021) | 2021   | School cannot punish off-campus speech
+Snyder v. Phelps                   | 562 U.S. 443 (2011) | 2011   | Offensive speech at public event protected
+Brandenburg v. Ohio                | 395 U.S. 444 (1969) | 1969   | Speech can only be restricted if inciting imminent lawless action
+New York Times v. Sullivan         | 376 U.S. 254 (1964) | 1964   | Public figures must prove actual malice for defamation
+</code></pre></div>
+
+<hr />
+<h3 id="check-constitutional-authority">Check Constitutional Authority</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Validate action has enumerated power</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">power</span><span class="p">:</span><span class="n">Power</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">power_name</span><span class="p">})</span><span class="o">&lt;-[</span><span class="p">:</span><span class="n">GRANTS</span><span class="o">]-</span><span class="p">(</span><span class="n">article</span><span class="p">:</span><span class="n">Article</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">power</span><span class="p">.</span><span class="n">enumerated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">true</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">power</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">article</span><span class="p">.</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">power</span><span class="p">.</span><span class="n">description</span>
+</code></pre></div>
+
+<p><strong>Example</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check if &quot;regulate_commerce&quot; is enumerated power</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">power</span><span class="p">:</span><span class="n">Power</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;commerce&quot;</span><span class="p">})</span><span class="o">&lt;-[</span><span class="p">:</span><span class="n">GRANTS</span><span class="o">]-</span><span class="p">(</span><span class="n">article</span><span class="p">:</span><span class="n">Article</span><span class="w"> </span><span class="p">{</span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="p">})</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">power</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">article</span><span class="p">.</span><span class="n">number</span>
+<span class="c1">// Result: commerce | I (Article I, Section 8, Clause 3)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="detect-oath-violations">Detect Oath Violations</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Find actions that violate Presidential Oath</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="n">Action</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">VIOLATES</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">oath</span><span class="p">:</span><span class="n">Oath</span><span class="w"> </span><span class="p">{</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;presidential&quot;</span><span class="p">})</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">action</span><span class="p">.</span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="p">.</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="p">.</span><span class="n">justification</span>
+</code></pre></div>
+
+<hr />
+<h3 id="contract-risk-assessment">Contract Risk Assessment</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Find high-risk clauses in contract</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">contract</span><span class="p">:</span><span class="n">Contract</span><span class="w"> </span><span class="p">{</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">contract_id</span><span class="p">})</span><span class="o">-[</span><span class="p">:</span><span class="n">CONTAINS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">clause</span><span class="p">:</span><span class="n">Clause</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">clause</span><span class="p">.</span><span class="n">risk_level</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;high&quot;</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">clause</span><span class="p">.</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">clause</span><span class="p">.</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">clause</span><span class="p">.</span><span class="n">risk_level</span>
+</code></pre></div>
+
+<p><strong>Example</strong>:</p>
+<div class="codehilite"><pre><span></span><code>clause.type                  | clause.text                                    | risk_level
+---------------------------- | ---------------------------------------------- | ----------
+unlimited_liability          | &quot;Party A assumes unlimited liability...&quot;       | high
+unilateral_termination       | &quot;Party B may terminate without notice...&quot;      | high
+broad_indemnification        | &quot;Indemnify against all claims, known or...&quot;    | high
+</code></pre></div>
+
+<hr />
+<h2 id="pre-loaded-data">Pre-loaded Data</h2>
+<h3 id="us-constitution-full-text">US Constitution (Full Text)</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Load Constitution + 27 Amendments</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">loadConstitution</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">constitution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    CREATE (c:Constitution {</span>
+<span class="s">      adopted: date(</span><span class="err">&quot;</span><span class="s">1787-09-17</span><span class="err">&quot;</span><span class="s">),</span>
+<span class="s">      ratified: date(</span><span class="err">&quot;</span><span class="s">1788-06-21</span><span class="err">&quot;</span><span class="s">),</span>
+<span class="s">      preamble: </span><span class="err">&quot;</span><span class="s">We the People of the United States, in Order to form a more perfect Union...</span><span class="err">&quot;</span>
+<span class="s">    })</span>
+
+<span class="s">    // Article I (Legislative)</span>
+<span class="s">    CREATE (a1:Article {</span>
+<span class="s">      number: 1,</span>
+<span class="s">      title: </span><span class="err">&quot;</span><span class="s">Legislative Branch</span><span class="err">&quot;</span><span class="s">,</span>
+<span class="s">      text: </span><span class="err">&quot;</span><span class="s">All legislative Powers herein granted shall be vested in a Congress...</span><span class="err">&quot;</span>
+<span class="s">    })</span>
+<span class="s">    CREATE (c)-[:CONTAINS]-&gt;(a1)</span>
+
+<span class="s">    // Article I, Section 8 (Enumerated Powers)</span>
+<span class="s">    CREATE (s8:Section {</span>
+<span class="s">      article: 1,</span>
+<span class="s">      number: 8,</span>
+<span class="s">      text: </span><span class="err">&quot;</span><span class="s">The Congress shall have Power To lay and collect Taxes...</span><span class="err">&quot;</span>
+<span class="s">    })</span>
+<span class="s">    CREATE (a1)-[:CONTAINS]-&gt;(s8)</span>
+
+<span class="s">    // Commerce Clause (Art. I, § 8, Cl. 3)</span>
+<span class="s">    CREATE (p_commerce:Power {</span>
+<span class="s">      name: </span><span class="err">&quot;</span><span class="s">commerce</span><span class="err">&quot;</span><span class="s">,</span>
+<span class="s">      description: </span><span class="err">&quot;</span><span class="s">To regulate Commerce with foreign Nations, and among the several States</span><span class="err">&quot;</span><span class="s">,</span>
+<span class="s">      branch: </span><span class="err">&quot;</span><span class="s">legislative</span><span class="err">&quot;</span><span class="s">,</span>
+<span class="s">      article: 1,</span>
+<span class="s">      section: 8,</span>
+<span class="s">      clause: 3,</span>
+<span class="s">      enumerated: true</span>
+<span class="s">    })</span>
+<span class="s">    CREATE (s8)-[:GRANTS]-&gt;(p_commerce)</span>
+
+<span class="s">    // Amendment I (Free Speech)</span>
+<span class="s">    CREATE (a1st:Amendment {</span>
+<span class="s">      number: 1,</span>
+<span class="s">      ratified: date(</span><span class="err">&quot;</span><span class="s">1791-12-15</span><span class="err">&quot;</span><span class="s">),</span>
+<span class="s">      text: </span><span class="err">&quot;</span><span class="s">Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech...</span><span class="err">&quot;</span><span class="s">,</span>
+<span class="s">      popular_name: </span><span class="err">&quot;</span><span class="s">First Amendment</span><span class="err">&quot;</span>
+<span class="s">    })</span>
+<span class="s">    CREATE (c)-[:AMENDED_BY]-&gt;(a1st)</span>
+
+<span class="s">    CREATE (r_speech:Right {</span>
+<span class="s">      name: </span><span class="err">&quot;</span><span class="s">free_speech</span><span class="err">&quot;</span><span class="s">,</span>
+<span class="s">      amendment: 1,</span>
+<span class="s">      description: </span><span class="err">&quot;</span><span class="s">Freedom of speech and press</span><span class="err">&quot;</span>
+<span class="s">    })</span>
+<span class="s">    CREATE (a1st)-[:PROTECTS]-&gt;(r_speech)</span>
+
+<span class="s">    // ... (all 27 amendments)</span>
+<span class="s">    &quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">executeCypher</span><span class="p">(</span><span class="n">constitution</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="supreme-court-landmark-cases-100">Supreme Court Landmark Cases (100+)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">loadLandmarkCases</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">cases</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="c1">// Marbury v. Madison (1803) - Judicial Review</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;marbury_v_madison_1803&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Marbury v. Madison&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5 U.S. 137 (1803)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">1803</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Establishes judicial review - courts can strike down unconstitutional laws&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;article_3&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">),</span>
+
+<span class="w">        </span><span class="c1">// McCulloch v. Maryland (1819) - Necessary and Proper Clause</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mcculloch_v_maryland_1819&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;McCulloch v. Maryland&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;17 U.S. 316 (1819)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">1819</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Necessary and Proper Clause grants implied powers; federal law supreme&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;article_1_section_8&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">),</span>
+
+<span class="w">        </span><span class="c1">// Gibbons v. Ogden (1824) - Commerce Clause</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gibbons_v_ogden_1824&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Gibbons v. Ogden&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;22 U.S. 1 (1824)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">1824</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Commerce Clause grants Congress broad power to regulate interstate commerce&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;commerce_clause&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">),</span>
+
+<span class="w">        </span><span class="c1">// Brown v. Board of Education (1954) - Equal Protection</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;brown_v_board_1954&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Brown v. Board of Education&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;347 U.S. 483 (1954)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">1954</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Separate but equal is inherently unequal; overturns Plessy v. Ferguson&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;amendment_14&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">),</span>
+
+<span class="w">        </span><span class="c1">// Miranda v. Arizona (1966) - Self-Incrimination</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;miranda_v_arizona_1966&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Miranda v. Arizona&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;384 U.S. 436 (1966)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">1966</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Police must inform suspects of rights (Miranda warnings)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;amendment_5&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">),</span>
+
+<span class="w">        </span><span class="c1">// Roe v. Wade (1973) - Privacy / Due Process</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;roe_v_wade_1973&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Roe v. Wade&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;410 U.S. 113 (1973)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">1973</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Right to privacy includes abortion (overturned by Dobbs 2022)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;amendment_14&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="n">overturned</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="n">overturned_by</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dobbs_v_jackson_2022&quot;</span>
+<span class="w">        </span><span class="p">),</span>
+
+<span class="w">        </span><span class="c1">// United States v. Nixon (1974) - Executive Privilege</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;united_states_v_nixon_1974&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;United States v. Nixon&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;418 U.S. 683 (1974)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">1974</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Executive privilege is not absolute; President must comply with subpoena&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;article_2&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">),</span>
+
+<span class="w">        </span><span class="c1">// Dobbs v. Jackson Women&#39;s Health (2022) - Overturns Roe</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dobbs_v_jackson_2022&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dobbs v. Jackson Women&#39;s Health Organization&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">citation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;597 U.S. ___ (2022)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">year</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+<span class="w">            </span><span class="n">holding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;No constitutional right to abortion; overturns Roe v. Wade&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">interprets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;amendment_14&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="n">overturns</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;roe_v_wade_1973&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// ... (100+ total landmark cases)</span>
+<span class="w">    </span><span class="p">]</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">cases</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">createCase</span><span class="p">(</span><span class="k">case</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="test-coverage">Test Coverage</h2>
+<h3 id="bar-exam-mbe-questions-constitutional-law">Bar Exam MBE Questions (Constitutional Law)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kr">final</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">BarExamTests</span><span class="p">:</span><span class="w"> </span><span class="n">XCTestCase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">akg</span><span class="p">:</span><span class="w"> </span><span class="n">AKGService</span><span class="p">!</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">!</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">legalPack</span><span class="p">:</span><span class="w"> </span><span class="n">LegalUSDomainPack</span><span class="p">!</span>
+
+<span class="w">    </span><span class="kr">override</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">akg</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">AKGService</span><span class="p">(</span><span class="n">databasePath</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;:memory:&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">engine</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">(</span><span class="n">dimension</span><span class="p">:</span><span class="w"> </span><span class="mi">8096</span><span class="p">)</span>
+<span class="w">        </span><span class="n">legalPack</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">LegalUSDomainPack</span><span class="p">()</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">legalPack</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">engine</span><span class="p">,</span><span class="w"> </span><span class="n">akg</span><span class="p">:</span><span class="w"> </span><span class="n">akg</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MBE Question 1: Commerce Clause</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">testCommerceClause</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">question</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Congress enacted a statute prohibiting the possession of firearms </span>
+<span class="s">        within 1,000 feet of any school. Does Congress have authority </span>
+<span class="s">        under the Commerce Clause?</span>
+<span class="s">        &quot;&quot;&quot;</span>
+
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">legalPack</span><span class="p">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">question</span><span class="p">:</span><span class="w"> </span><span class="n">question</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Correct answer: No, under United States v. Lopez (1995)</span>
+<span class="w">        </span><span class="c1">// Gun possession near schools is not economic activity</span>
+<span class="w">        </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">answer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;no_authority&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">precedent</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;United States v. Lopez&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">reasoning</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;not_substantially_related_to_interstate_commerce&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Verify blockchain proof</span>
+<span class="w">        </span><span class="n">XCTAssertNotNil</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">attestationID</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">proof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">verify</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">attestationID</span><span class="p">)</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">proof</span><span class="p">.</span><span class="n">valid</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MBE Question 2: Free Speech</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">testFreeSpeech_ContentBasedRestriction</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">question</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        A city ordinance prohibits all political signs on private property.</span>
+<span class="s">        Is this ordinance constitutional under the First Amendment?</span>
+<span class="s">        &quot;&quot;&quot;</span>
+
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">legalPack</span><span class="p">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">question</span><span class="p">:</span><span class="w"> </span><span class="n">question</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Correct answer: No, content-based restriction fails strict scrutiny</span>
+<span class="w">        </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">answer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;unconstitutional&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">reasoning</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;content-based_restriction&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">reasoning</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;strict_scrutiny&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">precedent</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;Reed v. Town of Gilbert&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// MBE Question 3: Standing</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">testStanding_NoInjuryInFact</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">question</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        A taxpayer files suit challenging federal expenditures on </span>
+<span class="s">        Establishment Clause grounds. Does the taxpayer have standing?</span>
+<span class="s">        &quot;&quot;&quot;</span>
+
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">legalPack</span><span class="p">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">question</span><span class="p">:</span><span class="w"> </span><span class="n">question</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Correct answer: Generally no, under Flast v. Cohen exceptions are narrow</span>
+<span class="w">        </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">answer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;no_standing&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">precedent</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;Flast v. Cohen&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">reasoning</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;taxpayer_standing_limited_to_establishment_clause&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Test 100+ MBE questions...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Target</strong>: 80%+ accuracy on MBE Constitutional Law questions</p>
+<hr />
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="1-constitutional-compliance-checker">1. Constitutional Compliance Checker</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">checkConstitutionalCompliance</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                   </span><span class="n">authority</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">ComplianceResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Verify enumerated power exists</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hasPower</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">executeCypher</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        MATCH (power:Power {name: $authority})</span>
+<span class="s">        WHERE power.enumerated = true</span>
+<span class="s">        RETURN power</span>
+<span class="s">    &quot;&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">authority</span><span class="p">])</span>
+
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="o">!</span><span class="n">hasPower</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">nonCompliant</span><span class="p">(</span><span class="n">reason</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;No enumerated power: </span><span class="si">\(</span><span class="n">authority</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 2. Check for constitutional limitations</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">limitations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">executeCypher</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        MATCH (power:Power {name: $authority})-[:LIMITED_BY]-&gt;(amendment:Amendment)</span>
+<span class="s">        RETURN amendment.number, amendment.text</span>
+<span class="s">    &quot;&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">authority</span><span class="p">])</span>
+
+<span class="w">    </span><span class="c1">// 3. Check precedent</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">precedent</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">findBindingPrecedent</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">power</span><span class="p">:</span><span class="w"> </span><span class="n">authority</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 4. Generate opinion</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">opinion</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ComplianceResult</span><span class="p">(</span>
+<span class="w">        </span><span class="n">compliant</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">authority</span><span class="p">:</span><span class="w"> </span><span class="n">authority</span><span class="p">,</span>
+<span class="w">        </span><span class="n">limitations</span><span class="p">:</span><span class="w"> </span><span class="n">limitations</span><span class="p">,</span>
+<span class="w">        </span><span class="n">precedent</span><span class="p">:</span><span class="w"> </span><span class="n">precedent</span><span class="p">,</span>
+<span class="w">        </span><span class="n">reasoning</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Action authorized by </span><span class="si">\(</span><span class="n">authority</span><span class="si">)</span><span class="s">, no constitutional limitations violated&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 5. Attest to blockchain</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">opinion</span><span class="p">)</span>
+<span class="w">    </span><span class="n">opinion</span><span class="p">.</span><span class="n">attestationID</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">attestation</span><span class="p">.</span><span class="n">id</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">opinion</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="2-oath-violation-detector">2. Oath Violation Detector</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">detectOathViolation</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                         </span><span class="kd">actor</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">oath</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">ViolationReport</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Presidential Oath: &quot;preserve, protect and defend the Constitution&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">oath</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="s">&quot;presidential&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">violations</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s">&quot;ignore_court_order&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;refuse_execute_law&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;suspend_habeas_corpus&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;establish_religion&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;abridge_free_speech&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">violations</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="n">action</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">ViolationReport</span><span class="p">(</span>
+<span class="w">                </span><span class="n">violated</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="n">oath</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Presidential Oath (Art. II, § 1)&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">action</span><span class="p">,</span>
+<span class="w">                </span><span class="n">reasoning</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Action fails to &#39;preserve, protect and defend the Constitution&#39;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">remedy</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Impeachment (Art. I, § 2-3) or 25th Amendment&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">attestationID</span><span class="p">:</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="kc">self</span><span class="p">).</span><span class="n">id</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ViolationReport</span><span class="p">(</span><span class="n">violated</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="3-contract-risk-analyzer">3. Contract Risk Analyzer</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">analyzeContractRisk</span><span class="p">(</span><span class="n">contractText</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">RiskReport</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Parse contract (extract clauses)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">clauses</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">parseContract</span><span class="p">(</span><span class="n">contractText</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 2. Identify high-risk clauses</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">highRisk</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Clause</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">clause</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">clauses</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">clause</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;unlimited liability&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">           </span><span class="n">clause</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;unilateral termination&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">           </span><span class="n">clause</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;sole discretion&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">highRisk</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">clause</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 3. Check statute compliance</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">violations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">checkStatuteCompliance</span><span class="p">(</span><span class="n">clauses</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 4. Generate risk report</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RiskReport</span><span class="p">(</span>
+<span class="w">        </span><span class="n">overallRisk</span><span class="p">:</span><span class="w"> </span><span class="n">highRisk</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="s">&quot;low&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">highRiskClauses</span><span class="p">:</span><span class="w"> </span><span class="n">highRisk</span><span class="p">,</span>
+<span class="w">        </span><span class="n">statuteViolations</span><span class="p">:</span><span class="w"> </span><span class="n">violations</span><span class="p">,</span>
+<span class="w">        </span><span class="n">recommendations</span><span class="p">:</span><span class="w"> </span><span class="n">generateRecommendations</span><span class="p">(</span><span class="n">highRisk</span><span class="p">,</span><span class="w"> </span><span class="n">violations</span><span class="p">),</span>
+<span class="w">        </span><span class="n">attestationID</span><span class="p">:</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="kc">self</span><span class="p">).</span><span class="n">id</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="platform-support">Platform Support</h2>
+<h3 id="macos">macOS</h3>
+<ul>
+<li>✅ <strong>Full feature set</strong> (all 100+ landmark cases, full Constitution)</li>
+<li>✅ <strong>8096-dimensional VQbit</strong> (complex constitutional reasoning)</li>
+<li>✅ <strong>Multi-window</strong> (compare cases side-by-side)</li>
+<li>✅ <strong>Contract PDF import</strong> (drag &amp; drop)</li>
+</ul>
+<h3 id="iphoneipad">iPhone/iPad</h3>
+<ul>
+<li>✅ <strong>Portable legal reference</strong> (all landmark cases)</li>
+<li>✅ <strong>4096-dimensional VQbit</strong> (reduced for battery)</li>
+<li>✅ <strong>Quick citation lookup</strong> (scan Bluebook citation with camera)</li>
+<li>✅ <strong>Offline mode</strong> (full Constitution + top 50 cases cached)</li>
+</ul>
+<h3 id="apple-watch">Apple Watch</h3>
+<ul>
+<li>⚠️ <strong>Limited</strong> (Constitutional amendments only)</li>
+<li>📱 <strong>Quick reference</strong> ("What does the 5th Amendment say?")</li>
+</ul>
+<h3 id="vision-pro">Vision Pro</h3>
+<ul>
+<li>🎯 <strong>3D case law visualization</strong> (precedent tree in spatial view)</li>
+<li>🎯 <strong>Immersive Constitution</strong> (walk through Articles in 3D space)</li>
+<li>🎯 <strong>Hand gesture citations</strong> (point to cite case)</li>
+</ul>
+<hr />
+<h2 id="roadmap">Roadmap</h2>
+<h3 id="phase-1-q4-2025">Phase 1 (Q4 2025)</h3>
+<ul>
+<li>✅ Core domain pack structure</li>
+<li>✅ Constitutional text + 27 Amendments</li>
+<li>✅ 6 validation rules</li>
+<li>✅ Ontology schema</li>
+<li>✅ 20+ landmark cases</li>
+</ul>
+<h3 id="phase-2-q1-2026">Phase 2 (Q1 2026)</h3>
+<ul>
+<li>🔄 100+ Supreme Court landmark cases</li>
+<li>🔄 Bar exam test suite (MBE Constitutional Law)</li>
+<li>🔄 Oath enforcement engine</li>
+<li>🔄 Citation validator (Bluebook)</li>
+</ul>
+<h3 id="phase-3-q2-2026">Phase 3 (Q2 2026)</h3>
+<ul>
+<li>📋 Contract analyzer (risk assessment)</li>
+<li>📋 Statute validator (USC/CFR)</li>
+<li>📋 Full case law search (all SCOTUS opinions)</li>
+<li>📋 Legal brief generator</li>
+</ul>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<p>See <a href="contributing.html">Contributing Guide</a> for:
+- How to add new cases
+- How to improve validation rules
+- How to write test cases
+- Bluebook citation guidelines</p>
+<hr />
+<h2 id="references">References</h2>
+<ol>
+<li>US Constitution (1787)</li>
+<li>Federalist Papers (1788)</li>
+<li>Supreme Court opinions (1789-present)</li>
+<li>Bluebook: A Uniform System of Citation (21st ed. 2020)</li>
+<li>Restatement (Second) of Contracts (1981)</li>
+</ol>
+<hr />
+<p><strong>Next Steps</strong>: Begin implementation with constitutional structure and first 20 landmark cases.</p>
+<p><strong>Questions?</strong> legal@fortressai.com</p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

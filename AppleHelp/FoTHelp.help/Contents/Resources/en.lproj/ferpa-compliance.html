@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="FERPA Compliance - Student Data Protection">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>FERPA Compliance - Student Data Protection - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>FERPA Compliance - Student Data Protection</h1>
+        </header>
+        
+        <main>
+            <h1 id="ferpa-compliance-student-data-protection">FERPA Compliance - Student Data Protection</h1>
+<p><strong>Complete Privacy Protection for Educational Records</strong></p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>FoT Education K-18 is designed from the ground up to comply with the Family Educational Rights and Privacy Act (FERPA) and the Children's Online Privacy Protection Act (COPPA). All student data is encrypted, processed locally when possible, and protected with comprehensive access controls and audit trails.</p>
+<p><strong>Compliance Status:</strong> ✅ Fully Compliant Architecture</p>
+<p><strong>Key Protections:</strong>
+- ✅ AES-256-GCM encryption for all educational records
+- ✅ Parental consent required (COPPA for under 13)
+- ✅ Parent right to inspect and correct records
+- ✅ Strict access controls (teachers see only their students)
+- ✅ Complete audit trail of all data access
+- ✅ No third-party data sharing without consent
+- ✅ Local processing protects student privacy</p>
+<hr />
+<h2 id="ferpa-overview">FERPA Overview</h2>
+<h3 id="what-is-ferpa">What is FERPA?</h3>
+<p>The Family Educational Rights and Privacy Act (20 U.S.C. § 1232g; 34 CFR Part 99) is a Federal law that protects the privacy of student education records. The law applies to all schools that receive funds under an applicable program of the U.S. Department of Education.</p>
+<p><strong>Key Rights Under FERPA:</strong></p>
+<ol>
+<li><strong>Right to Inspect:</strong> Parents have the right to inspect and review their child's education records maintained by the school</li>
+<li><strong>Right to Amend:</strong> Parents have the right to request that a school correct records believed to be inaccurate or misleading</li>
+<li><strong>Right to Consent:</strong> Generally, schools must have written permission from parents to release any information from a student's education record</li>
+<li><strong>Right to File Complaint:</strong> Parents have the right to file a complaint with the U.S. Department of Education</li>
+</ol>
+<p><strong>Age Threshold:</strong> When a student turns 18 or attends a postsecondary institution, these rights transfer to the student.</p>
+<hr />
+<h2 id="coppa-overview">COPPA Overview</h2>
+<h3 id="what-is-coppa">What is COPPA?</h3>
+<p>The Children's Online Privacy Protection Act (15 U.S.C. §§ 6501-6506) requires operators of websites or online services directed to children under 13 to obtain verifiable parental consent before collecting, using, or disclosing personal information from children.</p>
+<p><strong>COPPA Requirements:</strong></p>
+<ol>
+<li><strong>Parental Consent:</strong> Must obtain verifiable parental consent before collecting personal information</li>
+<li><strong>Privacy Notice:</strong> Must provide clear notice of data collection practices</li>
+<li><strong>Parental Control:</strong> Parents must be able to review and delete their child's information</li>
+<li><strong>Data Security:</strong> Must maintain reasonable security procedures</li>
+<li><strong>Data Retention:</strong> Must not retain data longer than necessary</li>
+</ol>
+<hr />
+<h2 id="fot-education-k-18-ferpa-compliance">FoT Education K-18 FERPA Compliance</h2>
+<h3 id="1-educational-records-protection">1. Educational Records Protection</h3>
+<p><strong>What Qualifies as an Education Record:</strong></p>
+<p>Under FERPA, education records include any records that:
+- Are directly related to a student
+- Are maintained by an educational agency or institution</p>
+<p><strong>FoT Education K-18 Educational Records:</strong>
+- Student profile (name, grade, learning styles)
+- Assignments and submissions
+- Grades and assessments
+- Mastery tracking data
+- Virtue development scores
+- IEP/504 accommodation plans
+- Teacher notes and observations
+- Parent communications</p>
+<p><strong>Protection Mechanisms:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">ENCRYPTION</span><span class="w"> </span><span class="nv">AT</span><span class="w"> </span><span class="nv">REST</span>:
+•<span class="w"> </span><span class="nv">Algorithm</span>:<span class="w"> </span><span class="nv">AES</span><span class="o">-</span><span class="mi">256</span><span class="o">-</span><span class="nv">GCM</span>
+•<span class="w"> </span><span class="nv">Key</span><span class="w"> </span><span class="nv">Storage</span>:<span class="w"> </span><span class="nv">Secure</span><span class="w"> </span><span class="nv">Enclave</span><span class="w"> </span><span class="ss">(</span><span class="nv">hardware</span><span class="o">-</span><span class="nv">backed</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">iOS</span><span class="o">/</span><span class="nv">macOS</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Key</span><span class="w"> </span><span class="nv">Rotation</span>:<span class="w"> </span><span class="nv">Annual</span><span class="w"> </span><span class="nv">automatic</span><span class="w"> </span><span class="nv">rotation</span>
+•<span class="w"> </span><span class="nv">Backup</span><span class="w"> </span><span class="nv">Encryption</span>:<span class="w"> </span><span class="nv">All</span><span class="w"> </span><span class="nv">backups</span><span class="w"> </span><span class="nv">encrypted</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">separate</span><span class="w"> </span><span class="nv">keys</span>
+
+<span class="nv">ENCRYPTION</span><span class="w"> </span><span class="nv">IN</span><span class="w"> </span><span class="nv">TRANSIT</span>:
+•<span class="w"> </span><span class="nv">Protocol</span>:<span class="w"> </span><span class="nv">TLS</span><span class="w"> </span><span class="mi">1</span>.<span class="mi">3</span>
+•<span class="w"> </span><span class="nv">Certificate</span><span class="w"> </span><span class="nv">Pinning</span>:<span class="w"> </span><span class="nv">Prevents</span><span class="w"> </span><span class="nv">man</span><span class="o">-</span><span class="nv">in</span><span class="o">-</span><span class="nv">the</span><span class="o">-</span><span class="nv">middle</span><span class="w"> </span><span class="nv">attacks</span>
+•<span class="w"> </span><span class="nv">Forward</span><span class="w"> </span><span class="nv">Secrecy</span>:<span class="w"> </span><span class="nv">Ephemeral</span><span class="w"> </span><span class="nv">keys</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">each</span><span class="w"> </span><span class="nv">session</span>
+
+<span class="nv">ACCESS</span><span class="w"> </span><span class="nv">CONTROLS</span>:
+•<span class="w"> </span><span class="nv">Authentication</span>:<span class="w"> </span><span class="nv">Biometric</span><span class="w"> </span><span class="ss">(</span><span class="nv">Face</span><span class="w"> </span><span class="nv">ID</span>,<span class="w"> </span><span class="nv">Touch</span><span class="w"> </span><span class="nv">ID</span><span class="ss">)</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="nv">strong</span><span class="w"> </span><span class="nv">password</span>
+•<span class="w"> </span><span class="nv">Authorization</span>:<span class="w"> </span><span class="nv">Role</span><span class="o">-</span><span class="nv">based</span><span class="w"> </span><span class="ss">(</span><span class="nv">teacher</span>,<span class="w"> </span><span class="nv">admin</span>,<span class="w"> </span><span class="nv">parent</span>,<span class="w"> </span><span class="nv">student</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Session</span><span class="w"> </span><span class="nv">Management</span>:<span class="w"> </span><span class="mi">15</span><span class="o">-</span><span class="nv">minute</span><span class="w"> </span><span class="nb">timeout</span><span class="w"> </span><span class="ss">(</span><span class="nv">configurable</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Multi</span><span class="o">-</span><span class="nv">factor</span>:<span class="w"> </span><span class="nv">Optional</span><span class="w"> </span><span class="mi">2</span><span class="nv">FA</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">administrator</span><span class="w"> </span><span class="nv">accounts</span>
+</code></pre></div>
+
+<hr />
+<h3 id="2-parental-rights-implementation">2. Parental Rights Implementation</h3>
+<p><strong>Right to Inspect:</strong></p>
+<p>Parents can view all educational records about their child through the secure Parent Portal.</p>
+<p><strong>Parent Portal Access:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">AVAILABLE</span><span class="w"> </span><span class="n">INFORMATION</span><span class="p">:</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">profile</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">learning</span><span class="w"> </span><span class="n">styles</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">All</span><span class="w"> </span><span class="n">assignments</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">submissions</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Grades</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">assessment</span><span class="w"> </span><span class="n">results</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Mastery</span><span class="w"> </span><span class="n">tracking</span><span class="w"> </span><span class="n">progress</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Virtue</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="n">scores</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="n">comments</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">notes</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Attendance</span><span class="w"> </span><span class="n">records</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">IEP</span><span class="o">/</span><span class="mi">504</span><span class="w"> </span><span class="n">accommodations</span>
+
+<span class="n">PORTAL</span><span class="w"> </span><span class="n">FEATURES</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Real</span><span class="o">-</span><span class="n">time</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="n">waiting</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">school</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">provide</span><span class="w"> </span><span class="n">copies</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Downloadable</span><span class="o">/</span><span class="n">printable</span><span class="w"> </span><span class="n">reports</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Historical</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="p">(</span><span class="n">full</span><span class="w"> </span><span class="n">academic</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">archive</span><span class="w"> </span><span class="n">available</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Secure</span><span class="w"> </span><span class="n">messaging</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">teachers</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Email</span><span class="w"> </span><span class="n">notifications</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="n">changes</span><span class="p">,</span><span class="w"> </span><span class="n">assignments</span>
+
+<span class="n">SECURITY</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Unique</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">credentials</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Biometric</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="n">option</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Automatic</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="n">timeout</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Audit</span><span class="w"> </span><span class="nb">log</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="n">access</span>
+</code></pre></div>
+
+<p><strong>Right to Request Amendment:</strong></p>
+<p>Parents can request corrections to educational records they believe are inaccurate.</p>
+<p><strong>Amendment Process:</strong></p>
+<ol>
+<li>Parent submits correction request through Portal</li>
+<li>Teacher/Administrator reviews request within 5 business days</li>
+<li>If approved: Record corrected immediately, parent notified</li>
+<li>If denied: Parent receives written explanation</li>
+<li>Parent may request hearing with school district</li>
+<li>If still denied: Parent may place statement of disagreement in record</li>
+</ol>
+<p><strong>Technical Implementation:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// All amendments logged with audit trail</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">RecordAmendment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">studentID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">recordType</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// &quot;grade&quot;, &quot;assignment&quot;, &quot;note&quot;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">originalValue</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">amendedValue</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">requestedBy</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// Parent/guardian name</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">requestDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">reviewedBy</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// Teacher/admin</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">reviewDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">approved</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">reason</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">blockchainProof</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// Immutable audit trail</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="3-consent-management">3. Consent Management</h3>
+<p><strong>Disclosure Restrictions:</strong></p>
+<p>FERPA generally prohibits disclosure of education records without parental consent, except for specific exceptions (e.g., school officials with legitimate educational interest, compliance with legal requirements).</p>
+<p><strong>FoT Education K-18 Consent Tracking:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">CONSENT</span><span class="w"> </span><span class="n">TYPES</span><span class="o">:</span>
+
+<span class="mf">1.</span><span class="w"> </span><span class="n">GENERAL</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">CONSENT</span><span class="w"> </span><span class="p">(</span><span class="n">Required</span><span class="p">)</span><span class="o">:</span>
+<span class="w">   </span><span class="err">☑</span><span class="w"> </span><span class="n">Create</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">maintain</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="n">educational</span><span class="w"> </span><span class="n">records</span>
+<span class="w">   </span><span class="err">☑</span><span class="w"> </span><span class="n">Teachers</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">educational</span><span class="w"> </span><span class="n">purposes</span>
+<span class="w">   </span><span class="err">☑</span><span class="w"> </span><span class="n">School</span><span class="w"> </span><span class="n">administrators</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">oversight</span>
+<span class="w">   </span><span class="err">☑</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">records</span>
+<span class="w">   </span><span class="nl">Status</span><span class="p">:</span><span class="w"> </span><span class="n">Obtained</span><span class="w"> </span><span class="n">during</span><span class="w"> </span><span class="n">enrollment</span>
+
+<span class="mf">2.</span><span class="w"> </span><span class="n">FERPA</span><span class="w"> </span><span class="n">DIRECTORY</span><span class="w"> </span><span class="n">INFORMATION</span><span class="w"> </span><span class="n">CONSENT</span><span class="w"> </span><span class="p">(</span><span class="n">Optional</span><span class="p">)</span><span class="o">:</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Name</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="n">level</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Honors</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">awards</span>
+<span class="w">   </span><span class="nl">Status</span><span class="p">:</span><span class="w"> </span><span class="n">Opt</span><span class="o">-</span><span class="k">in</span><span class="p">,</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">revoked</span><span class="w"> </span><span class="n">anytime</span>
+
+<span class="mf">3.</span><span class="w"> </span><span class="n">THIRD</span><span class="o">-</span><span class="n">PARTY</span><span class="w"> </span><span class="n">DISCLOSURE</span><span class="w"> </span><span class="p">(</span><span class="n">Optional</span><span class="p">)</span><span class="o">:</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Share</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="p">[</span><span class="n">specific</span><span class="w"> </span><span class="n">organization</span><span class="p">]</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Purpose</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">specific</span><span class="w"> </span><span class="n">purpose</span><span class="p">]</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Duration</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">specific</span><span class="w"> </span><span class="n">timeframe</span><span class="p">]</span>
+<span class="w">   </span><span class="nl">Status</span><span class="p">:</span><span class="w"> </span><span class="n">Explicit</span><span class="w"> </span><span class="n">consent</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="n">disclosure</span>
+
+<span class="mf">4.</span><span class="w"> </span><span class="n">RESEARCH</span><span class="w"> </span><span class="n">PARTICIPATION</span><span class="w"> </span><span class="p">(</span><span class="n">Optional</span><span class="p">)</span><span class="o">:</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Use</span><span class="w"> </span><span class="n">de</span><span class="o">-</span><span class="n">identified</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">educational</span><span class="w"> </span><span class="n">research</span>
+<span class="w">   </span><span class="err">☐</span><span class="w"> </span><span class="n">Academic</span><span class="w"> </span><span class="n">publication</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">aggregated</span><span class="w"> </span><span class="n">results</span>
+<span class="w">   </span><span class="nl">Status</span><span class="p">:</span><span class="w"> </span><span class="n">Opt</span><span class="o">-</span><span class="k">in</span><span class="p">,</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">revoked</span><span class="w"> </span><span class="n">anytime</span>
+
+<span class="n">CONSENT</span><span class="w"> </span><span class="n">MANAGEMENT</span><span class="o">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Digital</span><span class="w"> </span><span class="n">signature</span><span class="w"> </span><span class="p">(</span><span class="n">with</span><span class="w"> </span><span class="n">timestamp</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">logging</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Parent</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">view</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">consents</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">Portal</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Parent</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">revoke</span><span class="w"> </span><span class="n">consent</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">time</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Automated</span><span class="w"> </span><span class="n">expiration</span><span class="w"> </span><span class="p">(</span><span class="n">annual</span><span class="w"> </span><span class="n">renewal</span><span class="w"> </span><span class="n">required</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Audit</span><span class="w"> </span><span class="n">trail</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">consent</span><span class="w"> </span><span class="n">actions</span>
+</code></pre></div>
+
+<hr />
+<h3 id="4-access-control-implementation">4. Access Control Implementation</h3>
+<p><strong>Principle of Least Privilege:</strong></p>
+<p>Users only have access to data necessary for their legitimate educational interest.</p>
+<p><strong>Role-Based Access Control (RBAC):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Access Permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Student</strong></td>
+<td>Own records only (grades, assignments, feedback)</td>
+</tr>
+<tr>
+<td><strong>Parent/Guardian</strong></td>
+<td>Own child's records only (full educational record)</td>
+</tr>
+<tr>
+<td><strong>Teacher</strong></td>
+<td>Students in their classes only (create, view, grade)</td>
+</tr>
+<tr>
+<td><strong>School Administrator</strong></td>
+<td>All students in their school (oversight, reporting)</td>
+</tr>
+<tr>
+<td><strong>District Administrator</strong></td>
+<td>Aggregated data only (de-identified analytics)</td>
+</tr>
+<tr>
+<td><strong>System Administrator</strong></td>
+<td>Technical access only (no viewing educational content)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Technical Implementation:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Access control check before every data operation</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">checkAccess</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">,</span><span class="w"> </span><span class="n">student</span><span class="p">:</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">:</span><span class="w"> </span><span class="n">Operation</span><span class="p">)</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">role</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">student</span><span class="p">:</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">FERPAError</span><span class="p">.</span><span class="n">unauthorizedAccess</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">parent</span><span class="p">:</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">children</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">FERPAError</span><span class="p">.</span><span class="n">unauthorizedAccess</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">teacher</span><span class="p">:</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">classes</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="k">where</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">students</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">FERPAError</span><span class="p">.</span><span class="n">unauthorizedAccess</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">schoolAdmin</span><span class="p">:</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">school</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">school</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">FERPAError</span><span class="p">.</span><span class="n">unauthorizedAccess</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">districtAdmin</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// Can only access aggregated, de-identified data</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="p">.</span><span class="n">viewAggregatedData</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">FERPAError</span><span class="p">.</span><span class="n">unauthorizedAccess</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Log access for audit trail</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="n">auditLog</span><span class="p">.</span><span class="n">record</span><span class="p">(</span>
+<span class="w">        </span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">        </span><span class="n">student</span><span class="p">:</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">        </span><span class="n">operation</span><span class="p">:</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span>
+<span class="w">        </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">blockchainProof</span><span class="p">:</span><span class="w"> </span><span class="n">generateProof</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="5-audit-trail-accountability">5. Audit Trail &amp; Accountability</h3>
+<p><strong>Complete Audit Log:</strong></p>
+<p>Every access to student educational records is logged with:
+- User ID (who accessed)
+- Student ID (which record)
+- Timestamp (when)
+- Operation (view, edit, delete, export)
+- IP address and device
+- Cryptographic proof (blockchain attestation)</p>
+<p><strong>Audit Log Example:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">AUDIT</span><span class="w"> </span><span class="n">LOG</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Alice</span><span class="w"> </span><span class="n">Johnson</span><span class="w"> </span><span class="p">(</span><span class="n">Student</span><span class="w"> </span><span class="n">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="n">Date</span><span class="o">/</span><span class="n">Time</span><span class="w">              </span><span class="n">User</span><span class="w">              </span><span class="n">Role</span><span class="w">      </span><span class="n">Operation</span><span class="w">     </span><span class="n">Details</span>
+<span class="o">================================================================================</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">27</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">23</span><span class="w">   </span><span class="n">Mrs</span><span class="o">.</span><span class="w"> </span><span class="n">Thompson</span><span class="w">     </span><span class="n">Teacher</span><span class="w">   </span><span class="n">VIEW</span><span class="w">          </span><span class="n">Viewed</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="n">book</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">27</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">45</span><span class="w">   </span><span class="n">Mrs</span><span class="o">.</span><span class="w"> </span><span class="n">Thompson</span><span class="w">     </span><span class="n">Teacher</span><span class="w">   </span><span class="n">EDIT</span><span class="w">          </span><span class="n">Updated</span><span class="w"> </span><span class="n">math</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="p">(</span><span class="n">B</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">B</span><span class="o">+</span><span class="p">)</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">27</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">11</span><span class="w">   </span><span class="n">Jennifer</span><span class="w"> </span><span class="n">Johnson</span><span class="w">  </span><span class="n">Parent</span><span class="w">    </span><span class="n">VIEW</span><span class="w">          </span><span class="n">Viewed</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">Portal</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">27</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">56</span><span class="w">   </span><span class="n">Jennifer</span><span class="w"> </span><span class="n">Johnson</span><span class="w">  </span><span class="n">Parent</span><span class="w">    </span><span class="n">EXPORT</span><span class="w">        </span><span class="n">Downloaded</span><span class="w"> </span><span class="n">progress</span><span class="w"> </span><span class="n">report</span><span class="w"> </span><span class="n">PDF</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">27</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">02</span><span class="w">   </span><span class="n">Dr</span><span class="o">.</span><span class="w"> </span><span class="n">Martinez</span><span class="w">      </span><span class="n">Principal</span><span class="w"> </span><span class="n">VIEW</span><span class="w">          </span><span class="n">Reviewed</span><span class="w"> </span><span class="n">IEP</span><span class="w"> </span><span class="n">accommodations</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">27</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">33</span><span class="w">   </span><span class="n">Alice</span><span class="w"> </span><span class="n">Johnson</span><span class="w">     </span><span class="n">Student</span><span class="w">   </span><span class="n">VIEW</span><span class="w">          </span><span class="n">Viewed</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">assignments</span>
+
+<span class="n">BLOCKCHAIN</span><span class="w"> </span><span class="n">PROOFS</span><span class="p">:</span>
+<span class="n">Each</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="n">cryptographically</span><span class="w"> </span><span class="n">attested</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">SafeAICoin</span><span class="w"> </span><span class="n">blockchain</span><span class="o">.</span>
+<span class="n">All</span><span class="w"> </span><span class="n">proofs</span><span class="w"> </span><span class="n">independently</span><span class="w"> </span><span class="n">verifiable</span><span class="p">,</span><span class="w"> </span><span class="n">tamper</span><span class="o">-</span><span class="n">evident</span><span class="o">.</span>
+
+<span class="n">RETENTION</span><span class="p">:</span><span class="w"> </span><span class="n">Audit</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="n">retained</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="n">years</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">FERPA</span><span class="w"> </span><span class="n">requirements</span><span class="o">.</span>
+</code></pre></div>
+
+<p><strong>Audit Trail Benefits:</strong></p>
+<ul>
+<li><strong>Accountability:</strong> Know exactly who accessed what data and when</li>
+<li><strong>Compliance:</strong> Demonstrate FERPA compliance to regulators</li>
+<li><strong>Security:</strong> Detect unauthorized access attempts</li>
+<li><strong>Investigation:</strong> Investigate privacy complaints or breaches</li>
+<li><strong>Trust:</strong> Parents can see who has viewed their child's records</li>
+</ul>
+<hr />
+<h2 id="coppa-compliance-students-under-13">COPPA Compliance (Students Under 13)</h2>
+<h3 id="verifiable-parental-consent">Verifiable Parental Consent</h3>
+<p><strong>COPPA requires verifiable parental consent before collecting personal information from children under 13.</strong></p>
+<p><strong>FoT Education K-18 Consent Process:</strong></p>
+<p><strong>For School-Based Use (School Authorization):</strong></p>
+<p>Under COPPA, schools can provide consent on behalf of parents for educational purposes (the "school official" exception). However, FoT Education K-18 implements additional parental consent as best practice.</p>
+<p><strong>Parental Consent Workflow:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">ENROLLMENT</span><span class="w"> </span><span class="nx">PROCESS</span><span class="w"> </span><span class="p">(</span><span class="nx">Student</span><span class="w"> </span><span class="nx">Under</span><span class="w"> </span><span class="mi">13</span><span class="p">):</span>
+
+<span class="nx">Step</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="nx">Teacher</span><span class="o">/</span><span class="nx">Admin</span><span class="w"> </span><span class="nx">creates</span><span class="w"> </span><span class="nx">student</span><span class="w"> </span><span class="nx">account</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">System</span><span class="w"> </span><span class="nx">detects</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">13</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Account</span><span class="w"> </span><span class="nx">created</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s">&quot;Pending Consent&quot;</span><span class="w"> </span><span class="nx">status</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">No</span><span class="w"> </span><span class="nx">personal</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="nx">yet</span>
+
+<span class="nx">Step</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="nx">System</span><span class="w"> </span><span class="nx">generates</span><span class="w"> </span><span class="nx">unique</span><span class="w"> </span><span class="nx">consent</span><span class="w"> </span><span class="nx">link</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Sent</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="nx">email</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Link</span><span class="w"> </span><span class="nx">expires</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="nx">days</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Reminder</span><span class="w"> </span><span class="nx">emails</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="w"> </span><span class="nx">days</span>
+
+<span class="nx">Step</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="nx">Parent</span><span class="w"> </span><span class="nx">accesses</span><span class="w"> </span><span class="nx">consent</span><span class="w"> </span><span class="nx">form</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Clear</span><span class="w"> </span><span class="nx">disclosure</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="nx">practices</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Plain</span><span class="w"> </span><span class="nx">language</span><span class="w"> </span><span class="nx">explanation</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="nx">th</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="nx">reading</span><span class="w"> </span><span class="nx">level</span><span class="p">)</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">List</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">types</span><span class="w"> </span><span class="nx">collected</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">How</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">be</span><span class="w"> </span><span class="nx">used</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Retention</span><span class="w"> </span><span class="nx">policies</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Parent</span><span class="w"> </span><span class="nx">rights</span>
+
+<span class="nx">Step</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="nx">Parent</span><span class="w"> </span><span class="nx">provides</span><span class="w"> </span><span class="nx">consent</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Digital</span><span class="w"> </span><span class="nx">signature</span><span class="w"> </span><span class="p">(</span><span class="nx">typed</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">checkbox</span><span class="p">)</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Identity</span><span class="w"> </span><span class="nx">verification</span><span class="w"> </span><span class="p">(</span><span class="nx">last</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">SSN</span><span class="w"> </span><span class="nx">OR</span><span class="w"> </span><span class="nx">answer</span><span class="w"> </span><span class="nx">security</span><span class="w"> </span><span class="nx">questions</span><span class="p">)</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Timestamp</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">IP</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="nx">logged</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Consent</span><span class="w"> </span><span class="nx">stored</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">blockchain</span><span class="w"> </span><span class="nx">attestation</span>
+
+<span class="nx">Step</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span><span class="w"> </span><span class="nx">Account</span><span class="w"> </span><span class="nx">activated</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Student</span><span class="w"> </span><span class="nx">can</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="nx">use</span><span class="w"> </span><span class="nx">FoT</span><span class="w"> </span><span class="nx">Education</span><span class="w"> </span><span class="nx">K</span><span class="o">-</span><span class="mi">18</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Parent</span><span class="w"> </span><span class="nx">receives</span><span class="w"> </span><span class="nx">confirmation</span><span class="w"> </span><span class="nx">email</span>
+<span class="w">        </span><span class="err">→</span><span class="w"> </span><span class="nx">Parent</span><span class="w"> </span><span class="nx">Portal</span><span class="w"> </span><span class="nx">access</span><span class="w"> </span><span class="nx">granted</span>
+
+<span class="nx">CONSENT</span><span class="w"> </span><span class="nx">REVOCATION</span><span class="p">:</span>
+<span class="nx">Parent</span><span class="w"> </span><span class="nx">can</span><span class="w"> </span><span class="nx">revoke</span><span class="w"> </span><span class="nx">consent</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="nx">time</span><span class="p">:</span>
+<span class="err">→</span><span class="w"> </span><span class="nx">Account</span><span class="w"> </span><span class="nx">immediately</span><span class="w"> </span><span class="nx">disabled</span>
+<span class="err">→</span><span class="w"> </span><span class="nx">No</span><span class="w"> </span><span class="nx">further</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">collection</span>
+<span class="err">→</span><span class="w"> </span><span class="nx">Existing</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">retained</span><span class="w"> </span><span class="nx">per</span><span class="w"> </span><span class="nx">FERPA</span><span class="w"> </span><span class="p">(</span><span class="nx">educational</span><span class="w"> </span><span class="nx">records</span><span class="p">)</span>
+<span class="w">   </span><span class="nx">OR</span><span class="w"> </span><span class="nx">deleted</span><span class="w"> </span><span class="nx">per</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="p">(</span><span class="nx">within</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="nx">days</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="coppa-required-disclosures">COPPA-Required Disclosures</h3>
+<p><strong>Notice of Data Collection:</strong></p>
+<p>FoT Education K-18 provides clear notice to parents about:</p>
+<p><strong>1. What Personal Information is Collected:</strong>
+- Student name, grade level, date of birth
+- Email address (if student age 13+)
+- Learning profile (styles, strengths, challenges)
+- Assignments, assessments, grades
+- Behavioral observations (virtue scores)
+- IEP/504 accommodation information
+- Parent/guardian contact information</p>
+<p><strong>2. How Information is Collected:</strong>
+- Direct entry by teachers/administrators
+- Student submissions (homework, projects)
+- Automated tracking (assignment completion, mastery progress)
+- Teacher observations (behavior, participation)</p>
+<p><strong>3. How Information is Used:</strong>
+- Personalize instruction to student's learning style
+- Track academic progress and mastery
+- Generate report cards and progress reports
+- Communicate with parents about student performance
+- Support IEP/504 accommodations
+- Aggregate analytics (de-identified) for school improvement</p>
+<p><strong>4. Whether Information is Disclosed:</strong>
+- NOT disclosed to third parties without parental consent
+- NOT sold to third parties (ever)
+- NOT used for behavioral advertising (ever)
+- Shared with school personnel with legitimate educational interest (FERPA exception)
+- May be disclosed pursuant to legal requirement (subpoena, court order)</p>
+<p><strong>5. Parental Rights:</strong>
+- Review child's personal information
+- Request correction of inaccurate information
+- Request deletion of information (subject to FERPA retention requirements)
+- Revoke consent at any time
+- File complaint with FTC if rights violated</p>
+<hr />
+<h3 id="data-minimization">Data Minimization</h3>
+<p><strong>COPPA Best Practice: Collect Only What's Necessary</strong></p>
+<p>FoT Education K-18 minimizes data collection for students under 13:</p>
+<p><strong>NOT Collected (Under 13):</strong>
+- ❌ Student email address (unless parent consents)
+- ❌ Student phone number
+- ❌ Social media profiles
+- ❌ Geolocation data
+- ❌ Biometric data
+- ❌ Photos/videos (unless parent consents for specific project)</p>
+<p><strong>Collected (Educational Necessity):</strong>
+- ✓ Name and grade (student identification)
+- ✓ Date of birth (age verification, developmental appropriateness)
+- ✓ Learning profile (personalized instruction)
+- ✓ Academic performance (grades, assessments)
+- ✓ Behavioral observations (virtue development)
+- ✓ Accommodations (IEP/504 support)</p>
+<hr />
+<h2 id="data-security-measures">Data Security Measures</h2>
+<h3 id="technical-safeguards">Technical Safeguards</h3>
+<p><strong>Encryption:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">AT</span><span class="w"> </span><span class="nv">REST</span>:
+•<span class="w"> </span><span class="nv">AES</span><span class="o">-</span><span class="mi">256</span><span class="o">-</span><span class="nv">GCM</span><span class="w"> </span><span class="nv">encryption</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">databases</span>
+•<span class="w"> </span><span class="nv">Secure</span><span class="w"> </span><span class="nv">Enclave</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">encryption</span><span class="w"> </span><span class="nv">keys</span><span class="w"> </span><span class="ss">(</span><span class="nv">iOS</span><span class="o">/</span><span class="nv">macOS</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Full</span><span class="o">-</span><span class="nv">disk</span><span class="w"> </span><span class="nv">encryption</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">servers</span>
+•<span class="w"> </span><span class="nv">Encrypted</span><span class="w"> </span><span class="nv">backups</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">separate</span><span class="w"> </span><span class="nv">keys</span>
+
+<span class="nv">IN</span><span class="w"> </span><span class="nv">TRANSIT</span>:
+•<span class="w"> </span><span class="nv">TLS</span><span class="w"> </span><span class="mi">1</span>.<span class="mi">3</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">network</span><span class="w"> </span><span class="nv">communications</span>
+•<span class="w"> </span><span class="nv">Certificate</span><span class="w"> </span><span class="nv">pinning</span><span class="w"> </span><span class="ss">(</span><span class="nv">prevents</span><span class="w"> </span><span class="nv">MITM</span><span class="w"> </span><span class="nv">attacks</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">VPN</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">administrator</span><span class="w"> </span><span class="nv">access</span>
+
+<span class="nv">IN</span><span class="w"> </span><span class="nv">USE</span>:
+•<span class="w"> </span><span class="nv">Memory</span><span class="w"> </span><span class="nv">encryption</span><span class="w"> </span><span class="nv">where</span><span class="w"> </span><span class="nv">supported</span><span class="w"> </span><span class="ss">(</span><span class="nv">Apple</span><span class="w"> </span><span class="nv">T2</span><span class="o">/</span><span class="nv">M</span><span class="o">-</span><span class="nv">series</span><span class="w"> </span><span class="nv">chips</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Secure</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span><span class="nv">wiping</span><span class="w"> </span><span class="nv">after</span><span class="w"> </span><span class="nv">use</span>
+•<span class="w"> </span><span class="nv">No</span><span class="w"> </span><span class="nv">caching</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">sensitive</span><span class="w"> </span><span class="nv">data</span>
+</code></pre></div>
+
+<p><strong>Access Controls:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">AUTHENTICATION</span>:
+•<span class="w"> </span><span class="nv">Biometric</span><span class="w"> </span><span class="ss">(</span><span class="nv">Face</span><span class="w"> </span><span class="nv">ID</span>,<span class="w"> </span><span class="nv">Touch</span><span class="w"> </span><span class="nv">ID</span><span class="ss">)</span><span class="w"> </span><span class="nv">preferred</span>
+•<span class="w"> </span><span class="nv">Strong</span><span class="w"> </span><span class="nv">password</span><span class="w"> </span><span class="nv">required</span><span class="w"> </span><span class="ss">(</span><span class="mi">12</span><span class="o">+</span><span class="w"> </span><span class="nv">chars</span>,<span class="w"> </span><span class="nv">mixed</span><span class="w"> </span><span class="nv">case</span>,<span class="w"> </span><span class="nv">numbers</span>,<span class="w"> </span><span class="nv">symbols</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Password</span><span class="w"> </span><span class="nv">complexity</span><span class="w"> </span><span class="nv">enforcement</span>
+•<span class="w"> </span><span class="nv">Account</span><span class="w"> </span><span class="nv">lockout</span><span class="w"> </span><span class="nv">after</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="nv">failed</span><span class="w"> </span><span class="nv">attempts</span>
+•<span class="w"> </span><span class="nv">Password</span><span class="w"> </span><span class="nv">reset</span><span class="w"> </span><span class="nv">requires</span><span class="w"> </span><span class="nv">email</span><span class="w"> </span><span class="nv">verification</span>
+
+<span class="nv">AUTHORIZATION</span>:
+•<span class="w"> </span><span class="nv">Role</span><span class="o">-</span><span class="nv">based</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="nv">control</span><span class="w"> </span><span class="ss">(</span><span class="nv">RBAC</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Principle</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">least</span><span class="w"> </span><span class="nv">privilege</span>
+•<span class="w"> </span><span class="nv">No</span><span class="w"> </span><span class="nv">shared</span><span class="w"> </span><span class="nv">accounts</span><span class="w"> </span><span class="ss">(</span><span class="nv">individual</span><span class="w"> </span><span class="nv">login</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">each</span><span class="w"> </span><span class="nv">user</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Annual</span><span class="w"> </span><span class="nv">recertification</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="nv">privileges</span>
+</code></pre></div>
+
+<p><strong>Audit &amp; Monitoring:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">LOGGING</span>:
+•<span class="w"> </span><span class="nv">All</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">educational</span><span class="w"> </span><span class="nv">records</span><span class="w"> </span><span class="nv">logged</span>
+•<span class="w"> </span><span class="nv">Failed</span><span class="w"> </span><span class="nv">login</span><span class="w"> </span><span class="nv">attempts</span><span class="w"> </span><span class="nv">tracked</span>
+•<span class="w"> </span><span class="nv">Unusual</span><span class="w"> </span><span class="nv">activity</span><span class="w"> </span><span class="nv">patterns</span><span class="w"> </span><span class="nv">flagged</span>
+•<span class="w"> </span><span class="nv">Real</span><span class="o">-</span><span class="nv">time</span><span class="w"> </span><span class="nv">alerts</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">suspicious</span><span class="w"> </span><span class="nv">behavior</span>
+
+<span class="nv">MONITORING</span>:
+•<span class="w"> </span><span class="nv">Automated</span><span class="w"> </span><span class="nv">anomaly</span><span class="w"> </span><span class="nv">detection</span>
+•<span class="w"> </span><span class="nv">Regular</span><span class="w"> </span><span class="nv">security</span><span class="w"> </span><span class="nv">audits</span><span class="w"> </span><span class="ss">(</span><span class="nv">quarterly</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Penetration</span><span class="w"> </span><span class="nv">testing</span><span class="w"> </span><span class="ss">(</span><span class="nv">annual</span><span class="ss">)</span>
+•<span class="w"> </span><span class="nv">Vulnerability</span><span class="w"> </span><span class="nv">scanning</span><span class="w"> </span><span class="ss">(</span><span class="nv">continuous</span><span class="ss">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="administrative-safeguards">Administrative Safeguards</h3>
+<p><strong>Policies &amp; Procedures:</strong>
+- ✓ Data protection policy (updated annually)
+- ✓ Incident response plan (tested quarterly)
+- ✓ Employee training (annual FERPA/COPPA training)
+- ✓ Vendor management (third-party security assessments)
+- ✓ Data retention policy (comply with state requirements)</p>
+<p><strong>Staff Training:</strong>
+- All school personnel complete FERPA training annually
+- COPPA training for staff working with elementary students
+- Phishing awareness training (quarterly)
+- Security incident reporting procedures</p>
+<p><strong>Vendor Management:</strong>
+- Third-party security assessments before integration
+- Data processing agreements (DPA) required
+- Regular security audits of vendors
+- Right to audit clause in contracts</p>
+<hr />
+<h2 id="data-retention-deletion">Data Retention &amp; Deletion</h2>
+<h3 id="retention-policy">Retention Policy</h3>
+<p><strong>Active Students:</strong>
+- Educational records retained while student is actively enrolled
+- Real-time access for teachers, parents, students
+- Automatic backups (encrypted, offsite)</p>
+<p><strong>Former Students:</strong>
+- Records retained per state requirements (typically 5-7 years)
+- Archived records (encrypted, access restricted)
+- Graduation/transfer triggers archive process</p>
+<p><strong>FERPA Requirement:</strong>
+- Schools must maintain records for reasonable period
+- Students have right to review records even after graduation
+- Destruction must be properly documented</p>
+<p><strong>FoT Education K-18 Retention Schedule:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Record Type</th>
+<th>Active Student</th>
+<th>After Graduation/Transfer</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student Profile</td>
+<td>Indefinite</td>
+<td>7 years</td>
+<td>Name, demographics, learning profile</td>
+</tr>
+<tr>
+<td>Grades &amp; Assessments</td>
+<td>Indefinite</td>
+<td>7 years</td>
+<td>Transcripts, report cards, test scores</td>
+</tr>
+<tr>
+<td>Assignments</td>
+<td>1 year</td>
+<td>1 year after graduation</td>
+<td>Homework, projects, submissions</td>
+</tr>
+<tr>
+<td>Teacher Notes</td>
+<td>Indefinite</td>
+<td>7 years</td>
+<td>Behavioral observations, conferences</td>
+</tr>
+<tr>
+<td>IEP/504 Plans</td>
+<td>Indefinite</td>
+<td>7 years</td>
+<td>Accommodation documentation</td>
+</tr>
+<tr>
+<td>Discipline Records</td>
+<td>Indefinite</td>
+<td>7 years</td>
+<td>Per state/federal requirements</td>
+</tr>
+<tr>
+<td>Attendance</td>
+<td>Indefinite</td>
+<td>7 years</td>
+<td>Daily attendance logs</td>
+</tr>
+<tr>
+<td>Audit Logs</td>
+<td>7 years</td>
+<td>7 years</td>
+<td>FERPA access logs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="deletion-process">Deletion Process</h3>
+<p><strong>Parent-Requested Deletion:</strong></p>
+<ol>
+<li>Parent submits deletion request through Portal</li>
+<li>School reviews request (must comply unless FERPA requires retention)</li>
+<li>If approved: Data deleted within 30 days</li>
+<li>Confirmation sent to parent with deletion certificate</li>
+<li>Audit log entry (who deleted, when, why)</li>
+<li>Blockchain attestation of deletion (proof of compliance)</li>
+</ol>
+<p><strong>Automated Deletion:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Automated deletion after retention period</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">enforceRetentionPolicy</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">retiredStudents</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getStudentsRetired</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">retiredStudents</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">graduationDate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">graduationDate</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">retentionPeriod</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">retentionRequirement</span><span class="w"> </span><span class="c1">// 7 years</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">deletionDate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">graduationDate</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">retentionPeriod</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">deletionDate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Delete non-essential records</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="n">deleteAssignments</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="n">deleteTemporaryNotes</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+
+<span class="w">            </span><span class="c1">// Archive essential records (encrypted)</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="n">archiveTranscript</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="n">archiveIEP</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+
+<span class="w">            </span><span class="c1">// Log deletion</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="n">auditLog</span><span class="p">.</span><span class="n">record</span><span class="p">(</span>
+<span class="w">                </span><span class="n">operation</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">autoDelete</span><span class="p">,</span>
+<span class="w">                </span><span class="n">student</span><span class="p">:</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">                </span><span class="n">date</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">reason</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Retention period expired&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">blockchainProof</span><span class="p">:</span><span class="w"> </span><span class="n">generateProof</span><span class="p">()</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="breach-notification">Breach Notification</h2>
+<h3 id="incident-response-plan">Incident Response Plan</h3>
+<p><strong>FoT Education K-18 Breach Response:</strong></p>
+<p><strong>Detection:</strong>
+- Automated monitoring alerts on suspicious activity
+- User reports of unauthorized access
+- Third-party security audit findings</p>
+<p><strong>Assessment (Within 24 hours):</strong>
+- Determine scope of breach (which records, how many students)
+- Identify root cause
+- Assess risk to affected students
+- Document timeline of events</p>
+<p><strong>Containment (Immediate):</strong>
+- Isolate affected systems
+- Revoke compromised credentials
+- Block unauthorized access
+- Preserve evidence for investigation</p>
+<p><strong>Notification:</strong></p>
+<p><strong>To Parents (Within 72 hours):</strong>
+- Notification letter sent via email and postal mail
+- Plain language description of incident
+- What information was involved
+- Steps being taken to address breach
+- Resources available to affected families (credit monitoring if SSNs involved)
+- Contact information for questions</p>
+<p><strong>To School Officials (Immediate):</strong>
+- Notification to superintendent and principal
+- Assistance with parent communication
+- Support for media inquiries</p>
+<p><strong>To Authorities (As Required):</strong>
+- FERPA does not mandate breach notification to Dept. of Education
+- State laws may require notification to Attorney General
+- FTC notification if COPPA violation (children under 13)</p>
+<p><strong>Remediation:</strong>
+- Fix vulnerability that caused breach
+- Enhanced security measures
+- Additional staff training
+- Third-party security audit
+- Regular updates to affected parties</p>
+<hr />
+<h2 id="state-specific-requirements">State-Specific Requirements</h2>
+<h3 id="california-sopipa-ab-1584">California (SOPIPA &amp; AB 1584)</h3>
+<p><strong>Student Online Personal Information Protection Act (SOPIPA):</strong></p>
+<p>Additional protections beyond FERPA:
+- ✓ Prohibition on targeted advertising
+- ✓ Prohibition on creating profiles for non-educational purposes
+- ✓ Prohibition on selling student information
+- ✓ Deletion of data upon request</p>
+<p><strong>FoT Education K-18 Compliance:</strong>
+- ✅ No advertising (educational app, not ad-supported)
+- ✅ Profiles only for educational personalization
+- ✅ No sale of student data (business model = subscriptions)
+- ✅ Parent-requested deletion within 30 days</p>
+<hr />
+<h3 id="new-york-education-law-2-d">New York (Education Law § 2-d)</h3>
+<p><strong>Additional Requirements:</strong>
+- ✓ Parents' Bill of Rights for Data Privacy and Security
+- ✓ Supplemental information about data collection practices
+- ✓ Prohibition on sale of student data
+- ✓ Data security and privacy plan</p>
+<p><strong>FoT Education K-18 Compliance:</strong>
+- ✅ NY-specific Parents' Bill of Rights provided
+- ✅ Data collection notice in plain language
+- ✅ No sale of data
+- ✅ Comprehensive security plan (this document)</p>
+<hr />
+<h2 id="compliance-checklist">Compliance Checklist</h2>
+<h3 id="for-schools-implementing-fot-education-k-18">For Schools Implementing FoT Education K-18</h3>
+<p><strong>Pre-Implementation:</strong>
+- [ ] Review school's existing FERPA policies
+- [ ] Update acceptable use policies (AUP)
+- [ ] Staff FERPA training completed
+- [ ] Parent notification letters sent
+- [ ] COPPA consent forms distributed (students under 13)
+- [ ] Data processing agreement signed with FoT Apple</p>
+<p><strong>Implementation:</strong>
+- [ ] Administrator accounts created (limited access)
+- [ ] Teacher accounts created with RBAC
+- [ ] Student accounts created (consent verified for under 13)
+- [ ] Parent Portal access provided
+- [ ] Initial data import (if applicable) - encrypted
+- [ ] Verify access controls working properly</p>
+<p><strong>Ongoing Compliance:</strong>
+- [ ] Annual FERPA training for staff
+- [ ] Quarterly review of access logs
+- [ ] Annual recertification of user access
+- [ ] Parent consent renewals (annual)
+- [ ] Incident response plan testing (annual)
+- [ ] Security audits (as scheduled)</p>
+<hr />
+<h2 id="resources">Resources</h2>
+<h3 id="for-schools">For Schools</h3>
+<p><strong>FERPA Resources:</strong>
+- U.S. Department of Education FERPA website: <a href="https://www.ed.gov/ferpa.html">ed.gov/ferpa</a>
+- FERPA FAQ: <a href="https://studentprivacy.ed.gov.html">studentprivacy.ed.gov</a>
+- Model notification of rights under FERPA</p>
+<p><strong>COPPA Resources:</strong>
+- FTC COPPA page: <a href="https://www.ftc.gov/coppa.html">ftc.gov/coppa</a>
+- COPPA FAQ for parents and educators
+- Verifiable parental consent methods</p>
+<p><strong>State Resources:</strong>
+- California SOPIPA: <a href="https://leginfo.legislature.ca.gov.html">leginfo.legislature.ca.gov</a>
+- NY Education Law § 2-d: <a href="https://www.nysed.gov.html">nysed.gov</a></p>
+<hr />
+<h3 id="contact">Contact</h3>
+<p><strong>Privacy Questions:</strong>
+privacy@fortressai.com</p>
+<p><strong>FERPA Compliance:</strong>
+ferpa@fortressai.com</p>
+<p><strong>Data Breach Reporting:</strong>
+security@fortressai.com (24/7 monitored)</p>
+<p><strong>Parent Rights:</strong>
+parents@fortressai.com</p>
+<hr />
+<p><strong>FoT Education K-18: Student Privacy is Paramount</strong></p>
+<p><em>Last updated: October 27, 2025</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

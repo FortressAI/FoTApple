@@ -9,6 +9,7 @@ import FoTUI
 @main
 struct FoTLegalApp: App {
     @StateObject private var appState = LegalAppState()
+    @StateObject private var voiceAssistant = SiriVoiceAssistant.shared
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     init() {
@@ -19,14 +20,31 @@ struct FoTLegalApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if !hasCompletedOnboarding {
-                LegalOnboardingFlow {
-                    hasCompletedOnboarding = true
+            ZStack {
+                if !hasCompletedOnboarding {
+                    LegalOnboardingFlow {
+                        hasCompletedOnboarding = true
+                    }
+                } else {
+                    LegalContentView()
+                        .environmentObject(appState)
+                        .interactiveHelp(.legalDashboard)
+                        .voiceContext(.dashboard, message: "Welcome to Field of Truth Legal. Your case management dashboard.")
+                        .onAppear {
+                            // Greet user every time app opens
+                            voiceAssistant.greetUser(appName: "Field of Truth Legal")
+                        }
                 }
-            } else {
-                LegalContentView()
-                    .environmentObject(appState)
-                    .interactiveHelp(.legalDashboard)
+                
+                // Floating voice assistant indicator
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        VoiceAssistantIndicator()
+                            .padding()
+                    }
+                }
             }
         }
     }

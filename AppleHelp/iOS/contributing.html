@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Contributing to FoT Apple">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Contributing to FoT Apple - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Contributing to FoT Apple</h1>
+        </header>
+        
+        <main>
+            <h1 id="contributing-to-fot-apple">Contributing to FoT Apple</h1>
+<p><strong>Help Build the Future of Professional AI</strong></p>
+<hr />
+<h2 id="welcome-contributors">Welcome Contributors!</h2>
+<p>FoT Apple is open source (AGPL v3.0) and we welcome contributions from the community. Whether you're fixing a typo, adding a test case, or implementing a new domain pack, your contributions make FoT Apple better for everyone.</p>
+<p><strong>Ways to Contribute:</strong>
+- 🐛 Fix bugs
+- ✨ Add features
+- 📝 Improve documentation
+- 🧪 Write tests
+- 🌍 Translate to other languages
+- 🎓 Create domain packs
+- 💡 Suggest ideas</p>
+<hr />
+<h2 id="code-of-conduct">Code of Conduct</h2>
+<h3 id="our-pledge">Our Pledge</h3>
+<p>We are committed to providing a welcoming and inclusive environment for all contributors, regardless of:
+- Experience level (beginners welcome!)
+- Identity or expression
+- Background or demographics
+- Technology choices</p>
+<h3 id="our-standards">Our Standards</h3>
+<p><strong>Expected Behavior:</strong>
+- ✅ Be respectful and considerate
+- ✅ Provide constructive feedback
+- ✅ Accept constructive criticism gracefully
+- ✅ Focus on what's best for the project and community
+- ✅ Show empathy toward other contributors</p>
+<p><strong>Unacceptable Behavior:</strong>
+- ❌ Harassment, discrimination, or exclusionary behavior
+- ❌ Trolling, insulting, or derogatory comments
+- ❌ Personal or political attacks
+- ❌ Publishing others' private information
+- ❌ Other conduct inappropriate in a professional setting</p>
+<p><strong>Enforcement:</strong>
+Violations may result in temporary or permanent ban from the project. Report violations to conduct@fortressai.com.</p>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="1-set-up-your-development-environment">1. Set Up Your Development Environment</h3>
+<p><strong>Prerequisites:</strong>
+- macOS 14+ (Sonoma)
+- Xcode 15+
+- Swift 5.9+
+- Git</p>
+<p><strong>Clone the Repository:</strong></p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/FortressAI/FoTApple.git
+<span class="nb">cd</span><span class="w"> </span>FoTApple
+</code></pre></div>
+
+<p><strong>Build All Packages:</strong></p>
+<div class="codehilite"><pre><span></span><code>swift<span class="w"> </span>package<span class="w"> </span>resolve
+swift<span class="w"> </span>build
+</code></pre></div>
+
+<p><strong>Run Tests:</strong></p>
+<div class="codehilite"><pre><span></span><code>swift<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+
+<p><strong>Expected Output:</strong> 54+ tests passing</p>
+<p><a href="development-setup.html">Complete Development Setup →</a></p>
+<hr />
+<h3 id="2-find-something-to-work-on">2. Find Something to Work On</h3>
+<p><strong>Good First Issues:</strong>
+Look for issues labeled <code>good-first-issue</code> on GitHub:
+<a href="https://github.com/fortressai/fotapple/labels/good-first-issue.html">github.com/FortressAI/FoTApple/labels/good-first-issue</a></p>
+<p><strong>Help Wanted:</strong>
+Issues labeled <code>help-wanted</code> are priorities where we need community assistance:
+<a href="https://github.com/fortressai/fotapple/labels/help-wanted.html">github.com/FortressAI/FoTApple/labels/help-wanted</a></p>
+<p><strong>Browse Open Issues:</strong>
+<a href="https://github.com/fortressai/fotapple/issues.html">github.com/FortressAI/FoTApple/issues</a></p>
+<p><strong>Feature Requests:</strong>
+<a href="https://github.com/fortressai/fotapple/discussions/categories/ideas.html">github.com/FortressAI/FoTApple/discussions/categories/ideas</a></p>
+<hr />
+<h3 id="3-understand-the-architecture">3. Understand the Architecture</h3>
+<p><strong>Key Components:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">FoTApple</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">packages</span><span class="o">/</span><span class="w">                   </span><span class="err">#</span><span class="w"> </span><span class="nx">Swift</span><span class="w"> </span><span class="nx">packages</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">FoTCore</span><span class="o">/</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="nx">Foundation</span><span class="w"> </span><span class="p">(</span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">logging</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">RulesEngine</span><span class="o">/</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="nx">Validation</span><span class="w"> </span><span class="nx">rules</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">DataAdapters</span><span class="o">/</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="nx">External</span><span class="w"> </span><span class="nx">APIs</span><span class="w"> </span><span class="p">(</span><span class="nx">RxNav</span><span class="p">,</span><span class="w"> </span><span class="nx">etc</span><span class="p">.)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">FoTClinician</span><span class="o">/</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="nx">Medical</span><span class="w"> </span><span class="nx">domain</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">FoTLegalUS</span><span class="o">/</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="nx">Legal</span><span class="w"> </span><span class="nx">domain</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">FoTEducationK18</span><span class="o">/</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="nx">Education</span><span class="w"> </span><span class="nx">domain</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">apps</span><span class="o">/</span><span class="w">                       </span><span class="err">#</span><span class="w"> </span><span class="nx">Platform</span><span class="w"> </span><span class="nx">applications</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">ClinicianApp</span><span class="o">/</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="nx">iOS</span><span class="p">,</span><span class="w"> </span><span class="nx">macOS</span><span class="p">,</span><span class="w"> </span><span class="nx">watchOS</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="nx">LegalUSApp</span><span class="o">/</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="nx">iOS</span><span class="p">,</span><span class="w"> </span><span class="nx">macOS</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">EducationK18App</span><span class="o">/</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="nx">iOS</span><span class="p">,</span><span class="w"> </span><span class="nx">macOS</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">Sources</span><span class="o">/</span><span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="nx">Additional</span><span class="w"> </span><span class="nx">source</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">Tests</span><span class="o">/</span><span class="w">                      </span><span class="err">#</span><span class="w"> </span><span class="nx">Test</span><span class="w"> </span><span class="nx">suites</span>
+<span class="err">└──</span><span class="w"> </span><span class="nx">Package</span><span class="p">.</span><span class="nx">swift</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="nx">Main</span><span class="w"> </span><span class="kn">package</span><span class="w"> </span><span class="nx">manifest</span>
+</code></pre></div>
+
+<p><strong>Architecture Overview:</strong>
+<a href="architecture.html">Complete Documentation →</a></p>
+<p><strong>Domain Pack Architecture:</strong>
+<a href="domain-packs.html">Create Custom Domains →</a></p>
+<hr />
+<h2 id="contribution-types">Contribution Types</h2>
+<h3 id="bug-fixes">Bug Fixes</h3>
+<p><strong>Process:</strong>
+1. <strong>Search Existing Issues:</strong> Check if bug already reported
+2. <strong>Create Issue</strong> (if not exists): Describe bug, steps to reproduce, expected vs. actual behavior
+3. <strong>Discuss Solution:</strong> Comment on issue before starting work
+4. <strong>Create Branch:</strong> <code>git checkout -b fix/issue-123-description</code>
+5. <strong>Fix &amp; Test:</strong> Fix bug, add regression test
+6. <strong>Submit PR:</strong> Reference issue number in PR description</p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Create branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>fix/drug-search-timeout
+
+<span class="c1"># Make changes</span>
+<span class="c1"># ... edit code ...</span>
+
+<span class="c1"># Add test</span>
+<span class="c1"># ... edit test file ...</span>
+
+<span class="c1"># Commit</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Fix: Drug search timeout after 30 seconds</span>
+
+<span class="s2">- Increase timeout from 10s to 30s for slow connections</span>
+<span class="s2">- Add retry logic with exponential backoff</span>
+<span class="s2">- Add test for timeout behavior</span>
+
+<span class="s2">Fixes #123&quot;</span>
+
+<span class="c1"># Push</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>fix/drug-search-timeout
+
+<span class="c1"># Create PR on GitHub</span>
+</code></pre></div>
+
+<hr />
+<h3 id="new-features">New Features</h3>
+<p><strong>Process:</strong>
+1. <strong>Discuss First:</strong> Open GitHub Discussion in Ideas category
+2. <strong>Get Feedback:</strong> Ensure feature aligns with project vision
+3. <strong>Create Issue:</strong> Document feature requirements
+4. <strong>Design Review</strong> (if major): Discuss implementation approach
+5. <strong>Create Branch:</strong> <code>git checkout -b feature/feature-name</code>
+6. <strong>Implement &amp; Test:</strong> Add feature + comprehensive tests
+7. <strong>Document:</strong> Update relevant documentation
+8. <strong>Submit PR:</strong> Detailed description of feature</p>
+<p><strong>Requirements:</strong>
+- ✅ Tests for all new code (minimum 80% coverage)
+- ✅ Documentation updated (code comments + wiki)
+- ✅ No breaking changes to public APIs (unless discussed)
+- ✅ Follows code style guidelines
+- ✅ Passes all CI/CD checks</p>
+<hr />
+<h3 id="documentation">Documentation</h3>
+<p><strong>What to Document:</strong>
+- API changes
+- New features
+- Configuration options
+- Usage examples
+- Troubleshooting tips
+- Architecture decisions</p>
+<p><strong>Where to Document:</strong>
+- <strong>Code Comments:</strong> Inline documentation for complex logic
+- <strong>Wiki Pages:</strong> User-facing documentation
+- <strong>README Files:</strong> Package-level documentation
+- <strong>API Docs:</strong> Swift-DocC comments</p>
+<p><strong>Style Guidelines:</strong>
+- Clear, concise language
+- Examples for complex concepts
+- Links to related documentation
+- Code samples tested and working</p>
+<p><strong>Example Pull Request:</strong></p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>docs/improve-rxnav-documentation
+
+<span class="c1"># Edit documentation</span>
+<span class="c1"># ... update wiki pages ...</span>
+
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Docs: Improve RxNav API integration documentation</span>
+
+<span class="s2">- Add step-by-step setup instructions</span>
+<span class="s2">- Include error handling examples</span>
+<span class="s2">- Add troubleshooting section for common issues</span>
+<span class="s2">- Fix typos in code samples&quot;</span>
+
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>docs/improve-rxnav-documentation
+</code></pre></div>
+
+<hr />
+<h3 id="tests">Tests</h3>
+<p><strong>Test Types:</strong>
+- <strong>Unit Tests:</strong> Test individual functions/classes in isolation
+- <strong>Integration Tests:</strong> Test component interactions
+- <strong>Validation Tests:</strong> Domain-specific correctness (medical accuracy, legal rules, etc.)</p>
+<p><strong>Writing Tests:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">XCTest</span>
+<span class="p">@</span><span class="n">testable</span><span class="w"> </span><span class="kd">import</span><span class="w"> </span><span class="nc">FoTClinician</span>
+
+<span class="kr">final</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">MedicationServiceTests</span><span class="p">:</span><span class="w"> </span><span class="n">XCTestCase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">service</span><span class="p">:</span><span class="w"> </span><span class="n">MedicationService</span><span class="p">!</span>
+
+<span class="w">    </span><span class="kr">override</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">service</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MedicationService</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">testDrugInteractionDetection</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Given: Patient on warfarin</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">patient</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Patient</span><span class="p">(</span>
+<span class="w">            </span><span class="n">medications</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="n">Medication</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Warfarin&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dose</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5mg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">frequency</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;daily&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// When: Checking aspirin interaction</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="n">checkInteraction</span><span class="p">(</span>
+<span class="w">            </span><span class="n">patient</span><span class="p">:</span><span class="w"> </span><span class="n">patient</span><span class="p">,</span>
+<span class="w">            </span><span class="n">newDrug</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aspirin&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Then: Major interaction detected</span>
+<span class="w">        </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">severity</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">major</span><span class="p">)</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">description</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;bleeding risk&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">XCTAssertNotNil</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">recommendation</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Test Requirements:</strong>
+- ✅ All new code has tests
+- ✅ Tests are deterministic (no flaky tests)
+- ✅ Tests run quickly (&lt; 1 second each)
+- ✅ Tests are isolated (no dependencies between tests)
+- ✅ Edge cases covered
+- ✅ Error cases tested</p>
+<hr />
+<h3 id="translations">Translations</h3>
+<p><strong>Supported Languages (Current):</strong>
+- English (en)</p>
+<p><strong>Planned:</strong>
+- Spanish (es) - Q1 2026
+- Mandarin Chinese (zh) - Q1 2026
+- French (fr) - Q2 2026
+- German (de) - Q2 2026
+- Portuguese (pt-BR) - Q2 2026</p>
+<p><strong>How to Contribute:</strong>
+1. Check if your language is planned (see above)
+2. Email: translations@fortressai.com to coordinate
+3. We'll provide translation files and guidelines
+4. Translate strings, respecting medical/legal terminology
+5. Submit via pull request</p>
+<p><strong>Important:</strong>
+- Medical, legal, and education terms must be professionally accurate
+- Maintain tone and formality appropriate for professionals
+- Include notes for context-specific translations</p>
+<hr />
+<h2 id="pull-request-process">Pull Request Process</h2>
+<h3 id="1-before-you-start">1. Before You Start</h3>
+<p><strong>☐ Create Issue or Discussion</strong>
+- Describe what you plan to work on
+- Get feedback from maintainers
+- Ensure work aligns with project goals</p>
+<p><strong>☐ Fork Repository</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># On GitHub, click &quot;Fork&quot; button</span>
+<span class="c1"># Then clone your fork</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/FoTApple.git
+<span class="nb">cd</span><span class="w"> </span>FoTApple
+
+<span class="c1"># Add upstream remote</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/FortressAI/FoTApple.git
+</code></pre></div>
+
+<hr />
+<h3 id="2-create-branch">2. Create Branch</h3>
+<p><strong>Branch Naming:</strong>
+- <code>fix/issue-number-description</code> (bug fixes)
+- <code>feature/feature-name</code> (new features)
+- <code>docs/what-youre-documenting</code> (documentation)
+- <code>test/what-youre-testing</code> (tests only)
+- <code>refactor/what-youre-refactoring</code> (code improvements)</p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/add-prescription-validation
+</code></pre></div>
+
+<hr />
+<h3 id="3-make-changes">3. Make Changes</h3>
+<p><strong>☐ Write Code</strong>
+- Follow <a href="#code-style-guidelines.html">Code Style Guidelines</a>
+- Keep changes focused (one feature/fix per PR)
+- Break large changes into smaller PRs</p>
+<p><strong>☐ Add Tests</strong>
+- Test all new functionality
+- Add regression tests for bug fixes
+- Run <code>swift test</code> to verify</p>
+<p><strong>☐ Update Documentation</strong>
+- Update code comments
+- Update wiki pages if user-facing changes
+- Update README if architecture changes</p>
+<p><strong>☐ Commit</strong>
+- Write clear, descriptive commit messages
+- Follow <a href="#commit-message-guidelines.html">Commit Message Guidelines</a></p>
+<hr />
+<h3 id="4-test-your-changes">4. Test Your Changes</h3>
+<p><strong>☐ Run All Tests</strong></p>
+<div class="codehilite"><pre><span></span><code>swift<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+
+<p><strong>☐ Run Specific Tests</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>packages/FoTClinician
+swift<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+
+<p><strong>☐ Check Code Coverage</strong></p>
+<div class="codehilite"><pre><span></span><code>swift<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--enable-code-coverage
+</code></pre></div>
+
+<p><strong>☐ Manual Testing</strong>
+- Build and run iOS app
+- Test on actual device (if possible)
+- Verify UI changes look good</p>
+<hr />
+<h3 id="5-sync-with-upstream">5. Sync with Upstream</h3>
+<p><strong>☐ Fetch Latest Changes</strong></p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>upstream
+git<span class="w"> </span>rebase<span class="w"> </span>upstream/main
+</code></pre></div>
+
+<p><strong>☐ Resolve Conflicts</strong> (if any)</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Fix conflicts in files</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>rebase<span class="w"> </span>--continue
+</code></pre></div>
+
+<hr />
+<h3 id="6-push-and-create-pr">6. Push and Create PR</h3>
+<p><strong>☐ Push to Your Fork</strong></p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/add-prescription-validation
+</code></pre></div>
+
+<p><strong>☐ Create Pull Request on GitHub</strong>
+1. Go to <a href="https://github.com/fortressai/fotapple.html">github.com/FortressAI/FoTApple</a>
+2. Click "New Pull Request"
+3. Select your branch
+4. Fill out PR template (see below)
+5. Click "Create Pull Request"</p>
+<hr />
+<h3 id="7-pr-template">7. PR Template</h3>
+<p><strong>Title:</strong> Brief description (50 chars max)</p>
+<p><strong>Description:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">## Summary</span>
+Brief description of what this PR does.
+
+<span class="gu">## Motivation</span>
+Why is this change needed? What problem does it solve?
+
+<span class="gu">## Changes</span>
+<span class="k">-</span><span class="w"> </span>List key changes
+<span class="k">-</span><span class="w"> </span>One change per line
+<span class="k">-</span><span class="w"> </span>Be specific
+
+<span class="gu">## Testing</span>
+How was this tested?
+<span class="k">- [ ]</span> Unit tests added/updated
+<span class="k">- [ ]</span> Integration tests added/updated
+<span class="k">- [ ]</span> Manual testing performed
+<span class="k">- [ ]</span> Tested on iOS 17 / macOS 14
+
+<span class="gu">## Screenshots (if UI changes)</span>
+Before:
+[Screenshot]
+
+After:
+[Screenshot]
+
+<span class="gu">## Related Issues</span>
+Fixes <span class="ni">#123</span>
+Closes <span class="ni">#456</span>
+Relates to <span class="ni">#789</span>
+
+<span class="gu">## Checklist</span>
+<span class="k">- [ ]</span> Tests pass locally
+<span class="k">- [ ]</span> Code follows style guidelines
+<span class="k">- [ ]</span> Documentation updated
+<span class="k">- [ ]</span> No breaking changes (or documented)
+<span class="k">- [ ]</span> Commit messages follow guidelines
+</code></pre></div>
+
+<hr />
+<h3 id="8-code-review">8. Code Review</h3>
+<p><strong>What to Expect:</strong>
+- Maintainers will review your PR (usually within 1-3 business days)
+- You may be asked to make changes
+- Discussion is encouraged - ask questions!
+- Be patient and respectful</p>
+<p><strong>Responding to Feedback:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Make requested changes</span>
+<span class="c1"># ... edit code ...</span>
+
+<span class="c1"># Commit changes</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Address review feedback: improve error handling&quot;</span>
+
+<span class="c1"># Push updated changes</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/add-prescription-validation
+
+<span class="c1"># PR automatically updates</span>
+</code></pre></div>
+
+<p><strong>☐ Mark Conversations as Resolved</strong> (after addressing feedback)</p>
+<hr />
+<h3 id="9-cicd-checks">9. CI/CD Checks</h3>
+<p><strong>Required Checks:</strong>
+- ✅ All tests pass
+- ✅ Code compiles without errors
+- ✅ SwiftLint passes (with reasonable exceptions)
+- ✅ Code coverage ≥ 80% for new code
+- ✅ No security vulnerabilities detected</p>
+<p><strong>If Checks Fail:</strong>
+1. Click on failed check to see details
+2. Fix the issue locally
+3. Push updated code
+4. Checks run automatically</p>
+<hr />
+<h3 id="10-merge">10. Merge</h3>
+<p><strong>When Your PR is Approved:</strong>
+- Maintainer will merge PR
+- Your changes appear in <code>main</code> branch
+- You're credited as contributor! 🎉</p>
+<p><strong>After Merge:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Update your local repository</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main
+
+<span class="c1"># Delete feature branch</span>
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/add-prescription-validation
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>feature/add-prescription-validation
+</code></pre></div>
+
+<hr />
+<h2 id="code-style-guidelines">Code Style Guidelines</h2>
+<h3 id="swift-style">Swift Style</h3>
+<p><strong>Follow:</strong>
+- <a href="https://swift.org/documentation/api-design-guidelines/.html">Swift API Design Guidelines</a>
+- <a href="https://github.com/realm/swiftlint/blob/main/rules.md.html">SwiftLint Rules</a></p>
+<p><strong>Key Principles:</strong>
+- <strong>Clarity:</strong> Code is read more than written
+- <strong>Consistency:</strong> Follow existing patterns
+- <strong>Simplicity:</strong> Favor simple solutions over clever ones</p>
+<p><strong>Naming:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ✅ Good: Clear, descriptive names</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">calculateBodyMassIndex</span><span class="p">(</span><span class="n">weight</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Double</span>
+
+<span class="c1">// ❌ Bad: Abbreviations, unclear purpose</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">calcBMI</span><span class="p">(</span><span class="n">w</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Double</span>
+</code></pre></div>
+
+<p><strong>Formatting:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ✅ Good: Consistent indentation, spacing</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">checkDrugInteraction</span><span class="p">(</span>
+<span class="w">    </span><span class="n">drug1</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">drug2</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">InteractionResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">rxNavClient</span><span class="p">.</span><span class="n">checkInteraction</span><span class="p">(</span>
+<span class="w">        </span><span class="n">drug1</span><span class="p">:</span><span class="w"> </span><span class="n">drug1</span><span class="p">,</span>
+<span class="w">        </span><span class="n">drug2</span><span class="p">:</span><span class="w"> </span><span class="n">drug2</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Bad: Inconsistent spacing</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">checkDrugInteraction</span><span class="p">(</span><span class="n">drug1</span><span class="p">:</span><span class="nb">String</span><span class="p">,</span><span class="n">drug2</span><span class="p">:</span><span class="nb">String</span><span class="p">)</span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="p">-&gt;</span><span class="n">InteractionResult</span><span class="p">{</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="p">=</span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">rxNavClient</span><span class="p">.</span><span class="n">checkInteraction</span><span class="p">(</span><span class="n">drug1</span><span class="p">:</span><span class="n">drug1</span><span class="p">,</span><span class="n">drug2</span><span class="p">:</span><span class="n">drug2</span><span class="p">)</span>
+<span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Comments:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ✅ Good: Explain why, not what</span>
+<span class="c1">// Use exponential backoff to avoid overwhelming RxNav API</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">delay</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">baseDelay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">attemptNumber</span><span class="p">)</span>
+
+<span class="c1">// ❌ Bad: States the obvious</span>
+<span class="c1">// Multiply base delay by 2 raised to attempt number</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">delay</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">baseDelay</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">attemptNumber</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Documentation:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">/// Checks for drug-drug interactions between two medications.</span>
+<span class="c1">///</span>
+<span class="c1">/// This method queries the NIH RxNav API to determine if there are any</span>
+<span class="c1">/// known interactions between the specified medications.</span>
+<span class="c1">///</span>
+<span class="c1">/// - Parameters:</span>
+<span class="c1">///   - drug1: Name of the first medication (generic or brand name)</span>
+<span class="c1">///   - drug2: Name of the second medication (generic or brand name)</span>
+<span class="c1">/// - Returns: Interaction result including severity and recommendations</span>
+<span class="c1">/// - Throws: `RxNavError` if API request fails or medications not found</span>
+<span class="c1">///</span>
+<span class="c1">/// - Note: Requires internet connection. Results are cached for 24 hours.</span>
+<span class="c1">///</span>
+<span class="c1">/// Example:</span>
+<span class="c1">/// ```swift</span>
+<span class="c1">/// let result = try await checkDrugInteraction(</span>
+<span class="c1">///     drug1: &quot;Warfarin&quot;,</span>
+<span class="c1">///     drug2: &quot;Aspirin&quot;</span>
+<span class="c1">/// )</span>
+<span class="c1">/// print(result.severity) // .major</span>
+<span class="c1">/// ```</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">checkDrugInteraction</span><span class="p">(</span>
+<span class="w">    </span><span class="n">drug1</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">drug2</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">InteractionResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Implementation...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="commit-message-guidelines">Commit Message Guidelines</h2>
+<h3 id="format">Format</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Type</span><span class="o">:</span><span class="w"> </span><span class="n">Brief</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">(</span><span class="mi">50</span><span class="w"> </span><span class="n">chars</span><span class="w"> </span><span class="n">max</span><span class="o">)</span>
+
+<span class="n">Longer</span><span class="w"> </span><span class="n">explanation</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="o">(</span><span class="n">wrap</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mi">72</span><span class="w"> </span><span class="n">chars</span><span class="o">).</span><span class="w"> </span><span class="n">Explain</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">why</span><span class="o">,</span><span class="w"> </span>
+<span class="n">not</span><span class="w"> </span><span class="n">how</span><span class="o">.</span><span class="w"> </span><span class="n">Include</span><span class="w"> </span><span class="n">motivation</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">contrast</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="n">behavior</span><span class="o">.</span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">Bullet</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="n">okay</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Use</span><span class="w"> </span><span class="n">present</span><span class="w"> </span><span class="n">tense</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;Add feature&quot;</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="s2">&quot;Added feature&quot;</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Reference</span><span class="w"> </span><span class="n">issues</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">PRs</span>
+
+<span class="n">Fixes</span><span class="w"> </span><span class="err">#</span><span class="mi">123</span>
+<span class="n">Closes</span><span class="w"> </span><span class="err">#</span><span class="mi">456</span>
+</code></pre></div>
+
+<h3 id="types">Types</h3>
+<ul>
+<li><code>Fix:</code> Bug fixes</li>
+<li><code>Add:</code> New features</li>
+<li><code>Update:</code> Changes to existing features</li>
+<li><code>Remove:</code> Removing features or code</li>
+<li><code>Refactor:</code> Code restructuring without behavior change</li>
+<li><code>Docs:</code> Documentation only</li>
+<li><code>Test:</code> Adding or updating tests</li>
+<li><code>Style:</code> Formatting, whitespace (no code change)</li>
+<li><code>Perf:</code> Performance improvements</li>
+<li><code>Security:</code> Security-related changes</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<p><strong>Good:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Fix</span><span class="o">:</span><span class="w"> </span><span class="n">Drug</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="n">seconds</span>
+
+<span class="n">Increase</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="mi">10</span><span class="n">s</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">30</span><span class="n">s</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="n">connections</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">retry</span>
+<span class="n">logic</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">exponential</span><span class="w"> </span><span class="n">backoff</span><span class="o">.</span><span class="w"> </span><span class="n">Previously</span><span class="o">,</span><span class="w"> </span><span class="n">searches</span><span class="w"> </span><span class="n">would</span><span class="w"> </span><span class="n">fail</span><span class="w"> </span><span class="n">on</span>
+<span class="n">slower</span><span class="w"> </span><span class="n">networks</span><span class="w"> </span><span class="n">even</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">responding</span><span class="o">.</span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">Increase</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">30</span><span class="n">s</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">retry</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">exponential</span><span class="w"> </span><span class="n">backoff</span><span class="w"> </span><span class="o">(</span><span class="n">max</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">attempts</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="n">behavior</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">retry</span><span class="w"> </span><span class="n">logic</span>
+
+<span class="n">Fixes</span><span class="w"> </span><span class="err">#</span><span class="mi">123</span>
+</code></pre></div>
+
+<p><strong>Good:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Add</span><span class="o">:</span><span class="w"> </span><span class="n">Prescription</span><span class="w"> </span><span class="n">validation</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">controlled</span><span class="w"> </span><span class="n">substances</span>
+
+<span class="n">Implements</span><span class="w"> </span><span class="n">DEA</span><span class="w"> </span><span class="n">schedule</span><span class="w"> </span><span class="n">validation</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">controlled</span>
+<span class="n">substance</span><span class="w"> </span><span class="n">prescriptions</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">federal</span><span class="w"> </span><span class="n">regulations</span><span class="o">.</span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">DEA</span><span class="w"> </span><span class="n">schedule</span><span class="w"> </span><span class="n">lookup</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Implement</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">schedule</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">state</span><span class="o">-</span><span class="n">specific</span><span class="w"> </span><span class="n">restrictions</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">comprehensive</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">suite</span>
+
+<span class="n">Closes</span><span class="w"> </span><span class="err">#</span><span class="mi">456</span>
+</code></pre></div>
+
+<p><strong>Bad:</strong></p>
+<div class="codehilite"><pre><span></span><code>Fixed some bugs
+</code></pre></div>
+
+<p><strong>Bad:</strong></p>
+<div class="codehilite"><pre><span></span><code>updated code to make it work better and also fixed a typo in the
+documentation and refactored some functions and added tests
+</code></pre></div>
+
+<hr />
+<h2 id="testing-guidelines">Testing Guidelines</h2>
+<h3 id="test-coverage-requirements">Test Coverage Requirements</h3>
+<ul>
+<li><strong>New Code:</strong> ≥ 80% coverage</li>
+<li><strong>Modified Code:</strong> Maintain or improve coverage</li>
+<li><strong>Critical Paths:</strong> 100% coverage (e.g., drug interaction checking, FRCP deadline calculation)</li>
+</ul>
+<h3 id="test-types">Test Types</h3>
+<p><strong>Unit Tests:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Test single function in isolation</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">testBMICalculation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">bmi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateBMI</span><span class="p">(</span><span class="n">weight</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">:</span><span class="w"> </span><span class="mf">1.75</span><span class="p">)</span>
+<span class="w">    </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">bmi</span><span class="p">,</span><span class="w"> </span><span class="mf">22.86</span><span class="p">,</span><span class="w"> </span><span class="n">accuracy</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Integration Tests:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Test components working together</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">testDrugInteractionWorkflow</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">service</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MedicationService</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">patient</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">createTestPatient</span><span class="p">(</span><span class="n">medications</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Warfarin&quot;</span><span class="p">])</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="n">checkInteraction</span><span class="p">(</span>
+<span class="w">        </span><span class="n">patient</span><span class="p">:</span><span class="w"> </span><span class="n">patient</span><span class="p">,</span>
+<span class="w">        </span><span class="n">newDrug</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aspirin&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">severity</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">major</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Validation Tests:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Test domain-specific correctness</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">testMedicalBoardExam_Cardiology</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">testCase</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">loadTestCase</span><span class="p">(</span><span class="s">&quot;cardiology-001-stemi&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">diagnosis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">clinician</span><span class="p">.</span><span class="n">diagnose</span><span class="p">(</span><span class="n">testCase</span><span class="p">.</span><span class="n">patientData</span><span class="p">)</span>
+<span class="w">    </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">diagnosis</span><span class="p">.</span><span class="n">primary</span><span class="p">,</span><span class="w"> </span><span class="n">testCase</span><span class="p">.</span><span class="n">expectedDiagnosis</span><span class="p">)</span>
+<span class="w">    </span><span class="n">XCTAssertGreaterThan</span><span class="p">(</span><span class="n">diagnosis</span><span class="p">.</span><span class="n">confidence</span><span class="p">,</span><span class="w"> </span><span class="mf">0.90</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="domain-pack-development">Domain Pack Development</h2>
+<p><strong>Want to create a new domain pack?</strong></p>
+<p><a href="domain-packs.html">Complete Guide →</a></p>
+<p><strong>Quick Start:</strong>
+1. Define validation rules
+2. Create ontology schema (Cypher)
+3. Implement DomainPack protocol
+4. Write comprehensive tests
+5. Document thoroughly
+6. Submit PR</p>
+<p><strong>Example Domains:</strong>
+- Chemistry (MOF generation, retrosynthesis)
+- Fluid Dynamics (CFD, FEA/FSI)
+- Finance (fraud detection, risk analysis)
+- Cybersecurity (threat intelligence, SIEM)</p>
+<hr />
+<h2 id="recognition">Recognition</h2>
+<h3 id="hall-of-fame">Hall of Fame</h3>
+<p>Top contributors will be featured in:
+- README Contributors section
+- Annual report acknowledgments
+- Conference presentations
+- Blog posts</p>
+<h3 id="contributor-levels">Contributor Levels</h3>
+<p><strong>Bronze:</strong> 1-5 merged PRs
+<strong>Silver:</strong> 6-20 merged PRs
+<strong>Gold:</strong> 21+ merged PRs
+<strong>Platinum:</strong> Major features or ongoing maintenance</p>
+<hr />
+<h2 id="license">License</h2>
+<p>By contributing to FoT Apple, you agree that your contributions will be licensed under the AGPL v3.0 license.</p>
+<p><strong>What This Means:</strong>
+- Your code becomes part of the open source project
+- Others can use, modify, and distribute your code
+- Derivative works must also be open source (AGPL requirement)
+- You retain copyright to your contributions</p>
+<hr />
+<h2 id="questions">Questions?</h2>
+<p><strong>Before Contributing:</strong>
+- Read <a href="development-setup.html">Development Setup</a>
+- Review <a href="architecture.html">Architecture</a>
+- Check <a href="faq.html">FAQ</a></p>
+<p><strong>During Contributing:</strong>
+- Ask questions in GitHub Discussions
+- Comment on issues for clarification
+- Email: tech@fortressai.com</p>
+<p><strong>Community:</strong>
+- <a href="https://github.com/fortressai/fotapple/discussions.html">GitHub Discussions</a>
+- <a href="https://twitter.com/fotapple.html">Twitter: @FoTApple</a></p>
+<hr />
+<h2 id="thank-you">Thank You!</h2>
+<p>Every contribution, no matter how small, makes FoT Apple better for thousands of professionals worldwide. Thank you for being part of our community!</p>
+<p><strong>Happy Contributing! 🎉</strong></p>
+<p><em>Last updated: October 27, 2025</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

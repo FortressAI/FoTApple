@@ -8,22 +8,40 @@ import FoTUI
 @main
 struct PersonalHealthApp: App {
     @StateObject private var healthState = HealthState()
+    @StateObject private var voiceAssistant = SiriVoiceAssistant.shared
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
-    
+
     init() {
         FoTLogger.app.info("My Health starting - Personal health monitor for individuals")
     }
-    
+
     var body: some Scene {
         WindowGroup {
-            if !hasCompletedOnboarding {
-                PersonalHealthOnboardingFlow {
-                    hasCompletedOnboarding = true
+            ZStack {
+                if !hasCompletedOnboarding {
+                    PersonalHealthOnboardingFlow {
+                        hasCompletedOnboarding = true
+                    }
+                } else {
+                    PersonalHealthContentView()
+                        .environmentObject(healthState)
+                        .interactiveHelp(.personalHealthDashboard)
+                        .voiceContext(.healthTracking, message: "Welcome to My Health. Your personal health companion.")
+                        .onAppear {
+                            // Greet user every time app opens
+                            voiceAssistant.greetUser(appName: "My Health")
+                        }
                 }
-            } else {
-                PersonalHealthContentView()
-                    .environmentObject(healthState)
-                    .interactiveHelp(.personalHealthDashboard)
+                
+                // Floating voice assistant indicator
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        VoiceAssistantIndicator()
+                            .padding()
+                    }
+                }
             }
         }
     }

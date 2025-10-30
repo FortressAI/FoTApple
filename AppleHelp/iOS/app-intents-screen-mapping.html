@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="App Intents to Screen Mapping">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>App Intents to Screen Mapping - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>App Intents to Screen Mapping</h1>
+        </header>
+        
+        <main>
+            <h1 id="app-intents-to-screen-mapping">App Intents to Screen Mapping</h1>
+<p><strong>Complete mapping of Siri voice commands to actual app screens for screenshot documentation</strong></p>
+<hr />
+<h2 id="personal-health-app-intent-mapping">🏃 Personal Health App - Intent Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>Intent Name</th>
+<th>Voice Command</th>
+<th>Screen to Capture</th>
+<th>Key Elements to Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RecordHealthCheckInIntent</code></td>
+<td>"Hey Siri, record my health check-in"</td>
+<td><strong>Mental Health Tab → Daily Check-In</strong></td>
+<td>Mood slider (1-10), Symptoms field, Notes field, Submit button</td>
+</tr>
+<tr>
+<td><code>AccessCrisisSupportIntent</code></td>
+<td>"Hey Siri, I need help"</td>
+<td><strong>Mental Health Tab → Crisis Support</strong></td>
+<td>🚨 988 button, Crisis Text Line, Trevor Project, Trans Lifeline, LGBTQ+ resources</td>
+</tr>
+<tr>
+<td><code>StartGuidanceNavigatorIntent</code></td>
+<td>"Hey Siri, do I need a doctor?"</td>
+<td><strong>Today Tab → "When Do I Need Help?" Button → Navigator</strong></td>
+<td>Question 1 of 10, Multiple choice options, Progress indicator</td>
+</tr>
+<tr>
+<td><code>RecordVitalsIntent</code></td>
+<td>"Hey Siri, record my vitals"</td>
+<td><strong>Physical Health Tab → Vitals Entry</strong></td>
+<td>Temperature field, Heart rate, Blood pressure (systolic/diastolic), Submit button</td>
+</tr>
+<tr>
+<td><code>SummarizeHealthIntent</code></td>
+<td>"Hey Siri, summarize my health"</td>
+<td><strong>Timeline Tab → Health Summary</strong></td>
+<td>Mood graph, Sleep correlation, Stress trends, Time period selector</td>
+</tr>
+<tr>
+<td><code>LogMoodIntent</code></td>
+<td>"Hey Siri, log my mood"</td>
+<td><strong>Mental Health Tab → Quick Mood</strong></td>
+<td>Mood slider with emoji, Quick save button</td>
+</tr>
+</tbody>
+</table>
+<h3 id="screenshot-requirements">Screenshot Requirements</h3>
+<p><strong>Priority 1 (Must Have):</strong>
+1. <strong>Today Summary</strong> - Shows quick actions including "When Do I Need Help?" button
+2. <strong>Daily Check-In Screen</strong> - Complete form with all fields visible
+3. <strong>Crisis Support Screen</strong> - All hotlines prominently displayed with 988 at top
+4. <strong>Health Navigator - Question Screen</strong> - Question 1 with options
+5. <strong>Health Navigator - Results Screen</strong> - Urgency level badge, recommended professional, next steps
+6. <strong>Vitals Entry Form</strong> - All vital sign fields</p>
+<p><strong>Priority 2 (Nice to Have):</strong>
+7. <strong>Timeline/Summary View</strong> - Graphs and trends
+8. <strong>Quick Mood Entry</strong> - Simplified mood logging
+9. <strong>Siri Overlay</strong> - Voice command in action with app in background</p>
+<hr />
+<h2 id="clinician-app-intent-mapping">🩺 Clinician App - Intent Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>Intent Name</th>
+<th>Voice Command</th>
+<th>Screen to Capture</th>
+<th>Key Elements to Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StartEncounterIntent</code></td>
+<td>"Hey Siri, start clinical encounter"</td>
+<td><strong>Encounters Tab → New Encounter</strong></td>
+<td>Patient selector, Chief complaint field, Start button</td>
+</tr>
+<tr>
+<td><code>CheckDrugInteractionsIntent</code></td>
+<td>"Hey Siri, check drug interactions for aspirin and warfarin"</td>
+<td><strong>Medications Tab → Interactions Check</strong></td>
+<td>Drug 1 field, Drug 2 field, Check button, Results showing severity</td>
+</tr>
+<tr>
+<td><code>GenerateSOAPNoteIntent</code></td>
+<td>"Hey Siri, generate SOAP note"</td>
+<td><strong>Encounter → SOAP Note Generated</strong></td>
+<td>S/O/A/P sections filled, Cryptographic receipt, VQbit analysis stamp</td>
+</tr>
+<tr>
+<td><code>AddPatientVitalsIntent</code></td>
+<td>"Hey Siri, add patient vitals"</td>
+<td><strong>Patient Detail → Vitals Entry</strong></td>
+<td>HR, BP, Temp, RR, SpO2 fields, BMI calculation, Warnings if abnormal</td>
+</tr>
+<tr>
+<td><code>RecordDiagnosisIntent</code></td>
+<td>"Hey Siri, record diagnosis"</td>
+<td><strong>Encounter → Diagnosis</strong></td>
+<td>ICD-10 code field, Description, Status selector, Validation indicator</td>
+</tr>
+<tr>
+<td><code>RecordMedicationIntent</code></td>
+<td>"Hey Siri, prescribe medication"</td>
+<td><strong>Encounter → Medications → Prescribe</strong></td>
+<td>Medication name, Dose value/unit, Frequency, Interaction warning</td>
+</tr>
+<tr>
+<td><code>SummarizePatientIntent</code></td>
+<td>"Hey Siri, patient summary"</td>
+<td><strong>Patient Detail → Summary View</strong></td>
+<td>Active problems list, Current meds, Allergies, Recent labs, AI insights</td>
+</tr>
+<tr>
+<td><code>EndEncounterIntent</code></td>
+<td>"Hey Siri, end encounter"</td>
+<td><strong>Encounter → Finalize</strong></td>
+<td>Sign button, Merkle root, SafeAICoin TX hash, Attestation complete checkmarks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="screenshot-requirements_1">Screenshot Requirements</h3>
+<p><strong>Priority 1 (Must Have):</strong>
+1. <strong>Patient List</strong> - Multiple patients displayed with search
+2. <strong>Start Encounter</strong> - New encounter form with patient and chief complaint
+3. <strong>Drug Interaction Results</strong> - Show aspirin + warfarin with severity warning
+4. <strong>Vitals Entry</strong> - All vital sign fields with BMI auto-calculation
+5. <strong>SOAP Note Generated</strong> - Complete note with all sections + receipt
+6. <strong>Patient Summary</strong> - Problems, meds, allergies, labs all visible
+7. <strong>Encounter Finalization</strong> - Blockchain attestation with TX hash
+8. <strong>Diagnosis Entry</strong> - ICD-10 validation in action</p>
+<p><strong>Priority 2 (Nice to Have):</strong>
+9. <strong>Medication Prescription</strong> - E-prescribe ready interface
+10. <strong>Glass UI Showcase</strong> - Blue/cyan/teal theme prominent
+11. <strong>Siri Overlay</strong> - "Hey Siri, start clinical encounter" visible</p>
+<hr />
+<h2 id="education-k-18-app-intent-mapping">📚 Education K-18 App - Intent Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>Intent Name</th>
+<th>Voice Command</th>
+<th>Screen to Capture</th>
+<th>Key Elements to Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RecordAssignmentIntent</code></td>
+<td>"Hey Siri, add assignment for Emma Johnson"</td>
+<td><strong>Assignments Tab → New Assignment</strong></td>
+<td>Student selector, Assignment title, Subject dropdown, Due date picker</td>
+</tr>
+<tr>
+<td><code>TrackVirtueScoreIntent</code></td>
+<td>"Hey Siri, track student character"</td>
+<td><strong>Student Detail → Virtue Dashboard</strong></td>
+<td>Justice, Temperance, Prudence, Fortitude sliders (0.0-1.0), Update button</td>
+</tr>
+<tr>
+<td><code>CheckIEPAccommodationsIntent</code></td>
+<td>"Hey Siri, check IEP accommodations"</td>
+<td><strong>Student Detail → IEP/504 Tab</strong></td>
+<td>Complete accommodations list, Categories (Instructional, Environmental, Behavioral)</td>
+</tr>
+<tr>
+<td><code>CheckScheduleIntent</code></td>
+<td>"Hey Siri, what's my schedule"</td>
+<td><strong>Schedule Tab</strong></td>
+<td>Classes listed by period, Due assignments, Events</td>
+</tr>
+<tr>
+<td><code>TrackProgressIntent</code></td>
+<td>"Hey Siri, track my progress"</td>
+<td><strong>Student Detail → Progress Tab</strong></td>
+<td>Assignments completed %, Average grade, Virtue scores with trends, AI insights</td>
+</tr>
+<tr>
+<td><code>RequestTutorSupportIntent</code></td>
+<td>"Hey Siri, request tutor help"</td>
+<td><strong>Support Tab → Request Tutor</strong></td>
+<td>Subject selector, Urgency level (Low/Medium/High), Submit button</td>
+</tr>
+<tr>
+<td><code>SubmitDocumentIntent</code></td>
+<td>"Hey Siri, submit my homework"</td>
+<td><strong>Assignment Detail → Submit</strong></td>
+<td>Document type selector (Photo, Scan, Video, Audio), Camera/upload button</td>
+</tr>
+</tbody>
+</table>
+<h3 id="teacher-specific-intents">Teacher-Specific Intents</h3>
+<table>
+<thead>
+<tr>
+<th>Intent Name</th>
+<th>Voice Command</th>
+<th>Screen to Capture</th>
+<th>Key Elements to Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RecordAttendanceIntent</code></td>
+<td>"Hey Siri, record class attendance"</td>
+<td><strong>Class Tab → Attendance</strong></td>
+<td>Student list with Present/Absent checkboxes, Attendance rate calculation</td>
+</tr>
+<tr>
+<td><code>ScheduleParentMeetingIntent</code></td>
+<td>"Hey Siri, schedule parent meeting"</td>
+<td><strong>Student → Communication → Schedule Meeting</strong></td>
+<td>Student, Date picker, Purpose dropdown, Notes field</td>
+</tr>
+<tr>
+<td><code>GradeAssignmentIntent</code></td>
+<td>"Hey Siri, grade student assignment"</td>
+<td><strong>Assignment → Grade</strong></td>
+<td>Student, Score/Max score fields, Percentage calculation, Letter grade display</td>
+</tr>
+<tr>
+<td><code>DocumentBehaviorIncidentIntent</code></td>
+<td>"Hey Siri, document behavior incident"</td>
+<td><strong>Student → Behavior → New Incident</strong></td>
+<td>Incident type dropdown, Description, Severity level, Witnesses field</td>
+</tr>
+<tr>
+<td><code>SendClassAnnouncementIntent</code></td>
+<td>"Hey Siri, send class announcement"</td>
+<td><strong>Class → Announcements → New</strong></td>
+<td>Class selector, Message field, Priority selector, Include parents checkbox</td>
+</tr>
+<tr>
+<td><code>CreateLessonPlanIntent</code></td>
+<td>"Hey Siri, create lesson plan"</td>
+<td><strong>Lessons Tab → New Lesson</strong></td>
+<td>Subject, Topic, Date, Duration, Learning objectives, VQbit AI suggestions</td>
+</tr>
+<tr>
+<td><code>UpdateProgressReportIntent</code></td>
+<td>"Hey Siri, update progress report"</td>
+<td><strong>Student → Reports → New Report</strong></td>
+<td>Report type, Academic summary, Behavior summary, Recommendations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="student-specific-intents">Student-Specific Intents</h3>
+<table>
+<thead>
+<tr>
+<th>Intent Name</th>
+<th>Voice Command</th>
+<th>Screen to Capture</th>
+<th>Key Elements to Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LogAssignmentStatusIntent</code></td>
+<td>"Hey Siri, mark homework as completed"</td>
+<td><strong>My Assignments → Assignment Detail</strong></td>
+<td>Status selector (Completed, In Progress, Need Help), Notes field</td>
+</tr>
+<tr>
+<td><code>RequestExtensionIntent</code></td>
+<td>"Hey Siri, request assignment extension"</td>
+<td><strong>Assignment Detail → Request Extension</strong></td>
+<td>Current due date, Requested new date, Reason field</td>
+</tr>
+<tr>
+<td><code>ViewGradesIntent</code></td>
+<td>"Hey Siri, view my grades"</td>
+<td><strong>My Grades Tab</strong></td>
+<td>Overall GPA, Individual subjects with percentages, Recent assignments, Trending indicator</td>
+</tr>
+<tr>
+<td><code>LogStudySessionIntent</code></td>
+<td>"Hey Siri, log study session"</td>
+<td><strong>Study Tracker → New Session</strong></td>
+<td>Subject, Duration, Topics covered, Effectiveness rating (1-5 stars)</td>
+</tr>
+<tr>
+<td><code>ReflectOnVirtueIntent</code></td>
+<td>"Hey Siri, reflect on character virtue"</td>
+<td><strong>My Character → Virtue Reflection</strong></td>
+<td>Virtue selector, Self-assessment slider, Reflection notes field</td>
+</tr>
+<tr>
+<td><code>AskTeacherQuestionIntent</code></td>
+<td>"Hey Siri, ask teacher a question"</td>
+<td><strong>Questions Tab → New Question</strong></td>
+<td>Subject, Question text, Assignment dropdown, Urgency selector</td>
+</tr>
+</tbody>
+</table>
+<h3 id="screenshot-requirements_2">Screenshot Requirements</h3>
+<p><strong>Priority 1 (Must Have):</strong>
+1. <strong>Student List</strong> - Multiple students with grade levels, IEP indicators
+2. <strong>Student Profile</strong> - Demographics, learning style, strengths/challenges
+3. <strong>Virtue Dashboard</strong> - All 4 virtues with scores and trends
+4. <strong>Assignment List</strong> - Subject-organized, due dates, completion status
+5. <strong>Assessment Entry</strong> - Subject, Standard alignment, Mastery level selector
+6. <strong>IEP Accommodations</strong> - Complete list with categories
+7. <strong>Attendance Screen</strong> - Student checkboxes, attendance rate
+8. <strong>Grading Interface</strong> - Score entry, percentage, letter grade calculation</p>
+<p><strong>Priority 2 (Nice to Have):</strong>
+9. <strong>Schedule View</strong> - Classes, assignments, events
+10. <strong>Progress Report</strong> - Academic and behavior summaries
+11. <strong>Behavior Incident</strong> - Incident type, severity, witnesses
+12. <strong>Class Announcements</strong> - Message composer with priority
+13. <strong>Student Grades View</strong> - GPA, subjects, trending
+14. <strong>Study Session Log</strong> - Duration, effectiveness rating
+15. <strong>Glass UI Showcase</strong> - Green/mint/yellow theme</p>
+<hr />
+<h2 id="legal-us-app-intent-mapping">⚖️ Legal US App - Intent Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>Intent Name</th>
+<th>Voice Command</th>
+<th>Screen to Capture</th>
+<th>Key Elements to Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CaptureEvidenceIntent</code></td>
+<td>"Hey Siri, capture legal evidence"</td>
+<td><strong>Evidence Tab → Camera with Overlays</strong></td>
+<td>Camera view, GPS coordinates overlay, Timestamp, "Capture" button, Description field</td>
+</tr>
+<tr>
+<td><code>DocumentIncidentIntent</code></td>
+<td>"Hey Siri, document workplace injury"</td>
+<td><strong>Incidents Tab → New Incident → Workplace Injury</strong></td>
+<td>Incident type dropdown, Description field, Witnesses checkbox, Date/time/location</td>
+</tr>
+<tr>
+<td><code>AddTimelineEventIntent</code></td>
+<td>"Hey Siri, add court date"</td>
+<td><strong>Case Detail → Timeline → New Event</strong></td>
+<td>Case number, Event type dropdown (Filing, Hearing, etc.), Description</td>
+</tr>
+<tr>
+<td><code>AskLegalQuestionIntent</code></td>
+<td>"Hey Siri, ask legal question"</td>
+<td><strong>Legal Info Tab</strong></td>
+<td>Topic selector (Tenant Rights, Employment, etc.), FAQ display, Disclaimer prominent</td>
+</tr>
+<tr>
+<td><code>FindLegalAidIntent</code></td>
+<td>"Hey Siri, find legal aid"</td>
+<td><strong>Resources Tab → Legal Aid</strong></td>
+<td>Nearby services list with distances, Phone numbers, National hotlines</td>
+</tr>
+<tr>
+<td><code>LogCommunicationIntent</code></td>
+<td>"Hey Siri, log communication"</td>
+<td><strong>Case → Communications → New</strong></td>
+<td>Party name, Method dropdown (Phone, Email, etc.), Summary field, Timestamp</td>
+</tr>
+<tr>
+<td><code>SummarizePersonalCaseIntent</code></td>
+<td>"Hey Siri, summarize my case"</td>
+<td><strong>Case Detail → Summary View</strong></td>
+<td>Overview, Evidence count, Communications count, Timeline, Next steps, VQbit analysis</td>
+</tr>
+<tr>
+<td><code>CreatePersonalCaseIntent</code></td>
+<td>"Hey Siri, create personal case"</td>
+<td><strong>Cases Tab → New Case</strong></td>
+<td>Case title, Type dropdown, Opposing party field, Case ID generation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="attorney-specific-intents">Attorney-Specific Intents</h3>
+<table>
+<thead>
+<tr>
+<th>Intent Name</th>
+<th>Voice Command</th>
+<th>Screen to Capture</th>
+<th>Key Elements to Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CreateClientCaseIntent</code></td>
+<td>"Hey Siri, create client case"</td>
+<td><strong>Cases → New Client Case</strong></td>
+<td>Client name, Case type dropdown, Title, Opposing party, Billing rate, Conflict check</td>
+</tr>
+<tr>
+<td><code>RecordBillableTimeIntent</code></td>
+<td>"Hey Siri, record billable time"</td>
+<td><strong>Case → Time Entry</strong></td>
+<td>Activity description, Duration, Rate, Amount calculation, Today's total</td>
+</tr>
+<tr>
+<td><code>ScheduleDepositionIntent</code></td>
+<td>"Hey Siri, schedule deposition"</td>
+<td><strong>Case → Depositions → Schedule</strong></td>
+<td>Witness name, Date/time picker, Location, Court reporter checkbox, Notifications</td>
+</tr>
+<tr>
+<td><code>FileCourtDocumentIntent</code></td>
+<td>"Hey Siri, file court document"</td>
+<td><strong>Case → Filings → New Filing</strong></td>
+<td>Case number, Document type dropdown, Court selector, E-filing ID, Service status</td>
+</tr>
+<tr>
+<td><code>RecordClientConsultationIntent</code></td>
+<td>"Hey Siri, record client consultation"</td>
+<td><strong>Case → Consultations → New</strong></td>
+<td>Client, Type dropdown, Duration, Notes field, Attorney-client privilege indicator</td>
+</tr>
+<tr>
+<td><code>GenerateLegalMemoIntent</code></td>
+<td>"Hey Siri, generate legal memo"</td>
+<td><strong>Case → Research → New Memo</strong></td>
+<td>Legal issue field, Jurisdiction, VQbit analysis, Memo structure, Confidence score</td>
+</tr>
+<tr>
+<td><code>SearchCaseLawIntent</code></td>
+<td>"Hey Siri, search case law"</td>
+<td><strong>Research Tab → Search</strong></td>
+<td>Query field, Jurisdiction filter, Date range, Results with citations and relevance scores</td>
+</tr>
+<tr>
+<td><code>ManageDiscoveryIntent</code></td>
+<td>"Hey Siri, manage discovery"</td>
+<td><strong>Case → Discovery</strong></td>
+<td>Action selector, Discovery type dropdown, Status dashboard, Deadlines list</td>
+</tr>
+<tr>
+<td><code>PrepareWitnessIntent</code></td>
+<td>"Hey Siri, prepare witness"</td>
+<td><strong>Case → Witnesses → Preparation</strong></td>
+<td>Witness name, Testimony type, Preparation notes, Key points checklist, Work product indicator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="screenshot-requirements_3">Screenshot Requirements</h3>
+<p><strong>Priority 1 (Must Have):</strong>
+1. <strong>Case List</strong> - Multiple cases with case numbers, types, status
+2. <strong>Evidence Capture</strong> - Camera with GPS overlay + timestamp
+3. <strong>Evidence Detail</strong> - Photo with location, timestamp, cryptographic receipt
+4. <strong>Incident Documentation - Harassment</strong> - Specialized form with all fields
+5. <strong>FRCP Deadline Calculator</strong> - Event date, Rule selector, Calculated deadline, 100% accuracy badge
+6. <strong>Case Timeline</strong> - Chronological events with dates
+7. <strong>Case Summary</strong> - Overview, evidence count, communications, next steps
+8. <strong>Legal Aid Finder</strong> - Nearby services with distances and contact info</p>
+<p><strong>Priority 2 (Nice to Have - Attorney Features):</strong>
+9. <strong>Client Case Creation</strong> - Professional case setup form
+10. <strong>Billable Time Entry</strong> - Activity, duration, amount calculation
+11. <strong>Deposition Scheduling</strong> - Complete scheduling interface
+12. <strong>Court Document Filing</strong> - E-filing with service tracking
+13. <strong>Case Law Search</strong> - Results with Bluebook citations
+14. <strong>Discovery Management</strong> - Status dashboard with deadlines
+15. <strong>Legal Memo</strong> - VQbit-generated memo with structure
+16. <strong>Glass UI Showcase</strong> - Indigo/purple/blue theme</p>
+<hr />
+<h2 id="automated-screenshot-script-plan">🎯 Automated Screenshot Script Plan</h2>
+<h3 id="xcuitest-structure">XCUITest Structure</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// PersonalHealthScreenshots.swift</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">testPersonalHealthIntentScreenshots</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">app</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">XCUIApplication</span><span class="p">()</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="n">launch</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// Intent 1: Health Check-In</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="n">tabBars</span><span class="p">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">&quot;Mental Health&quot;</span><span class="p">].</span><span class="n">tap</span><span class="p">()</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">&quot;Daily Check-In&quot;</span><span class="p">].</span><span class="n">tap</span><span class="p">()</span>
+<span class="w">    </span><span class="n">takeScreenshot</span><span class="p">(</span><span class="n">named</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;personal-health-01-daily-checkin&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Intent 2: Crisis Support</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">&quot;Crisis Support&quot;</span><span class="p">].</span><span class="n">tap</span><span class="p">()</span>
+<span class="w">    </span><span class="n">takeScreenshot</span><span class="p">(</span><span class="n">named</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;personal-health-02-crisis-support&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="n">navigationBars</span><span class="p">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">&quot;Back&quot;</span><span class="p">].</span><span class="n">tap</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// Intent 3: Health Navigator</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="n">tabBars</span><span class="p">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">&quot;Today&quot;</span><span class="p">].</span><span class="n">tap</span><span class="p">()</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">&quot;When Do I Need Help?&quot;</span><span class="p">].</span><span class="n">tap</span><span class="p">()</span>
+<span class="w">    </span><span class="n">takeScreenshot</span><span class="p">(</span><span class="n">named</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;personal-health-03-navigator-question&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// ... continue for all intents</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="intent-coverage-checklist">📋 Intent Coverage Checklist</h2>
+<h3 id="personal-health-6-intents">Personal Health (6 intents)</h3>
+<ul>
+<li>[ ] RecordHealthCheckInIntent → Daily Check-In screen</li>
+<li>[ ] AccessCrisisSupportIntent → Crisis Support screen</li>
+<li>[ ] StartGuidanceNavigatorIntent → Navigator Question + Results</li>
+<li>[ ] RecordVitalsIntent → Vitals Entry form</li>
+<li>[ ] SummarizeHealthIntent → Timeline/Summary view</li>
+<li>[ ] LogMoodIntent → Quick Mood entry</li>
+</ul>
+<h3 id="clinician-8-intents">Clinician (8 intents)</h3>
+<ul>
+<li>[ ] StartEncounterIntent → New Encounter form</li>
+<li>[ ] CheckDrugInteractionsIntent → Interactions results</li>
+<li>[ ] GenerateSOAPNoteIntent → Generated SOAP note</li>
+<li>[ ] AddPatientVitalsIntent → Vitals entry with warnings</li>
+<li>[ ] RecordDiagnosisIntent → Diagnosis with ICD-10 validation</li>
+<li>[ ] RecordMedicationIntent → Prescription form</li>
+<li>[ ] SummarizePatientIntent → Patient summary dashboard</li>
+<li>[ ] EndEncounterIntent → Finalization with blockchain</li>
+</ul>
+<h3 id="education-k-18-18-intents-total">Education K-18 (18 intents total)</h3>
+<p><strong>Teacher (12 intents):</strong>
+- [ ] RecordAssignmentIntent → New assignment form
+- [ ] TrackVirtueScoreIntent → Virtue dashboard
+- [ ] CheckIEPAccommodationsIntent → IEP accommodations list
+- [ ] RecordAttendanceIntent → Attendance screen
+- [ ] ScheduleParentMeetingIntent → Meeting scheduler
+- [ ] GradeAssignmentIntent → Grading interface
+- [ ] DocumentBehaviorIncidentIntent → Incident report
+- [ ] SendClassAnnouncementIntent → Announcement composer
+- [ ] CreateLessonPlanIntent → Lesson plan form
+- [ ] UpdateProgressReportIntent → Progress report</p>
+<p><strong>Student (6 intents):</strong>
+- [ ] CheckScheduleIntent → My schedule
+- [ ] TrackProgressIntent → My progress/grades
+- [ ] LogAssignmentStatusIntent → Assignment status update
+- [ ] RequestExtensionIntent → Extension request form
+- [ ] ViewGradesIntent → Grades view
+- [ ] LogStudySessionIntent → Study session tracker</p>
+<h3 id="legal-us-17-intents-total">Legal US (17 intents total)</h3>
+<p><strong>Personal/Citizen (8 intents):</strong>
+- [ ] CaptureEvidenceIntent → Camera with overlays
+- [ ] DocumentIncidentIntent → Incident documentation
+- [ ] AddTimelineEventIntent → Timeline event form
+- [ ] AskLegalQuestionIntent → Legal info/FAQ
+- [ ] FindLegalAidIntent → Legal aid resources
+- [ ] LogCommunicationIntent → Communication log
+- [ ] SummarizePersonalCaseIntent → Case summary
+- [ ] CreatePersonalCaseIntent → New personal case</p>
+<p><strong>Attorney/Professional (9 intents):</strong>
+- [ ] CreateClientCaseIntent → Client case creation
+- [ ] RecordBillableTimeIntent → Time entry
+- [ ] ScheduleDepositionIntent → Deposition scheduling
+- [ ] FileCourtDocumentIntent → E-filing
+- [ ] RecordClientConsultationIntent → Consultation notes
+- [ ] GenerateLegalMemoIntent → Legal memo
+- [ ] SearchCaseLawIntent → Case law search results
+- [ ] ManageDiscoveryIntent → Discovery dashboard
+- [ ] PrepareWitnessIntent → Witness preparation</p>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<ol>
+<li><strong>Review current app implementations</strong> - Verify all screens exist</li>
+<li><strong>Create XCUITest screenshot scripts</strong> - Automate capture for all intents</li>
+<li><strong>Manual screenshot session</strong> - Capture any missing screens</li>
+<li><strong>Validate intent-screen mapping</strong> - Ensure every voice command has visual proof</li>
+<li><strong>Update wiki documentation</strong> - Embed screenshots in appropriate pages</li>
+<li><strong>Create App Store assets</strong> - 5-10 key screenshots per app for submission</li>
+</ol>
+<hr />
+<p><strong>Every Siri command should show:</strong>
+1. ✅ The screen it opens or controls
+2. ✅ Key UI elements (buttons, forms, fields)
+3. ✅ Cryptographic receipts where applicable
+4. ✅ Glass UI design theme
+5. ✅ Realistic sample data (not placeholders)</p>
+<p><strong>Total Screenshots Needed:</strong>
+- <strong>Personal Health:</strong> 10 priority screens
+- <strong>Clinician:</strong> 11 priority screens
+- <strong>Education K-18:</strong> 20+ screens (teacher + student views)
+- <strong>Legal US:</strong> 16 priority screens (personal + attorney)</p>
+<p><strong>Grand Total: ~57 priority screenshots across all 4 apps</strong></p>
+<hr />
+<p><em>Last Updated: October 28, 2025</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

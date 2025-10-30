@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Unified Sensor Capture Architecture">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Unified Sensor Capture Architecture - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Unified Sensor Capture Architecture</h1>
+        </header>
+        
+        <main>
+            <h1 id="unified-sensor-capture-architecture">Unified Sensor Capture Architecture</h1>
+<h2 id="vision-one-reality-verifiable-truth-across-all-contexts">Vision: One Reality, Verifiable Truth Across All Contexts</h2>
+<p>Field of Truth captures reality using <strong>all available device sensors</strong> and generates <strong>cryptographically-attested receipts</strong> that prove what happened, when, and where. The same sensor infrastructure serves three life contexts:</p>
+<ul>
+<li><strong>Citizen Legal</strong> - Document incidents for justice</li>
+<li><strong>Student Education</strong> - Learn with verified context</li>
+<li><strong>Personal Health</strong> - Track wellness with proof</li>
+</ul>
+<hr />
+<h2 id="core-sensor-capture-engine">Core Sensor Capture Engine</h2>
+<h3 id="available-sensors-by-platform">Available Sensors by Platform</h3>
+<h4 id="iphoneipad">iPhone/iPad</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="nc">SensorType</span><span class="p">:</span><span class="w"> </span><span class="n">CaseIterable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Visual</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">camera</span><span class="w">           </span><span class="c1">// Photo/video capture</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">lidar</span><span class="w">            </span><span class="c1">// 3D depth mapping (iPhone Pro)</span>
+
+<span class="w">    </span><span class="c1">// Location &amp; Motion</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">gps</span><span class="w">              </span><span class="c1">// Precise location</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">compass</span><span class="w">          </span><span class="c1">// Magnetic heading</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">accelerometer</span><span class="w">    </span><span class="c1">// Movement, impacts</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">gyroscope</span><span class="w">        </span><span class="c1">// Rotation</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">barometer</span><span class="w">        </span><span class="c1">// Altitude, weather</span>
+
+<span class="w">    </span><span class="c1">// Audio &amp; Environment</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">microphone</span><span class="w">       </span><span class="c1">// Sound recording</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">ambientLight</span><span class="w">     </span><span class="c1">// Lighting conditions</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">proximSensor</span><span class="w">     </span><span class="c1">// Near/far detection</span>
+
+<span class="w">    </span><span class="c1">// Network &amp; Connectivity</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">wifi</span><span class="w">             </span><span class="c1">// Available networks</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">bluetooth</span><span class="w">        </span><span class="c1">// Nearby devices</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">cellular</span><span class="w">         </span><span class="c1">// Cell tower data</span>
+
+<span class="w">    </span><span class="c1">// Device State</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">battery</span><span class="w">          </span><span class="c1">// Power level</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">temperature</span><span class="w">      </span><span class="c1">// Device heat</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">orientation</span><span class="w">      </span><span class="c1">// Portrait/landscape</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="apple-watch">Apple Watch</h4>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Additional Health Sensors</span>
+<span class="k">case</span><span class="w"> </span><span class="n">heartRate</span><span class="w">         </span><span class="c1">// BPM from optical sensor</span>
+<span class="k">case</span><span class="w"> </span><span class="n">bloodOxygen</span><span class="w">       </span><span class="c1">// SpO2 levels</span>
+<span class="k">case</span><span class="w"> </span><span class="n">ecg</span><span class="w">               </span><span class="c1">// Electrical heart activity</span>
+<span class="k">case</span><span class="w"> </span><span class="n">skinTemperature</span><span class="w">   </span><span class="c1">// Body temp</span>
+<span class="k">case</span><span class="w"> </span><span class="n">ambientNoise</span><span class="w">      </span><span class="c1">// Decibel levels</span>
+</code></pre></div>
+
+<h4 id="macos-macbookimac">macOS (MacBook/iMac)</h4>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Desktop/Laptop Sensors</span>
+<span class="k">case</span><span class="w"> </span><span class="n">webcam</span><span class="w">            </span><span class="c1">// Visual capture</span>
+<span class="k">case</span><span class="w"> </span><span class="n">microphone</span><span class="w">        </span><span class="c1">// Audio input</span>
+<span class="k">case</span><span class="w"> </span><span class="n">wifi</span><span class="w">              </span><span class="c1">// Network state</span>
+<span class="k">case</span><span class="w"> </span><span class="n">battery</span><span class="w">           </span><span class="c1">// Power status (laptops)</span>
+<span class="k">case</span><span class="w"> </span><span class="n">keyboard</span><span class="w">          </span><span class="c1">// Input patterns</span>
+<span class="k">case</span><span class="w"> </span><span class="n">trackpad</span><span class="w">          </span><span class="c1">// Gesture data</span>
+</code></pre></div>
+
+<h4 id="safari-extension">Safari Extension</h4>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Web Context</span>
+<span class="k">case</span><span class="w"> </span><span class="n">viewport</span><span class="w">          </span><span class="c1">// Screen capture</span>
+<span class="k">case</span><span class="w"> </span><span class="n">networkRequests</span><span class="w">   </span><span class="c1">// HTTP traffic</span>
+<span class="k">case</span><span class="w"> </span><span class="n">localStorage</span><span class="w">      </span><span class="c1">// Page data</span>
+<span class="k">case</span><span class="w"> </span><span class="n">cookies</span><span class="w">           </span><span class="c1">// Session info</span>
+<span class="k">case</span><span class="w"> </span><span class="n">pageStructure</span><span class="w">     </span><span class="c1">// DOM snapshot</span>
+</code></pre></div>
+
+<hr />
+<h2 id="unified-capture-protocol">Unified Capture Protocol</h2>
+<h3 id="1-single-tap-emergency-capture">1. Single-Tap Emergency Capture</h3>
+<p><strong>What Happens:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">@</span><span class="n">MainActor</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">emergencyCapture</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">IncidentReceipt</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Start all sensors simultaneously</span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">photo</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">capture</span><span class="p">()</span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">gps</span><span class="p">.</span><span class="n">currentLocation</span><span class="p">()</span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">microphone</span><span class="p">.</span><span class="n">record</span><span class="p">(</span><span class="n">duration</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">motion</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">accelerometer</span><span class="p">.</span><span class="n">recentData</span><span class="p">()</span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">env</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">environment</span><span class="p">.</span><span class="n">snapshot</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// Gather all data</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">sensorBundle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">SensorBundle</span><span class="p">(</span>
+<span class="w">        </span><span class="n">photo</span><span class="p">:</span><span class="w"> </span><span class="n">photo</span><span class="p">,</span>
+<span class="w">        </span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="n">location</span><span class="p">,</span>
+<span class="w">        </span><span class="n">audio</span><span class="p">:</span><span class="w"> </span><span class="n">audio</span><span class="p">,</span>
+<span class="w">        </span><span class="n">motion</span><span class="p">:</span><span class="w"> </span><span class="n">motion</span><span class="p">,</span>
+<span class="w">        </span><span class="n">environment</span><span class="p">:</span><span class="w"> </span><span class="n">env</span><span class="p">,</span>
+<span class="w">        </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">deviceID</span><span class="p">:</span><span class="w"> </span><span class="bp">UIDevice</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">identifierForVendor</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Generate cryptographic receipt</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">receipt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">.</span><span class="n">attestIncident</span><span class="p">(</span><span class="n">sensorBundle</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Encrypt and backup</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="n">CloudKit</span><span class="p">.</span><span class="n">backup</span><span class="p">(</span><span class="n">receipt</span><span class="p">,</span><span class="w"> </span><span class="n">encrypted</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">receipt</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Captured Data Example:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;incident_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ulid_01HF2GK3...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-10-28T14:23:17.342Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">37.7749</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.4194</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;accuracy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;altitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">52.3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;motion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;accelerometer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.02</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;impact_detected&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;gyroscope&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.05</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;yaw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;light_lux&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">450</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pressure_kpa&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">101.3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;temperature_c&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">21.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;humidity_percent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;audio&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;duration_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;m4a&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sample_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">48000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;encrypted_blob&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base64...&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;photo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;resolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4032x3024&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heic&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;exif_preserved&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;encrypted_blob&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base64...&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;wifi_ssid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;StarbucksWiFi&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cell_tower_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;310-410-12345&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ip_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.42&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iPhone 17 Pro&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;os_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iOS 19.1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;battery_percent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;storage_available_gb&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">42.3</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;receipt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;merkle_root&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x abc123...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vqbit_collapse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ed25519_signature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;def456...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;blockchain_anchor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SafeAIC:block_789&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="domain-specific-interpretation">Domain-Specific Interpretation</h2>
+<h3 id="same-sensors-different-meaning">Same Sensors, Different Meaning</h3>
+<h4 id="legal-context-traffic-accident">Legal Context: Traffic Accident</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">TrafficAccidentAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">incidentReceipt</span><span class="p">:</span><span class="w"> </span><span class="n">IncidentReceipt</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">timeline</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">TimelineEvent</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Reconstruct sequence of events</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">impacts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">motion</span><span class="p">.</span><span class="n">accelerometer</span>
+<span class="w">            </span><span class="p">.</span><span class="bp">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">magnitude</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">TimelineEvent</span><span class="p">(</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">impact</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">:</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">timestamp</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">photos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">photo</span>
+<span class="w">            </span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">TimelineEvent</span><span class="p">(</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">documentation</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">:</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">timestamp</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">impacts</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">photos</span><span class="p">).</span><span class="bp">sorted</span><span class="p">(</span><span class="n">by</span><span class="p">:</span><span class="w"> </span><span class="err">\</span><span class="p">.</span><span class="n">time</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">evidenceQuality</span><span class="p">:</span><span class="w"> </span><span class="n">EvidenceGrade</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Legal grade based on sensor completeness</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">score</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">has</span><span class="p">(.</span><span class="n">gps</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">has</span><span class="p">(.</span><span class="n">photo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">has</span><span class="p">(.</span><span class="n">accelerometer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">has</span><span class="p">(.</span><span class="n">audio</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">cryptographicProof</span><span class="p">.</span><span class="n">isValid</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EvidenceGrade</span><span class="p">(</span><span class="n">score</span><span class="p">:</span><span class="w"> </span><span class="n">score</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">legalReport</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        INCIDENT REPORT</span>
+<span class="s">        Time: </span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">timestamp</span><span class="si">)</span>
+<span class="s">        Location: </span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">location</span><span class="p">.</span><span class="n">address</span><span class="si">)</span>
+
+<span class="s">        EVIDENCE SUMMARY:</span>
+<span class="s">        - GPS: ✓ Verified location within 5.2m</span>
+<span class="s">        - Photo: ✓ 4032x3024 HEIC with intact EXIF</span>
+<span class="s">        - Impact: ✓ 3.2G force detected at </span><span class="si">\(</span><span class="n">impactTime</span><span class="si">)</span>
+<span class="s">        - Audio: ✓ 30s recording captured</span>
+
+<span class="s">        CRYPTOGRAPHIC ATTESTATION:</span>
+<span class="s">        - Receipt Hash: </span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">receipt</span><span class="p">.</span><span class="n">merkleRoot</span><span class="si">)</span>
+<span class="s">        - Blockchain: </span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">receipt</span><span class="p">.</span><span class="n">blockchainAnchor</span><span class="si">)</span>
+<span class="s">        - Signature: Valid ✓</span>
+
+<span class="s">        This evidence is admissible in court proceedings.</span>
+<span class="s">        &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="education-context-science-field-trip">Education Context: Science Field Trip</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">ScienceExperimentLog</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">incidentReceipt</span><span class="p">:</span><span class="w"> </span><span class="n">IncidentReceipt</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">learningContext</span><span class="p">:</span><span class="w"> </span><span class="n">LearningContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Extract educational insights</span>
+<span class="w">        </span><span class="n">LearningContext</span><span class="p">(</span>
+<span class="w">            </span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">location</span><span class="p">.</span><span class="n">ecosystem</span><span class="p">,</span>
+<span class="w">            </span><span class="n">environmentalFactors</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s">&quot;Temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">temperature</span><span class="si">)</span><span class="s">°C&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;Light Level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">lightLux</span><span class="si">)</span><span class="s"> lux&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;Altitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">location</span><span class="p">.</span><span class="n">altitude</span><span class="si">)</span><span class="s">m&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="n">observations</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">photo</span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">.</span><span class="n">visual</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="n">audioNotes</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">.</span><span class="n">narration</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">scienceConnections</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Concept</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// AI finds relevant science concepts</span>
+<span class="w">        </span><span class="p">[</span>
+<span class="w">            </span><span class="n">Concept</span><span class="p">(</span>
+<span class="w">                </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Photosynthesis&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">relevance</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span>
+<span class="w">                </span><span class="n">evidence</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Light level of </span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">lightLux</span><span class="si">)</span><span class="s"> lux indicates optimal conditions&quot;</span>
+<span class="w">            </span><span class="p">),</span>
+<span class="w">            </span><span class="n">Concept</span><span class="p">(</span>
+<span class="w">                </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Altitude Effects&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">relevance</span><span class="p">:</span><span class="w"> </span><span class="mf">0.82</span><span class="p">,</span>
+<span class="w">                </span><span class="n">evidence</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Barometric pressure </span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">pressure</span><span class="si">)</span><span class="s"> kPa at </span><span class="si">\(</span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">location</span><span class="p">.</span><span class="n">altitude</span><span class="si">)</span><span class="s">m&quot;</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">assignmentReceipt</span><span class="p">:</span><span class="w"> </span><span class="n">AssignmentReceipt</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Prove student completed work</span>
+<span class="w">        </span><span class="n">AssignmentReceipt</span><span class="p">(</span>
+<span class="w">            </span><span class="n">studentID</span><span class="p">:</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">location</span><span class="p">,</span>
+<span class="w">            </span><span class="n">dataCollected</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">sensors</span><span class="p">.</span><span class="bp">count</span><span class="p">,</span>
+<span class="w">            </span><span class="n">cryptographicProof</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">receipt</span><span class="p">,</span>
+<span class="w">            </span><span class="n">grade</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">pending</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="health-context-fall-detection">Health Context: Fall Detection</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">HealthIncidentAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">incidentReceipt</span><span class="p">:</span><span class="w"> </span><span class="n">IncidentReceipt</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">fallDetected</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Detect fall from accelerometer</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">impacts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">motion</span><span class="p">.</span><span class="n">accelerometer</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">impacts</span><span class="p">.</span><span class="bp">contains</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">magnitude</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">duration</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">vitals</span><span class="p">:</span><span class="w"> </span><span class="n">HealthVitals</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Extract health data</span>
+<span class="w">        </span><span class="n">HealthVitals</span><span class="p">(</span>
+<span class="w">            </span><span class="n">heartRate</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">watch</span><span class="p">?.</span><span class="n">heartRate</span><span class="p">,</span>
+<span class="w">            </span><span class="n">bloodOxygen</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">watch</span><span class="p">?.</span><span class="n">spo2</span><span class="p">,</span>
+<span class="w">            </span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">location</span><span class="p">,</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">activity</span><span class="p">:</span><span class="w"> </span><span class="n">inferActivity</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">emergencyAlert</span><span class="p">:</span><span class="w"> </span><span class="n">EmergencyAlert</span><span class="p">?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="n">fallDetected</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EmergencyAlert</span><span class="p">(</span>
+<span class="w">            </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">fallDetected</span><span class="p">,</span>
+<span class="w">            </span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">location</span><span class="p">,</span>
+<span class="w">            </span><span class="n">vitals</span><span class="p">:</span><span class="w"> </span><span class="n">vitals</span><span class="p">,</span>
+<span class="w">            </span><span class="n">contacts</span><span class="p">:</span><span class="w"> </span><span class="n">Patient</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">emergencyContacts</span><span class="p">,</span>
+<span class="w">            </span><span class="n">receipt</span><span class="p">:</span><span class="w"> </span><span class="n">incidentReceipt</span><span class="p">.</span><span class="n">receipt</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">shareWithClinician</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">clinician</span><span class="p">:</span><span class="w"> </span><span class="n">Clinician</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Grant temporary access with PHI encryption</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">encryptedReceipt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">PHIEncryption</span><span class="p">.</span><span class="n">encrypt</span><span class="p">(</span>
+<span class="w">            </span><span class="n">incidentReceipt</span><span class="p">,</span>
+<span class="w">            </span><span class="k">for</span><span class="p">:</span><span class="w"> </span><span class="n">clinician</span><span class="p">.</span><span class="n">publicKey</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="n">ClinicianDashboard</span><span class="p">.</span><span class="n">share</span><span class="p">(</span>
+<span class="w">            </span><span class="n">encryptedReceipt</span><span class="p">,</span>
+<span class="w">            </span><span class="n">withPermission</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">temporaryAccess</span><span class="p">(</span><span class="n">days</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="cross-platform-sensor-fusion">Cross-Platform Sensor Fusion</h2>
+<h3 id="iphone-apple-watch">iPhone + Apple Watch</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">FusedSensorData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// iPhone sensors</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">iphoneData</span><span class="p">:</span><span class="w"> </span><span class="n">IncidentReceipt</span>
+
+<span class="w">    </span><span class="c1">// Watch sensors</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">watchData</span><span class="p">:</span><span class="w"> </span><span class="n">WatchReceipt</span><span class="p">?</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">correlatedHealth</span><span class="p">:</span><span class="w"> </span><span class="n">HealthCorrelation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Correlate phone motion with watch vitals</span>
+<span class="w">        </span><span class="n">HealthCorrelation</span><span class="p">(</span>
+<span class="w">            </span><span class="n">activity</span><span class="p">:</span><span class="w"> </span><span class="n">iphoneData</span><span class="p">.</span><span class="n">motion</span><span class="p">.</span><span class="n">inferActivity</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">heartRate</span><span class="p">:</span><span class="w"> </span><span class="n">watchData</span><span class="p">?.</span><span class="n">heartRate</span><span class="p">,</span>
+<span class="w">            </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">iphoneData</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="n">watchData</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="mf">0.95</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.70</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="safari-ios-app">Safari + iOS App</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">WebIncidentCapture</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Safari extension capture</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">webReceipt</span><span class="p">:</span><span class="w"> </span><span class="n">WebReceipt</span>
+
+<span class="w">    </span><span class="c1">// iOS app sensor data</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">deviceReceipt</span><span class="p">:</span><span class="w"> </span><span class="n">IncidentReceipt</span><span class="p">?</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">completeEvidence</span><span class="p">:</span><span class="w"> </span><span class="n">Evidence</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Combine web and device evidence</span>
+<span class="w">        </span><span class="n">Evidence</span><span class="p">(</span>
+<span class="w">            </span><span class="n">webScreenshot</span><span class="p">:</span><span class="w"> </span><span class="n">webReceipt</span><span class="p">.</span><span class="n">screenshot</span><span class="p">,</span>
+<span class="w">            </span><span class="n">webHTML</span><span class="p">:</span><span class="w"> </span><span class="n">webReceipt</span><span class="p">.</span><span class="n">htmlSnapshot</span><span class="p">,</span>
+<span class="w">            </span><span class="n">deviceLocation</span><span class="p">:</span><span class="w"> </span><span class="n">deviceReceipt</span><span class="p">?.</span><span class="n">location</span><span class="p">,</span>
+<span class="w">            </span><span class="n">deviceTimestamp</span><span class="p">:</span><span class="w"> </span><span class="n">deviceReceipt</span><span class="p">?.</span><span class="n">timestamp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">cryptographicChain</span><span class="p">:</span><span class="w"> </span><span class="n">linkReceipts</span><span class="p">(</span><span class="n">webReceipt</span><span class="p">,</span><span class="w"> </span><span class="n">deviceReceipt</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="privacy-consent">Privacy &amp; Consent</h2>
+<h3 id="tiered-permissions">Tiered Permissions</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="nc">SensorPermissionTier</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">emergency</span><span class="w">        </span><span class="c1">// Auto-capture on trigger</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">onDemand</span><span class="w">        </span><span class="c1">// User initiates each time</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">background</span><span class="w">      </span><span class="c1">// Continuous monitoring</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">shared</span><span class="w">          </span><span class="c1">// Synced with other devices</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrivacySettings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">photo</span><span class="p">:</span><span class="w"> </span><span class="n">SensorPermissionTier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">onDemand</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">audio</span><span class="p">:</span><span class="w"> </span><span class="n">SensorPermissionTier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">onDemand</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">location</span><span class="p">:</span><span class="w"> </span><span class="n">SensorPermissionTier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">emergency</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">motion</span><span class="p">:</span><span class="w"> </span><span class="n">SensorPermissionTier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">background</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">health</span><span class="p">:</span><span class="w"> </span><span class="n">SensorPermissionTier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">background</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">cloudBackup</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">encryptionRequired</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">shareWithClinician</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">sharableDuration</span><span class="p">:</span><span class="w"> </span><span class="n">TimeInterval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3600</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="data-minimization">Data Minimization</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Only collect sensors relevant to context</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">capture</span><span class="p">(</span><span class="k">for</span><span class="w"> </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="n">Domain</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">IncidentReceipt</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="n">domain</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">legal</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// Maximum data for evidence</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">captureAllSensors</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">education</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// Focus on learning context</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">capture</span><span class="p">([.</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">gps</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">environment</span><span class="p">])</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">health</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// Health + activity data</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">capture</span><span class="p">([.</span><span class="n">motion</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">heartRate</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">location</span><span class="p">])</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="receipt-storage-sync">Receipt Storage &amp; Sync</h2>
+<h3 id="local-storage-sqlite">Local Storage (SQLite)</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">incidents</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="k">timestamp</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">domain</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1">-- &#39;legal&#39;, &#39;education&#39;, &#39;health&#39;</span>
+<span class="w">    </span><span class="n">sensor_data</span><span class="w"> </span><span class="nb">BLOB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">receipt_bundle</span><span class="w"> </span><span class="nb">BLOB</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">encrypted</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">synced</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shared_with</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="c1">-- JSON array of recipients</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_timestamp</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">incidents</span><span class="p">(</span><span class="k">timestamp</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_domain</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">incidents</span><span class="p">(</span><span class="k">domain</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="icloud-sync-encrypted">iCloud Sync (Encrypted)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">IncidentSync</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">syncToCloud</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">receipt</span><span class="p">:</span><span class="w"> </span><span class="n">IncidentReceipt</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Encrypt with user&#39;s iCloud keychain</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">encrypted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">CryptoKit</span><span class="p">.</span><span class="n">encrypt</span><span class="p">(</span>
+<span class="w">            </span><span class="n">receipt</span><span class="p">,</span>
+<span class="w">            </span><span class="n">with</span><span class="p">:</span><span class="w"> </span><span class="n">Keychain</span><span class="p">.</span><span class="n">iCloudKey</span>
+<span class="w">        </span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Upload to CloudKit</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">record</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">CKRecord</span><span class="p">(</span><span class="n">recordType</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Incident&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">record</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">receipt</span><span class="p">.</span><span class="n">id</span>
+<span class="w">        </span><span class="n">record</span><span class="p">[</span><span class="s">&quot;timestamp&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">receipt</span><span class="p">.</span><span class="n">timestamp</span>
+<span class="w">        </span><span class="n">record</span><span class="p">[</span><span class="s">&quot;domain&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">receipt</span><span class="p">.</span><span class="n">domain</span><span class="p">.</span><span class="n">rawValue</span>
+<span class="w">        </span><span class="n">record</span><span class="p">[</span><span class="s">&quot;encrypted_data&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">encrypted</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">CloudKit</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="api-for-third-party-integration">API for Third-Party Integration</h2>
+<h3 id="clinician-ehr-integration">Clinician EHR Integration</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Export health incidents to EHR</span>
+<span class="kd">protocol</span><span class="w"> </span><span class="nc">EHRIntegration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">export</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">incidents</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">IncidentReceipt</span><span class="p">])</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">FHIRBundle</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">import</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="n">fhir</span><span class="p">:</span><span class="w"> </span><span class="n">FHIRBundle</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">IncidentReceipt</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">EpicIntegration</span><span class="p">:</span><span class="w"> </span><span class="n">EHRIntegration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">export</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">incidents</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">IncidentReceipt</span><span class="p">])</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">FHIRBundle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Convert to HL7 FHIR format</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">observations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">incidents</span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">incident</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">FHIRObservation</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="n">FHIRObservation</span><span class="p">(</span>
+<span class="w">                </span><span class="n">code</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sensor-capture&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">incident</span><span class="p">.</span><span class="n">sensorData</span><span class="p">,</span>
+<span class="w">                </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">incident</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span>
+<span class="w">                </span><span class="n">receipt</span><span class="p">:</span><span class="w"> </span><span class="n">incident</span><span class="p">.</span><span class="n">receipt</span><span class="p">.</span><span class="n">merkleRoot</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FHIRBundle</span><span class="p">(</span><span class="n">observations</span><span class="p">:</span><span class="w"> </span><span class="n">observations</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="legal-discovery-export">Legal Discovery Export</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Export for legal discovery requests</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">LegalExport</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">generateDiscoveryPackage</span><span class="p">(</span>
+<span class="w">        </span><span class="n">incidents</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">IncidentReceipt</span><span class="p">],</span>
+<span class="w">        </span><span class="n">timeRange</span><span class="p">:</span><span class="w"> </span><span class="n">DateInterval</span><span class="p">,</span>
+<span class="w">        </span><span class="n">redactPHI</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">DiscoveryPackage</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">filtered</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">incidents</span><span class="p">.</span><span class="bp">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">timeRange</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="nv">$0</span><span class="p">.</span><span class="n">timestamp</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">redactPHI</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">filtered</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">filtered</span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">redactHealthData</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">DiscoveryPackage</span><span class="p">(</span>
+<span class="w">            </span><span class="n">incidents</span><span class="p">:</span><span class="w"> </span><span class="n">filtered</span><span class="p">,</span>
+<span class="w">            </span><span class="n">receiptChain</span><span class="p">:</span><span class="w"> </span><span class="n">buildMerkleChain</span><span class="p">(</span><span class="n">filtered</span><span class="p">),</span>
+<span class="w">            </span><span class="n">attestation</span><span class="p">:</span><span class="w"> </span><span class="n">generateAttorneyAttestation</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">format</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">pdf_a</span><span class="w"> </span><span class="c1">// Archival PDF format</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="next-implementation-steps">Next Implementation Steps</h2>
+<h3 id="week-1-2-core-infrastructure">Week 1-2: Core Infrastructure</h3>
+<ul>
+<li>[ ] Implement <code>SensorCaptureEngine</code> protocol</li>
+<li>[ ] Add permission management system</li>
+<li>[ ] Create <code>IncidentReceipt</code> data model</li>
+<li>[ ] Set up SQLite storage</li>
+</ul>
+<h3 id="week-3-4-sensor-integration">Week 3-4: Sensor Integration</h3>
+<ul>
+<li>[ ] Camera capture with EXIF preservation</li>
+<li>[ ] GPS location with accuracy tracking</li>
+<li>[ ] Accelerometer/gyroscope fusion</li>
+<li>[ ] Audio recording with encryption</li>
+<li>[ ] Environmental sensors (light, pressure, temp)</li>
+</ul>
+<h3 id="week-5-6-receipt-generation">Week 5-6: Receipt Generation</h3>
+<ul>
+<li>[ ] VQbit attestation integration</li>
+<li>[ ] Merkle tree construction</li>
+<li>[ ] Ed25519 signing</li>
+<li>[ ] SafeAIC blockchain anchoring</li>
+</ul>
+<h3 id="week-7-8-domain-integration">Week 7-8: Domain Integration</h3>
+<ul>
+<li>[ ] Legal app incident view</li>
+<li>[ ] Education app context capture</li>
+<li>[ ] Health app correlation engine</li>
+<li>[ ] Cross-app receipt sharing</li>
+</ul>
+<hr />
+<p><strong>The foundation is set. Now we build the sensor capture that makes truth verifiable.</strong></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

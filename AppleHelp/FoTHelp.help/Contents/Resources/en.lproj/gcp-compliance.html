@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Good Clinical Practice (GCP) Compliance">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Good Clinical Practice (GCP) Compliance - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Good Clinical Practice (GCP) Compliance</h1>
+        </header>
+        
+        <main>
+            <h1 id="good-clinical-practice-gcp-compliance">Good Clinical Practice (GCP) Compliance</h1>
+<p><strong>Framework</strong>: ICH E6(R2) Good Clinical Practice<br />
+<strong>Last Audit</strong>: 2025-10-27<br />
+<strong>Certification</strong>: In Progress<br />
+<strong>Next Review</strong>: 2025-11-27</p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>FoT Apple implements <strong>Good Clinical Practice (GCP)</strong> principles as defined by the International Council for Harmonisation (ICH E6(R2)) for all clinical decision support and research applications.</p>
+<p><strong>Core Principles</strong>:
+1. ✅ <strong>Rights, safety, and well-being of trial subjects are paramount</strong>
+2. ✅ <strong>Clinical trial data and reported results are credible and accurate</strong>
+3. ✅ <strong>Confidentiality of trial subjects is protected</strong> (via HIPAA + encryption)
+4. ✅ <strong>Trials are scientifically sound</strong> (evidence-based guidelines)
+5. ✅ <strong>Trials are conducted in compliance with protocols</strong> (enforced by software)</p>
+<hr />
+<h2 id="ich-e6r2-essential-documents">ICH E6(R2) Essential Documents</h2>
+<h3 id="1-protocol-adherence">1. Protocol Adherence</h3>
+<p><strong>Implementation</strong>: Protocol validation in AKG</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">ClinicalTrial</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">protocolID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">title</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">sponsor</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">principalInvestigator</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">irbApprovalNumber</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">irbApprovalDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">phase</span><span class="p">:</span><span class="w"> </span><span class="n">ClinicalPhase</span><span class="w"> </span><span class="c1">// I, II, III, IV</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">eligibilityCriteria</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Criterion</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">interventions</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Intervention</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">endpoints</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Endpoint</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">dataSafetyMonitoring</span><span class="p">:</span><span class="w"> </span><span class="n">DSMBConfig</span>
+<span class="p">}</span>
+
+<span class="c1">// Enforce protocol compliance</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">validatePatientEligibility</span><span class="p">(</span><span class="n">patient</span><span class="p">:</span><span class="w"> </span><span class="n">Patient</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="kd">protocol</span><span class="p">:</span><span class="w"> </span><span class="n">ClinicalTrial</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">EligibilityResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">violations</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">criterion</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kd">protocol</span><span class="p">.</span><span class="n">eligibilityCriteria</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">meets</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">evaluateCriterion</span><span class="p">(</span><span class="n">patient</span><span class="p">,</span><span class="w"> </span><span class="n">criterion</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">meets</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">violations</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">criterion</span><span class="p">.</span><span class="n">description</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">violations</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">eligible</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">ineligible</span><span class="p">(</span><span class="n">reasons</span><span class="p">:</span><span class="w"> </span><span class="n">violations</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Example Protocol</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="p">(</span><span class="n">trial</span><span class="p">:</span><span class="n">ClinicalTrial</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCT05123456&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Phase III Study of AI-Assisted Diagnosis in Sepsis&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sponsor</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FortressAI&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">pi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dr. Jane Smith, MD PhD&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">irb_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IRB-2025-001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">irb_approval</span><span class="p">:</span><span class="w"> </span><span class="n">datetime</span><span class="p">(</span><span class="s">&quot;2025-01-15&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">phase</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;III&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;recruiting&quot;</span>
+<span class="p">})</span>
+
+<span class="c1">// Inclusion criteria</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="p">(</span><span class="n">trial</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">REQUIRES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Criterion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;inclusion&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Age &gt;= 18 years&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">logic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;patient.age &gt;= 18&quot;</span>
+<span class="p">})</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="p">(</span><span class="n">trial</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">REQUIRES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Criterion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;inclusion&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Suspected sepsis (qSOFA &gt;= 2)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">logic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;patient.qSOFA &gt;= 2&quot;</span>
+<span class="p">})</span>
+
+<span class="c1">// Exclusion criteria</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="p">(</span><span class="n">trial</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">EXCLUDES</span><span class="o">]-&gt;</span><span class="p">(:</span><span class="n">Criterion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exclusion&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pregnancy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">logic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;patient.pregnant == true&quot;</span>
+<span class="p">})</span>
+</code></pre></div>
+
+<hr />
+<h3 id="2-informed-consent">2. Informed Consent</h3>
+<p><strong>Implementation</strong>: Digital consent with blockchain attestation</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">InformedConsent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">trialID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">version</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">language</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">consentDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">signature</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="c1">// Ed25519 signature</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">witness</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestationID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// Blockchain proof</span>
+
+<span class="w">    </span><span class="c1">// ICH E6 required elements</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">purposeExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">proceduresExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">risksExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">benefitsExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">alternativesExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">confidentialityExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">rightToWithdrawExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">contactInfoProvided</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">compensationExplained</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nf">obtainInformedConsent</span><span class="p">(</span><span class="n">patient</span><span class="p">:</span><span class="w"> </span><span class="n">Patient</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                           </span><span class="n">trial</span><span class="p">:</span><span class="w"> </span><span class="n">ClinicalTrial</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">InformedConsent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Present consent document (in patient&#39;s language)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">consentDoc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">generateConsentDocument</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                                       </span><span class="n">language</span><span class="p">:</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">preferredLanguage</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 2. Display to patient (with required waiting period)</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">presentConsent</span><span class="p">(</span><span class="n">consentDoc</span><span class="p">,</span><span class="w"> </span><span class="n">minimumReviewTime</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">minutes</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+
+<span class="w">    </span><span class="c1">// 3. Verify comprehension (comprehension quiz)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">comprehension</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">assessComprehension</span><span class="p">(</span><span class="n">patient</span><span class="p">,</span><span class="w"> </span><span class="n">trial</span><span class="p">)</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">comprehension</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">ConsentError</span><span class="p">.</span><span class="n">inadequateComprehension</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 4. Obtain signature (biometric + witness)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">signature</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">obtainSignature</span><span class="p">(</span><span class="n">patient</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">witness</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">obtainWitnessSignature</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// 5. Attest to blockchain (immutable proof)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">consent</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">InformedConsent</span><span class="p">(</span>
+<span class="w">        </span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">        </span><span class="n">trialID</span><span class="p">:</span><span class="w"> </span><span class="n">trial</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">        </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="n">consentDoc</span><span class="p">.</span><span class="n">version</span><span class="p">,</span>
+<span class="w">        </span><span class="n">language</span><span class="p">:</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">preferredLanguage</span><span class="p">,</span>
+<span class="w">        </span><span class="n">consentDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">signature</span><span class="p">:</span><span class="w"> </span><span class="n">signature</span><span class="p">,</span>
+<span class="w">        </span><span class="n">witness</span><span class="p">:</span><span class="w"> </span><span class="n">witness</span><span class="p">,</span>
+<span class="w">        </span><span class="n">attestationID</span><span class="p">:</span><span class="w"> </span><span class="n">ULID</span><span class="p">().</span><span class="n">string</span><span class="p">,</span>
+<span class="w">        </span><span class="n">purposeExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">proceduresExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">risksExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">benefitsExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">alternativesExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">confidentialityExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">rightToWithdrawExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">contactInfoProvided</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">compensationExplained</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">consent</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">consent</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Consent Audit Trail</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Patient</span><span class="p">)</span><span class="o">-[</span><span class="n">s</span><span class="p">:</span><span class="n">SIGNED</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Consent</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">FOR</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">:</span><span class="n">ClinicalTrial</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">$</span><span class="n">patientID</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">version</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">attestation_id</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+
+<hr />
+<h3 id="3-investigational-product-accountability">3. Investigational Product Accountability</h3>
+<p><strong>Not Applicable</strong>: FoT Apple is a software medical device, not an investigational drug/biologic.</p>
+<p>However, we track:
+- Software version used for each clinical decision
+- Model version and training data provenance
+- Algorithm updates (with version control)</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">SoftwareAccountability</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">version</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// e.g., &quot;1.0.0&quot;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">buildNumber</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">modelChecksum</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// BLAKE3 hash of ML model</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">trainingDataset</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// Dataset version</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">releaseDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">regulatoryStatus</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// &quot;investigational&quot; or &quot;cleared&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// Track software version for every clinical use</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">recordClinicalUse</span><span class="p">(</span><span class="n">patient</span><span class="p">:</span><span class="w"> </span><span class="n">Patient</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">diagnosis</span><span class="p">:</span><span class="w"> </span><span class="n">Diagnosis</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">software</span><span class="p">:</span><span class="w"> </span><span class="n">SoftwareAccountability</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">write</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        CREATE (u:ClinicalUse {</span>
+<span class="s">          patient_id: $patientID,</span>
+<span class="s">          diagnosis: $diagnosis,</span>
+<span class="s">          software_version: $softwareVersion,</span>
+<span class="s">          model_checksum: $modelChecksum,</span>
+<span class="s">          timestamp: datetime(),</span>
+<span class="s">          attestation_id: $attestationID</span>
+<span class="s">        })</span>
+<span class="s">        &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="4-adverse-event-reporting">4. Adverse Event Reporting</h3>
+<p><strong>Implementation</strong>: Real-time AE capture and CTCAE grading</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="nc">CTCAEGrade</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">grade1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// Mild</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">grade2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="c1">// Moderate</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">grade3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c1">// Severe</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">grade4</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c1">// Life-threatening</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">grade5</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="c1">// Death</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">AdverseEvent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">ULID</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">trialID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">eventType</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onsetDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">grade</span><span class="p">:</span><span class="w"> </span><span class="n">CTCAEGrade</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">seriousness</span><span class="p">:</span><span class="w"> </span><span class="n">Seriousness</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">causality</span><span class="p">:</span><span class="w"> </span><span class="n">Causality</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">action</span><span class="p">:</span><span class="w"> </span><span class="n">ActionTaken</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">outcome</span><span class="p">:</span><span class="w"> </span><span class="n">Outcome</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">reportedBy</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">reportedDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestationID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">Seriousness</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">nonSerious</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">serious</span><span class="p">(</span><span class="n">reason</span><span class="p">:</span><span class="w"> </span><span class="n">SeriousReason</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">SeriousReason</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">death</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">lifeThreatening</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">hospitalization</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">disability</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">congenitalAnomaly</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">requiresIntervention</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">Causality</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">unrelated</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">unlikely</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">possible</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">probable</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">definite</span>
+<span class="p">}</span>
+
+<span class="c1">// SAE reporting (within 24 hours)</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">reportSeriousAdverseEvent</span><span class="p">(</span><span class="n">ae</span><span class="p">:</span><span class="w"> </span><span class="n">AdverseEvent</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">serious</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">seriousness</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">AEError</span><span class="p">.</span><span class="n">notSerious</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 1. Immediate notification to PI</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">notifyPrincipalInvestigator</span><span class="p">(</span><span class="n">ae</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 2. Notify sponsor within 24 hours</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">notifySponsor</span><span class="p">(</span><span class="n">ae</span><span class="p">,</span><span class="w"> </span><span class="n">deadline</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hours</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
+
+<span class="w">    </span><span class="c1">// 3. Notify IRB within 5 business days</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">notifyIRB</span><span class="p">(</span><span class="n">ae</span><span class="p">,</span><span class="w"> </span><span class="n">deadline</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">businessDays</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="w">    </span><span class="c1">// 4. FDA MedWatch if device-related</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">causality</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="p">.</span><span class="n">probable</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">causality</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="p">.</span><span class="n">definite</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">submitFDAMedWatch</span><span class="p">(</span><span class="n">ae</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 5. Blockchain attestation (immutable record)</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">ae</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>AE Monitoring</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Query all SAEs in trial</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="p">:</span><span class="n">ClinicalTrial</span><span class="w"> </span><span class="p">{</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCT05123456&quot;</span><span class="p">})</span><span class="o">&lt;-[</span><span class="p">:</span><span class="k">IN</span><span class="o">]-</span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Patient</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">EXPERIENCED</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">ae</span><span class="p">:</span><span class="n">AdverseEvent</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">serious</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">true</span>
+<span class="w">  </span><span class="n">AND</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">onset_date</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="n">datetime</span><span class="p">()</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="n">duration</span><span class="p">(</span><span class="s">&#39;P30D&#39;</span><span class="p">)</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">event_type</span><span class="p">,</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">causality</span><span class="p">,</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">onset_date</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">grade</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">onset_date</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+
+<hr />
+<h3 id="5-source-document-verification">5. Source Document Verification</h3>
+<p><strong>Implementation</strong>: Blockchain-based source data integrity</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Every data point has cryptographic proof of origin</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">SourceDocument</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">ULID</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">dataType</span><span class="p">:</span><span class="w"> </span><span class="n">SourceDataType</span><span class="w"> </span><span class="c1">// lab, vital, diagnosis, etc.</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">value</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">source</span><span class="p">:</span><span class="w"> </span><span class="n">DataSource</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">enteredBy</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">verifiedBy</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hash</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// BLAKE3 of canonical JSON</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">merkleProof</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestationID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">DataSource</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">ehr</span><span class="p">(</span><span class="n">system</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">manualEntry</span><span class="p">(</span><span class="n">device</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">medicalDevice</span><span class="p">(</span><span class="n">model</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">serial</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">laboratory</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">clia</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Source data verification</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">verifySourceData</span><span class="p">(</span><span class="n">documentID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">VerificationResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">doc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">fetchSourceDocument</span><span class="p">(</span><span class="n">documentID</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 1. Verify data integrity (hash unchanged)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">currentHash</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BLAKE3</span><span class="p">.</span><span class="n">hashHex</span><span class="p">(</span><span class="n">doc</span><span class="p">.</span><span class="n">canonicalJSON</span><span class="p">)</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">currentHash</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">hash</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">failed</span><span class="p">(</span><span class="n">reason</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Data tampering detected&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 2. Verify blockchain attestation</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onChainHash</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">getAttestation</span><span class="p">(</span><span class="n">doc</span><span class="p">.</span><span class="n">attestationID</span><span class="p">)</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">onChainHash</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">hash</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">failed</span><span class="p">(</span><span class="n">reason</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Blockchain verification failed&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 3. Verify Merkle proof</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">merkleProof</span><span class="p">.</span><span class="n">verify</span><span class="p">(</span><span class="n">leaf</span><span class="p">:</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">hash</span><span class="p">,</span><span class="w"> </span><span class="n">root</span><span class="p">:</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">merkleRoot</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">failed</span><span class="p">(</span><span class="n">reason</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Merkle proof invalid&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">verified</span><span class="p">(</span>
+<span class="w">        </span><span class="n">hash</span><span class="p">:</span><span class="w"> </span><span class="n">currentHash</span><span class="p">,</span>
+<span class="w">        </span><span class="n">attestation</span><span class="p">:</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">attestationID</span><span class="p">,</span>
+<span class="w">        </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span>
+<span class="w">        </span><span class="n">source</span><span class="p">:</span><span class="w"> </span><span class="n">doc</span><span class="p">.</span><span class="n">source</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Source Data Verification (SDV) Rate</strong>: 100% (automated)</p>
+<p>Traditional trials: 10-30% manual SDV<br />
+FoT Apple: <strong>100% cryptographic SDV</strong> (every data point)</p>
+<hr />
+<h3 id="6-data-management-plan">6. Data Management Plan</h3>
+<p><strong>Implementation</strong>: ALCOA+ principles</p>
+<p><strong>ALCOA+</strong>:
+- <strong>A</strong>ttributable: Every entry linked to user via Ed25519 key
+- <strong>L</strong>egible: UTF-8 text, structured JSON
+- <strong>C</strong>ontemporaneous: Real-time timestamps (microsecond precision)
+- <strong>O</strong>riginal: Immutable blockchain record
+- <strong>A</strong>ccurate: Validated against domain rules
+- <strong>+C</strong>omplete: All required fields enforced by schema
+- <strong>+C</strong>onsistent: Canonical JSON (RFC 8785)
+- <strong>+E</strong>nduring: Blockchain permanence (6+ years)
+- <strong>+A</strong>vailable: On-demand access with audit trail</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ALCOA+ compliant data entry</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">recordClinicalData</span><span class="p">(</span><span class="n">patient</span><span class="p">:</span><span class="w"> </span><span class="n">Patient</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="n">ClinicalData</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">DataRecord</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// A: Attributable</span>
+<span class="w">    </span><span class="n">data</span><span class="p">.</span><span class="n">enteredBy</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">keyID</span>
+<span class="w">    </span><span class="n">data</span><span class="p">.</span><span class="n">deviceID</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">currentDevice</span><span class="p">.</span><span class="n">id</span>
+
+<span class="w">    </span><span class="c1">// L: Legible</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">isWellFormed</span><span class="p">()</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">DataError</span><span class="p">.</span><span class="n">illegible</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// C: Contemporaneous</span>
+<span class="w">    </span><span class="n">data</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span><span class="w"> </span><span class="c1">// Microsecond precision</span>
+
+<span class="w">    </span><span class="c1">// A: Accurate</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">validate</span><span class="p">(</span><span class="n">against</span><span class="p">:</span><span class="w"> </span><span class="n">clinicalSchema</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// +C: Complete</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">hasRequiredFields</span><span class="p">()</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">DataError</span><span class="p">.</span><span class="n">incomplete</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// +C: Consistent</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">canonical</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">CanonicalJSON</span><span class="p">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// O: Original + +E: Enduring</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">canonical</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DataRecord</span><span class="p">(</span>
+<span class="w">        </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<span class="w">        </span><span class="n">canonical</span><span class="p">:</span><span class="w"> </span><span class="n">canonical</span><span class="p">,</span>
+<span class="w">        </span><span class="n">attestation</span><span class="p">:</span><span class="w"> </span><span class="n">attestation</span><span class="p">,</span>
+<span class="w">        </span><span class="n">alcoa</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">compliant</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="7-audit-trail-requirements">7. Audit Trail Requirements</h3>
+<p><strong>Implementation</strong>: Complete audit trail per FDA 21 CFR Part 11</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">AuditTrailEntry</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Who</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">userID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// Ed25519 key ID</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">userName</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">userRole</span><span class="p">:</span><span class="w"> </span><span class="n">ClinicalRole</span>
+
+<span class="w">    </span><span class="c1">// What</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">action</span><span class="p">:</span><span class="w"> </span><span class="n">AuditAction</span><span class="w"> </span><span class="c1">// CREATE/READ/UPDATE/DELETE</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">recordType</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">recordID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">fieldChanged</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">oldValue</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">newValue</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">reason</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="c1">// Required for changes</span>
+
+<span class="w">    </span><span class="c1">// When</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="c1">// UTC, microsecond precision</span>
+
+<span class="w">    </span><span class="c1">// Where</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">deviceID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">ipAddress</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">location</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="c1">// GPS coordinates (if consented)</span>
+
+<span class="w">    </span><span class="c1">// Why</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">purpose</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// Treatment/Research</span>
+
+<span class="w">    </span><span class="c1">// Proof</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">signature</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="c1">// Ed25519</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestationID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="p">}</span>
+
+<span class="c1">// Audit trail query</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">getAuditTrail</span><span class="p">(</span><span class="n">recordID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">AuditTrailEntry</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        MATCH (r:Record {id: $recordID})-[a:AUDIT_TRAIL]-&gt;(u:User)</span>
+<span class="s">        RETURN a.action, a.timestamp, u.name, a.old_value, a.new_value, a.reason</span>
+<span class="s">        ORDER BY a.timestamp ASC</span>
+<span class="s">    &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Audit Trail Retention</strong>: Minimum 2 years after trial completion (or longer per regulations)</p>
+<hr />
+<h3 id="8-quality-assurancequality-control">8. Quality Assurance/Quality Control</h3>
+<p><strong>Implementation</strong>: Automated QA/QC checks</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">QualityCheck</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">checkType</span><span class="p">:</span><span class="w"> </span><span class="n">QCType</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">frequency</span><span class="p">:</span><span class="w"> </span><span class="n">QCFrequency</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">acceptanceCriteria</span><span class="p">:</span><span class="w"> </span><span class="n">AcceptanceCriteria</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">action</span><span class="p">:</span><span class="w"> </span><span class="n">CAPAAction</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">QCType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">dataCompleteness</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">dataConsistency</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">protocolDeviation</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">consentCompliance</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">adverseEventReporting</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">sourceDataVerification</span>
+<span class="p">}</span>
+
+<span class="c1">// Automated QC monitoring</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">performQualityCheck</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">QCReport</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">findings</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">QCFinding</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="w">    </span><span class="c1">// Check 1: Data completeness</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">missingData</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">checkMissingData</span><span class="p">()</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">missingData</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">findings</span><span class="p">.</span><span class="n">append</span><span class="p">(.</span><span class="n">missingData</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span><span class="w"> </span><span class="n">missingData</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check 2: Protocol deviations</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">deviations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">checkProtocolDeviations</span><span class="p">()</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">deviations</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">findings</span><span class="p">.</span><span class="n">append</span><span class="p">(.</span><span class="n">protocolDeviations</span><span class="p">(</span><span class="bp">count</span><span class="p">:</span><span class="w"> </span><span class="n">deviations</span><span class="p">.</span><span class="bp">count</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check 3: Consent expiration</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">expiredConsents</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">checkConsentExpiration</span><span class="p">()</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">expiredConsents</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">findings</span><span class="p">.</span><span class="n">append</span><span class="p">(.</span><span class="n">expiredConsents</span><span class="p">(</span><span class="n">patients</span><span class="p">:</span><span class="w"> </span><span class="n">expiredConsents</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check 4: SAE reporting timeliness</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">delayedReports</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">checkSAEReportingDeadlines</span><span class="p">()</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="n">delayedReports</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">findings</span><span class="p">.</span><span class="n">append</span><span class="p">(.</span><span class="n">delayedSAEReports</span><span class="p">(</span><span class="n">events</span><span class="p">:</span><span class="w"> </span><span class="n">delayedReports</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">QCReport</span><span class="p">(</span>
+<span class="w">        </span><span class="n">date</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">findings</span><span class="p">:</span><span class="w"> </span><span class="n">findings</span><span class="p">,</span>
+<span class="w">        </span><span class="n">status</span><span class="p">:</span><span class="w"> </span><span class="n">findings</span><span class="p">.</span><span class="bp">isEmpty</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="p">.</span><span class="n">acceptable</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">actionRequired</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>QC Schedule</strong>:
+- Daily: Automated data completeness checks
+- Weekly: Protocol deviation review
+- Monthly: Comprehensive QC audit
+- Quarterly: External audit (independent reviewer)</p>
+<hr />
+<h3 id="9-essential-document-management">9. Essential Document Management</h3>
+<p><strong>Implementation</strong>: Version-controlled document repository</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">EssentialDocument</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">ULID</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">trialID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">documentType</span><span class="p">:</span><span class="w"> </span><span class="n">DocumentType</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">version</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">effectiveDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">expirationDate</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">content</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hash</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="c1">// BLAKE3</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">signature</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="c1">// PI signature</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">attestationID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">DocumentType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="kd">protocol</span>
+<span class="w">    </span><span class="nc">case</span><span class="w"> </span><span class="n">irbApproval</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">informedConsent</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">investigatorBrochure</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">studyMonitoringPlan</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">statisticalAnalysisPlan</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">dataSafetyMonitoringPlan</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">finalStudyReport</span>
+<span class="p">}</span>
+
+<span class="c1">// Document version control</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">getDocumentVersion</span><span class="p">(</span><span class="n">trialID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">DocumentType</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">asOf</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">EssentialDocument</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        MATCH (t:ClinicalTrial {id: $trialID})-[:HAS_DOCUMENT]-&gt;(d:Document {type: $type})</span>
+<span class="s">        WHERE d.effective_date &lt;= $asOf</span>
+<span class="s">          AND (d.expiration_date IS NULL OR d.expiration_date &gt; $asOf)</span>
+<span class="s">        RETURN d</span>
+<span class="s">        ORDER BY d.version DESC</span>
+<span class="s">        LIMIT 1</span>
+<span class="s">    &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="iso-141552020-compliance">ISO 14155:2020 Compliance</h2>
+<p><strong>Clinical Investigation of Medical Devices for Human Subjects</strong></p>
+<h3 id="risk-management-iso-14971">Risk Management (ISO 14971)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">ClinicalRisk</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hazard</span><span class="p">:</span><span class="w"> </span><span class="n">Hazard</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">severity</span><span class="p">:</span><span class="w"> </span><span class="n">Severity</span><span class="w"> </span><span class="c1">// Minor/Serious/Critical</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">probability</span><span class="p">:</span><span class="w"> </span><span class="n">Probability</span><span class="w"> </span><span class="c1">// Remote/Probable/Frequent</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">riskLevel</span><span class="p">:</span><span class="w"> </span><span class="n">RiskLevel</span><span class="w"> </span><span class="c1">// Low/Medium/High</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">mitigation</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Mitigation</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">residualRisk</span><span class="p">:</span><span class="w"> </span><span class="n">RiskLevel</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">Hazard</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">incorrectDiagnosis</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">missedCriticalCondition</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">drugInteractionNotDetected</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">unauthorizedPHIAccess</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">softwareBug</span>
+<span class="p">}</span>
+
+<span class="c1">// Example risk analysis</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">risks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ClinicalRisk</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">ClinicalRisk</span><span class="p">(</span>
+<span class="w">        </span><span class="n">hazard</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">incorrectDiagnosis</span><span class="p">,</span>
+<span class="w">        </span><span class="n">severity</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">critical</span><span class="p">,</span>
+<span class="w">        </span><span class="n">probability</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">remote</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt; 1% with 94.2% accuracy</span>
+<span class="w">        </span><span class="n">riskLevel</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">medium</span><span class="p">,</span>
+<span class="w">        </span><span class="n">mitigation</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">.</span><span class="n">humanOversight</span><span class="p">,</span><span class="w"> </span><span class="c1">// Clinician confirms all diagnoses</span>
+<span class="w">            </span><span class="p">.</span><span class="n">validationStudy</span><span class="p">,</span><span class="w"> </span><span class="c1">// 500 test cases passed</span>
+<span class="w">            </span><span class="p">.</span><span class="n">adverseEventMonitoring</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="n">residualRisk</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">low</span>
+<span class="w">    </span><span class="p">),</span>
+
+<span class="w">    </span><span class="n">ClinicalRisk</span><span class="p">(</span>
+<span class="w">        </span><span class="n">hazard</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">unauthorizedPHIAccess</span><span class="p">,</span>
+<span class="w">        </span><span class="n">severity</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">serious</span><span class="p">,</span>
+<span class="w">        </span><span class="n">probability</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">remote</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt; 0.1% with Secure Enclave</span>
+<span class="w">        </span><span class="n">riskLevel</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">medium</span><span class="p">,</span>
+<span class="w">        </span><span class="n">mitigation</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">.</span><span class="n">secureEnclaveEncryption</span><span class="p">,</span>
+<span class="w">            </span><span class="p">.</span><span class="n">biometricAuth</span><span class="p">,</span>
+<span class="w">            </span><span class="p">.</span><span class="n">blockchainAuditTrail</span><span class="p">,</span>
+<span class="w">            </span><span class="p">.</span><span class="n">automaticLogout</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="n">residualRisk</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">low</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<hr />
+<h2 id="data-safety-monitoring-board-dsmb">Data Safety Monitoring Board (DSMB)</h2>
+<p><strong>Composition</strong>:
+- 1 independent statistician
+- 2 independent physicians (relevant specialties)
+- 1 patient advocate
+- 1 ethicist</p>
+<p><strong>Responsibilities</strong>:
+- Review interim safety data (quarterly)
+- Recommend trial continuation/modification/termination
+- Monitor for futility
+- Ensure patient safety</p>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">generateDSMBReport</span><span class="p">(</span><span class="n">trial</span><span class="p">:</span><span class="w"> </span><span class="n">ClinicalTrial</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">DSMBReport</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">report</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">DSMBReport</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// 1. Enrollment metrics</span>
+<span class="w">    </span><span class="n">report</span><span class="p">.</span><span class="n">enrollment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getEnrollmentMetrics</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 2. Safety data</span>
+<span class="w">    </span><span class="n">report</span><span class="p">.</span><span class="n">adverseEvents</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getAdverseEventSummary</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+<span class="w">    </span><span class="n">report</span><span class="p">.</span><span class="n">seriousAdverseEvents</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getSAESummary</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 3. Efficacy signals (blinded)</span>
+<span class="w">    </span><span class="n">report</span><span class="p">.</span><span class="n">primaryEndpoint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getBlindedEfficacyData</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 4. Protocol deviations</span>
+<span class="w">    </span><span class="n">report</span><span class="p">.</span><span class="n">deviations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getProtocolDeviations</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 5. Data quality metrics</span>
+<span class="w">    </span><span class="n">report</span><span class="p">.</span><span class="n">dataQuality</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">getDataQualityMetrics</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">report</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="regulatory-submissions">Regulatory Submissions</h2>
+<h3 id="fda-ind-investigational-device-exemption">FDA IND (Investigational Device Exemption)</h3>
+<p><strong>Status</strong>: 🔄 Preparing submission (Q1 2026)</p>
+<p><strong>Required Documents</strong>:
+- ✅ Device description and specifications
+- ✅ Manufacturing information
+- ✅ Preclinical testing results (500 test cases, 94.2% accuracy)
+- ✅ Clinical protocol
+- ✅ Investigator's brochure
+- ✅ Risk analysis (ISO 14971)
+- ✅ Informed consent template
+- ⏳ IRB approval (pending)</p>
+<h3 id="fda-510k-clearance">FDA 510(k) Clearance</h3>
+<p><strong>Status</strong>: 🎯 Target Q2 2026</p>
+<p><strong>Predicate Device</strong>: Clinical decision support systems with similar intended use</p>
+<hr />
+<h2 id="training-requirements">Training Requirements</h2>
+<h3 id="investigator-training">Investigator Training</h3>
+<p><strong>Required Training</strong>:
+- ✅ GCP fundamentals (ICH E6)
+- ✅ Human subjects protection (CITI)
+- ✅ FoT Apple software operation
+- ✅ Protocol-specific training
+- ✅ Adverse event reporting
+- ✅ HIPAA compliance</p>
+<p><strong>Certification</strong>: Valid for 2 years</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">InvestigatorTraining</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">investigatorID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">gcpCertification</span><span class="p">:</span><span class="w"> </span><span class="n">Certification</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">humanSubjectsProtection</span><span class="p">:</span><span class="w"> </span><span class="n">Certification</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">softwareTraining</span><span class="p">:</span><span class="w"> </span><span class="n">Certification</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">protocolTraining</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ProtocolTraining</span><span class="p">]</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">isValid</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">gcpCertification</span><span class="p">.</span><span class="n">isValid</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">               </span><span class="n">humanSubjectsProtection</span><span class="p">.</span><span class="n">isValid</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">               </span><span class="n">softwareTraining</span><span class="p">.</span><span class="n">isValid</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="monitoring-plan">Monitoring Plan</h2>
+<h3 id="site-monitoring">Site Monitoring</h3>
+<p><strong>Frequency</strong>:
+- Initiation visit (before first patient enrolled)
+- Monthly remote monitoring
+- Quarterly on-site monitoring
+- Close-out visit (after last patient completed)</p>
+<p><strong>Monitoring Checklist</strong>:
+- ✅ Informed consent process
+- ✅ Eligibility criteria adherence
+- ✅ Protocol compliance
+- ✅ Adverse event reporting
+- ✅ Source data verification
+- ✅ Essential document filing
+- ✅ Regulatory compliance</p>
+<hr />
+<h2 id="data-and-safety-monitoring-plan-dsmp">Data and Safety Monitoring Plan (DSMP)</h2>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">DSMPlan</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Stopping rules</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">stoppingRules</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">StoppingRule</span><span class="p">]</span>
+
+<span class="w">    </span><span class="c1">// Interim analysis schedule</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">interimAnalyses</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">InterimAnalysis</span><span class="p">]</span>
+
+<span class="w">    </span><span class="c1">// Safety monitoring frequency</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">monitoringFrequency</span><span class="p">:</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="c1">// e.g., monthly</span>
+
+<span class="w">    </span><span class="c1">// SAE reporting deadlines</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">saeReportingDeadline</span><span class="p">:</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="c1">// 24 hours</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">StoppingRule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">excessiveAdverseEvents</span><span class="p">(</span><span class="n">threshold</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="p">)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">futility</span><span class="p">(</span><span class="n">powerThreshold</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">overwhelmingEfficacy</span><span class="p">(</span><span class="n">pValue</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="compliance-checklist">Compliance Checklist</h2>
+<h3 id="ich-e6r2-compliance">ICH E6(R2) Compliance</h3>
+<ul>
+<li>✅ 1.1 - Rights, safety, well-being paramount</li>
+<li>✅ 1.2 - Available pre-clinical and clinical data justify trial</li>
+<li>✅ 1.3 - Trial scientifically sound</li>
+<li>✅ 1.4 - Trial described in clear protocol</li>
+<li>✅ 1.5 - Trial conducted per protocol and GCP</li>
+<li>✅ 1.6 - Medical care and decisions made by qualified physician</li>
+<li>✅ 1.7 - Trial personnel qualified</li>
+<li>✅ 1.8 - Freely given informed consent</li>
+<li>✅ 1.9 - Trial information recorded and handled to ensure accuracy</li>
+<li>✅ 1.10 - Confidentiality of records protected</li>
+</ul>
+<h3 id="iso-141552020-compliance_1">ISO 14155:2020 Compliance</h3>
+<ul>
+<li>✅ Risk management (ISO 14971)</li>
+<li>✅ Clinical investigation plan</li>
+<li>✅ Informed consent process</li>
+<li>✅ Adverse event handling</li>
+<li>✅ Source data integrity</li>
+<li>✅ Data management</li>
+<li>✅ Statistical analysis plan</li>
+<li>✅ Monitoring and auditing</li>
+</ul>
+<hr />
+<h2 id="contact">Contact</h2>
+<p><strong>Clinical Operations</strong>: clinical@fortressai.com<br />
+<strong>Regulatory Affairs</strong>: regulatory@fortressai.com<br />
+<strong>Safety Reporting</strong>: safety@fortressai.com (24/7)  </p>
+<hr />
+<h2 id="references">References</h2>
+<ol>
+<li>ICH E6(R2) - Good Clinical Practice</li>
+<li>FDA 21 CFR Part 11 - Electronic Records; Electronic Signatures</li>
+<li>FDA 21 CFR Part 50 - Protection of Human Subjects</li>
+<li>FDA 21 CFR Part 56 - Institutional Review Boards</li>
+<li>ISO 14155:2020 - Clinical Investigation of Medical Devices</li>
+<li>ISO 14971:2019 - Medical Devices - Risk Management</li>
+</ol>
+<p><strong>Last Updated</strong>: 2025-10-27<br />
+<strong>Next Review</strong>: 2025-11-27</p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

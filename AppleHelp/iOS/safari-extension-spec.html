@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Safari Extension Specification - Field of Truth">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Safari Extension Specification - Field of Truth - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Safari Extension Specification - Field of Truth</h1>
+        </header>
+        
+        <main>
+            <h1 id="safari-extension-specification-field-of-truth">Safari Extension Specification - Field of Truth</h1>
+<h2 id="overview">Overview</h2>
+<p>The FoT Safari Extension brings truth attestation and sensor capture to web browsing, enabling users to cite sources with provenance, fact-check content in real-time, and collect evidence for legal/educational purposes.</p>
+<hr />
+<h2 id="features">Features</h2>
+<h3 id="1-cite-with-provenance">1. <strong>Cite with Provenance</strong> 🔗</h3>
+<p><strong>User Flow:</strong>
+1. User finds important content on webpage
+2. Right-click → "Cite with FoT"
+3. Extension captures:
+   - Full page screenshot
+   - Selected text/element
+   - URL + timestamp
+   - Page HTML snapshot
+   - Network request log
+   - Browser fingerprint
+4. Generates cryptographic receipt via VQbit engine
+5. Saves to appropriate domain app (Legal/Education/Health)</p>
+<p><strong>Technical Implementation:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Content script</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;contextmenu&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Capture selection and context</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">selection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">().</span><span class="nx">toString</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Send to background script</span>
+<span class="w">  </span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cite&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">selection</span><span class="o">:</span><span class="w"> </span><span class="nx">selection</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">(),</span>
+<span class="w">      </span><span class="nx">html</span><span class="o">:</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">outerHTML</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Receipt Format:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;web_citation&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-10-28T12:34:56Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Page Title&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;selection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Selected text...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;screenshot&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base64_image_data&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;html_snapshot&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;!DOCTYPE html&gt;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;receipt_bundle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;merkle_root&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc123...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;signature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;def456...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vqbit_collapse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;archive_links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://web.archive.org/...&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="2-inline-fact-checking">2. <strong>Inline Fact-Checking</strong> ✓</h3>
+<p><strong>User Flow:</strong>
+1. User highlights claim on webpage
+2. Extension underlines claim with confidence color:
+   - 🟢 Green = Well-supported
+   - 🟡 Yellow = Disputed/unclear
+   - 🔴 Red = Contradicted by evidence
+3. Click underlined text → See popup with:
+   - Source credibility score
+   - Supporting evidence
+   - Contradicting evidence
+   - Expert opinions
+   - Historical context</p>
+<p><strong>Visual Design:</strong></p>
+<div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────┐
+│ &quot;Climate change is accelerating&quot;    │
+│  ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔  │
+│  └─ 94% confidence                   │
+│                                      │
+│  Supporting Sources (12):            │
+│  • IPCC Report 2024 (credibility: A+)│
+│  • Nature Climate Study (A+)         │
+│  • NASA Earth Observatory (A+)      │
+│                                      │
+│  Contradicting (2):                  │
+│  • Blog post (credibility: D)        │
+│  • Opinion piece (D)                 │
+│                                      │
+│  [View Full Analysis]                │
+└─────────────────────────────────────┘
+</code></pre></div>
+
+<p><strong>AI Integration:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// VQbit-powered claim analysis</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">ClaimAnalysis</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">claim</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">confidence</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">supportingSources</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Source</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">contradictingSources</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Source</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">expertOpinions</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Opinion</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">logicalFallacies</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Fallacy</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">historicalPrecedents</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Precedent</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="3-debate-research-assistant">3. <strong>Debate Research Assistant</strong> 🎯</h3>
+<p><strong>Panel UI in Safari:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="err">┌────────────────</span><span class="w"> </span><span class="n">FoT</span><span class="w"> </span><span class="n">Debate</span><span class="w"> </span><span class="n">Assistant</span><span class="w"> </span><span class="err">────────────────┐</span>
+<span class="err">│</span><span class="w">                                                       </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="nl">Topic:</span><span class="w"> </span><span class="s">&quot;Should social media be regulated?&quot;</span><span class="w">          </span><span class="err">│</span>
+<span class="err">│</span><span class="w">                                                       </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">┌─────────────────────────────────────────────┐</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w"> </span><span class="n">PRO</span><span class="w"> </span><span class="n">Arguments</span><span class="w"> </span><span class="p">(</span><span class="mh">8</span><span class="p">)</span><span class="w">        </span><span class="n">CON</span><span class="w"> </span><span class="n">Arguments</span><span class="w"> </span><span class="p">(</span><span class="mh">6</span><span class="p">)</span><span class="w">  </span><span class="err">│</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">                                              </span><span class="err">│</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="n">Free</span><span class="w"> </span><span class="n">speech</span><span class="w"> </span><span class="n">concerns</span><span class="w">   </span><span class="err">•</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">safety</span><span class="w">      </span><span class="err">│</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="n">Platform</span><span class="w"> </span><span class="n">monopoly</span><span class="w">      </span><span class="err">•</span><span class="w"> </span><span class="n">Election</span><span class="w">         </span><span class="err">│</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="n">Misinformation</span><span class="w">         </span><span class="err">•</span><span class="w"> </span><span class="n">Mental</span><span class="w"> </span><span class="n">health</span><span class="w">    </span><span class="err">│</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">└─────────────────────────────────────────────┘</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w">                                                       </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="n">Sources</span><span class="w"> </span><span class="n">Collected</span><span class="w"> </span><span class="p">(</span><span class="mh">24</span><span class="p">)</span><span class="o">:</span><span class="w">                             </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">✓</span><span class="w"> </span><span class="n">Academic</span><span class="w"> </span><span class="nl">papers:</span><span class="w"> </span><span class="mh">12</span><span class="w">                               </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">✓</span><span class="w"> </span><span class="n">News</span><span class="w"> </span><span class="nl">articles:</span><span class="w"> </span><span class="mh">8</span><span class="w">                                  </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="err">✓</span><span class="w"> </span><span class="n">Expert</span><span class="w"> </span><span class="nl">opinions:</span><span class="w"> </span><span class="mh">4</span><span class="w">                                </span><span class="err">│</span>
+<span class="err">│</span><span class="w">                                                       </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="p">[</span><span class="n">Export</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">Education</span><span class="w"> </span><span class="n">App</span><span class="p">]</span><span class="w">                           </span><span class="err">│</span>
+<span class="err">└───────────────────────────────────────────────────────┘</span>
+</code></pre></div>
+
+<p><strong>Features:</strong>
+- Auto-collect sources while browsing
+- Categorize arguments (pro/con)
+- Build evidence hierarchy
+- Flag logical fallacies
+- Generate bibliography with receipts
+- Export to Education app for debate prep</p>
+<hr />
+<h3 id="4-legal-evidence-collection">4. <strong>Legal Evidence Collection</strong> ⚖️</h3>
+<p><strong>Use Cases:</strong></p>
+<h4 id="screenshot-online-harassment">Screenshot Online Harassment</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Action</span><span class="o">:</span><span class="w"> </span><span class="n">Right</span><span class="o">-</span><span class="n">click</span><span class="w"> </span><span class="n">threatening</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s2">&quot;Capture as Evidence&quot;</span>
+<span class="n">Result</span><span class="o">:</span><span class="w"> </span>
+<span class="o">-</span><span class="w"> </span><span class="n">Screenshot</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">timestamp</span>
+<span class="o">-</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">network</span><span class="w"> </span><span class="n">logs</span>
+<span class="o">-</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">geolocation</span><span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span><span class="n">available</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Page</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">code</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Cryptographic</span><span class="w"> </span><span class="n">receipt</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Automatic</span><span class="w"> </span><span class="n">submission</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">Legal</span><span class="w"> </span><span class="n">app</span>
+</code></pre></div>
+
+<h4 id="document-terms-of-service-changes">Document Terms of Service Changes</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Action</span><span class="o">:</span><span class="w"> </span><span class="n">Click</span><span class="w"> </span><span class="s2">&quot;Monitor this page&quot;</span>
+<span class="n">Result</span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Daily</span><span class="w"> </span><span class="n">snapshots</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Diff</span><span class="w"> </span><span class="n">highlighting</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">changes</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Alerts</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">TOS</span><span class="w"> </span><span class="n">modified</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Historical</span><span class="w"> </span><span class="n">timeline</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">receipts</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Export</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">legal</span><span class="w"> </span><span class="n">review</span>
+</code></pre></div>
+
+<h4 id="archive-product-listings">Archive Product Listings</h4>
+<div class="codehilite"><pre><span></span><code>Action: &quot;Save Product Evidence&quot;
+Result:
+- Product photo, price, description
+- Seller information
+- Shipping terms
+- Screenshot + HTML
+- Blockchain-anchored receipt
+</code></pre></div>
+
+<hr />
+<h3 id="5-health-information-validation">5. <strong>Health Information Validation</strong> 🏥</h3>
+<p><strong>Inline Health Claims:</strong></p>
+<div class="codehilite"><pre><span></span><code>Medical claim on webpage:
+&quot;Vitamin C cures cancer&quot; ← Flagged RED
+
+Popup shows:
+❌ CONTRADICTED BY EVIDENCE
+- Medical consensus: No curative effect
+- FDA stance: Not approved
+- Clinical trials: No significant results
+- Risk: May delay real treatment
+
+✓ Verified alternative:
+&quot;Vitamin C supports immune function&quot;
+</code></pre></div>
+
+<p><strong>Features:</strong>
+- FDA approval checker
+- Clinical trial database lookup
+- Drug interaction warnings
+- Medical consensus detection
+- Link to verified health sources</p>
+<hr />
+<h2 id="technical-architecture">Technical Architecture</h2>
+<h3 id="extension-structure">Extension Structure</h3>
+<div class="codehilite"><pre><span></span><code><span class="nv">FoTSafariExtension</span><span class="o">/</span>
+├──<span class="w"> </span><span class="nv">manifest</span>.<span class="nv">json</span><span class="w">           </span>#<span class="w"> </span><span class="nv">Extension</span><span class="w"> </span><span class="nv">config</span>
+├──<span class="w"> </span><span class="nv">popup</span><span class="o">/</span>
+│<span class="w">   </span>├──<span class="w"> </span><span class="nv">popup</span>.<span class="nv">html</span><span class="w">         </span>#<span class="w"> </span><span class="nv">Extension</span><span class="w"> </span><span class="nv">popup</span><span class="w"> </span><span class="nv">UI</span>
+│<span class="w">   </span>├──<span class="w"> </span><span class="nv">popup</span>.<span class="nv">js</span><span class="w">           </span>#<span class="w"> </span><span class="nv">Popup</span><span class="w"> </span><span class="nv">logic</span>
+│<span class="w">   </span>└──<span class="w"> </span><span class="nv">styles</span>.<span class="nv">css</span><span class="w">         </span>#<span class="w"> </span><span class="nv">Glass</span><span class="w"> </span><span class="nv">morphism</span><span class="w"> </span><span class="nv">styling</span>
+├──<span class="w"> </span><span class="nv">content</span><span class="o">/</span>
+│<span class="w">   </span>├──<span class="w"> </span><span class="nv">content</span>.<span class="nv">js</span><span class="w">         </span>#<span class="w"> </span><span class="nv">Page</span><span class="w"> </span><span class="nv">injection</span><span class="w"> </span><span class="nv">script</span>
+│<span class="w">   </span>├──<span class="w"> </span><span class="nv">highlighter</span>.<span class="nv">js</span><span class="w">     </span>#<span class="w"> </span><span class="nv">Fact</span><span class="o">-</span><span class="nv">check</span><span class="w"> </span><span class="nv">underlines</span>
+│<span class="w">   </span>└──<span class="w"> </span><span class="nv">capture</span>.<span class="nv">js</span><span class="w">         </span>#<span class="w"> </span><span class="nv">Screenshot</span><span class="o">/</span><span class="nv">HTML</span><span class="w"> </span><span class="nv">capture</span>
+├──<span class="w"> </span><span class="nv">background</span><span class="o">/</span>
+│<span class="w">   </span>├──<span class="w"> </span><span class="nv">background</span>.<span class="nv">js</span><span class="w">      </span>#<span class="w"> </span><span class="nv">Service</span><span class="w"> </span><span class="nv">worker</span>
+│<span class="w">   </span>├──<span class="w"> </span><span class="nv">api</span>.<span class="nv">js</span><span class="w">            </span>#<span class="w"> </span><span class="nv">Communication</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">iOS</span><span class="w"> </span><span class="nv">app</span>
+│<span class="w">   </span>└──<span class="w"> </span><span class="nv">storage</span>.<span class="nv">js</span><span class="w">        </span>#<span class="w"> </span><span class="nv">Local</span><span class="w"> </span><span class="nv">caching</span>
+└──<span class="w"> </span><span class="nv">shared</span><span class="o">/</span>
+<span class="w">    </span>├──<span class="w"> </span><span class="nv">vqbit</span><span class="o">-</span><span class="nv">wasm</span>.<span class="nv">js</span><span class="w">     </span>#<span class="w"> </span><span class="nv">VQbit</span><span class="w"> </span><span class="nv">engine</span><span class="w"> </span><span class="ss">(</span><span class="nv">WASM</span><span class="ss">)</span>
+<span class="w">    </span>├──<span class="w"> </span><span class="nv">crypto</span>.<span class="nv">js</span><span class="w">         </span>#<span class="w"> </span><span class="nv">Receipt</span><span class="w"> </span><span class="nv">generation</span>
+<span class="w">    </span>└──<span class="w"> </span><span class="nv">ai</span><span class="o">-</span><span class="nv">models</span><span class="o">/</span><span class="w">        </span>#<span class="w"> </span><span class="nv">ML</span><span class="w"> </span><span class="nv">models</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">fact</span><span class="o">-</span><span class="nv">checking</span>
+</code></pre></div>
+
+<h3 id="native-app-communication">Native App Communication</h3>
+<p><strong>Safari Extension ↔ iOS App via XPC:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// In Safari Extension</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SafariExtensionHandler</span><span class="p">:</span><span class="w"> </span><span class="n">SFSafariExtensionHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">override</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">messageReceived</span><span class="p">(</span>
+<span class="w">        </span><span class="n">withName</span><span class="w"> </span><span class="n">messageName</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">from</span><span class="w"> </span><span class="n">page</span><span class="p">:</span><span class="w"> </span><span class="n">SFSafariPage</span><span class="p">,</span>
+<span class="w">        </span><span class="n">userInfo</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">]?</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="n">messageName</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;cite_source&quot;</span><span class="p">:</span>
+<span class="w">            </span><span class="c1">// Send to FoT Core app</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">citation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">userInfo</span><span class="p">![</span><span class="s">&quot;citation&quot;</span><span class="p">]</span>
+<span class="w">            </span><span class="n">FoTApp</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">addCitation</span><span class="p">(</span><span class="n">citation</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;fact_check&quot;</span><span class="p">:</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">claim</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">userInfo</span><span class="p">![</span><span class="s">&quot;claim&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">!</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">analysis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">claim</span><span class="p">:</span><span class="w"> </span><span class="n">claim</span><span class="p">)</span>
+<span class="w">            </span><span class="n">page</span><span class="p">.</span><span class="n">dispatchMessageToScript</span><span class="p">(</span>
+<span class="w">                </span><span class="n">withName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fact_check_result&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">userInfo</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;analysis&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">analysis</span><span class="p">]</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="permissions">Permissions</h2>
+<h3 id="required">Required:</h3>
+<ul>
+<li><code>tabs</code> - Access current tab info</li>
+<li><code>activeTab</code> - Interact with current page</li>
+<li><code>storage</code> - Cache data locally</li>
+<li><code>webNavigation</code> - Track page changes</li>
+<li><code>contextMenus</code> - Add right-click options</li>
+</ul>
+<h3 id="optional-with-user-consent">Optional (with user consent):</h3>
+<ul>
+<li><code>&lt;all_urls&gt;</code> - Fact-check any page</li>
+<li><code>nativeMessaging</code> - Communicate with iOS app</li>
+</ul>
+<hr />
+<h2 id="privacy-security">Privacy &amp; Security</h2>
+<h3 id="data-handling">Data Handling:</h3>
+<ol>
+<li><strong>Local-first</strong> - Fact-checking models run in browser</li>
+<li><strong>Opt-in sync</strong> - Citations only saved if user approves</li>
+<li><strong>E2E encryption</strong> - All receipts encrypted before cloud sync</li>
+<li><strong>No tracking</strong> - Extension doesn't collect analytics</li>
+<li><strong>Open source</strong> - All code auditable</li>
+</ol>
+<h3 id="user-controls">User Controls:</h3>
+<ul>
+<li>Enable/disable fact-checking per site</li>
+<li>Choose which domain app receives citations</li>
+<li>Clear all cached data</li>
+<li>Export all collected evidence</li>
+</ul>
+<hr />
+<h2 id="uiux-design">UI/UX Design</h2>
+<h3 id="glass-morphism-theme">Glass Morphism Theme</h3>
+<p>Match iOS app aesthetic:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">fot-panel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">backdrop-filter</span><span class="p">:</span><span class="w"> </span><span class="nb">blur</span><span class="p">(</span><span class="mi">30</span><span class="kt">px</span><span class="p">);</span>
+<span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="w"> </span><span class="mi">32</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">fot-button</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">linear-gradient</span><span class="p">(</span>
+<span class="w">        </span><span class="mi">135</span><span class="kt">deg</span><span class="p">,</span>
+<span class="w">        </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">),</span>
+<span class="w">        </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="n">backdrop-filter</span><span class="p">:</span><span class="w"> </span><span class="nb">blur</span><span class="p">(</span><span class="mi">15</span><span class="kt">px</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="context-menu">Context Menu</h3>
+<div class="codehilite"><pre><span></span><code>Right-click on webpage:
+─────────────────────────
+  Cut
+  Copy
+  Paste
+─────────────────────────
+  FoT: Cite with Provenance    [🔗]
+  FoT: Check Facts             [✓]
+  FoT: Save as Evidence        [⚖️]
+  FoT: Add to Debate           [🎯]
+─────────────────────────
+  Inspect Element
+</code></pre></div>
+
+<hr />
+<h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+<ul>
+<li><code>Cmd+Shift+C</code> - Cite selection</li>
+<li><code>Cmd+Shift+F</code> - Fact-check selection</li>
+<li><code>Cmd+Shift+L</code> - Save as legal evidence</li>
+<li><code>Cmd+Shift+D</code> - Add to debate research</li>
+</ul>
+<hr />
+<h2 id="future-enhancements">Future Enhancements</h2>
+<h3 id="phase-2">Phase 2:</h3>
+<ul>
+<li>[ ] Chrome/Firefox ports</li>
+<li>[ ] Collaborative fact-checking</li>
+<li>[ ] Peer review system</li>
+<li>[ ] Community credibility scores</li>
+</ul>
+<h3 id="phase-3">Phase 3:</h3>
+<ul>
+<li>[ ] AI-generated summaries</li>
+<li>[ ] Multilingual support</li>
+<li>[ ] Audio/video citation capture</li>
+<li>[ ] Blockchain anchoring</li>
+</ul>
+<hr />
+<h2 id="development-roadmap">Development Roadmap</h2>
+<h3 id="week-1-2-foundation">Week 1-2: Foundation</h3>
+<ul>
+<li>[ ] Extension manifest and structure</li>
+<li>[ ] Basic content script injection</li>
+<li>[ ] Context menu integration</li>
+<li>[ ] Native app communication setup</li>
+</ul>
+<h3 id="week-3-4-core-features">Week 3-4: Core Features</h3>
+<ul>
+<li>[ ] Citation capture with screenshots</li>
+<li>[ ] HTML snapshot generation</li>
+<li>[ ] Cryptographic receipt integration</li>
+<li>[ ] Fact-checking engine (basic)</li>
+</ul>
+<h3 id="week-5-6-uiux">Week 5-6: UI/UX</h3>
+<ul>
+<li>[ ] Glass morphism popup design</li>
+<li>[ ] Inline highlight rendering</li>
+<li>[ ] Debate assistant panel</li>
+<li>[ ] Settings page</li>
+</ul>
+<h3 id="week-7-8-polish-testing">Week 7-8: Polish &amp; Testing</h3>
+<ul>
+<li>[ ] Performance optimization</li>
+<li>[ ] Cross-browser testing</li>
+<li>[ ] Security audit</li>
+<li>[ ] App Store submission</li>
+</ul>
+<hr />
+<p><em>Next: Implement unified sensor capture module for all three apps</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

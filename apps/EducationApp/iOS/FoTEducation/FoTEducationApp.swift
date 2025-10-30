@@ -9,24 +9,42 @@ import FoTUI
 @main
 struct FoTEducationApp: App {
     @StateObject private var appState = EducationAppState()
+    @StateObject private var voiceAssistant = SiriVoiceAssistant.shared
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
-    
+
     init() {
         AppConfig.shared.features.useLocalLLM = false
         AppConfig.shared.features.vqbitSuggestions = true
         FoTLogger.app.info("FoT Education K-18 starting - version \(AppConfig.shared.version)")
     }
-    
+
     var body: some Scene {
         WindowGroup {
-            if !hasCompletedOnboarding {
-                EducationOnboardingFlow {
-                    hasCompletedOnboarding = true
+            ZStack {
+                if !hasCompletedOnboarding {
+                    EducationOnboardingFlow {
+                        hasCompletedOnboarding = true
+                    }
+                } else {
+                    EducationContentView()
+                        .environmentObject(appState)
+                        .interactiveHelp(.educationDashboard)
+                        .voiceContext(.education, message: "Welcome to FoT Education. Your personal learning assistant.")
+                        .onAppear {
+                            // Greet user every time app opens
+                            voiceAssistant.greetUser(appName: "FoT Education")
+                        }
                 }
-            } else {
-                EducationContentView()
-                    .environmentObject(appState)
-                    .interactiveHelp(.educationDashboard)
+                
+                // Floating voice assistant indicator
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        VoiceAssistantIndicator()
+                            .padding()
+                    }
+                }
             }
         }
     }

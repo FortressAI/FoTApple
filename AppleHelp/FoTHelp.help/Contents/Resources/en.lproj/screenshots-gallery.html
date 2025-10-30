@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Screenshots Gallery - Field of Truth Apple">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Screenshots Gallery - Field of Truth Apple - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Screenshots Gallery - Field of Truth Apple</h1>
+        </header>
+        
+        <main>
+            <h1 id="screenshots-gallery-field-of-truth-apple">Screenshots Gallery - Field of Truth Apple</h1>
+<p>Documentation of the Glass UI implementation across all platforms.</p>
+<hr />
+<h2 id="clinician-app-ios">Clinician App - iOS</h2>
+<h3 id="glass-showcase-view">Glass Showcase View</h3>
+<p><img alt="Clinician Showcase" src="screenshots/clinician-showcase-01.png.html" /></p>
+<p><strong>Features Visible:</strong>
+- Animated gradient background (blue/cyan/teal theme)
+- Glass morphism card with backdrop blur
+- Domain icon with gradient fill
+- System status verification
+- Core features list
+- VQbit engine status indicator
+- Launch button with glass effect</p>
+<hr />
+<h3 id="patient-list-view">Patient List View</h3>
+<p><em>(Screenshot to be captured)</em></p>
+<p><strong>Features:</strong>
+- Glass card patient rows
+- Search functionality
+- Allergy alerts in red
+- Active problems in orange
+- MRN and demographic display</p>
+<hr />
+<h3 id="clinical-encounter-view">Clinical Encounter View</h3>
+<p><em>(Screenshot to be captured)</em></p>
+<p><strong>Features:</strong>
+- Chief complaint entry
+- Vitals monitoring
+- Assessment &amp; plan sections
+- Drug interaction screening
+- SOAP note generation</p>
+<hr />
+<h2 id="education-app-ios">Education App - iOS</h2>
+<p><em>(To be implemented with green/mint/yellow theme)</em></p>
+<h3 id="expected-features">Expected Features:</h3>
+<ul>
+<li>Student list with virtue scores</li>
+<li>Assignment tracking</li>
+<li>Debate preparation tools</li>
+<li>Learning path visualization</li>
+</ul>
+<hr />
+<h2 id="legal-app-ios">Legal App - iOS</h2>
+<p><em>(To be implemented with indigo/purple/blue theme)</em></p>
+<h3 id="expected-features_1">Expected Features:</h3>
+<ul>
+<li>Case list with deadlines</li>
+<li>Evidence timeline</li>
+<li>Document management</li>
+<li>Court calendar integration</li>
+</ul>
+<hr />
+<h2 id="safari-extension">Safari Extension</h2>
+<p><em>(To be implemented)</em></p>
+<h3 id="expected-features_2">Expected Features:</h3>
+<ul>
+<li>Inline fact-checking highlights</li>
+<li>Citation capture popup</li>
+<li>Debate research panel</li>
+<li>Evidence collection tools</li>
+</ul>
+<hr />
+<h2 id="macos-apps">macOS Apps</h2>
+<p><em>(To be implemented)</em></p>
+<h3 id="clinician-macos">Clinician macOS:</h3>
+<ul>
+<li>Three-pane layout (sidebar, list, detail)</li>
+<li>Patient charts with glass cards</li>
+<li>Drug interaction dashboard</li>
+</ul>
+<h3 id="education-macos">Education macOS:</h3>
+<ul>
+<li>Research tools</li>
+<li>Debate preparation workspace</li>
+<li>Source verification panel</li>
+</ul>
+<h3 id="legal-macos">Legal macOS:</h3>
+<ul>
+<li>Case management</li>
+<li>Evidence review</li>
+<li>Timeline reconstruction</li>
+</ul>
+<hr />
+<h2 id="apple-watch">Apple Watch</h2>
+<p><em>(To be implemented)</em></p>
+<h3 id="watch-complications">Watch Complications:</h3>
+<ul>
+<li>Emergency capture button</li>
+<li>Quick vitals display</li>
+<li>Medication reminders</li>
+</ul>
+<hr />
+<h2 id="design-system">Design System</h2>
+<h3 id="glass-morphism-parameters">Glass Morphism Parameters</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Backdrop blur</span>
+<span class="p">.</span><span class="n">ultraThinMaterial</span><span class="w">  </span><span class="c1">// 30px blur equivalent</span>
+
+<span class="c1">// Card styling</span>
+<span class="n">background</span><span class="p">:</span><span class="w"> </span><span class="n">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">backdrop</span><span class="o">-</span><span class="bp">filter</span><span class="p">:</span><span class="w"> </span><span class="n">blur</span><span class="p">(</span><span class="mi">30</span><span class="n">px</span><span class="p">)</span>
+<span class="n">border</span><span class="o">-</span><span class="n">radius</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="n">px</span>
+<span class="n">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="n">px</span><span class="w"> </span><span class="n">solid</span><span class="w"> </span><span class="n">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">8</span><span class="n">px</span><span class="w"> </span><span class="mi">32</span><span class="n">px</span><span class="w"> </span><span class="n">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="domain-color-themes">Domain Color Themes</h3>
+<p><strong>Clinician:</strong>
+- Primary: RGB(20, 120, 220) - Electric blue
+- Accent: RGB(120, 240, 255) - Cyan
+- Dark: RGB(8, 40, 80) - Deep blue</p>
+<p><strong>Education:</strong>
+- Primary: RGB(50, 180, 100) - Forest green
+- Accent: RGB(200, 255, 100) - Lime
+- Dark: RGB(10, 50, 20) - Dark green</p>
+<p><strong>Legal:</strong>
+- Primary: RGB(80, 50, 180) - Royal purple
+- Accent: RGB(180, 150, 255) - Lavender
+- Dark: RGB(20, 10, 50) - Deep purple</p>
+<hr />
+<h2 id="asset-inventory">Asset Inventory</h2>
+<h3 id="generated-by-generate_assetspy">Generated by <code>generate_assets.py</code>:</h3>
+<p><strong>App Icons:</strong>
+- <code>FoT_core_1024.png</code> - Master app icon
+- <code>FoT_core_512.png</code> - Medium size
+- <code>FoT_core_256.png</code> - Standard size
+- <code>FoT_core_128.png</code> - Small size
+- <code>FoT_core_064.png</code> - Thumbnail
+- <code>FoT_core_032.png</code> - Tiny icon</p>
+<p><strong>Badges (20% corner radius):</strong>
+- <code>FoT_core_Badge_256.png</code> - Large tile
+- <code>FoT_core_Badge_192.png</code> - Medium tile
+- <code>FoT_core_Badge_128.png</code> - Standard tile
+- <code>FoT_core_Badge_96.png</code> - Small tile
+- <code>FoT_core_Badge_64.png</code> - Mini tile</p>
+<p><strong>Launch Screens:</strong>
+- <code>FoT_core_LaunchMaster.png</code> - 2732px with watermark</p>
+<p><strong>Vector Assets:</strong>
+- <code>FoT_core_Master.svg</code> - App icon SVG
+- <code>FoT_core_Glyph.svg</code> - Domain glyph vector</p>
+<p><strong>Reference Images:</strong>
+- <code>FoT_core_DynamicGlass_01.png</code> - Glass effect QA
+- <code>FoT_core_DynamicGlass_02.png</code> - Glass variation</p>
+<hr />
+<h2 id="video-documentation">Video Documentation</h2>
+<h3 id="marketing-videos-in-designvideos">Marketing Videos (in <code>Design/Videos/</code>):</h3>
+<ul>
+<li><code>FoT__Blueprint_for_Computation.mp4</code></li>
+<li><code>FoT_vs.mp4</code></li>
+<li><code>FoT_Explainer_Slide_1920x1080.png</code></li>
+</ul>
+<h3 id="planned-tutorial-videos">Planned Tutorial Videos:</h3>
+<ul>
+<li>[ ] Clinician app walkthrough</li>
+<li>[ ] Legal incident capture demo</li>
+<li>[ ] Education debate preparation</li>
+<li>[ ] Safari extension usage</li>
+<li>[ ] Cross-platform sensor fusion</li>
+<li>[ ] Receipt verification demo</li>
+</ul>
+<hr />
+<h2 id="screenshot-capture-commands">Screenshot Capture Commands</h2>
+<h3 id="ios-simulator">iOS Simulator</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Current showcase view</span>
+xcrun<span class="w"> </span>simctl<span class="w"> </span>io<span class="w"> </span>&lt;SIMULATOR_ID&gt;<span class="w"> </span>screenshot<span class="w"> </span>path/to/screenshot.png
+
+<span class="c1"># Record video</span>
+xcrun<span class="w"> </span>simctl<span class="w"> </span>io<span class="w"> </span>&lt;SIMULATOR_ID&gt;<span class="w"> </span>recordVideo<span class="w"> </span>--codec<span class="o">=</span>h264<span class="w"> </span>video.mp4
+<span class="c1"># Press Ctrl+C to stop</span>
+</code></pre></div>
+
+<h3 id="macos-app">macOS App</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Full window capture</span>
+screencapture<span class="w"> </span>-w<span class="w"> </span>screenshot.png
+
+<span class="c1"># With timer</span>
+screencapture<span class="w"> </span>-T<span class="w"> </span><span class="m">3</span><span class="w"> </span>-w<span class="w"> </span>screenshot.png
+</code></pre></div>
+
+<h3 id="safari-extension_1">Safari Extension</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Use built-in screenshot tool</span>
+Cmd+Shift+4<span class="w">  </span><span class="c1"># Area selection</span>
+</code></pre></div>
+
+<hr />
+<p><em>Last Updated: October 28, 2025</em>
+<em>More screenshots will be added as features are implemented</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

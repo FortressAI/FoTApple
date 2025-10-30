@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="QFOT Blockchain Integration">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>QFOT Blockchain Integration - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>QFOT Blockchain Integration</h1>
+        </header>
+        
+        <main>
+            <h1 id="qfot-blockchain-integration">QFOT Blockchain Integration</h1>
+<p><strong>Quantum Field of Truth - Optional Ethics-Validated Knowledge Sharing</strong></p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>QFOT (Quantum Field of Truth) is an <strong>optional blockchain system</strong> that allows Field of Truth app users to share their validated knowledge contributions and earn QFOT tokens. It's the world's first blockchain with built-in truth validation through an Ethics Node powered by Agentic Knowledge Graph (AKG) and Graph Neural Networks (GNN).</p>
+<p><strong>🔑 Key Point:</strong> QFOT is <strong>100% optional</strong>. All FoT apps work fully without it. Users must explicitly opt-in to participate.</p>
+<hr />
+<h2 id="core-innovation-ethics-node-akg-gnn">🎯 Core Innovation: Ethics Node + AKG GNN</h2>
+<h3 id="problem-solved">Problem Solved</h3>
+<p>Traditional blockchains accept any data without truth validation. QFOT implements an <strong>Ethics Node</strong> using <strong>Agentic Knowledge Graph (AKG) with Graph Neural Networks (GNN)</strong> to prevent untruthful ingestion.</p>
+<h3 id="how-it-works">How It Works</h3>
+<div class="codehilite"><pre><span></span><code><span class="nv">User</span><span class="w"> </span><span class="nv">submits</span><span class="w"> </span><span class="nv">Truth</span><span class="w"> </span><span class="nv">Claim</span>
+<span class="w">        </span>↓
+<span class="nv">AKG</span><span class="w"> </span><span class="nv">GNN</span><span class="w"> </span><span class="nv">generates</span><span class="w"> </span><span class="mi">8096</span><span class="o">-</span><span class="nv">dimensional</span><span class="w"> </span><span class="nv">embedding</span>
+<span class="w">        </span>↓
+<span class="nv">Ethics</span><span class="w"> </span><span class="nv">Node</span><span class="w"> </span><span class="nv">checks</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">contradictions</span>
+<span class="w">        </span>↓
+<span class="nv">Multiple</span><span class="w"> </span><span class="nv">validators</span><span class="w"> </span><span class="nv">vote</span><span class="w"> </span><span class="ss">(</span><span class="mi">66</span><span class="o">%</span><span class="w"> </span><span class="nv">consensus</span><span class="w"> </span><span class="nv">required</span><span class="ss">)</span>
+<span class="w">        </span>↓
+<span class="k">If</span><span class="w"> </span><span class="nv">validated</span><span class="w"> </span>→<span class="w"> </span><span class="nv">Accept</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">blockchain</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">reward</span><span class="w"> </span><span class="nv">QFOT</span><span class="w"> </span><span class="nv">tokens</span>
+<span class="k">If</span><span class="w"> </span><span class="nv">rejected</span><span class="w"> </span>→<span class="w"> </span><span class="nv">Reject</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">reputation</span><span class="w"> </span><span class="nv">penalty</span>
+</code></pre></div>
+
+<hr />
+<h2 id="no-identity-system">🔐 No-Identity System</h2>
+<h3 id="paypal-like-alias-system">PayPal-Like Alias System</h3>
+<p><strong>All users remain anonymous:</strong></p>
+<ol>
+<li><strong>User creates wallet</strong> → Gets cryptographic address</li>
+<li><strong>User chooses alias</strong> → Human-readable name (e.g., <code>@dr_quantum</code>)</li>
+<li><strong>NO personal information</strong> → Name, email, location NOT collected</li>
+<li><strong>Reputation-based</strong> → Build trust through validated contributions</li>
+</ol>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Wallet</span><span class="o">:</span><span class="w"> </span><span class="mh">0x742d35</span><span class="n">Cc6634C0532925a3b844Bc9e7595f0bEb2</span>
+<span class="n">Alias</span><span class="o">:</span><span class="w"> </span><span class="err">@</span><span class="n">dr_quantum</span><span class="w"> </span><span class="o">[</span><span class="err">🩺</span><span class="o">]</span>
+<span class="n">Category</span><span class="o">:</span><span class="w"> </span><span class="n">Doctor</span>
+<span class="n">Reputation</span><span class="o">:</span><span class="w"> </span><span class="mi">842</span><span class="w"> </span><span class="o">(</span><span class="n">Master</span><span class="w"> </span><span class="n">Tier</span><span class="w"> </span><span class="err">⭐</span><span class="o">)</span>
+<span class="n">Claims</span><span class="w"> </span><span class="n">Validated</span><span class="o">:</span><span class="w"> </span><span class="mi">127</span>
+<span class="n">Tokens</span><span class="w"> </span><span class="n">Earned</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="mf">254.3</span><span class="w"> </span><span class="n">QFOT</span>
+</code></pre></div>
+
+<h3 id="opt-in-flow">Opt-In Flow</h3>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="kr">open</span><span class="n">s</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">FoT</span><span class="w"> </span><span class="n">app</span>
+<span class="w">   </span><span class="err">↓</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">First</span><span class="w"> </span><span class="n">use</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Join QFOT Network?&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">dismissible</span><span class="p">)</span>
+<span class="w">   </span><span class="err">↓</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">sees</span><span class="w"> </span><span class="n">disclaimer</span><span class="p">:</span>
+<span class="w">   </span><span class="s">&quot;✅ NO identity required</span>
+<span class="w">    </span><span class="err">✅</span><span class="w"> </span><span class="n">Anonymous</span><span class="w"> </span><span class="kr">cont</span><span class="n">ributions</span>
+<span class="w">    </span><span class="err">✅</span><span class="w"> </span><span class="n">Reputation</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="kr">sys</span><span class="n">tem</span>
+<span class="w">    </span><span class="err">✅</span><span class="w"> </span><span class="n">Earn</span><span class="w"> </span><span class="n">QFOT</span><span class="w"> </span><span class="kr">to</span><span class="n">kens</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="nb">val</span><span class="n">idated</span><span class="w"> </span><span class="n">knowledge</span><span class="err">&quot;</span>
+<span class="w">   </span><span class="err">↓</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">chooses</span><span class="w"> </span><span class="n">alias</span><span class="w"> </span><span class="p">(</span><span class="mf">3</span><span class="o">-</span><span class="mf">30</span><span class="w"> </span><span class="n">chars</span><span class="p">,</span><span class="w"> </span><span class="n">alphanumeric</span><span class="p">)</span>
+<span class="w">   </span><span class="err">↓</span>
+<span class="mf">5.</span><span class="w"> </span><span class="n">Wallet</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">automatically</span>
+<span class="w">   </span><span class="err">↓</span>
+<span class="mf">6.</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="n">truth</span><span class="w"> </span><span class="n">claims</span><span class="w"> </span><span class="p">(</span><span class="ow">or</span><span class="w"> </span><span class="n">dismiss</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="n">normally</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="qfot-token-economics">💰 QFOT Token Economics</h2>
+<h3 id="token-name-qfot-quantum-field-of-truth">Token Name: QFOT (Quantum Field of Truth)</h3>
+<p><strong>Total Supply:</strong> 1,000,000,000 QFOT (fixed)</p>
+<p><strong>Why "QFOT"?</strong>
+- <strong>Q</strong>uantum: Reflects quantum-inspired optimization (VQbit)
+- <strong>F</strong>ield: Field of Truth (patent name)
+- <strong>o</strong>f: Preposition
+- <strong>T</strong>ruth: Core mission - validated truth claims</p>
+<h3 id="token-distribution">Token Distribution</h3>
+<table>
+<thead>
+<tr>
+<th>Allocation</th>
+<th>Percentage</th>
+<th>Amount</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Truth Validators</strong></td>
+<td>40%</td>
+<td>400M QFOT</td>
+<td>Trust organizations (universities, NGOs)</td>
+</tr>
+<tr>
+<td><strong>Community Rewards</strong></td>
+<td>25%</td>
+<td>250M QFOT</td>
+<td>Knowledge contributors</td>
+</tr>
+<tr>
+<td><strong>Ethics Validators</strong></td>
+<td>15%</td>
+<td>150M QFOT</td>
+<td>Ethics node operators</td>
+</tr>
+<tr>
+<td><strong>Platform Treasury</strong></td>
+<td>10%</td>
+<td>100M QFOT</td>
+<td>DAO governance</td>
+</tr>
+<tr>
+<td><strong>Founders</strong></td>
+<td>5%</td>
+<td>50M QFOT</td>
+<td>Core team (4-year vest)</td>
+</tr>
+<tr>
+<td><strong>Partners</strong></td>
+<td>5%</td>
+<td>50M QFOT</td>
+<td>Early backers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fee-distribution-per-transaction">Fee Distribution (Per Transaction)</h3>
+<p>When someone uses validated knowledge:</p>
+<table>
+<thead>
+<tr>
+<th>Recipient</th>
+<th>Share</th>
+<th>Example (10 QFOT fee)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Knowledge Creator</strong></td>
+<td><strong>70%</strong></td>
+<td>7.0 QFOT</td>
+</tr>
+<tr>
+<td><strong>Platform</strong></td>
+<td><strong>15%</strong></td>
+<td>1.5 QFOT</td>
+</tr>
+<tr>
+<td><strong>Governance</strong></td>
+<td><strong>10%</strong></td>
+<td>1.0 QFOT</td>
+</tr>
+<tr>
+<td><strong>Ethics Validators</strong></td>
+<td><strong>5%</strong></td>
+<td>0.5 QFOT</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="truth-claim-rewards-by-domain">📊 Truth Claim Rewards by Domain</h2>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Claim Type</th>
+<th>Base Reward</th>
+<th>Validation Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Medical</strong></td>
+<td>Diagnosis</td>
+<td>10.0 QFOT</td>
+<td>3 physician validators, HIPAA compliant</td>
+</tr>
+<tr>
+<td><strong>Legal</strong></td>
+<td>Research</td>
+<td>8.0 QFOT</td>
+<td>2 attorney validators, ABA compliant</td>
+</tr>
+<tr>
+<td><strong>Education</strong></td>
+<td>Content</td>
+<td>5.0 QFOT</td>
+<td>2 teacher validators, FERPA compliant</td>
+</tr>
+<tr>
+<td><strong>Health</strong></td>
+<td>Guidance</td>
+<td>6.0 QFOT</td>
+<td>2 health professional validators</td>
+</tr>
+<tr>
+<td><strong>Parenting</strong></td>
+<td>Advice</td>
+<td>4.0 QFOT</td>
+<td>2 parent/expert validators</td>
+</tr>
+<tr>
+<td><strong>Protein</strong></td>
+<td>Structure</td>
+<td>10.0 QFOT</td>
+<td>2 structural biologist validators</td>
+</tr>
+<tr>
+<td><strong>Chemistry</strong></td>
+<td>Molecule</td>
+<td>7.0 QFOT</td>
+<td>2 chemist validators</td>
+</tr>
+<tr>
+<td><strong>Fluid Dynamics</strong></td>
+<td>Simulation</td>
+<td>12.0 QFOT</td>
+<td>2 engineer validators</td>
+</tr>
+<tr>
+<td><strong>Quantum Collapse</strong></td>
+<td>Proof</td>
+<td>15.0 QFOT</td>
+<td>3 physicist validators (Millennium Prize related)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Formula:</strong></p>
+<div class="codehilite"><pre><span></span><code>Earnings = Base Reward × Confidence Score × Usage Count × 0.70
+</code></pre></div>
+
+<p><strong>Example:</strong>
+- Protein structure with 95% confidence
+- Used by 50 other researchers
+- Earnings: 10.0 × 0.95 × 50 × 0.70 = <strong>332.5 QFOT</strong></p>
+<hr />
+<h2 id="akg-gnn-architecture">🧠 AKG GNN Architecture</h2>
+<h3 id="agentic-knowledge-graph-with-graph-neural-networks">Agentic Knowledge Graph with Graph Neural Networks</h3>
+<p><strong>Purpose:</strong> Prevent contradictory or false knowledge from entering blockchain</p>
+<p><strong>Components:</strong></p>
+<ol>
+<li><strong>Knowledge Graph (AKG)</strong></li>
+<li>Nodes: Facts, claims, entities</li>
+<li>Edges: Relationships, citations, contradictions</li>
+<li>
+<p>Properties: Confidence, source, timestamp</p>
+</li>
+<li>
+<p><strong>Graph Neural Network (GNN)</strong></p>
+</li>
+<li>Architecture: 8096-dimensional embeddings</li>
+<li>Layers: 12 transformer layers</li>
+<li>Training: Contrastive learning on validated truth claims</li>
+<li>
+<p>Purpose: Semantic similarity and contradiction detection</p>
+</li>
+<li>
+<p><strong>Ethics Node</strong></p>
+</li>
+<li>Receives new truth claim</li>
+<li>Generates GNN embedding</li>
+<li>Queries similar claims in graph</li>
+<li>Computes cosine similarity</li>
+<li>Flags potential contradictions</li>
+<li>Routes to human validators if uncertain</li>
+</ol>
+<hr />
+<h2 id="domain-integration">🌐 Domain Integration</h2>
+<h3 id="supported-domains">Supported Domains</h3>
+<p><strong>Currently Integrated:</strong>
+- ✅ <strong>Medical</strong> - Clinical diagnoses, treatment plans
+- ✅ <strong>Legal</strong> - Legal research, constitutional analysis
+- ✅ <strong>Education</strong> - Learning content, assessments
+- ✅ <strong>Personal Health</strong> - Health guidance, wellness advice
+- ✅ <strong>Parenting</strong> - Child development, parenting strategies
+- ✅ <strong>Protein Chemistry</strong> - Structure predictions, folding pathways
+- ✅ <strong>Fluid Dynamics</strong> - CFD simulations, Navier-Stokes solutions</p>
+<p><strong>Planned Domains:</strong>
+- 🎯 <strong>Chemistry</strong> - Molecular design, retrosynthesis
+- 🎯 <strong>Finance</strong> - Risk analysis, fraud detection
+- 🎯 <strong>Cybersecurity</strong> - Threat intelligence</p>
+<hr />
+<h2 id="blockchain-architecture">🏗️ Blockchain Architecture</h2>
+<h3 id="substrate-framework-rust">Substrate Framework (Rust)</h3>
+<p><strong>Why Substrate?</strong>
+- Native smart contract support
+- Custom runtime logic for ethics validation
+- Forkless upgrades
+- Battle-tested (powers Polkadot)</p>
+<p><strong>Custom Pallets:</strong></p>
+<ol>
+<li><strong><code>pallet-knowledge-graph</code></strong> ✅ COMPLETE</li>
+<li>On-chain AKG storage</li>
+<li>Cypher query engine</li>
+<li>
+<p>Provenance tracking</p>
+</li>
+<li>
+<p><strong><code>pallet-ethics-node</code></strong> ✅ COMPLETE</p>
+</li>
+<li>Truth claim validation</li>
+<li>GNN embedding storage</li>
+<li>Contradiction detection</li>
+<li>
+<p>Validator consensus</p>
+</li>
+<li>
+<p><strong><code>pallet-alias-system</code></strong> ✅ COMPLETE</p>
+</li>
+<li>Alias registration</li>
+<li>Reputation tracking</li>
+<li>Leaderboard</li>
+<li>No-identity enforcement</li>
+</ol>
+<hr />
+<h2 id="app-integration">📱 App Integration</h2>
+<h3 id="how-apps-submit-truth-claims">How Apps Submit Truth Claims</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">QFOTBridge</span>
+
+<span class="c1">// 1. User generates insight in app</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">diagnosis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">clinician</span><span class="p">.</span><span class="n">generateDiagnosis</span><span class="p">(</span><span class="n">symptoms</span><span class="p">)</span>
+
+<span class="c1">// 2. Check if user opted in</span>
+<span class="k">guard</span><span class="w"> </span><span class="n">QFOTNoIdentityOptIn</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">canSubmitClaims</span><span class="p">()</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// User hasn&#39;t opted in - just show result normally</span>
+<span class="w">    </span><span class="k">return</span>
+<span class="p">}</span>
+
+<span class="c1">// 3. Create truth claim</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">claim</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TruthClaim</span><span class="p">(</span>
+<span class="w">    </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">medicalDiagnosis</span><span class="p">,</span>
+<span class="w">    </span><span class="n">domain</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">clinician</span><span class="p">,</span>
+<span class="w">    </span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">diagnosis</span><span class="p">),</span>
+<span class="w">    </span><span class="n">confidence</span><span class="p">:</span><span class="w"> </span><span class="n">diagnosis</span><span class="p">.</span><span class="n">confidence</span><span class="p">,</span>
+<span class="w">    </span><span class="n">metadata</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s">&quot;icd10&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">diagnosis</span><span class="p">.</span><span class="n">icd10Code</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;confidence_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="si">\(</span><span class="n">diagnosis</span><span class="p">.</span><span class="n">confidence</span><span class="si">)</span><span class="s">&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1">// 4. Submit to QFOT blockchain</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">qfotWallet</span><span class="p">.</span><span class="n">submitTruthClaim</span><span class="p">(</span><span class="n">claim</span><span class="p">)</span>
+
+<span class="c1">// 5. Show user result</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;✅ Truth claim submitted!&quot;</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;   Claim ID: </span><span class="si">\(</span><span class="n">result</span><span class="p">.</span><span class="n">claimHash</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;   Estimated reward: </span><span class="si">\(</span><span class="n">result</span><span class="p">.</span><span class="n">estimatedReward</span><span class="si">)</span><span class="s"> QFOT&quot;</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;   Status: Pending ethics validation&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="security-privacy">🔐 Security &amp; Privacy</h2>
+<h3 id="whats-on-blockchain">What's On Blockchain</h3>
+<p>✅ <strong>ALLOWED:</strong>
+- De-identified knowledge content
+- AKG GNN embeddings (8096-dim vectors)
+- Confidence scores
+- Timestamps
+- Transaction hashes
+- Alias names (e.g., <code>@dr_quantum</code>)
+- Reputation scores</p>
+<p>❌ <strong>NEVER ALLOWED:</strong>
+- Real names
+- Email addresses
+- Phone numbers
+- IP addresses
+- Location data
+- Patient health information (PHI)
+- Client legal information
+- Student records (FERPA)
+- Child information
+- Any PII</p>
+<h3 id="cryptographic-guarantees">Cryptographic Guarantees</h3>
+<ol>
+<li><strong>Ed25519 Signatures</strong> - All transactions signed</li>
+<li><strong>Merkle Trees</strong> - Provenance for every claim</li>
+<li><strong>BLAKE3 Hashing</strong> - Fast, secure hashing</li>
+<li><strong>CryptoKit (Apple)</strong> - Hardware-backed key storage</li>
+</ol>
+<hr />
+<h2 id="key-differentiators">🎯 Key Differentiators</h2>
+<h3 id="what-makes-qfot-unique">What Makes QFOT Unique?</h3>
+<ol>
+<li><strong>Ethics Validation Layer</strong></li>
+<li>ONLY blockchain with built-in truth validation</li>
+<li>AKG GNN prevents contradictory knowledge</li>
+<li>
+<p>Human ethics validators as final arbiter</p>
+</li>
+<li>
+<p><strong>No-Identity System</strong></p>
+</li>
+<li>True anonymity (not pseudonymity)</li>
+<li>Reputation-based trust</li>
+<li>
+<p>PayPal-like aliases</p>
+</li>
+<li>
+<p><strong>Domain-Specific Validation</strong></p>
+</li>
+<li>Custom rules for each domain (medical, legal, etc.)</li>
+<li>Protein chemistry &amp; fluid dynamics integrated</li>
+<li>
+<p>Quantum collapse proof validation (Millennium Prize)</p>
+</li>
+<li>
+<p><strong>Patent-Protected Architecture</strong></p>
+</li>
+<li>Utility Patent Filing CLAIMS NO PRIORITIES-19096071</li>
+<li>Field of Truth methodology</li>
+<li>
+<p>Virtue-guided optimization</p>
+</li>
+<li>
+<p><strong>Fair Token Economics</strong></p>
+</li>
+<li>70% to knowledge creators</li>
+<li>Transparent fee distribution</li>
+<li>No hidden fees or platform rent-seeking</li>
+</ol>
+<hr />
+<h2 id="token-value-disclaimer">⚠️ Token Value Disclaimer</h2>
+<div class="codehilite"><pre><span></span><code>⚠️<span class="w"> </span><span class="nv">QFOT</span><span class="w"> </span><span class="nv">TOKENS</span><span class="w"> </span><span class="nv">HAVE</span><span class="w"> </span><span class="nv">NO</span><span class="w"> </span><span class="nv">ESTABLISHED</span><span class="w"> </span><span class="nv">MARKET</span><span class="w"> </span><span class="nv">VALUE</span>
+
+<span class="nv">Current</span><span class="w"> </span><span class="nv">Price</span>:<span class="w"> </span><span class="mh">$0</span>.<span class="mi">00</span><span class="w"> </span><span class="ss">(</span><span class="nv">no</span><span class="w"> </span><span class="nv">exchange</span><span class="w"> </span><span class="nv">listings</span><span class="ss">)</span>
+<span class="nv">Future</span><span class="w"> </span><span class="nv">Value</span>:<span class="w"> </span><span class="nv">UNKNOWN</span><span class="w"> </span><span class="ss">(</span><span class="nv">may</span><span class="w"> </span><span class="nv">remain</span><span class="w"> </span><span class="mh">$0</span><span class="w"> </span><span class="nv">forever</span><span class="ss">)</span>
+<span class="nv">Liquidity</span>:<span class="w"> </span><span class="nv">NONE</span><span class="w"> </span><span class="ss">(</span><span class="nv">cannot</span><span class="w"> </span><span class="nv">trade</span><span class="w"> </span><span class="nv">tokens</span><span class="w"> </span><span class="nv">yet</span><span class="ss">)</span>
+
+<span class="nv">This</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">NOT</span><span class="w"> </span><span class="nv">an</span><span class="w"> </span><span class="nv">investment</span>.<span class="w"> </span><span class="nv">QFOT</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">utility</span><span class="w"> </span><span class="nv">tokens</span><span class="w"> </span><span class="k">for</span>:
+<span class="o">-</span><span class="w"> </span><span class="nv">Accessing</span><span class="w"> </span><span class="nv">validated</span><span class="w"> </span><span class="nv">knowledge</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">Governance</span><span class="w"> </span><span class="nv">voting</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">Reputation</span><span class="w"> </span><span class="nv">building</span>
+
+<span class="nv">Share</span><span class="w"> </span><span class="nv">knowledge</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">help</span><span class="w"> </span><span class="nv">humanity</span>,<span class="w"> </span><span class="nv">NOT</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">financial</span><span class="w"> </span><span class="nv">gain</span>.
+
+<span class="nv">No</span><span class="w"> </span><span class="nv">guarantee</span><span class="w"> </span><span class="nv">of</span>:
+<span class="o">-</span><span class="w"> </span><span class="nv">Future</span><span class="w"> </span><span class="nv">value</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">Exchange</span><span class="w"> </span><span class="nv">listings</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">Liquidity</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">Returns</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">contribution</span>
+</code></pre></div>
+
+<hr />
+<h2 id="network-deployment">🌍 Network Deployment</h2>
+<h3 id="phase-1-initial-deployment-now">Phase 1: Initial Deployment (NOW)</h3>
+<p><strong>Infrastructure:</strong>
+- 3 validator nodes (Germany ×2, Finland ×1)
+- $16.77/month (Hetzner Cloud)
+- Substrate runtime with custom pallets
+- RPC endpoints auto-configured</p>
+<p><strong>Deployment:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Deploy QFOT mainnet</span>
+./scripts/deploy_qfot_hetzner.sh
+
+<span class="c1"># Check network status</span>
+./scripts/check_qfot_network.sh
+</code></pre></div>
+
+<h3 id="phase-2-expansion-q1-2026">Phase 2: Expansion (Q1 2026)</h3>
+<p><strong>Infrastructure:</strong>
+- 10 validator nodes (one per G7 country + key regions)
+- $56/month
+- Ethics validators from major universities
+- Trust organization partnerships</p>
+<h3 id="phase-3-global-scale-2026">Phase 3: Global Scale (2026)</h3>
+<p><strong>Infrastructure:</strong>
+- 193 validator nodes (one per UN member state)
+- $1,078/month
+- Global network of ethics validators
+- Academic partnerships worldwide</p>
+<hr />
+<h2 id="roadmap">🚀 Roadmap</h2>
+<h3 id="q4-2025">Q4 2025 ✅</h3>
+<ul>
+<li>[x] Ethics Node implementation</li>
+<li>[x] AKG GNN validation layer</li>
+<li>[x] Alias system (PayPal-like)</li>
+<li>[x] No-identity opt-in</li>
+<li>[x] Protein &amp; Fluid Dynamics integration</li>
+</ul>
+<h3 id="q1-2026">Q1 2026</h3>
+<ul>
+<li>[ ] Deploy QFOT mainnet (3 nodes)</li>
+<li>[ ] Onboard first 1,000 ethics validators</li>
+<li>[ ] Launch truth claim submission</li>
+<li>[ ] First 10,000 validated claims</li>
+</ul>
+<h3 id="q2-2026">Q2 2026</h3>
+<ul>
+<li>[ ] Expand to 10 validator nodes</li>
+<li>[ ] DEX listing (if possible)</li>
+<li>[ ] 100,000+ validated claims</li>
+<li>[ ] Academic partnerships (10 universities)</li>
+</ul>
+<h3 id="q3-2026">Q3 2026</h3>
+<ul>
+<li>[ ] 50 validator nodes globally</li>
+<li>[ ] Major exchange listings</li>
+<li>[ ] 1M+ validated claims</li>
+<li>[ ] Millennium Prize proof submission</li>
+</ul>
+<hr />
+<h2 id="resources">📚 Resources</h2>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li><a href="../blockchain/qfot_complete_architecture.md.html">QFOT Complete Architecture</a></li>
+<li><a href="../blockchain/qfot_token_economics.md.html">QFOT Token Economics</a></li>
+<li><a href="../safeaicoin_integration_complete.md.html">SafeAICoin Integration</a></li>
+</ul>
+<h3 id="technical-implementation">Technical Implementation</h3>
+<ul>
+<li><a href="../scripts/.html">Deployment Scripts</a> - Hetzner deployment automation</li>
+<li><a href="../blockchain/custom_pallets/.html">Custom Pallets</a> - Substrate pallets</li>
+<li><a href="domain-packs.html">Domain Packs</a> - Custom domain integration</li>
+</ul>
+<h3 id="user-guides">User Guides</h3>
+<ul>
+<li><a href="#opt-in-flow.html">QFOT Opt-In Guide</a> - How to join the network</li>
+<li><a href="#truth-claim-rewards-by-domain.html">Earning Tokens</a> - Reward structure</li>
+<li><a href="#app-integration.html">Managing Your Wallet</a> - Wallet operations</li>
+</ul>
+<hr />
+<h2 id="summary">🎉 Summary</h2>
+<p><strong>QFOT (Quantum Field of Truth) Blockchain:</strong></p>
+<p>✅ <strong>100% Optional</strong> - Apps work fully without it<br />
+✅ <strong>Ethics Node</strong> - Prevents untruthful ingestion with AKG GNN<br />
+✅ <strong>No-Identity System</strong> - True anonymity with PayPal-like aliases<br />
+✅ <strong>Domain Integration</strong> - Medical, legal, education, protein, fluid dynamics ready<br />
+✅ <strong>Fair Economics</strong> - 70% to creators, transparent fees<br />
+✅ <strong>Patent-Protected</strong> - Utility patent filed<br />
+✅ <strong>Production-Ready</strong> - Deployable in 15 minutes  </p>
+<p><strong>The world's first blockchain with built-in truth validation - and it's completely optional.</strong></p>
+<hr />
+<p><em>Last Updated: October 30, 2025</em><br />
+<em>Patent: Utility Patent Filing CLAIMS NO PRIORITIES-19096071</em><br />
+<em>Status: Production Ready - Deploy Today</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

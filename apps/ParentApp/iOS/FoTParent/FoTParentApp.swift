@@ -9,24 +9,42 @@ import FoTUI
 @main
 struct FoTParentApp: App {
     @StateObject private var appState = ParentAppState()
+    @StateObject private var voiceAssistant = SiriVoiceAssistant.shared
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
-    
+
     init() {
         AppConfig.shared.features.useLocalLLM = false
         AppConfig.shared.features.vqbitSuggestions = true
         FoTLogger.app.info("FoT Parent starting - version \(AppConfig.shared.version)")
     }
-    
+
     var body: some Scene {
         WindowGroup {
-            if !hasCompletedOnboarding {
-                ParentOnboardingFlow {
-                    hasCompletedOnboarding = true
+            ZStack {
+                if !hasCompletedOnboarding {
+                    ParentOnboardingFlow {
+                        hasCompletedOnboarding = true
+                    }
+                } else {
+                    ParentContentView()
+                        .environmentObject(appState)
+                        .interactiveHelp(.parentDashboard)
+                        .voiceContext(.parentDashboard, message: "Welcome to FoT Parent. Your family management assistant.")
+                        .onAppear {
+                            // Greet user every time app opens
+                            voiceAssistant.greetUser(appName: "FoT Parent")
+                        }
                 }
-            } else {
-                ParentContentView()
-                    .environmentObject(appState)
-                    .interactiveHelp(.parentDashboard)
+                
+                // Floating voice assistant indicator
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        VoiceAssistantIndicator()
+                            .padding()
+                    }
+                }
             }
         }
     }

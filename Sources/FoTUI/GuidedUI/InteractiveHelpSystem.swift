@@ -83,7 +83,7 @@ struct TooltipView: View {
                         .font(.system(size: 10))
                         .foregroundColor(.blue)
                     
-                    Text("Try: "\(command)"")
+                    Text("Try: \"\(command)\"")
                         .font(.system(size: 11, weight: .medium))
                         .foregroundColor(.blue)
                 }
@@ -170,11 +170,19 @@ public struct HelpScreenView: View {
             .navigationTitle("Help & Support")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                #if !os(watchOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
                         dismiss()
                     }
                 }
+                #else
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+                #endif
             }
         }
     }
@@ -250,7 +258,7 @@ struct HelpTopicDetail: View {
                         HStack {
                             Image(systemName: "mic.fill")
                                 .foregroundColor(.blue)
-                            Text(""\(command)"")
+                            Text("\"\(command)\"")
                                 .font(.body)
                                 .foregroundColor(.blue)
                         }
@@ -338,7 +346,7 @@ struct SiriCommandRow: View {
             HStack {
                 Image(systemName: "mic.fill")
                     .foregroundColor(.blue)
-                Text(""\(siriCommand.command)"")
+                Text("\"\(siriCommand.command)\"")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.blue)
             }

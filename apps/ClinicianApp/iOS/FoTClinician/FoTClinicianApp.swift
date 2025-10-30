@@ -9,26 +9,44 @@ import FoTUI
 @main
 struct FoTClinicianApp: App {
     @StateObject private var appState = AppState()
+    @StateObject private var voiceAssistant = SiriVoiceAssistant.shared
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
-    
+
     init() {
         // Configure app
         AppConfig.shared.features.useLocalLLM = false
         AppConfig.shared.features.vqbitSuggestions = true
-        
+
         FoTLogger.app.info("FoT Clinician starting - version \(AppConfig.shared.version)")
     }
-    
+
     var body: some Scene {
         WindowGroup {
-            if !hasCompletedOnboarding {
-                ClinicianOnboardingFlow {
-                    hasCompletedOnboarding = true
+            ZStack {
+                if !hasCompletedOnboarding {
+                    ClinicianOnboardingFlow {
+                        hasCompletedOnboarding = true
+                    }
+                } else {
+                    ContentView()
+                        .environmentObject(appState)
+                        .interactiveHelp(.clinicianDashboard)
+                        .voiceContext(.patientRecord, message: "Welcome to FoT Clinician. Your AI medical assistant.")
+                        .onAppear {
+                            // Greet user every time app opens
+                            voiceAssistant.greetUser(appName: "FoT Clinician")
+                        }
                 }
-            } else {
-                ContentView()
-                    .environmentObject(appState)
-                    .interactiveHelp(.clinicianDashboard)
+                
+                // Floating voice assistant indicator
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        VoiceAssistantIndicator()
+                            .padding()
+                    }
+                }
             }
         }
     }

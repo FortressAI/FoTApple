@@ -52,7 +52,11 @@ public struct SiriGuidedOnboarding: View {
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .always))
+                    #if !os(watchOS)
                     .indexViewStyle(.page(backgroundDisplayMode: .always))
+                    #else
+                    .indexViewStyle(.page(backgroundDisplayMode: .automatic))
+                    #endif
                     .transition(.opacity)
                 }
                 
@@ -212,7 +216,7 @@ struct OnboardingStepView: View {
                 HStack {
                     Image(systemName: "mic.fill")
                         .foregroundColor(primaryColor)
-                    Text(""\(feature.siriCommand)"")
+                    Text("\"\(feature.siriCommand)\"")
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(.white)
                 }
@@ -295,9 +299,11 @@ struct Wave: Shape {
 class VoiceGuide: ObservableObject {
     @Published var isSpeaking: Bool = false
     private let synthesizer = AVSpeechSynthesizer()
+    private var speechDelegate: SpeechDelegate?
     
     init() {
-        synthesizer.delegate = SpeechDelegate(guide: self)
+        speechDelegate = SpeechDelegate(guide: self)
+        synthesizer.delegate = speechDelegate
     }
     
     func speak(_ text: String) {

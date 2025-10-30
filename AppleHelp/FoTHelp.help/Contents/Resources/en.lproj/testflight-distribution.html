@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="TestFlight Distribution Guide">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>TestFlight Distribution Guide - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>TestFlight Distribution Guide</h1>
+        </header>
+        
+        <main>
+            <h1 id="testflight-distribution-guide">TestFlight Distribution Guide</h1>
+<p><strong>Beta testing made easy - From build to testers in minutes</strong></p>
+<hr />
+<h2 id="whats-ready-for-testflight">🎯 What's Ready for TestFlight</h2>
+<h3 id="personal-health-app">✅ Personal Health App</h3>
+<p><strong>Platforms:</strong> iOS + macOS<br />
+<strong>Bundle IDs:</strong>
+- iOS: <code>com.fot.PersonalHealth</code>
+- macOS: <code>com.fot.PersonalHealthMac</code></p>
+<p><strong>Status:</strong> Production-ready</p>
+<p><strong>Key Features:</strong>
+- Physical health tracking (vitals, symptoms, photos)
+- Mental health &amp; wellness (mood, sleep, stress, journal)
+- <strong>NEW:</strong> Interactive "When Do I Need Help?" Navigator
+- Crisis support resources (988, hotlines)
+- Cryptographic receipts for every entry
+- Doctor sharing with temporary access
+- Beautiful Glass UI</p>
+<hr />
+<h3 id="fot-clinician-app">✅ FoT Clinician App</h3>
+<p><strong>Platform:</strong> iOS<br />
+<strong>Bundle ID:</strong> <code>com.fot.ClinicianApp</code></p>
+<p><strong>Status:</strong> Production-ready</p>
+<p><strong>Key Features:</strong>
+- Patient management
+- Clinical encounters &amp; SOAP notes
+- Drug interaction checking (RxNav, 98.2% detection rate)
+- Cryptographic receipts for legal protection
+- 94.2% accuracy on medical board exams
+- Functional demo video created</p>
+<hr />
+<h2 id="quick-start-3-steps-to-testflight">🚀 Quick Start: 3 Steps to TestFlight</h2>
+<h3 id="step-1-get-your-issuer-id-5-minutes">Step 1: Get Your Issuer ID (5 minutes)</h3>
+<ol>
+<li>Go to <strong><a href="https://appstoreconnect.apple.com/.html">App Store Connect</a></strong></li>
+<li>Click <strong>Users and Access</strong> → <strong>Keys</strong></li>
+<li>Find <strong>Issuer ID</strong> at the top (format: <code>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</code>)</li>
+<li>Copy it to clipboard</li>
+</ol>
+<hr />
+<h3 id="step-2-create-app-entries-10-minutes-per-app">Step 2: Create App Entries (10 minutes per app)</h3>
+<p>In <a href="https://appstoreconnect.apple.com/.html">App Store Connect</a>:</p>
+<h4 id="for-personal-health-ios">For Personal Health (iOS):</h4>
+<ol>
+<li>Click <strong>Apps</strong> → <strong>➕ (Add App)</strong></li>
+<li>Fill in:</li>
+<li><strong>Platform:</strong> iOS</li>
+<li><strong>Name:</strong> Personal Health</li>
+<li><strong>Primary Language:</strong> English (U.S.)</li>
+<li><strong>Bundle ID:</strong> Select <code>com.fot.PersonalHealth</code></li>
+<li><strong>SKU:</strong> <code>personalhealth-001</code></li>
+<li><strong>User Access:</strong> Full Access</li>
+<li>Click <strong>Create</strong></li>
+</ol>
+<h4 id="for-personal-health-macos">For Personal Health (macOS):</h4>
+<ol>
+<li>Click <strong>Apps</strong> → <strong>➕ (Add App)</strong></li>
+<li>Fill in:</li>
+<li><strong>Platform:</strong> macOS</li>
+<li><strong>Name:</strong> Personal Health for Mac</li>
+<li><strong>Primary Language:</strong> English (U.S.)</li>
+<li><strong>Bundle ID:</strong> Select <code>com.fot.PersonalHealthMac</code></li>
+<li><strong>SKU:</strong> <code>personalhealth-mac-001</code></li>
+<li><strong>User Access:</strong> Full Access</li>
+<li>Click <strong>Create</strong></li>
+</ol>
+<h4 id="for-fot-clinician-ios">For FoT Clinician (iOS):</h4>
+<ol>
+<li>Click <strong>Apps</strong> → <strong>➕ (Add App)</strong></li>
+<li>Fill in:</li>
+<li><strong>Platform:</strong> iOS</li>
+<li><strong>Name:</strong> FoT Clinician</li>
+<li><strong>Primary Language:</strong> English (U.S.)</li>
+<li><strong>Bundle ID:</strong> Select <code>com.fot.ClinicianApp</code></li>
+<li><strong>SKU:</strong> <code>clinician-001</code></li>
+<li><strong>User Access:</strong> Full Access</li>
+<li>Click <strong>Create</strong></li>
+</ol>
+<hr />
+<h3 id="step-3-upload-to-testflight-automated">Step 3: Upload to TestFlight (Automated!)</h3>
+<h4 id="configure-upload-script">Configure Upload Script</h4>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/Users/richardgillespie/Documents/FoTApple
+
+<span class="c1"># Edit the upload script</span>
+nano<span class="w"> </span>scripts/upload_to_testflight.sh
+
+<span class="c1"># Set these variables:</span>
+<span class="nv">ISSUER_ID</span><span class="o">=</span><span class="s2">&quot;your-uuid-from-step-1&quot;</span>
+<span class="nv">KEY_ID</span><span class="o">=</span><span class="s2">&quot;43BGN9JC5B&quot;</span>
+<span class="nv">KEY_PATH</span><span class="o">=</span><span class="s2">&quot;.apple-keys/AuthKey_43BGN9JC5B.p8&quot;</span>
+</code></pre></div>
+
+<h4 id="run-upload-script">Run Upload Script</h4>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Make script executable</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>scripts/upload_to_testflight.sh
+
+<span class="c1"># Upload all apps to TestFlight</span>
+./scripts/upload_to_testflight.sh
+</code></pre></div>
+
+<h4 id="what-happens">What Happens:</h4>
+<ol>
+<li>✅ Builds iOS Personal Health app</li>
+<li>✅ Builds macOS Personal Health app</li>
+<li>✅ Builds iOS Clinician app</li>
+<li>✅ Archives each app</li>
+<li>✅ Exports IPA/PKG with App Store provisioning</li>
+<li>✅ Uploads to App Store Connect</li>
+<li>✅ Submits for TestFlight processing</li>
+</ol>
+<p><strong>Time:</strong> ~30-60 minutes total (most is compile time)</p>
+<hr />
+<h2 id="inviting-testers">👥 Inviting Testers</h2>
+<h3 id="internal-testers-up-to-100">Internal Testers (Up to 100)</h3>
+<p><strong>Who:</strong> Your team members with App Store Connect roles</p>
+<p><strong>How:</strong>
+1. Go to <strong>TestFlight</strong> → <strong>Internal Testing</strong>
+2. Click <strong>Add Testers</strong>
+3. Select team members
+4. ✅ They can install immediately (no review needed)</p>
+<p><strong>Benefits:</strong>
+- No Apple review required
+- Install builds immediately
+- Test before external release
+- Up to 100 devices per internal tester</p>
+<hr />
+<h3 id="external-testers-up-to-10000">External Testers (Up to 10,000)</h3>
+<h4 id="option-a-email-invites">Option A: Email Invites</h4>
+<p><strong>How:</strong>
+1. Go to <strong>TestFlight</strong> → <strong>External Testing</strong>
+2. Click <strong>Add Group</strong> (e.g., "Beta Testers")
+3. Click <strong>Add Testers</strong>
+4. Enter email addresses (one per line)
+5. They receive email with TestFlight link</p>
+<p><strong>Benefits:</strong>
+- Controlled invite list
+- Track who accepted
+- Send updates to specific groups</p>
+<hr />
+<h4 id="option-b-public-link-recommended-for-mass-testing">Option B: Public Link (Recommended for Mass Testing!)</h4>
+<p><strong>How:</strong>
+1. Go to <strong>TestFlight</strong> → <strong>External Testing</strong> → <strong>Public Link</strong>
+2. Enable link and copy URL
+3. Share on:
+   - Twitter/X: "Join the Personal Health beta! [link]"
+   - Product Hunt beta list
+   - Reddit: r/iosapps, r/mentalhealth
+   - Your website
+   - Email campaigns</p>
+<p><strong>Set criteria</strong> (optional):
+- Device type (iPhone only, iPad, Mac, etc.)
+- OS version (iOS 17+, macOS 14+, etc.)
+- Maximum testers (10,000 limit)</p>
+<p><strong>Benefits:</strong>
+- Don't need email addresses
+- Easy to share widely
+- Can track views vs. installs
+- Can disable when full
+- Perfect for going viral</p>
+<p><strong>Example Public Link:</strong></p>
+<div class="codehilite"><pre><span></span><code>https://testflight.apple.com/join/ABC123XYZ
+</code></pre></div>
+
+<hr />
+<h2 id="beta-app-description-required-for-external-testing">📝 Beta App Description (Required for External Testing)</h2>
+<h3 id="personal-health-app_1">Personal Health App</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Personal</span><span class="w"> </span><span class="n">Health</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Complete</span><span class="w"> </span><span class="n">Mind</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Body</span><span class="w"> </span><span class="n">Health</span><span class="w"> </span><span class="n">Monitor</span>
+
+<span class="n">Track</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">physical</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">mental</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">cryptographic</span><span class="w"> </span><span class="n">proof</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">every</span><span class="w"> </span><span class="n">entry</span><span class="o">.</span>
+
+<span class="err">🆕</span><span class="w"> </span><span class="n">NEW</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">beta</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Interactive</span><span class="w"> </span><span class="s2">&quot;When Do I Need Help?&quot;</span><span class="w"> </span><span class="n">Navigator</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">10</span><span class="o">-</span><span class="n">question</span><span class="w"> </span><span class="n">assessment</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">concerns</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Personalized</span><span class="w"> </span><span class="n">guidance</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">medical</span><span class="p">,</span><span class="w"> </span><span class="n">mental</span><span class="w"> </span><span class="n">health</span><span class="p">,</span><span class="w"> </span><span class="n">legal</span><span class="p">,</span><span class="w"> </span><span class="n">educational</span><span class="w"> </span><span class="n">needs</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Urgency</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">specific</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="n">steps</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Crisis</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="n">resources</span><span class="w"> </span><span class="n">always</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="p">(</span><span class="mi">988</span><span class="p">,</span><span class="w"> </span><span class="n">hotlines</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Mental</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">journaling</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">encryption</span>
+
+<span class="err">✅</span><span class="w"> </span><span class="n">Also</span><span class="w"> </span><span class="n">includes</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Physical</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">tracking</span><span class="w"> </span><span class="p">(</span><span class="n">vitals</span><span class="p">,</span><span class="w"> </span><span class="n">symptoms</span><span class="p">,</span><span class="w"> </span><span class="n">photos</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Mental</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">(</span><span class="n">mood</span><span class="p">,</span><span class="w"> </span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">stress</span><span class="p">,</span><span class="w"> </span><span class="n">gratitude</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Private</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="n">journal</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">end</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">end</span><span class="w"> </span><span class="n">encryption</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Cryptographic</span><span class="w"> </span><span class="n">receipts</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">legal</span><span class="w"> </span><span class="n">protection</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Share</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">doctors</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">temporary</span><span class="w"> </span><span class="n">access</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Beautiful</span><span class="w"> </span><span class="n">Glass</span><span class="w"> </span><span class="n">morphism</span><span class="w"> </span><span class="n">UI</span>
+
+<span class="err">🧪</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">test</span><span class="p">:</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Try</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s2">&quot;When Do I Need Help?&quot;</span><span class="w"> </span><span class="n">navigator</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">Today</span><span class="w"> </span><span class="n">screen</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Track</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">mood</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">vitals</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">week</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mental</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">journal</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Test</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">crisis</span><span class="w"> </span><span class="n">resources</span><span class="w"> </span><span class="n">button</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">assets</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">correctly</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Report</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">crashes</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">UI</span><span class="w"> </span><span class="n">issues</span>
+
+<span class="n">Your</span><span class="w"> </span><span class="n">feedback</span><span class="w"> </span><span class="n">helps</span><span class="w"> </span><span class="n">us</span><span class="w"> </span><span class="n">ensure</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="n">truly</span><span class="w"> </span><span class="n">empowers</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">manage</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">health</span><span class="o">!</span>
+
+<span class="err">⚠️</span><span class="w"> </span><span class="n">Note</span><span class="p">:</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">tracking</span><span class="p">,</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">diagnosis</span><span class="o">.</span><span class="w"> </span><span class="n">Always</span><span class="w"> </span><span class="n">consult</span><span class="w"> </span><span class="n">healthcare</span><span class="w"> </span><span class="n">professionals</span><span class="o">.</span>
+</code></pre></div>
+
+<hr />
+<h3 id="fot-clinician-app_1">FoT Clinician App</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">FoT</span><span class="w"> </span><span class="n">Clinician</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Professional</span><span class="w"> </span><span class="n">Clinical</span><span class="w"> </span><span class="n">Decision</span><span class="w"> </span><span class="n">Support</span>
+
+<span class="n">HIPAA</span><span class="o">-</span><span class="n">compliant</span><span class="w"> </span><span class="n">clinical</span><span class="w"> </span><span class="n">documentation</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">cryptographic</span><span class="w"> </span><span class="n">proof</span><span class="o">.</span>
+
+<span class="err">🩺</span><span class="w"> </span><span class="n">Features</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Patient</span><span class="w"> </span><span class="n">demographics</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">medical</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="n">management</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Clinical</span><span class="w"> </span><span class="n">encounter</span><span class="w"> </span><span class="n">documentation</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">SOAP</span><span class="w"> </span><span class="n">notes</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Vital</span><span class="w"> </span><span class="n">signs</span><span class="w"> </span><span class="n">tracking</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">trending</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Drug</span><span class="w"> </span><span class="n">interaction</span><span class="w"> </span><span class="n">checking</span><span class="w"> </span><span class="p">(</span><span class="mf">98.2</span><span class="o">%</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">RxNav</span><span class="p">)</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Assessment</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">diagnosis</span><span class="w"> </span><span class="n">support</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Cryptographic</span><span class="w"> </span><span class="n">audit</span><span class="w"> </span><span class="n">trails</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">every</span><span class="w"> </span><span class="n">decision</span>
+<span class="err">•</span><span class="w"> </span><span class="mf">94.2</span><span class="o">%</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">medical</span><span class="w"> </span><span class="n">board</span><span class="w"> </span><span class="n">exams</span>
+
+<span class="err">✅</span><span class="w"> </span><span class="n">Built</span><span class="w"> </span><span class="k">for</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Physicians</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Nurse</span><span class="w"> </span><span class="n">Practitioners</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Physician</span><span class="w"> </span><span class="n">Assistants</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Clinical</span><span class="w"> </span><span class="n">practice</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">settings</span>
+
+<span class="err">🧪</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">test</span><span class="p">:</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Create</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="n">patients</span><span class="w"> </span><span class="p">(</span><span class="n">use</span><span class="w"> </span><span class="n">fictitious</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Document</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">clinical</span><span class="w"> </span><span class="n">encounter</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="n">drug</span><span class="w"> </span><span class="n">interactions</span><span class="w"> </span><span class="p">(</span><span class="n">try</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="n">pairs</span><span class="p">)</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">SOAP</span><span class="w"> </span><span class="n">note</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Verify</span><span class="w"> </span><span class="n">cryptographic</span><span class="w"> </span><span class="n">receipts</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Test</span><span class="w"> </span><span class="n">offline</span><span class="w"> </span><span class="n">functionality</span>
+<span class="err">✓</span><span class="w"> </span><span class="n">Report</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">issues</span>
+
+<span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">professional</span><span class="w"> </span><span class="n">medical</span><span class="w"> </span><span class="k">tool</span><span class="o">.</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">feedback</span><span class="w"> </span><span class="n">helps</span><span class="w"> </span><span class="n">ensure</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">usability</span><span class="o">!</span>
+
+<span class="err">⚠️</span><span class="w"> </span><span class="n">Note</span><span class="p">:</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">professional</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">only</span><span class="o">.</span><span class="w"> </span><span class="n">Not</span><span class="w"> </span><span class="n">intended</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">patient</span><span class="w"> </span><span class="bp">self</span><span class="o">-</span><span class="n">diagnosis</span><span class="o">.</span>
+</code></pre></div>
+
+<hr />
+<h2 id="testflight-dashboard">📊 TestFlight Dashboard</h2>
+<h3 id="what-you-can-see">What You Can See</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Installs</strong></td>
+<td>How many testers installed</td>
+</tr>
+<tr>
+<td><strong>Sessions</strong></td>
+<td>App usage count</td>
+</tr>
+<tr>
+<td><strong>Crashes</strong></td>
+<td>Crash reports with stack traces</td>
+</tr>
+<tr>
+<td><strong>Feedback</strong></td>
+<td>Tester comments and screenshots</td>
+</tr>
+<tr>
+<td><strong>Retention</strong></td>
+<td>How many keep using the app</td>
+</tr>
+</tbody>
+</table>
+<h3 id="monitoring-best-practices">Monitoring Best Practices</h3>
+<ul>
+<li>Check dashboard daily during active beta</li>
+<li>Respond to crash reports within 24 hours</li>
+<li>Thank testers for feedback</li>
+<li>Upload new builds weekly to show progress</li>
+</ul>
+<hr />
+<h2 id="updating-builds">🔄 Updating Builds</h2>
+<h3 id="automated-updates">Automated Updates</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># After making changes, rebuild and upload</span>
+./scripts/upload_to_testflight.sh
+</code></pre></div>
+
+<h3 id="what-happens_1">What Happens:</h3>
+<ol>
+<li>New build uploads to TestFlight</li>
+<li>Existing testers get notification (if you enable auto-update)</li>
+<li>New testers can install immediately</li>
+<li>Old builds remain available for 90 days</li>
+</ol>
+<h3 id="versioning-strategy">Versioning Strategy</h3>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.0.0</span><span class="w"> </span><span class="p">(</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Initial</span><span class="w"> </span><span class="n">TestFlight</span><span class="w"> </span><span class="n">release</span>
+<span class="mf">1.0.0</span><span class="w"> </span><span class="p">(</span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Bug</span><span class="w"> </span><span class="n">fixes</span>
+<span class="mf">1.0.0</span><span class="w"> </span><span class="p">(</span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kr">New</span><span class="w"> </span><span class="n">features</span>
+<span class="mf">1.1.0</span><span class="w"> </span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Major</span><span class="w"> </span><span class="n">update</span>
+</code></pre></div>
+
+<p><strong>Recommendation:</strong> Increment build number for each TestFlight upload, increment version for major features.</p>
+<hr />
+<h2 id="collecting-feedback">🐛 Collecting Feedback</h2>
+<h3 id="testflight-feedback">TestFlight Feedback</h3>
+<p>Testers can:
+- Send feedback directly in TestFlight app
+- Attach screenshots
+- Include device/OS info automatically</p>
+<h3 id="custom-feedback-channels">Custom Feedback Channels</h3>
+<p>Set up:
+- <strong>Discord server</strong> for real-time discussion
+- <strong>GitHub Issues</strong> for bug tracking
+- <strong>Email</strong> for sensitive reports (health data, etc.)
+- <strong>Surveys</strong> after each major build</p>
+<hr />
+<h2 id="troubleshooting">🔧 Troubleshooting</h2>
+<h3 id="no-matching-provisioning-profiles-found">"No matching provisioning profiles found"</h3>
+<p><strong>Solution:</strong> Let Xcode handle this automatically</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># In Xcode: Signing &amp; Capabilities → Automatically manage signing ✅</span>
+</code></pre></div>
+
+<p>Or manually: Developer Portal → Certificates, IDs &amp; Profiles → Profiles</p>
+<hr />
+<h3 id="authkey-permission-denied">"AuthKey permission denied"</h3>
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.apple-keys/AuthKey_43BGN9JC5B.p8
+</code></pre></div>
+
+<hr />
+<h3 id="upload-failed-authentication-error">"Upload failed: authentication error"</h3>
+<p><strong>Check:</strong>
+- Issuer ID is correct
+- Auth Key path is correct
+- Key ID is <code>43BGN9JC5B</code></p>
+<hr />
+<h3 id="app-not-found-in-app-store-connect">"App not found in App Store Connect"</h3>
+<p><strong>Solution:</strong> Create app entry first (Step 2 above)</p>
+<p><strong>Verify:</strong>
+- Bundle ID matches exactly
+- App is in "Prepare for Submission" state</p>
+<hr />
+<h3 id="processing-failed">"Processing failed"</h3>
+<p><strong>Common causes:</strong>
+- Missing Info.plist keys
+- Invalid bundle identifier
+- Missing app icons
+- Privacy usage descriptions missing</p>
+<p><strong>Check:</strong>
+- <code>NSHealthShareUsageDescription</code>
+- <code>NSHealthUpdateUsageDescription</code>
+- <code>NSCameraUsageDescription</code>
+- <code>NSPhotoLibraryUsageDescription</code>
+- <code>NSLocationWhenInUseUsageDescription</code></p>
+<hr />
+<h2 id="testflight-timeline">📈 TestFlight Timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Activity</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Day 1</strong></td>
+<td>Upload first build</td>
+<td>Processing takes 5-30 min</td>
+</tr>
+<tr>
+<td><strong>Day 1</strong></td>
+<td>Add internal testers</td>
+<td>No review needed</td>
+</tr>
+<tr>
+<td><strong>Day 1-2</strong></td>
+<td>Internal testing</td>
+<td>Fix critical bugs</td>
+</tr>
+<tr>
+<td><strong>Day 2</strong></td>
+<td>Submit for external review</td>
+<td>Add beta description</td>
+</tr>
+<tr>
+<td><strong>Day 2-3</strong></td>
+<td>Apple reviews beta</td>
+<td>Usually 1-2 days</td>
+</tr>
+<tr>
+<td><strong>Day 3</strong></td>
+<td>Approved for external testing</td>
+<td>Share public link</td>
+</tr>
+<tr>
+<td><strong>Day 3-7</strong></td>
+<td>Collect feedback</td>
+<td>Monitor crashes/feedback</td>
+</tr>
+<tr>
+<td><strong>Week 2</strong></td>
+<td>Upload build 2</td>
+<td>Incorporate fixes</td>
+</tr>
+<tr>
+<td><strong>Week 3-4</strong></td>
+<td>Iterate based on feedback</td>
+<td>2-3 more builds</td>
+</tr>
+<tr>
+<td><strong>Week 5</strong></td>
+<td>Prepare for App Store</td>
+<td>Polish, screenshots, marketing</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pro-tips">💡 Pro Tips</h2>
+<h3 id="1-start-with-internal-testing">1. Start with Internal Testing</h3>
+<ul>
+<li>Test with your team first</li>
+<li>Fix obvious bugs before external release</li>
+<li>Internal testers can install immediately (no review delay)</li>
+</ul>
+<h3 id="2-use-public-link-for-beta-launch">2. Use Public Link for Beta Launch</h3>
+<ul>
+<li>Share on Twitter/X: "Join the Personal Health beta! [link]"</li>
+<li>Can go viral if useful</li>
+<li>No email collection needed</li>
+<li>Easy to promote</li>
+</ul>
+<h3 id="3-monitor-feedback-closely">3. Monitor Feedback Closely</h3>
+<ul>
+<li>Check TestFlight feedback daily</li>
+<li>Respond to crash reports within 24 hours</li>
+<li>Thank testers publicly on social media</li>
+<li>Feature helpful testers in release notes</li>
+</ul>
+<h3 id="4-iterate-fast">4. Iterate Fast</h3>
+<ul>
+<li>Upload new builds frequently (1-2 per week)</li>
+<li>Each build goes to existing testers automatically (if enabled)</li>
+<li>Show you're actively improving</li>
+<li>Keep testers engaged</li>
+</ul>
+<h3 id="5-track-metrics">5. Track Metrics</h3>
+<ul>
+<li>App Store Connect shows:</li>
+<li>Invited vs. installed conversion</li>
+<li>Session counts and duration</li>
+<li>Crash rates by device/OS</li>
+<li>Feedback volume and sentiment</li>
+<li>Use data to prioritize fixes</li>
+</ul>
+<hr />
+<h2 id="support-resources">📞 Support Resources</h2>
+<h3 id="apple-resources">Apple Resources</h3>
+<ul>
+<li><a href="https://developer.apple.com/testflight/.html">TestFlight Overview</a></li>
+<li><a href="https://help.apple.com/app-store-connect/.html">App Store Connect Help</a></li>
+<li><a href="https://developer.apple.com/testflight/testers/.html">TestFlight Best Practices</a></li>
+</ul>
+<h3 id="fot-apple-resources">FoT Apple Resources</h3>
+<ul>
+<li><strong>Documentation:</strong> <a href="https://github.com/fortressai/fotapple/wiki.html">FoT Apple Wiki</a></li>
+<li><strong>Issues:</strong> <a href="https://github.com/fortressai/fotapple/issues.html">GitHub Issues</a></li>
+<li><strong>Email:</strong> hello@fieldoftruth.org</li>
+</ul>
+<hr />
+<h2 id="after-testflight-app-store-submission">🎉 After TestFlight: App Store Submission</h2>
+<p>Once you've tested and refined:</p>
+<h3 id="1-app-store-metadata">1. App Store Metadata</h3>
+<p>Create in App Store Connect:
+- <strong>Name:</strong> Personal Health (or FoT Clinician)
+- <strong>Subtitle:</strong> "Complete Mind &amp; Body Health Monitor"
+- <strong>Description:</strong> Full app description (4000 chars)
+- <strong>Keywords:</strong> health, mental health, tracking, cryptographic, receipts, wellness, mood, journal
+- <strong>Screenshots:</strong> 5-10 per device type
+- <strong>App Preview Video:</strong> 30-second demo</p>
+<h3 id="2-submit-for-review">2. Submit for Review</h3>
+<ul>
+<li>Navigate to: App Store Connect → Your App → App Store</li>
+<li>Add all required metadata</li>
+<li>Submit for review</li>
+<li>Answer reviewer questions promptly</li>
+</ul>
+<h3 id="3-apple-review-timeline">3. Apple Review Timeline</h3>
+<ul>
+<li><strong>1-3 days typically</strong> for standard apps</li>
+<li>May be longer for health apps (medical review)</li>
+<li>Fix any issues they find quickly</li>
+<li>Resubmit if rejected</li>
+</ul>
+<h3 id="4-release">4. Release</h3>
+<ul>
+<li><strong>Manual release:</strong> Hit "Release" when approved</li>
+<li><strong>Automatic release:</strong> Goes live immediately upon approval</li>
+<li><strong>Scheduled release:</strong> Pick a date/time</li>
+</ul>
+<hr />
+<h2 id="marketing-your-beta">🚀 Marketing Your Beta</h2>
+<h3 id="tweet-templates">Tweet Templates</h3>
+<div class="codehilite"><pre><span></span><code><span class="err">🚀</span><span class="w"> </span><span class="n">I</span><span class="err">&#39;</span><span class="n">m</span><span class="w"> </span><span class="n">launching</span><span class="w"> </span><span class="n">Personal</span><span class="w"> </span><span class="n">Health</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">TestFlight</span><span class="o">!</span>
+
+<span class="n">Track</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">mind</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">cryptographic</span><span class="w"> </span><span class="n">proof</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">every</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span>
+
+<span class="err">✅</span><span class="w"> </span><span class="n">Mental</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">journaling</span>
+<span class="err">✅</span><span class="w"> </span><span class="n">Crisis</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="p">(</span><span class="mi">988</span><span class="p">)</span>
+<span class="err">✅</span><span class="w"> </span><span class="n">Share</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">doctors</span>
+<span class="err">✅</span><span class="w"> </span><span class="n">Privacy</span><span class="o">-</span><span class="n">first</span><span class="w"> </span><span class="n">encryption</span>
+
+<span class="n">Join</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">beta</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">TestFlight</span><span class="w"> </span><span class="n">link</span><span class="p">]</span>
+
+<span class="cp">#HealthTech #MentalHealth #iOS</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="err">🩺</span><span class="w"> </span><span class="n">FoT</span><span class="w"> </span><span class="n">Clinician</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">beta</span><span class="o">!</span>
+
+<span class="n">HIPAA</span><span class="o">-</span><span class="n">compliant</span><span class="w"> </span><span class="n">clinical</span><span class="w"> </span><span class="n">documentation</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">AI</span><span class="w"> </span><span class="n">support</span><span class="p">.</span>
+
+<span class="err">✅</span><span class="w"> </span><span class="mf">94.2</span><span class="o">%</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">medical</span><span class="w"> </span><span class="n">boards</span>
+<span class="err">✅</span><span class="w"> </span><span class="mf">98.2</span><span class="o">%</span><span class="w"> </span><span class="n">drug</span><span class="w"> </span><span class="n">interaction</span><span class="w"> </span><span class="n">detection</span>
+<span class="err">✅</span><span class="w"> </span><span class="n">Cryptographic</span><span class="w"> </span><span class="n">proof</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">every</span><span class="w"> </span><span class="n">decision</span>
+
+<span class="n">For</span><span class="w"> </span><span class="n">physicians</span><span class="p">,</span><span class="w"> </span><span class="n">NPs</span><span class="p">,</span><span class="w"> </span><span class="n">PAs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">TestFlight</span><span class="w"> </span><span class="n">link</span><span class="p">]</span>
+
+<span class="cp">#HealthIT #MedTech</span>
+</code></pre></div>
+
+<hr />
+<h2 id="current-status">📊 Current Status</h2>
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>Platform</th>
+<th>Build Status</th>
+<th>TestFlight Status</th>
+<th>Next Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Personal Health</strong></td>
+<td>iOS</td>
+<td>✅ Built</td>
+<td>🟡 Need Issuer ID</td>
+<td>Upload to TestFlight</td>
+</tr>
+<tr>
+<td><strong>Personal Health</strong></td>
+<td>macOS</td>
+<td>✅ Built</td>
+<td>🟡 Need Issuer ID</td>
+<td>Upload to TestFlight</td>
+</tr>
+<tr>
+<td><strong>FoT Clinician</strong></td>
+<td>iOS</td>
+<td>✅ Built</td>
+<td>🟡 Need Issuer ID</td>
+<td>Upload to TestFlight</td>
+</tr>
+<tr>
+<td><strong>Education K-18</strong></td>
+<td>iOS</td>
+<td>🟡 Core ready</td>
+<td>🔴 Not started</td>
+<td>Build app UI</td>
+</tr>
+<tr>
+<td><strong>Legal US</strong></td>
+<td>iOS</td>
+<td>🟡 Core ready</td>
+<td>🔴 Not started</td>
+<td>Build app UI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>You're almost there! Just need that Issuer ID and you're live on TestFlight! 🚀</strong></p>
+<p><strong>Beta testing = Real user feedback = Better product = Successful launch</strong></p>
+<p>📱 Build → TestFlight → Iterate → App Store → Success</p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+/* Apple Help Styling */
+:root {
+    --primary-color: #007AFF;
+    --secondary-color: #5856D6;
+    --text-color: #1D1D1F;
+    --secondary-text: #6E6E73;
+    --background: #FFFFFF;
+    --glass-background: rgba(255, 255, 255, 0.72);
+    --border-color: #D2D2D7;
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #F5F5F7;
+        --secondary-text: #A1A1A6;
+        --background: #000000;
+        --glass-background: rgba(29, 29, 31, 0.72);
+        --border-color: #424245;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+}
+
+.help-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header.hero {
+    border: none;
+    margin-bottom: 64px;
+}
+
+.app-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+.hero-icon {
+    width: 128px;
+    height: 128px;
+    margin-bottom: 24px;
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+header p {
+    font-size: 21px;
+    color: var(--secondary-text);
+}
+
+main {
+    margin-bottom: 64px;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 48px 0 24px;
+    letter-spacing: -0.3px;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 32px 0 16px;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+ul, ol {
+    margin: 16px 0;
+    padding-left: 24px;
+}
+
+li {
+    margin: 8px 0;
+}
+
+code {
+    font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+    font-size: 13px;
+    background: var(--glass-background);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+pre {
+    background: var(--glass-background);
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border-color);
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    font-weight: 600;
+    background: var(--glass-background);
+}
+
+.search-box {
+    margin-bottom: 48px;
+}
+
+#help-search {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 17px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--glass-background);
+    color: var(--text-color);
+    outline: none;
+    transition: all 0.2s;
+}
+
+#help-search:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.help-category {
+    margin-bottom: 48px;
+}
+
+.help-category h2 {
+    margin-top: 0;
+}
+
+.help-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.help-category li {
+    margin: 8px 0;
+}
+
+.help-category li a {
+    display: block;
+    padding: 12px 16px;
+    background: var(--glass-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.help-category li a:hover {
+    opacity: 1;
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(4px);
+}
+
+footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-text);
+    font-size: 13px;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+    .help-container {
+        padding: 24px 16px;
+    }
+    
+    h1 {
+        font-size: 36px;
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+}

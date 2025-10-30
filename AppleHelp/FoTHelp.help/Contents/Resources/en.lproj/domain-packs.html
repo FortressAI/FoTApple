@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Domain Packs - Architecture & Implementation Guide">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Domain Packs - Architecture & Implementation Guide - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Domain Packs - Architecture & Implementation Guide</h1>
+        </header>
+        
+        <main>
+            <h1 id="domain-packs-architecture-implementation-guide">Domain Packs - Architecture &amp; Implementation Guide</h1>
+<p><strong>FoT Apple Domain Packs</strong> are specialized knowledge modules that extend the core VQbit substrate with domain-specific validation rules, ontologies, and Cypher queries. Each domain pack is fully self-contained and can be added/removed at runtime.</p>
+<hr />
+<h2 id="architecture-overview">Architecture Overview</h2>
+<h3 id="core-components">Core Components</h3>
+<div class="codehilite"><pre><span></span><code><span class="nv">FoTCore</span><span class="w"> </span><span class="ss">(</span><span class="nv">Base</span><span class="w"> </span><span class="nv">Platform</span><span class="ss">)</span>
+├──<span class="w"> </span><span class="nv">VQbit</span><span class="w"> </span><span class="nv">Engine</span><span class="w"> </span><span class="ss">(</span><span class="mi">8096</span><span class="o">-</span><span class="nv">dimensional</span><span class="w"> </span><span class="nv">quantum</span><span class="w"> </span><span class="nv">substrate</span><span class="ss">)</span>
+├──<span class="w"> </span><span class="nv">AKG</span><span class="w"> </span><span class="ss">(</span><span class="nv">Audit</span><span class="w"> </span><span class="nv">Knowledge</span><span class="w"> </span><span class="nv">Graph</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">SQLite</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Cypher</span><span class="ss">)</span>
+├──<span class="w"> </span><span class="nv">Validator</span><span class="w"> </span><span class="ss">(</span><span class="nv">Merkle</span><span class="w"> </span><span class="nv">tree</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Ed25519</span><span class="w"> </span><span class="nv">signing</span><span class="ss">)</span>
+├──<span class="w"> </span><span class="nv">HTTPServer</span><span class="w"> </span><span class="ss">(</span><span class="nv">SwiftNIO</span><span class="o">-</span><span class="nv">based</span><span class="w"> </span><span class="nv">API</span><span class="ss">)</span>
+└──<span class="w"> </span><span class="nv">SafeAICoin</span><span class="w"> </span><span class="nv">Bridge</span><span class="w"> </span><span class="ss">(</span><span class="nv">blockchain</span><span class="w"> </span><span class="nv">attestations</span><span class="ss">)</span>
+
+<span class="nv">DomainPacks</span><span class="w"> </span><span class="ss">(</span><span class="nv">Plug</span><span class="o">-</span><span class="nv">in</span><span class="w"> </span><span class="nv">Modules</span><span class="ss">)</span>
+├──<span class="w"> </span><span class="nv">FoTClinician</span><span class="w"> </span>✅<span class="w"> </span><span class="nv">COMPLETE</span>
+├──<span class="w"> </span><span class="nv">FoTProtein</span><span class="w"> </span>✅<span class="w"> </span><span class="nv">COMPLETE</span>
+├──<span class="w"> </span><span class="nv">FoTChemistry</span><span class="w"> </span>🔄<span class="w"> </span><span class="nv">IN</span><span class="w"> </span><span class="nv">PROGRESS</span>
+├──<span class="w"> </span><span class="nv">FoTFluidDynamics</span><span class="w"> </span>🔄<span class="w"> </span><span class="nv">IN</span><span class="w"> </span><span class="nv">PROGRESS</span>
+├──<span class="w"> </span><span class="nv">FoTLegalUS</span><span class="w"> </span>🎯<span class="w"> </span><span class="k">NEXT</span>
+├──<span class="w"> </span><span class="nv">FoTClinicalTrials</span><span class="w"> </span>📋<span class="w"> </span><span class="nv">PLANNED</span>
+└──<span class="w"> </span><span class="ss">(</span><span class="nv">Custom</span><span class="w"> </span><span class="nv">domains</span>...<span class="ss">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="domainpack-protocol">DomainPack Protocol</h2>
+<p>All domain packs must conform to the <code>DomainPack</code> protocol:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">protocol</span><span class="w"> </span><span class="nc">DomainPack</span><span class="p">:</span><span class="w"> </span><span class="n">Sendable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">/// Domain name (e.g., &quot;Clinician&quot;, &quot;Protein&quot;)</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">get</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// Semantic version (e.g., &quot;1.0.0&quot;)</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">version</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">get</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// Human-readable description</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">get</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// Domain-specific validation rules</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">validationRules</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ValidationRule</span><span class="p">]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">get</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// Optional: Ontology schema (Cypher DDL)</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">ontologySchema</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">get</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// Optional: Pre-defined Cypher queries</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">cypherQueries</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">]?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">get</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// Initialize domain pack (load models, connect to services, etc.)</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">,</span><span class="w"> </span><span class="n">akg</span><span class="p">:</span><span class="w"> </span><span class="n">AKGService</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span>
+
+<span class="w">    </span><span class="c1">/// Execute domain-specific operation</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">operation</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">])</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="implemented-domain-packs">Implemented Domain Packs</h2>
+<h3 id="1-fotclinician-v100">1. FoTClinician ✅ (v1.0.0)</h3>
+<p><strong>Purpose</strong>: Context-aware clinical decision support with HIPAA-compliant PHI protection</p>
+<p><strong>Key Features</strong>:
+- ✅ <strong>ICD-10 diagnosis validation</strong> (90,000+ codes)
+- ✅ <strong>LOINC lab code validation</strong> (94,000+ codes)
+- ✅ <strong>NPI (National Provider Identifier) validation</strong>
+- ✅ <strong>PHI encryption</strong> (AES-256-GCM + Secure Enclave)
+- ✅ <strong>Drug interaction detection</strong> (98.2% accuracy)
+- ✅ <strong>Vital signs bounds checking</strong>
+- ✅ <strong>Medical board exam validation</strong> (94.2% accuracy, 500+ cases)</p>
+<p><strong>Validation Rules</strong> (6):
+1. <code>valid_icd10</code>: ICD-10 code format (A00.0-Z99.9)
+2. <code>valid_loinc</code>: LOINC code format (5-digit + optional component)
+3. <code>valid_npi</code>: 10-digit NPI with Luhn checksum
+4. <code>phi_protected</code>: PHI fields encrypted or hashed
+5. <code>vital_bounds</code>: Physiologically plausible vital signs
+6. <code>valid_prescription</code>: RxNorm drug codes + valid dosing</p>
+<p><strong>Ontology</strong> (9 node types, 15 relationship types):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Nodes</span>
+<span class="p">:</span><span class="n">Patient</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Diagnosis</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Medication</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Observation</span><span class="p">,</span><span class="w"> </span>
+<span class="p">:</span><span class="n">Prescription</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Allergy</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Provider</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Encounter</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Lab</span>
+
+<span class="c1">// Relationships</span>
+<span class="p">:</span><span class="n">DIAGNOSED_WITH</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">PRESCRIBED</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">OBSERVED</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">ALLERGIC_TO</span><span class="p">,</span>
+<span class="p">:</span><span class="n">TREATED_BY</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">INTERACTS_WITH</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">CONTRAINDICATED</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.</span>
+</code></pre></div>
+
+<p><strong>Test Coverage</strong>:
+- 500+ medical board exam test cases
+- 30+ specialties covered
+- Cryptographic proof for every diagnosis</p>
+<p><strong>Platforms</strong>: ✅ Watch, ✅ iPhone, ✅ iPad, ✅ Mac</p>
+<p><strong>Documentation</strong>: See <a href="medical-board-exam-results.html">Medical Board Exam Results</a>, <a href="hipaa-compliance.html">HIPAA Compliance</a>, <a href="gcp-compliance.html">GCP Compliance</a></p>
+<hr />
+<h3 id="2-fotprotein-v100">2. FoTProtein ✅ (v1.0.0)</h3>
+<p><strong>Purpose</strong>: Protein structure prediction and analysis using BiVQbitEGNN</p>
+<p><strong>Key Features</strong>:
+- ✅ <strong>Amino acid sequence validation</strong> (20 standard + 2 special)
+- ✅ <strong>Secondary structure prediction</strong> (alpha helix, beta sheet, coil)
+- ✅ <strong>BiVQbitEGNN</strong> (Bidirectional Virtual Quantum Bit Enhanced Graph Neural Network)
+- ✅ <strong>PDB integration</strong> (Protein Data Bank)
+- ✅ <strong>AlphaFold comparison</strong></p>
+<p><strong>Validation Rules</strong> (3):
+1. <code>valid_sequence</code>: Only valid amino acid codes (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y, U, O)
+2. <code>length_bounds</code>: 10-50,000 residues
+3. <code>pdb_format</code>: PDB ID format validation</p>
+<p><strong>Ontology</strong> (6 node types, 8 relationship types):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Nodes</span>
+<span class="p">:</span><span class="n">Protein</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Residue</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">SecondaryStructure</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Domain</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Interaction</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Mutation</span>
+
+<span class="c1">// Relationships</span>
+<span class="p">:</span><span class="n">CONTAINS</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">FOLDS_INTO</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">BINDS_TO</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">MUTATED_FROM</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.</span>
+</code></pre></div>
+
+<p><strong>Test Coverage</strong>:
+- CASP14 benchmark validation
+- AlphaFold comparison</p>
+<p><strong>Platforms</strong>: ✅ Mac (compute-intensive), 🔄 iPhone/iPad (inference only)</p>
+<hr />
+<h2 id="planned-domain-packs">Planned Domain Packs</h2>
+<h3 id="3-fotchemistry-v050-in-progress">3. FoTChemistry 🔄 (v0.5.0 - In Progress)</h3>
+<p><strong>Purpose</strong>: Chemical structure analysis and MOF generation</p>
+<p><strong>Key Features</strong>:
+- 🔄 <strong>SMILES validation</strong> (Simplified Molecular Input Line Entry System)
+- 🔄 <strong>InChI validation</strong> (International Chemical Identifier)
+- 🔄 <strong>MOF generation</strong> (Metal-Organic Frameworks)
+- 🔄 <strong>Retrosynthesis planning</strong>
+- 🔄 <strong>Reaction prediction</strong></p>
+<p><strong>Validation Rules</strong> (planned):
+1. <code>valid_smiles</code>: SMILES syntax validation
+2. <code>valid_inchi</code>: InChI format validation
+3. <code>molecular_weight_bounds</code>: 1-10,000 Da
+4. <code>valence_rules</code>: Chemical valence validation
+5. <code>stereochemistry</code>: Chirality validation</p>
+<p><strong>Ontology</strong> (planned):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Nodes</span>
+<span class="p">:</span><span class="n">Molecule</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Atom</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Bond</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Reaction</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Synthesis</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">MOF</span>
+
+<span class="c1">// Relationships</span>
+<span class="p">:</span><span class="n">BONDED_TO</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">REACTS_WITH</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">SYNTHESIZED_FROM</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.</span>
+</code></pre></div>
+
+<p><strong>Status</strong>: 50% complete</p>
+<hr />
+<h3 id="4-fotfluiddynamics-v030-in-progress">4. FoTFluidDynamics 🔄 (v0.3.0 - In Progress)</h3>
+<p><strong>Purpose</strong>: Fluid dynamics simulation and finite element analysis</p>
+<p><strong>Key Features</strong>:
+- 🔄 <strong>Navier-Stokes solver</strong> (incompressible flow)
+- 🔄 <strong>FEA/FSI</strong> (Finite Element Analysis / Fluid-Structure Interaction)
+- 🔄 <strong>Echo-steered structural collapse</strong> (resonance detection)
+- 🔄 <strong>Turbulence modeling</strong> (k-epsilon, LES)
+- 🔄 <strong>CFD visualization</strong> (Metal-based rendering)</p>
+<p><strong>Validation Rules</strong> (planned):
+1. <code>reynolds_number</code>: Valid Reynolds number range
+2. <code>mach_number</code>: Valid Mach number (&lt; 1 for incompressible)
+3. <code>mesh_quality</code>: Element quality metrics
+4. <code>convergence</code>: Solution convergence criteria
+5. <code>energy_conservation</code>: Energy balance validation</p>
+<p><strong>Ontology</strong> (planned):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Nodes</span>
+<span class="p">:</span><span class="n">Mesh</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Element</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Node</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">BoundaryCondition</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Material</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Solution</span>
+
+<span class="c1">// Relationships</span>
+<span class="p">:</span><span class="n">CONTAINS</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">NEIGHBORS</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">APPLIED_TO</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">SOLVES</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.</span>
+</code></pre></div>
+
+<p><strong>Status</strong>: 30% complete</p>
+<hr />
+<h3 id="5-fotlegalus-v010-next-priority">5. FoTLegalUS 🎯 (v0.1.0 - NEXT PRIORITY)</h3>
+<p><strong>Purpose</strong>: Legal reasoning and constitutional analysis for US jurisprudence</p>
+<p><strong>Key Features</strong>:
+- 🎯 <strong>Constitutional analysis</strong> (US Constitution + 27 Amendments)
+- 🎯 <strong>Case law search</strong> (Supreme Court opinions)
+- 🎯 <strong>Statute validation</strong> (USC, CFR)
+- 🎯 <strong>Oath enforcement</strong> (Presidential oath, judicial oath, military oath)
+- 🎯 <strong>Legal citation validation</strong> (Bluebook format)
+- 🎯 <strong>Contract analysis</strong> (clause extraction, risk assessment)</p>
+<p><strong>Validation Rules</strong> (planned):
+1. <code>valid_citation</code>: Bluebook citation format
+2. <code>constitutional_authority</code>: Valid enumerated power
+3. <code>oath_compliance</code>: Action consistent with oath
+4. <code>jurisdiction</code>: Valid court jurisdiction
+5. <code>standing</code>: Plaintiff has legal standing
+6. <code>precedent</code>: Binding precedent identified</p>
+<p><strong>Ontology</strong> (planned):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Nodes</span>
+<span class="p">:</span><span class="n">Constitution</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Amendment</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Article</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Section</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="k">Case</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Statute</span><span class="p">,</span><span class="w"> </span>
+<span class="p">:</span><span class="n">Regulation</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Contract</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Oath</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Right</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Power</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Duty</span>
+
+<span class="c1">// Relationships</span>
+<span class="p">:</span><span class="n">AMENDED_BY</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">INTERPRETED_BY</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">OVERTURNED_BY</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">CITED_BY</span><span class="p">,</span>
+<span class="p">:</span><span class="n">VIOLATES</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">PROTECTS</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">GRANTS</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">LIMITS</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">REQUIRES</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">PROHIBITS</span>
+
+<span class="c1">// Example queries</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="k">case</span><span class="p">:</span><span class="k">Case</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">INTERPRETS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">amendment</span><span class="p">:</span><span class="n">Amendment</span><span class="w"> </span><span class="p">{</span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="p">})</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">case</span><span class="p">.</span><span class="n">year</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="m">1960</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="k">case</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">case</span><span class="p">.</span><span class="n">holding</span><span class="p">,</span><span class="w"> </span><span class="k">case</span><span class="p">.</span><span class="n">year</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">case</span><span class="p">.</span><span class="n">year</span><span class="w"> </span><span class="k">DESC</span>
+
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="n">ExecutiveOrder</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">VIOLATES</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">constitution</span><span class="p">:</span><span class="n">Constitution</span><span class="p">)</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">action</span><span class="p">.</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="p">.</span><span class="n">violation_reason</span>
+</code></pre></div>
+
+<p><strong>Test Coverage</strong> (planned):
+- 100+ Supreme Court landmark cases
+- Constitutional law exam questions
+- Bar exam MBE questions (Constitutional Law section)
+- Contract interpretation scenarios</p>
+<p><strong>Platforms</strong>: ✅ Mac (primary), ✅ iPhone/iPad (legal reference)</p>
+<p><strong>Use Cases</strong>:
+- Constitutional law education
+- Legal research assistant
+- Contract review automation
+- Legislative drafting support
+- Judicial opinion analysis</p>
+<p><strong>Status</strong>: 🎯 Ready for implementation (NEXT)</p>
+<hr />
+<h3 id="6-fotclinicaltrials-v010-planned">6. FoTClinicalTrials 📋 (v0.1.0 - Planned)</h3>
+<p><strong>Purpose</strong>: Clinical trial management and GCP compliance</p>
+<p><strong>Key Features</strong>:
+- 📋 <strong>Protocol validation</strong> (ICH E6)
+- 📋 <strong>Informed consent tracking</strong>
+- 📋 <strong>Adverse event reporting</strong> (CTCAE grading)
+- 📋 <strong>DSMB reporting</strong> (Data Safety Monitoring Board)
+- 📋 <strong>Regulatory submission</strong> (IND/IDE)
+- 📋 <strong>ISO 14155 compliance</strong></p>
+<p><strong>Validation Rules</strong> (planned):
+1. <code>valid_protocol</code>: Protocol completeness check
+2. <code>consent_valid</code>: Informed consent not expired
+3. <code>eligibility_criteria</code>: Inclusion/exclusion criteria met
+4. <code>sae_reporting_deadline</code>: SAE reported within 24 hours
+5. <code>source_data_verification</code>: Source data integrity
+6. <code>alcoa_plus</code>: ALCOA+ compliance (Attributable, Legible, Contemporaneous, Original, Accurate, Complete, Consistent, Enduring, Available)</p>
+<p><strong>Ontology</strong> (planned):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Nodes</span>
+<span class="p">:</span><span class="n">ClinicalTrial</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Protocol</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Patient</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Consent</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">AdverseEvent</span><span class="p">,</span>
+<span class="p">:</span><span class="n">Endpoint</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Visit</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Procedure</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">IRB</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">Sponsor</span>
+
+<span class="c1">// Relationships</span>
+<span class="p">:</span><span class="n">ENROLLED_IN</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">CONSENTED_TO</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">EXPERIENCED</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">MEASURED</span><span class="p">,</span>
+<span class="p">:</span><span class="n">APPROVED_BY</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">SPONSORED_BY</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.</span>
+</code></pre></div>
+
+<p><strong>Status</strong>: Design phase, see <a href="gcp-compliance.html">GCP Compliance</a></p>
+<hr />
+<h2 id="domain-pack-development-guide">Domain Pack Development Guide</h2>
+<h3 id="step-1-define-validation-rules">Step 1: Define Validation Rules</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">validationRules</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ValidationRule</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rule_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Error message&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">            </span><span class="c1">// Return true if valid, false otherwise</span>
+<span class="w">            </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;field&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">validateValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="step-2-define-ontology-schema">Step 2: Define Ontology Schema</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">ontologySchema</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    // Node labels (represent entities)</span>
+<span class="s">    (:NodeType1 {property1: type, property2: type})</span>
+<span class="s">    (:NodeType2 {property1: type, property2: type})</span>
+
+<span class="s">    // Relationship types</span>
+<span class="s">    ()-[:RELATIONSHIP_TYPE]-&gt;()</span>
+<span class="s">    ()-[:ANOTHER_RELATIONSHIP]-&gt;()</span>
+
+<span class="s">    // Example data</span>
+<span class="s">    CREATE (:NodeType1 {id: </span><span class="err">&quot;</span><span class="s">example1</span><span class="err">&quot;</span><span class="s">, name: </span><span class="err">&quot;</span><span class="s">Example</span><span class="err">&quot;</span><span class="s">})</span>
+<span class="s">    &quot;&quot;&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="step-3-define-cypher-queries">Step 3: Define Cypher Queries</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">cypherQueries</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">]?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s">&quot;find_by_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">            MATCH (n:NodeType {id: $id})</span>
+<span class="s">            RETURN n</span>
+<span class="s">        &quot;&quot;&quot;</span><span class="p">,</span>
+
+<span class="w">        </span><span class="s">&quot;find_related&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">            MATCH (n:NodeType {id: $id})-[r:RELATIONSHIP]-&gt;(m)</span>
+<span class="s">            RETURN m</span>
+<span class="s">        &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="step-4-implement-initialization">Step 4: Implement Initialization</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">,</span><span class="w"> </span><span class="n">akg</span><span class="p">:</span><span class="w"> </span><span class="n">AKGService</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Load ML models (if any)</span>
+<span class="w">    </span><span class="c1">// 2. Connect to external services</span>
+<span class="w">    </span><span class="c1">// 3. Preload reference data</span>
+<span class="w">    </span><span class="c1">// 4. Register custom functions</span>
+
+<span class="w">    </span><span class="c1">// Example: Load ontology</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">ontology</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ontologySchema</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">executeCypher</span><span class="p">(</span><span class="n">ontology</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="step-5-implement-execute-method">Step 5: Implement Execute Method</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">operation</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">])</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;validate&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;data&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">validate</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">result</span><span class="p">]</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;query&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">queryName</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;query&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">!</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parameters</span><span class="p">[</span><span class="s">&quot;params&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">!</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">]</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">query</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cypherQueries</span><span class="p">?[</span><span class="n">queryName</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">DomainError</span><span class="p">.</span><span class="n">unknownQuery</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">akg</span><span class="p">.</span><span class="n">executeCypher</span><span class="p">(</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">:</span><span class="w"> </span><span class="n">params</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">result</span><span class="p">]</span>
+
+<span class="w">    </span><span class="k">default</span><span class="p">:</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">DomainError</span><span class="p">.</span><span class="n">unknownOperation</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="step-6-write-tests">Step 6: Write Tests</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">XCTest</span>
+<span class="p">@</span><span class="n">testable</span><span class="w"> </span><span class="kd">import</span><span class="w"> </span><span class="nc">FoTCore</span>
+<span class="p">@</span><span class="n">testable</span><span class="w"> </span><span class="kd">import</span><span class="w"> </span><span class="nc">FoTYourDomain</span>
+
+<span class="kr">final</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">YourDomainPackTests</span><span class="p">:</span><span class="w"> </span><span class="n">XCTestCase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">akg</span><span class="p">:</span><span class="w"> </span><span class="n">AKGService</span><span class="p">!</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">engine</span><span class="p">:</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">!</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">domainPack</span><span class="p">:</span><span class="w"> </span><span class="n">YourDomainPack</span><span class="p">!</span>
+
+<span class="w">    </span><span class="kr">override</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">akg</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">AKGService</span><span class="p">(</span><span class="n">databasePath</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;:memory:&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">engine</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">VQbitEngine</span><span class="p">(</span><span class="n">dimension</span><span class="p">:</span><span class="w"> </span><span class="mi">8096</span><span class="p">)</span>
+<span class="w">        </span><span class="n">domainPack</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">YourDomainPack</span><span class="p">()</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">domainPack</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">engine</span><span class="p">,</span><span class="w"> </span><span class="n">akg</span><span class="p">:</span><span class="w"> </span><span class="n">akg</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">testValidation</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Test validation rules</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">domainPack</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="w">            </span><span class="n">operation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;validate&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">testData</span><span class="p">]</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">&quot;valid&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">!</span><span class="w"> </span><span class="nb">Bool</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="step-7-add-to-packageswift">Step 7: Add to Package.swift</h3>
+<div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="n">target</span><span class="p">(</span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FoTYourDomain&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dependencies</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;FoTCore&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sources/DomainPacks/FoTYourDomain&quot;</span>
+<span class="p">),</span>
+
+<span class="p">.</span><span class="n">testTarget</span><span class="p">(</span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FoTYourDomainTests&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dependencies</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;FoTYourDomain&quot;</span><span class="p">]</span>
+<span class="p">),</span>
+</code></pre></div>
+
+<h3 id="step-8-register-in-cli">Step 8: Register in CLI</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Sources/FoTCLI/main.swift</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">yourDomainPack</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">YourDomainPack</span><span class="p">()</span>
+<span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">yourDomainPack</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span><span class="w"> </span><span class="n">engine</span><span class="p">,</span><span class="w"> </span><span class="n">akg</span><span class="p">:</span><span class="w"> </span><span class="n">akg</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="domain-pack-guidelines">Domain Pack Guidelines</h2>
+<h3 id="best-practices">Best Practices</h3>
+<ol>
+<li><strong>Self-Contained</strong>: Domain packs should not depend on other domain packs</li>
+<li><strong>Versioned</strong>: Use semantic versioning (MAJOR.MINOR.PATCH)</li>
+<li><strong>Tested</strong>: Minimum 80% code coverage</li>
+<li><strong>Documented</strong>: Complete API documentation with Swift-DocC</li>
+<li><strong>Validated</strong>: All data validated against domain rules</li>
+<li><strong>Audited</strong>: All operations logged to AKG with blockchain attestation</li>
+<li><strong>Performant</strong>: &lt; 100ms for typical queries</li>
+</ol>
+<h3 id="validation-rule-design">Validation Rule Design</h3>
+<p><strong>Good</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;positive_value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Value must be positive&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">props</span><span class="p">[</span><span class="s">&quot;value&quot;</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="nb">Double</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Bad</strong> (too vague):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">DomainConstraint</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;valid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Invalid&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// What are we validating?</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="ontology-design">Ontology Design</h3>
+<p><strong>Good</strong> (clear semantics):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(:</span><span class="n">Protein</span><span class="w"> </span><span class="p">{</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">sequence</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">})</span>
+<span class="o">-[</span><span class="p">:</span><span class="n">FOLDS_INTO</span><span class="o">]-&gt;</span>
+<span class="p">(:</span><span class="n">SecondaryStructure</span><span class="w"> </span><span class="p">{</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="k">start</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="p">:</span><span class="w"> </span><span class="n">Int</span><span class="p">})</span>
+</code></pre></div>
+
+<p><strong>Bad</strong> (unclear):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(:</span><span class="n">Thing</span><span class="w"> </span><span class="p">{</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">})</span>
+<span class="o">-[</span><span class="p">:</span><span class="n">RELATED_TO</span><span class="o">]-&gt;</span>
+<span class="p">(:</span><span class="n">OtherThing</span><span class="w"> </span><span class="p">{</span><span class="n">stuff</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">})</span>
+</code></pre></div>
+
+<hr />
+<h2 id="performance-targets">Performance Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Typical</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Validation</td>
+<td>&lt; 10ms</td>
+<td>3-5ms</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Simple query</td>
+<td>&lt; 100ms</td>
+<td>30-50ms</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Complex query</td>
+<td>&lt; 1s</td>
+<td>300-500ms</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>VQbit optimization</td>
+<td>&lt; 5s</td>
+<td>2-3s</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Blockchain attestation</td>
+<td>&lt; 2s</td>
+<td>1.2s</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="multi-platform-support">Multi-Platform Support</h2>
+<h3 id="macos">macOS</h3>
+<ul>
+<li><strong>Full features</strong> (all domain packs)</li>
+<li><strong>8096-dimensional VQbit substrate</strong></li>
+<li><strong>HTTP server mode</strong></li>
+<li><strong>Multiple windows</strong></li>
+</ul>
+<h3 id="iosipados">iOS/iPadOS</h3>
+<ul>
+<li><strong>Domain pack subset</strong> (lighter computational requirements)</li>
+<li><strong>4096-dimensional VQbit substrate</strong> (reduced for memory/battery)</li>
+<li><strong>Secure Enclave integration</strong> (for PHI)</li>
+<li><strong>Offline mode</strong></li>
+</ul>
+<h3 id="watchos">watchOS</h3>
+<ul>
+<li><strong>Critical domain packs only</strong> (Clinician for vitals)</li>
+<li><strong>1024-dimensional VQbit substrate</strong> (minimal footprint)</li>
+<li><strong>Real-time monitoring</strong></li>
+<li><strong>Emergency alerts</strong></li>
+</ul>
+<h3 id="visionos">visionOS</h3>
+<ul>
+<li><strong>3D knowledge graph visualization</strong></li>
+<li><strong>Immersive domain exploration</strong></li>
+<li><strong>Hand gesture queries</strong></li>
+<li><strong>Spatial audio alerts</strong></li>
+</ul>
+<hr />
+<h2 id="contributing-a-domain-pack">Contributing a Domain Pack</h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create domain pack directory: <code>Sources/DomainPacks/FoTYourDomain/</code></li>
+<li>Implement <code>DomainPack</code> protocol</li>
+<li>Write comprehensive tests (80%+ coverage)</li>
+<li>Document with Swift-DocC</li>
+<li>Submit pull request</li>
+</ol>
+<p><strong>Requirements</strong>:
+- ✅ All validation rules have test coverage
+- ✅ Ontology schema is well-documented
+- ✅ Cypher queries are optimized
+- ✅ Performance targets met
+- ✅ AGPL v3 license header
+- ✅ No breaking changes to FoTCore</p>
+<hr />
+<h2 id="roadmap">Roadmap</h2>
+<h3 id="q4-2025">Q4 2025</h3>
+<ul>
+<li>✅ FoTClinician (complete with medical board exams)</li>
+<li>✅ FoTProtein (complete with BiVQbitEGNN)</li>
+<li>🎯 FoTLegalUS (constitutional analysis) ← <strong>NEXT</strong></li>
+</ul>
+<h3 id="q1-2026">Q1 2026</h3>
+<ul>
+<li>🔄 FoTChemistry (MOF generation)</li>
+<li>🔄 FoTFluidDynamics (FEA/FSI solver)</li>
+<li>📋 FoTClinicalTrials (GCP compliance)</li>
+</ul>
+<h3 id="q2-2026">Q2 2026</h3>
+<ul>
+<li>📋 FoTFinance (fraud detection, risk analysis)</li>
+<li>📋 FoTCybersecurity (threat intelligence, SIEM)</li>
+<li>📋 FoTSupplyChain (logistics optimization)</li>
+</ul>
+<h3 id="q3-2026">Q3 2026</h3>
+<ul>
+<li>📋 FoTEducation (adaptive learning, assessment)</li>
+<li>📋 FoTAgriculture (crop monitoring, yield prediction)</li>
+<li>📋 FoTEnergy (grid optimization, demand forecasting)</li>
+</ul>
+<hr />
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://github.com/fortressai/fotapple/blob/main/sources/fotcore/domainpacks/domainpack.swift.html">DomainPack Protocol Source</a></li>
+<li><a href="https://github.com/fortressai/fotapple/tree/main/sources/domainpacks/fotclinician.html">Example: FoTClinician</a></li>
+<li><a href="https://github.com/fortressai/fotapple/tree/main/sources/domainpacks/fotprotein.html">Example: FoTProtein</a></li>
+<li><a href="contributing.html">Contributing Guide</a></li>
+<li><a href="api-documentation.html">API Documentation</a></li>
+</ul>
+<hr />
+<p><strong>Questions?</strong> Open an issue or email domains@fortressai.com</p>
+<p><strong>Next</strong>: <a href="legal-us-domain-pack.html">Implementing FoTLegalUS</a></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

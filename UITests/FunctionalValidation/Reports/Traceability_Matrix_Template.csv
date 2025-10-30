@@ -1,0 +1,4 @@
+Requirement ID,Requirement Description,UAT Test ID,Test Description,Video File,Student Guide Section,Proof Hash,Test Result,Test Date,Tester,Critical to Safety,Notes
+REQ-SAFETY-001,Drug-drug interaction detection,UAT-CL-004,Drug Interaction Detection,,Clinician Guide § 4.5,,,,,Yes,
+REQ-SAFETY-002,Allergy alert system,UAT-CL-005,Allergy Alert,,Clinician Guide § 4.6,,,,,Yes,
+REQ-FERPA-001,IEP access control,UAT-PA-008,IEP Access,,Parent Guide § 3.7,,,,,Yes,

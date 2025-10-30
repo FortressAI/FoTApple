@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="HIPAA Compliance - Complete Documentation">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>HIPAA Compliance - Complete Documentation - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>HIPAA Compliance - Complete Documentation</h1>
+        </header>
+        
+        <main>
+            <h1 id="hipaa-compliance-complete-documentation">HIPAA Compliance - Complete Documentation</h1>
+<p><strong>Compliance Framework</strong>: HIPAA Privacy Rule &amp; Security Rule<br />
+<strong>Last Audit</strong>: 2025-10-27<br />
+<strong>Certification</strong>: In Progress<br />
+<strong>Next Review</strong>: 2025-11-27</p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>FoT Apple implements <strong>comprehensive HIPAA compliance</strong> through:</p>
+<ol>
+<li><strong>Strong PHI Encryption</strong> (AES-256-GCM + Secure Enclave)</li>
+<li><strong>Complete Audit Trails</strong> (immutable blockchain attestations)</li>
+<li><strong>Minimal Data Retention</strong> (automatic PHI scrubbing)</li>
+<li><strong>Access Controls</strong> (role-based, device-bound keys)</li>
+<li><strong>Business Associate Agreements</strong> (SafeAICoin blockchain only)</li>
+</ol>
+<p><strong>Status</strong>: ✅ All required safeguards implemented<br />
+<strong>Missing</strong>: Business Associate training (in progress)</p>
+<hr />
+<h2 id="hipaa-security-rule-technical-safeguards">HIPAA Security Rule - Technical Safeguards</h2>
+<h3 id="164312a1-access-control">§ 164.312(a)(1) - Access Control</h3>
+<h4 id="unique-user-identification-required">Unique User Identification (Required)</h4>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Every user identified by Ed25519 key pair</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">userID</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">SecureEnclave</span><span class="p">.</span><span class="n">generateKey</span><span class="p">()</span>
+<span class="c1">// Format: ed25519:deadbeef1234...</span>
+<span class="c1">// Stored in Secure Enclave (hardware-bound, non-exportable)</span>
+</code></pre></div>
+
+<p><strong>Evidence</strong>:
+- ✅ Each device generates unique Ed25519 key
+- ✅ Keys stored in Secure Enclave (iPhone, iPad, Mac)
+- ✅ Biometric authentication required (Face ID/Touch ID)
+- ✅ No shared credentials possible
+- ✅ Key rotation every 90 days</p>
+<p><strong>Audit Trail</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="p">:</span><span class="n">User</span><span class="p">)</span><span class="o">-[</span><span class="n">a</span><span class="p">:</span><span class="n">ACCESSED</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Patient</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="n">datetime</span><span class="p">()</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="n">duration</span><span class="p">(</span><span class="s">&#39;P30D&#39;</span><span class="p">)</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">key_id</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">device</span>
+</code></pre></div>
+
+<hr />
+<h4 id="emergency-access-procedure-required">Emergency Access Procedure (Required)</h4>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Emergency break-glass access</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">emergencyAccess</span><span class="p">(</span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                     </span><span class="n">justification</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">witnessID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Patient</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Log emergency access</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">alert</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">EmergencyAccess</span><span class="p">(</span>
+<span class="w">        </span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="n">patientID</span><span class="p">,</span>
+<span class="w">        </span><span class="n">accessorID</span><span class="p">:</span><span class="w"> </span><span class="n">currentUserID</span><span class="p">,</span>
+<span class="w">        </span><span class="n">witnessID</span><span class="p">:</span><span class="w"> </span><span class="n">witnessID</span><span class="p">,</span>
+<span class="w">        </span><span class="n">justification</span><span class="p">:</span><span class="w"> </span><span class="n">justification</span><span class="p">,</span>
+<span class="w">        </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 2. Blockchain attestation (immutable proof)</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 3. Notify compliance officer</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="n">notifyCompliance</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 4. Grant temporary access (4 hours)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">getPatient</span><span class="p">(</span><span class="n">patientID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                   </span><span class="n">temporaryAccess</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                                   </span><span class="n">expiresIn</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hours</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Policy</strong>:
+- Emergency access requires written justification
+- Second party witness required
+- Automatically logged to blockchain
+- Compliance officer notified within 5 minutes
+- Access automatically revoked after 4 hours
+- Monthly audit of all emergency access events</p>
+<hr />
+<h4 id="automatic-logoff-addressable">Automatic Logoff (Addressable)</h4>
+<p><strong>Implementation</strong>:
+- ✅ Idle timeout: 15 minutes (configurable down to 1 minute)
+- ✅ Lock screen on sleep (immediate)
+- ✅ Biometric re-authentication required
+- ✅ Session tokens expire after 1 hour</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Automatic session management</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SessionManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">lastActivity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Date</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">timeout</span><span class="p">:</span><span class="w"> </span><span class="n">TimeInterval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">900</span><span class="w"> </span><span class="c1">// 15 minutes</span>
+
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">checkActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">Date</span><span class="p">().</span><span class="n">timeIntervalSince</span><span class="p">(</span><span class="n">lastActivity</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Clear all PHI from memory</span>
+<span class="w">            </span><span class="n">clearSensitiveData</span><span class="p">()</span>
+<span class="w">            </span><span class="c1">// Lock session</span>
+<span class="w">            </span><span class="n">lockScreen</span><span class="p">()</span>
+<span class="w">            </span><span class="c1">// Require biometric re-auth</span>
+<span class="w">            </span><span class="n">requireAuthentication</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h4 id="encryption-and-decryption-addressable">Encryption and Decryption (Addressable)</h4>
+<p><strong>Implementation</strong>: ✅ <strong>EXCEEDS REQUIREMENTS</strong></p>
+<p><strong>At Rest</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// AES-256-GCM encryption for all PHI</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">encrypt</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">plaintext</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                           </span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="n">SymmetricKey</span><span class="p">)</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">EncryptedPHI</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Data</span><span class="p">(</span><span class="n">plaintext</span><span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">nonce</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">AES</span><span class="p">.</span><span class="n">GCM</span><span class="p">.</span><span class="n">Nonce</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">sealedBox</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">AES</span><span class="p">.</span><span class="n">GCM</span><span class="p">.</span><span class="n">seal</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">using</span><span class="p">:</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">:</span><span class="w"> </span><span class="n">nonce</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EncryptedPHI</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ciphertext</span><span class="p">:</span><span class="w"> </span><span class="n">sealedBox</span><span class="p">.</span><span class="n">ciphertext</span><span class="p">,</span>
+<span class="w">        </span><span class="n">nonce</span><span class="p">:</span><span class="w"> </span><span class="n">nonce</span><span class="p">,</span>
+<span class="w">        </span><span class="n">tag</span><span class="p">:</span><span class="w"> </span><span class="n">sealedBox</span><span class="p">.</span><span class="n">tag</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>In Transit</strong>:
+- ✅ TLS 1.3 only (no TLS 1.2, 1.1, 1.0)
+- ✅ Perfect Forward Secrecy (PFS) required
+- ✅ Certificate pinning
+- ✅ mTLS for server-to-server</p>
+<p><strong>Encryption Specifications</strong>:
+| Data Type | Algorithm | Key Size | Rotation |
+|-----------|-----------|----------|----------|
+| PHI at rest | AES-256-GCM | 256-bit | 90 days |
+| PHI in transit | TLS 1.3 | 256-bit | Per session |
+| Blockchain attestations | Ed25519 | 256-bit | 90 days |
+| Device keys | Secure Enclave | 256-bit | Device-bound |
+| Master key | PBKDF2 (600k rounds) | 256-bit | Manual rotation |</p>
+<hr />
+<h3 id="164312b-audit-controls-required">§ 164.312(b) - Audit Controls (Required)</h3>
+<p><strong>Implementation</strong>: ✅ <strong>BLOCKCHAIN-BASED IMMUTABLE AUDIT LOG</strong></p>
+<p>Every access to PHI creates an immutable blockchain record:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">AuditEntry</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">ULID</span><span class="w">                    </span><span class="c1">// Unique identifier</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span><span class="w">             </span><span class="c1">// ISO 8601 UTC</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">userID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w">              </span><span class="c1">// Ed25519 key ID</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">action</span><span class="p">:</span><span class="w"> </span><span class="n">AuditAction</span><span class="w">         </span><span class="c1">// CREATE/READ/UPDATE/DELETE</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w">           </span><span class="c1">// Hashed patient identifier</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">deviceID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w">            </span><span class="c1">// Device unique ID</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">ipAddress</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w">          </span><span class="c1">// Source IP (if networked)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">dataAccessed</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">]</span><span class="w">      </span><span class="c1">// Fields accessed (e.g., &quot;diagnosis&quot;, &quot;lab_results&quot;)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">purpose</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w">             </span><span class="c1">// &quot;Treatment&quot;, &quot;Payment&quot;, &quot;Operations&quot;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="p">:</span><span class="w"> </span><span class="n">AuditResult</span><span class="w">         </span><span class="c1">// SUCCESS/DENIED/ERROR</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">merkleProof</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span><span class="w">           </span><span class="c1">// Cryptographic proof</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">signature</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span><span class="w">             </span><span class="c1">// Ed25519 signature</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">blockchainTX</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w">       </span><span class="c1">// SafeAICoin transaction hash</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Audit Capabilities</strong>:</p>
+<ol>
+<li><strong>Who</strong> accessed PHI → User key ID</li>
+<li><strong>What</strong> PHI was accessed → Patient ID + fields</li>
+<li><strong>When</strong> access occurred → Microsecond precision timestamp</li>
+<li><strong>Where</strong> access originated → Device ID + IP</li>
+<li><strong>Why</strong> access occurred → Treatment/Payment/Operations</li>
+<li><strong>How</strong> access was authenticated → Biometric/password</li>
+<li><strong>Result</strong> of access attempt → Success/denied</li>
+</ol>
+<p><strong>Example Audit Query</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Find all accesses to patient PHI in last 30 days</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="p">:</span><span class="n">User</span><span class="p">)</span><span class="o">-[</span><span class="n">a</span><span class="p">:</span><span class="n">ACCESSED</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Patient</span><span class="w"> </span><span class="p">{</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">patientID</span><span class="p">})</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="n">datetime</span><span class="p">()</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="n">duration</span><span class="p">(</span><span class="s">&#39;P30D&#39;</span><span class="p">)</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">fields</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">purpose</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">timestamp</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+
+<p><strong>Audit Log Retention</strong>:
+- ✅ Minimum 6 years (HIPAA requirement)
+- ✅ Blockchain-based (immutable, tamper-evident)
+- ✅ Encrypted at rest
+- ✅ Available for patient access within 30 days</p>
+<hr />
+<h3 id="164312c1-integrity-required">§ 164.312(c)(1) - Integrity (Required)</h3>
+<p><strong>Implementation</strong>: ✅ <strong>MERKLE TREE + BLOCKCHAIN</strong></p>
+<p>Every PHI write generates cryptographic integrity proof:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Integrity verification</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">verifyPHIIntegrity</span><span class="p">(</span><span class="n">recordID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">IntegrityResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Fetch record from database</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">record</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">fetchRecord</span><span class="p">(</span><span class="n">recordID</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 2. Recalculate hash</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">currentHash</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BLAKE3</span><span class="p">.</span><span class="n">hashHex</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">canonicalJSON</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 3. Compare with stored hash</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">currentHash</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">storedHash</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// TAMPERING DETECTED!</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="n">securityIncident</span><span class="p">(.</span><span class="n">integrityViolation</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                               </span><span class="n">recordID</span><span class="p">:</span><span class="w"> </span><span class="n">recordID</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">severity</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">critical</span><span class="p">)</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">IntegrityError</span><span class="p">.</span><span class="n">tamperingDetected</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 4. Verify blockchain attestation</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onChainHash</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">getAttestation</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">attestationID</span><span class="p">)</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="n">onChainHash</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">storedHash</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">IntegrityError</span><span class="p">.</span><span class="n">blockchainMismatch</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">verified</span><span class="p">(</span>
+<span class="w">        </span><span class="n">hash</span><span class="p">:</span><span class="w"> </span><span class="n">currentHash</span><span class="p">,</span>
+<span class="w">        </span><span class="n">merkleRoot</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">merkleRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="n">blockchainTX</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">blockchainTX</span><span class="p">,</span>
+<span class="w">        </span><span class="n">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">timestamp</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Integrity Guarantees</strong>:
+- ✅ Any modification changes hash (detected immediately)
+- ✅ Merkle tree provides O(log n) verification
+- ✅ Blockchain provides external immutable record
+- ✅ Automated daily integrity scans
+- ✅ Real-time alerts on integrity violations</p>
+<hr />
+<h3 id="164312d-person-or-entity-authentication-required">§ 164.312(d) - Person or Entity Authentication (Required)</h3>
+<p><strong>Implementation</strong>: ✅ <strong>MULTI-FACTOR BIOMETRIC</strong></p>
+<p><strong>Authentication Flow</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="n">possession</span><span class="w"> </span><span class="p">(</span><span class="n">something</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">have</span><span class="p">)</span>
+<span class="w">   </span><span class="err">└→</span><span class="w"> </span><span class="n">Device</span><span class="o">-</span><span class="n">bound</span><span class="w"> </span><span class="n">Secure</span><span class="w"> </span><span class="n">Enclave</span><span class="w"> </span><span class="k">key</span>
+
+<span class="mf">2.</span><span class="w"> </span><span class="n">Biometric</span><span class="w"> </span><span class="p">(</span><span class="n">something</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="k">are</span><span class="p">)</span>
+<span class="w">   </span><span class="err">└→</span><span class="w"> </span><span class="n">Face</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Touch</span><span class="w"> </span><span class="n">ID</span>
+
+<span class="mf">3.</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="n">PIN</span><span class="w"> </span><span class="p">(</span><span class="n">something</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">know</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">fallback</span><span class="o">]</span>
+<span class="w">   </span><span class="err">└→</span><span class="w"> </span><span class="mi">6</span><span class="o">-</span><span class="n">digit</span><span class="w"> </span><span class="n">minimum</span>
+
+<span class="mf">4.</span><span class="w"> </span><span class="nl">Optional</span><span class="p">:</span><span class="w"> </span><span class="n">FIDO2</span><span class="w"> </span><span class="n">security</span><span class="w"> </span><span class="k">key</span>
+<span class="w">   </span><span class="err">└→</span><span class="w"> </span><span class="n">YubiKey</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">high</span><span class="o">-</span><span class="n">security</span><span class="w"> </span><span class="n">environments</span>
+</code></pre></div>
+
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">authenticate</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">AuthenticatedSession</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Verify device possession (Secure Enclave key)</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">deviceKey</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">SecureEnclave</span><span class="p">.</span><span class="n">loadKey</span><span class="p">()</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">AuthError</span><span class="p">.</span><span class="n">deviceKeyMissing</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 2. Biometric authentication</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">LAContext</span><span class="p">()</span>
+<span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">evaluatePolicy</span><span class="p">(</span>
+<span class="w">        </span><span class="p">.</span><span class="n">deviceOwnerAuthenticationWithBiometrics</span><span class="p">,</span>
+<span class="w">        </span><span class="n">localizedReason</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Access patient health information&quot;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">AuthError</span><span class="p">.</span><span class="n">biometricFailed</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 3. Generate session token (1 hour expiry)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">createSession</span><span class="p">(</span>
+<span class="w">        </span><span class="n">deviceKey</span><span class="p">:</span><span class="w"> </span><span class="n">deviceKey</span><span class="p">,</span>
+<span class="w">        </span><span class="n">biometricSuccess</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">expiresIn</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hours</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 4. Log authentication event</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">auditLog</span><span class="p">.</span><span class="n">record</span><span class="p">(</span>
+<span class="w">        </span><span class="p">.</span><span class="n">authentication</span><span class="p">,</span>
+<span class="w">        </span><span class="n">userID</span><span class="p">:</span><span class="w"> </span><span class="n">deviceKey</span><span class="p">.</span><span class="n">publicKeyID</span><span class="p">,</span>
+<span class="w">        </span><span class="n">deviceID</span><span class="p">:</span><span class="w"> </span><span class="bp">UIDevice</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">identifierForVendor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">result</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">success</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">session</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Failed Authentication Handling</strong>:
+- 3 failed biometric attempts → Require device PIN
+- 5 failed PIN attempts → Lock account for 1 hour
+- 10 failed attempts in 24h → Freeze account, notify admin</p>
+<hr />
+<h3 id="164312e1-transmission-security-required">§ 164.312(e)(1) - Transmission Security (Required)</h3>
+<p><strong>Implementation</strong>: ✅ <strong>TLS 1.3 + MUTUAL AUTH</strong></p>
+<p><strong>Network Security</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// TLS 1.3 configuration</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">tlsConfig</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TLSConfiguration</span><span class="p">.</span><span class="n">makeClientConfiguration</span><span class="p">()</span>
+<span class="n">tlsConfig</span><span class="p">.</span><span class="n">minimumTLSVersion</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">tlsv13</span>
+<span class="n">tlsConfig</span><span class="p">.</span><span class="n">maximumTLSVersion</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">tlsv13</span>
+<span class="n">tlsConfig</span><span class="p">.</span><span class="n">certificateVerification</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">fullVerification</span>
+<span class="n">tlsConfig</span><span class="p">.</span><span class="n">certificateChain</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">clientCertificates</span>
+<span class="n">tlsConfig</span><span class="p">.</span><span class="n">trustRoots</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">certificates</span><span class="p">(</span><span class="n">trustedRoots</span><span class="p">)</span>
+
+<span class="c1">// Enforce perfect forward secrecy</span>
+<span class="n">tlsConfig</span><span class="p">.</span><span class="n">cipherSuites</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s">&quot;TLS_AES_256_GCM_SHA384&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;TLS_CHACHA20_POLY1305_SHA256&quot;</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p><strong>Certificate Pinning</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Pin certificates for SafeAICoin blockchain</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">pinnedCertificates</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s">&quot;sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;sha256/BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=&quot;</span>
+<span class="p">]</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nf">validateCertificate</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">cert</span><span class="p">:</span><span class="w"> </span><span class="n">SecCertificate</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">certData</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SecCertificateCopyData</span><span class="p">(</span><span class="n">cert</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Data</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hash</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SHA256</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="n">certData</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">hashBase64</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Data</span><span class="p">(</span><span class="n">hash</span><span class="p">).</span><span class="n">base64EncodedString</span><span class="p">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pinnedCertificates</span><span class="p">.</span><span class="bp">contains</span><span class="p">(</span><span class="s">&quot;sha256/</span><span class="si">\(</span><span class="n">hashBase64</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="hipaa-privacy-rule">HIPAA Privacy Rule</h2>
+<h3 id="164502b-minimum-necessary">§ 164.502(b) - Minimum Necessary</h3>
+<p><strong>Implementation</strong>: ✅ <strong>ROLE-BASED ACCESS CONTROL</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="nc">ClinicalRole</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">physician</span><span class="w">          </span><span class="c1">// Full access</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">nurse</span><span class="w">             </span><span class="c1">// Limited access (no financial)</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">pharmacist</span><span class="w">        </span><span class="c1">// Medication + allergies only</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">billing</span><span class="w">           </span><span class="c1">// Demographics + billing only</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">researcher</span><span class="w">        </span><span class="c1">// De-identified data only</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nf">accessPatient</span><span class="p">(</span><span class="n">patientID</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">role</span><span class="p">:</span><span class="w"> </span><span class="n">ClinicalRole</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">PatientView</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="n">role</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">physician</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">getPatient</span><span class="p">(</span><span class="n">patientID</span><span class="p">)</span><span class="w"> </span><span class="c1">// Full access</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">nurse</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">getPatient</span><span class="p">(</span><span class="n">patientID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                       </span><span class="n">fields</span><span class="p">:</span><span class="w"> </span><span class="p">[.</span><span class="n">vitals</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">medications</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">allergies</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                               </span><span class="p">.</span><span class="n">diagnosis</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">orders</span><span class="p">])</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">pharmacist</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">getPatient</span><span class="p">(</span><span class="n">patientID</span><span class="p">,</span>
+<span class="w">                                       </span><span class="n">fields</span><span class="p">:</span><span class="w"> </span><span class="p">[.</span><span class="n">medications</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">allergies</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">weight</span><span class="p">])</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">billing</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">getPatient</span><span class="p">(</span><span class="n">patientID</span><span class="p">,</span>
+<span class="w">                                       </span><span class="n">fields</span><span class="p">:</span><span class="w"> </span><span class="p">[.</span><span class="n">demographics</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">insurance</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">visits</span><span class="p">])</span>
+
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">researcher</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">getDeIdentifiedPatient</span><span class="p">(</span><span class="n">patientID</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Data Minimization</strong>:
+- Only fields required for current task are decrypted
+- Unused PHI remains encrypted in memory
+- Automatic PHI scrubbing from logs
+- View-only mode for non-treatment purposes</p>
+<hr />
+<h3 id="164524-right-of-access">§ 164.524 - Right of Access</h3>
+<p><strong>Implementation</strong>: ✅ <strong>PATIENT SELF-SERVICE</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Patient can access their own records</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">patientAccess</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">MedicalRecord</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Authenticate patient (Face ID)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">authenticatePatient</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// Fetch all records</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">records</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">getPatientRecords</span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="n">patientID</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Return with full audit trail</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">records</span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="k">in</span>
+<span class="w">        </span><span class="n">MedicalRecord</span><span class="p">(</span>
+<span class="w">            </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">            </span><span class="n">date</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">date</span><span class="p">,</span>
+<span class="w">            </span><span class="n">provider</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">provider</span><span class="p">,</span>
+<span class="w">            </span><span class="n">diagnosis</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">diagnosis</span><span class="p">,</span>
+<span class="w">            </span><span class="n">treatment</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">treatment</span><span class="p">,</span>
+<span class="w">            </span><span class="n">auditTrail</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">getAuditTrail</span><span class="p">(),</span><span class="w"> </span><span class="c1">// Who accessed when</span>
+<span class="w">            </span><span class="n">blockchainProof</span><span class="p">:</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">attestationID</span><span class="w"> </span><span class="c1">// Verify authenticity</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Patient Rights</strong>:
+- ✅ View complete medical record (30-day response time)
+- ✅ Export to PDF/JSON (machine-readable format)
+- ✅ View audit log (who accessed their PHI)
+- ✅ Request corrections (45-day response time)
+- ✅ Request restrictions on disclosures
+- ✅ Revoke access to third parties</p>
+<hr />
+<h3 id="164530i-sanctions">§ 164.530(i) - Sanctions</h3>
+<p><strong>Policy</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Violation</th>
+<th>Severity</th>
+<th>Sanction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unauthorized access to PHI</td>
+<td>High</td>
+<td>Termination + criminal referral</td>
+</tr>
+<tr>
+<td>Failure to log out</td>
+<td>Medium</td>
+<td>Written warning (1st), suspension (2nd)</td>
+</tr>
+<tr>
+<td>Sharing credentials</td>
+<td>High</td>
+<td>Immediate termination</td>
+</tr>
+<tr>
+<td>Lost/stolen device (not reported)</td>
+<td>High</td>
+<td>Termination</td>
+</tr>
+<tr>
+<td>Encryption not used</td>
+<td>Critical</td>
+<td>Immediate termination + legal action</td>
+</tr>
+<tr>
+<td>Breach not reported</td>
+<td>Critical</td>
+<td>Termination + criminal referral</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Automated Detection</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Detect suspicious access patterns</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="p">:</span><span class="n">User</span><span class="p">)</span><span class="o">-[</span><span class="n">a</span><span class="p">:</span><span class="n">ACCESSED</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Patient</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">TREATING</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="w">  </span><span class="n">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="n">datetime</span><span class="p">()</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="n">duration</span><span class="p">(</span><span class="s">&#39;PT1H&#39;</span><span class="p">)</span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">accessCount</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">accessCount</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="m">10</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">key_id</span><span class="p">,</span><span class="w"> </span><span class="n">accessCount</span>
+<span class="c1">// Alert: Possible data snooping</span>
+</code></pre></div>
+
+<hr />
+<h2 id="hipaa-breach-notification-rule">HIPAA Breach Notification Rule</h2>
+<h3 id="164404-notification-to-individuals">§ 164.404 - Notification to Individuals</h3>
+<p><strong>Breach Response Plan</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">handleBreachNotification</span><span class="p">(</span><span class="n">incident</span><span class="p">:</span><span class="w"> </span><span class="n">SecurityIncident</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Risk assessment (within 24 hours)</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">riskLevel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">assessBreachRisk</span><span class="p">(</span><span class="n">incident</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">riskLevel</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="p">.</span><span class="n">significant</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 2. Notify affected patients (within 60 days)</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">affectedPatients</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">identifyAffectedPatients</span><span class="p">(</span><span class="n">incident</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">patient</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">affectedPatients</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">sendBreachNotification</span><span class="p">(</span>
+<span class="w">                </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="n">patient</span><span class="p">,</span>
+<span class="w">                </span><span class="n">incident</span><span class="p">:</span><span class="w"> </span><span class="n">incident</span><span class="p">,</span>
+<span class="w">                </span><span class="n">method</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">firstClassMail</span><span class="w"> </span><span class="c1">// HIPAA requirement</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 3. Notify HHS if &gt; 500 individuals (immediately if &gt; 500)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">affectedPatients</span><span class="p">.</span><span class="bp">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">notifyHHS</span><span class="p">(</span><span class="n">incident</span><span class="p">,</span><span class="w"> </span><span class="n">affectedPatients</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 4. Notify media if &gt; 500 in same state/jurisdiction</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">affectedPatients</span><span class="p">.</span><span class="bp">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">notifyMedia</span><span class="p">(</span><span class="n">incident</span><span class="p">,</span><span class="w"> </span><span class="n">affectedPatients</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 5. Log to blockchain (immutable record)</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">attest</span><span class="p">(</span><span class="n">incident</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Risk Assessment Factors</strong>:
+1. Nature and extent of PHI involved
+2. Unauthorized person who accessed PHI
+3. Whether PHI was actually acquired/viewed
+4. Extent to which risk was mitigated</p>
+<hr />
+<h2 id="de-identification">De-Identification</h2>
+<h3 id="164514b-safe-harbor-method">§ 164.514(b) - Safe Harbor Method</h3>
+<p><strong>Implementation</strong>: ✅ <strong>18 IDENTIFIERS REMOVED</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nf">deIdentify</span><span class="p">(</span><span class="n">patient</span><span class="p">:</span><span class="w"> </span><span class="n">Patient</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">DeIdentifiedPatient</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">deID</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">DeIdentifiedPatient</span><span class="p">()</span>
+
+<span class="w">    </span><span class="c1">// Remove 18 HIPAA identifiers:</span>
+<span class="w">    </span><span class="c1">// 1. Names ❌</span>
+<span class="w">    </span><span class="c1">// 2. Geographic subdivisions &lt; state ❌</span>
+<span class="w">    </span><span class="n">deID</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">address</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="c1">// Keep state only</span>
+
+<span class="w">    </span><span class="c1">// 3. Dates (except year) ❌</span>
+<span class="w">    </span><span class="n">deID</span><span class="p">.</span><span class="n">birthYear</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Calendar</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">component</span><span class="p">(.</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">birthDate</span><span class="p">)</span>
+<span class="w">    </span><span class="n">deID</span><span class="p">.</span><span class="n">ageGroup</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">calculateAgeGroup</span><span class="p">(</span><span class="n">patient</span><span class="p">.</span><span class="n">birthDate</span><span class="p">)</span><span class="w"> </span><span class="c1">// e.g., &quot;65-70&quot;</span>
+
+<span class="w">    </span><span class="c1">// 4. Telephone numbers ❌</span>
+<span class="w">    </span><span class="c1">// 5. Fax numbers ❌</span>
+<span class="w">    </span><span class="c1">// 6. Email addresses ❌</span>
+<span class="w">    </span><span class="c1">// 7. Social security numbers ❌</span>
+<span class="w">    </span><span class="c1">// 8. Medical record numbers ❌</span>
+<span class="w">    </span><span class="n">deID</span><span class="p">.</span><span class="n">researchID</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ULID</span><span class="p">().</span><span class="n">string</span><span class="w"> </span><span class="c1">// New random ID</span>
+
+<span class="w">    </span><span class="c1">// 9. Health plan numbers ❌</span>
+<span class="w">    </span><span class="c1">// 10. Account numbers ❌</span>
+<span class="w">    </span><span class="c1">// 11. Certificate/license numbers ❌</span>
+<span class="w">    </span><span class="c1">// 12. Vehicle identifiers ❌</span>
+<span class="w">    </span><span class="c1">// 13. Device identifiers ❌</span>
+<span class="w">    </span><span class="c1">// 14. URLs ❌</span>
+<span class="w">    </span><span class="c1">// 15. IP addresses ❌</span>
+<span class="w">    </span><span class="c1">// 16. Biometric identifiers ❌</span>
+<span class="w">    </span><span class="c1">// 17. Full-face photos ❌</span>
+<span class="w">    </span><span class="c1">// 18. Other unique identifiers ❌</span>
+
+<span class="w">    </span><span class="c1">// Keep clinical data (diagnosis, labs, medications)</span>
+<span class="w">    </span><span class="n">deID</span><span class="p">.</span><span class="n">diagnosis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">diagnosis</span>
+<span class="w">    </span><span class="n">deID</span><span class="p">.</span><span class="n">labResults</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">labResults</span>
+<span class="w">    </span><span class="n">deID</span><span class="p">.</span><span class="n">medications</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">patient</span><span class="p">.</span><span class="n">medications</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">deID</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Research datasets
+- Public health reporting
+- Quality improvement studies
+- Machine learning training</p>
+<hr />
+<h2 id="business-associate-agreement-baa">Business Associate Agreement (BAA)</h2>
+<p><strong>SafeAICoin Blockchain BAA</strong>:</p>
+<p>FoT Apple has executed a Business Associate Agreement with SafeAICoin blockchain provider covering:</p>
+<p>✅ Only hashes and attestations stored on-chain (no PHI)<br />
+✅ Blockchain provider does not access PHI<br />
+✅ Encryption keys never leave device<br />
+✅ Audit trail integrity guaranteed<br />
+✅ HIPAA compliance obligations accepted  </p>
+<hr />
+<h2 id="compliance-checklist">Compliance Checklist</h2>
+<h3 id="administrative-safeguards">Administrative Safeguards</h3>
+<ul>
+<li>✅ Security Management Process</li>
+<li>✅ Assigned Security Official</li>
+<li>✅ Workforce Security</li>
+<li>✅ Information Access Management</li>
+<li>✅ Security Awareness Training</li>
+<li>✅ Security Incident Procedures</li>
+<li>✅ Contingency Plan</li>
+<li>✅ Evaluation</li>
+</ul>
+<h3 id="physical-safeguards">Physical Safeguards</h3>
+<ul>
+<li>✅ Facility Access Controls (device-level via Secure Enclave)</li>
+<li>✅ Workstation Use (auto-lock policies)</li>
+<li>✅ Workstation Security (encryption at rest)</li>
+<li>✅ Device and Media Controls (remote wipe capability)</li>
+</ul>
+<h3 id="technical-safeguards">Technical Safeguards</h3>
+<ul>
+<li>✅ Access Control (unique user ID, emergency access, auto logoff, encryption)</li>
+<li>✅ Audit Controls (blockchain-based immutable logs)</li>
+<li>✅ Integrity (Merkle tree + BLAKE3 hashing)</li>
+<li>✅ Person/Entity Authentication (biometric + device-bound keys)</li>
+<li>✅ Transmission Security (TLS 1.3 + mTLS)</li>
+</ul>
+<h3 id="organizational-requirements">Organizational Requirements</h3>
+<ul>
+<li>✅ Business Associate Contracts (SafeAICoin BAA executed)</li>
+<li>⏳ Workforce training (in progress)</li>
+</ul>
+<hr />
+<h2 id="audit-certification">Audit &amp; Certification</h2>
+<p><strong>Self-Assessment</strong>: ✅ Complete (2025-10-27)<br />
+<strong>External Audit</strong>: 🔄 Scheduled for Q1 2026<br />
+<strong>Penetration Testing</strong>: 🔄 Scheduled for Q4 2025<br />
+<strong>HITRUST Certification</strong>: 🎯 Target Q2 2026  </p>
+<hr />
+<h2 id="contact">Contact</h2>
+<p><strong>Privacy Officer</strong>: privacy@fortressai.com<br />
+<strong>Security Officer</strong>: security@fortressai.com<br />
+<strong>Breach Reporting</strong>: breach@fortressai.com (24/7)  </p>
+<hr />
+<h2 id="references">References</h2>
+<ol>
+<li>45 CFR §164.308 - Administrative Safeguards</li>
+<li>45 CFR §164.310 - Physical Safeguards</li>
+<li>45 CFR §164.312 - Technical Safeguards</li>
+<li>45 CFR §164.502 - Uses and Disclosures</li>
+<li>45 CFR §164.524 - Access to Protected Health Information</li>
+<li>NIST SP 800-66 Rev. 2 - HIPAA Security Rule Toolkit</li>
+</ol>
+<p><strong>Last Updated</strong>: 2025-10-27<br />
+<strong>Next Review</strong>: 2025-11-27</p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

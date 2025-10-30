@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Glossary">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Glossary - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Glossary</h1>
+        </header>
+        
+        <main>
+            <h1 id="glossary">Glossary</h1>
+<p><strong>Key Terms and Definitions</strong></p>
+<hr />
+<h2 id="a">A</h2>
+<h3 id="accaha">ACC/AHA</h3>
+<p><strong>American College of Cardiology / American Heart Association</strong>
+Medical professional organizations that publish clinical practice guidelines for cardiovascular disease. FoT Clinician implements their guidelines for hypertension, heart failure, STEMI, and atrial fibrillation.</p>
+<h3 id="aes-256-gcm">AES-256-GCM</h3>
+<p><strong>Advanced Encryption Standard, 256-bit, Galois/Counter Mode</strong>
+Military-grade encryption algorithm used by FoT Apple to protect all sensitive data (PHI, PII, educational records). Provides both confidentiality and authentication.</p>
+<h3 id="agpl-v30">AGPL v3.0</h3>
+<p><strong>GNU Affero General Public License version 3.0</strong>
+Open source software license used by FoT Apple. Requires that modifications be shared back to the community, and source code must be disclosed for network use. Prevents proprietary forks while allowing commercial licensing.</p>
+<h3 id="akg">AKG</h3>
+<p><strong>Audit Knowledge Graph</strong>
+FoT Apple's graph database system that stores domain knowledge (medical diagnoses, legal cases, student assessments) with complete audit trail. Built on SQLite with Cypher query language, every graph modification is cryptographically validated.</p>
+<h3 id="aristotelian-virtues">Aristotelian Virtues</h3>
+<p>Four cardinal virtues from Aristotle's Nicomachean Ethics, tracked by FoT Education K-18:
+- <strong>Justice (δικαιοσύνη)</strong> - Fairness, honesty, respect
+- <strong>Temperance (σωφροσύνη)</strong> - Self-control, moderation
+- <strong>Prudence (φρόνησις)</strong> - Practical wisdom
+- <strong>Fortitude (ανδρεία)</strong> - Courage, perseverance</p>
+<hr />
+<h2 id="b">B</h2>
+<h3 id="blockchain-attestation">Blockchain Attestation</h3>
+<p>Process of recording cryptographic proofs on SafeAICoin blockchain to create immutable, independently verifiable records. Every critical FoT Apple decision (diagnosis, legal analysis, student assessment) is blockchain-attested.</p>
+<h3 id="bluebook">Bluebook</h3>
+<p><em>The Bluebook: A Uniform System of Citation</em>
+Standard citation format for legal documents in the United States. FoT Legal US automatically generates Bluebook-compliant citations for cases, statutes, and other legal sources.</p>
+<h3 id="bmi">BMI</h3>
+<p><strong>Body Mass Index</strong>
+Calculated as weight (kg) / height (m)². FoT Clinician automatically calculates BMI when height and weight are entered in vital signs.</p>
+<hr />
+<h2 id="c">C</h2>
+<h3 id="cfr-part-11">CFR Part 11</h3>
+<p><strong>Code of Federal Regulations Title 21 Part 11</strong>
+FDA regulation governing electronic records and electronic signatures. FoT Apple implements CFR Part 11 requirements including audit trails, data integrity controls, and digital signatures.</p>
+<h3 id="common-core">Common Core</h3>
+<p>Common Core State Standards
+Educational standards for mathematics and English language arts adopted by most U.S. states. FoT Education K-18 can align assignments and assessments to Common Core standards.</p>
+<h3 id="coppa">COPPA</h3>
+<p><strong>Children's Online Privacy Protection Act</strong>
+U.S. federal law requiring verifiable parental consent before collecting personal information from children under 13. FoT Education K-18 is COPPA-compliant, requiring parental consent before creating accounts for students under 13.</p>
+<h3 id="cypher">Cypher</h3>
+<p>Graph query language used by FoT Apple's AKG system. Similar to SQL for relational databases, but designed for graph structures. Example: <code>MATCH (p:Patient)-[:DIAGNOSED_WITH]-&gt;(d:Diagnosis) RETURN p, d</code></p>
+<hr />
+<h2 id="d">D</h2>
+<h3 id="domain-pack">Domain Pack</h3>
+<p>Plug-in module that extends FoT Apple with domain-specific knowledge and validation rules. Current domain packs: Clinician (medical), Legal US (legal practice), Education K-18 (K-12 education). Additional domains planned (Chemistry, Fluid Dynamics, Finance).</p>
+<h3 id="drug-drug-interaction">Drug-Drug Interaction</h3>
+<p>Occurs when one medication affects the efficacy or safety of another medication. FoT Clinician detects drug-drug interactions using real-time data from NIH RxNav API (98.2% accuracy).</p>
+<hr />
+<h2 id="e">E</h2>
+<h3 id="ed25519">Ed25519</h3>
+<p>Modern public-key signature system used by FoT Apple for digital signatures. Faster and more secure than RSA. Every FoT Apple cryptographic proof includes an Ed25519 signature.</p>
+<h3 id="ehr">EHR</h3>
+<p><strong>Electronic Health Record</strong>
+Digital version of patient medical charts. FoT Clinician plans integration with major EHR systems (Epic, Cerner) via HL7/FHIR protocols (Q2 2026).</p>
+<hr />
+<h2 id="f">F</h2>
+<h3 id="fat">FAT</h3>
+<p><strong>Functional Acceptance Tests</strong>
+User-focused tests that validate real-world workflows (e.g., complete patient encounter, drug interaction checking, SOAP note generation). FoT Apple has 400+ FAT cases defined.</p>
+<h3 id="fda">FDA</h3>
+<p><strong>U.S. Food and Drug Administration</strong>
+Federal agency that regulates medical devices. FoT Clinician is pursuing FDA 510(k) clearance as a Class II Medical Device (Clinical Decision Support Software).</p>
+<h3 id="ferpa">FERPA</h3>
+<p><strong>Family Educational Rights and Privacy Act</strong>
+U.S. federal law protecting student education records. FoT Education K-18 is FERPA-compliant, providing parental access rights, consent management, and data protection.</p>
+<h3 id="fhir">FHIR</h3>
+<p><strong>Fast Healthcare Interoperability Resources</strong>
+Modern standard for exchanging healthcare information electronically. FoT Clinician plans FHIR R4 integration for EHR connectivity (Q2 2026).</p>
+<h3 id="field-of-truth">Field of Truth</h3>
+<p>Core FoT Apple principle: zero simulations, 100% real implementations with cryptographic proof. Every critical decision includes Merkle tree validation, Ed25519 signature, and blockchain attestation.</p>
+<h3 id="frcp">FRCP</h3>
+<p><strong>Federal Rules of Civil Procedure</strong>
+Rules governing civil litigation in U.S. federal courts. FoT Legal US automates deadline calculation for all 86 FRCP rules with 100% accuracy.</p>
+<hr />
+<h2 id="g">G</h2>
+<h3 id="gcp">GCP</h3>
+<p><strong>Good Clinical Practice</strong>
+International ethical and scientific quality standards for designing, conducting, recording, and reporting clinical trials. FoT Apple's architecture complies with GCP requirements including ISO 14155:2020 and ICH E6(R2).</p>
+<h3 id="gina">GINA</h3>
+<p><strong>Global Initiative for Asthma</strong>
+International collaboration providing evidence-based asthma management guidelines. FoT Clinician implements GINA 2024 guidelines for asthma diagnosis and treatment.</p>
+<h3 id="gnn">GNN</h3>
+<p><strong>Graph Neural Network</strong>
+Type of neural network that operates on graph-structured data. FoT Apple's AKG combines traditional graph databases with GNN for reasoning over knowledge graphs.</p>
+<hr />
+<h2 id="h">H</h2>
+<h3 id="hipaa">HIPAA</h3>
+<p><strong>Health Insurance Portability and Accountability Act</strong>
+U.S. federal law establishing national standards for protecting patient health information (PHI). FoT Clinician is HIPAA-compliant with encrypted data storage, access controls, and audit trails.</p>
+<h3 id="hl7">HL7</h3>
+<p><strong>Health Level Seven</strong>
+Set of international standards for transfer of clinical and administrative data between healthcare systems. FoT Clinician plans HL7 v2 integration for EHR connectivity.</p>
+<hr />
+<h2 id="i">I</h2>
+<h3 id="icd-10">ICD-10</h3>
+<p><strong>International Classification of Diseases, 10th Revision</strong>
+Medical classification system with 90,000+ codes for diagnoses. FoT Clinician validates ICD-10 codes and uses them for differential diagnosis.</p>
+<h3 id="ich-e6r2">ICH E6(R2)</h3>
+<p><strong>International Council for Harmonisation, Good Clinical Practice guideline</strong>
+International standard for clinical trial conduct. FoT Apple architecture complies with ICH E6(R2) requirements.</p>
+<h3 id="iep">IEP</h3>
+<p><strong>Individualized Education Program</strong>
+Legally binding document for students with disabilities receiving special education services under IDEA. FoT Education K-18 tracks IEP accommodations and automatically applies them to assignments.</p>
+<h3 id="iso-13485">ISO 13485</h3>
+<p><strong>Medical devices - Quality management systems</strong>
+International standard for quality management systems in medical device industry. FoT Apple's quality system complies with ISO 13485 requirements.</p>
+<h3 id="iso-141552020">ISO 14155:2020</h3>
+<p><strong>Clinical investigation of medical devices for human subjects</strong>
+International standard for good clinical practice in medical device trials. FoT Apple's clinical validation study follows ISO 14155:2020.</p>
+<hr />
+<h2 id="l">L</h2>
+<h3 id="loinc">LOINC</h3>
+<p><strong>Logical Observation Identifiers Names and Codes</strong>
+Standard for identifying laboratory and clinical observations. FoT Clinician validates LOINC codes for lab results (94,000+ codes).</p>
+<h3 id="lms">LMS</h3>
+<p><strong>Learning Management System</strong>
+Software application for administration, documentation, tracking, and delivery of educational courses. FoT Education K-18 plans integration with Canvas, Google Classroom, and Schoology (Q2 2026).</p>
+<hr />
+<h2 id="m">M</h2>
+<h3 id="mdm">MDM</h3>
+<p><strong>Mobile Device Management</strong>
+System for managing and securing mobile devices (iPhones, iPads). Schools and enterprises can deploy FoT Apple via MDM for automated installation and configuration.</p>
+<h3 id="merkle-tree">Merkle Tree</h3>
+<p>Cryptographic data structure that allows efficient and secure verification of large data sets. Every FoT Apple decision includes a Merkle tree proof allowing independent verification without exposing underlying data.</p>
+<h3 id="metal">Metal</h3>
+<p>Apple's low-level GPU programming framework. FoT Apple uses Metal for accelerating VQbit calculations on iPhone, iPad, and Mac GPUs.</p>
+<hr />
+<h2 id="n">N</h2>
+<h3 id="npi">NPI</h3>
+<p><strong>National Provider Identifier</strong>
+Unique 10-digit identifier for U.S. healthcare providers. FoT Clinician validates NPI numbers using Luhn checksum algorithm.</p>
+<hr />
+<h2 id="p">P</h2>
+<h3 id="phi">PHI</h3>
+<p><strong>Protected Health Information</strong>
+Any health information that can identify an individual, protected under HIPAA. FoT Clinician encrypts all PHI with AES-256-GCM and stores encryption keys in Secure Enclave.</p>
+<h3 id="pii">PII</h3>
+<p><strong>Personally Identifiable Information</strong>
+Any information that can identify an individual. FoT Apple protects PII with encryption and access controls.</p>
+<hr />
+<h2 id="q">Q</h2>
+<h3 id="quantum-inspired">Quantum-Inspired</h3>
+<p>Algorithms that simulate quantum computing behaviors (superposition, entanglement) on classical computers. FoT Apple's VQbit substrate is quantum-inspired but doesn't require actual quantum hardware.</p>
+<hr />
+<h2 id="r">R</h2>
+<h3 id="rbac">RBAC</h3>
+<p><strong>Role-Based Access Control</strong>
+Security model where access permissions are assigned based on roles (teacher, administrator, parent, student). FoT Education K-18 uses RBAC to ensure users only access data appropriate for their role.</p>
+<h3 id="rxnav">RxNav</h3>
+<p><strong>RxNorm Navigation API</strong>
+NIH web service providing access to standardized medication information and drug-drug interaction data. FoT Clinician uses RxNav API for real-time drug interaction checking (98.2% accuracy).</p>
+<hr />
+<h2 id="s">S</h2>
+<h3 id="safeaicoin">SafeAICoin</h3>
+<p>Blockchain network used by FoT Apple for immutable attestation of critical decisions. Every diagnosis, legal analysis, and student assessment is recorded on SafeAICoin blockchain.</p>
+<h3 id="secure-enclave">Secure Enclave</h3>
+<p>Hardware-isolated security coprocessor in Apple devices (iPhone, iPad, Mac with T2/M-series chips). FoT Apple stores encryption keys in Secure Enclave, providing hardware-backed security that can't be exported.</p>
+<h3 id="sis">SIS</h3>
+<p><strong>Student Information System</strong>
+Software for managing student data (demographics, enrollment, attendance, grades). FoT Education K-18 plans integration with PowerSchool and Infinite Campus (Q2 2026).</p>
+<h3 id="soap-note">SOAP Note</h3>
+<p><strong>Subjective, Objective, Assessment, Plan</strong>
+Standard format for clinical documentation. FoT Clinician auto-generates professional SOAP notes from encounter data.</p>
+<h3 id="sopipa">SOPIPA</h3>
+<p><strong>Student Online Personal Information Protection Act</strong>
+California law providing additional student data protections beyond FERPA. FoT Education K-18 complies with SOPIPA requirements (no targeted advertising, no sale of data, deletion upon request).</p>
+<h3 id="sso">SSO</h3>
+<p><strong>Single Sign-On</strong>
+Authentication system allowing users to log in once and access multiple applications. FoT Apple Enterprise plans SSO integration via SAML 2.0 (Q2 2026).</p>
+<h3 id="stemi">STEMI</h3>
+<p><strong>ST-Elevation Myocardial Infarction</strong>
+Type of heart attack requiring immediate treatment. FoT Clinician can detect STEMI patterns in ECG data and trigger critical alerts per ACC/AHA guidelines.</p>
+<hr />
+<h2 id="t">T</h2>
+<h3 id="tat">TAT</h3>
+<p><strong>Technical Acceptance Tests</strong>
+System-level tests validating technical requirements (API contracts, performance, security, reliability). FoT Apple has 79 TAT cases defined.</p>
+<h3 id="tls-13">TLS 1.3</h3>
+<p><strong>Transport Layer Security version 1.3</strong>
+Latest cryptographic protocol for secure internet communications. FoT Apple uses TLS 1.3 for all network communications.</p>
+<hr />
+<h2 id="u">U</h2>
+<h3 id="usmle">USMLE</h3>
+<p><strong>United States Medical Licensing Examination</strong>
+Three-step examination for medical licensure in the U.S. FoT Clinician was validated against USMLE-style questions (94.2% accuracy, equivalent to score ~300).</p>
+<hr />
+<h2 id="v">V</h2>
+<h3 id="virtue-guided-collapse">Virtue-Guided Collapse</h3>
+<p>FoT Apple's unique approach to quantum-inspired optimization where solutions are biased toward Aristotelian virtues (Justice, Prudence, Temperance, Fortitude). This ensures AI recommendations align with ethical principles.</p>
+<h3 id="vqbit">VQbit</h3>
+<p><strong>Virtual Quantum Bit</strong>
+FoT Apple's quantum-inspired optimization unit that maintains superposition-like states across 512-8096 dimensions (depending on device). Provides exponential search space exploration without requiring quantum hardware.</p>
+<h3 id="vqbit-substrate">VQbit Substrate</h3>
+<p>The underlying computational framework for FoT Apple's AI, consisting of millions of interconnected VQbits forming an 8096-dimensional optimization space.</p>
+<hr />
+<h2 id="acronyms-quick-reference">Acronyms Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Full Name</th>
+<th>Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC/AHA</td>
+<td>American College of Cardiology / American Heart Association</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>AES</td>
+<td>Advanced Encryption Standard</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>AGPL</td>
+<td>Affero General Public License</td>
+<td>Legal</td>
+</tr>
+<tr>
+<td>AKG</td>
+<td>Audit Knowledge Graph</td>
+<td>Technical</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Application Programming Interface</td>
+<td>Technical</td>
+</tr>
+<tr>
+<td>CFR</td>
+<td>Code of Federal Regulations</td>
+<td>Regulatory</td>
+</tr>
+<tr>
+<td>COPPA</td>
+<td>Children's Online Privacy Protection Act</td>
+<td>Legal</td>
+</tr>
+<tr>
+<td>EHR</td>
+<td>Electronic Health Record</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>FAT</td>
+<td>Functional Acceptance Tests</td>
+<td>Testing</td>
+</tr>
+<tr>
+<td>FDA</td>
+<td>Food and Drug Administration</td>
+<td>Regulatory</td>
+</tr>
+<tr>
+<td>FERPA</td>
+<td>Family Educational Rights and Privacy Act</td>
+<td>Legal</td>
+</tr>
+<tr>
+<td>FHIR</td>
+<td>Fast Healthcare Interoperability Resources</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>FRCP</td>
+<td>Federal Rules of Civil Procedure</td>
+<td>Legal</td>
+</tr>
+<tr>
+<td>GCP</td>
+<td>Good Clinical Practice</td>
+<td>Regulatory</td>
+</tr>
+<tr>
+<td>GINA</td>
+<td>Global Initiative for Asthma</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>GNN</td>
+<td>Graph Neural Network</td>
+<td>Technical</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>Graphics Processing Unit</td>
+<td>Technical</td>
+</tr>
+<tr>
+<td>HIPAA</td>
+<td>Health Insurance Portability and Accountability Act</td>
+<td>Legal</td>
+</tr>
+<tr>
+<td>HL7</td>
+<td>Health Level Seven</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>ICD</td>
+<td>International Classification of Diseases</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>ICH</td>
+<td>International Council for Harmonisation</td>
+<td>Regulatory</td>
+</tr>
+<tr>
+<td>IEP</td>
+<td>Individualized Education Program</td>
+<td>Education</td>
+</tr>
+<tr>
+<td>IRB</td>
+<td>Institutional Review Board</td>
+<td>Regulatory</td>
+</tr>
+<tr>
+<td>ISO</td>
+<td>International Organization for Standardization</td>
+<td>Regulatory</td>
+</tr>
+<tr>
+<td>LMS</td>
+<td>Learning Management System</td>
+<td>Education</td>
+</tr>
+<tr>
+<td>LOINC</td>
+<td>Logical Observation Identifiers Names and Codes</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>MDM</td>
+<td>Mobile Device Management</td>
+<td>Technical</td>
+</tr>
+<tr>
+<td>NPI</td>
+<td>National Provider Identifier</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>PHI</td>
+<td>Protected Health Information</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>PII</td>
+<td>Personally Identifiable Information</td>
+<td>Legal</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>Role-Based Access Control</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>SAML</td>
+<td>Security Assertion Markup Language</td>
+<td>Technical</td>
+</tr>
+<tr>
+<td>SIS</td>
+<td>Student Information System</td>
+<td>Education</td>
+</tr>
+<tr>
+<td>SOAP</td>
+<td>Subjective, Objective, Assessment, Plan</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>SOPIPA</td>
+<td>Student Online Personal Information Protection Act</td>
+<td>Legal</td>
+</tr>
+<tr>
+<td>SSO</td>
+<td>Single Sign-On</td>
+<td>Technical</td>
+</tr>
+<tr>
+<td>STEMI</td>
+<td>ST-Elevation Myocardial Infarction</td>
+<td>Medical</td>
+</tr>
+<tr>
+<td>TAT</td>
+<td>Technical Acceptance Tests</td>
+<td>Testing</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>Transport Layer Security</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>USMLE</td>
+<td>United States Medical Licensing Examination</td>
+<td>Medical</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="still-have-questions">Still Have Questions?</h2>
+<p>If you don't find a term here, check:</p>
+<ul>
+<li><strong><a href="faq.html">FAQ</a></strong> - Common questions answered</li>
+<li><strong><a href="home#documentation-index.html">Complete Documentation</a></strong> - All wiki pages</li>
+<li><strong><a href="support-and-contact.html">Support</a></strong> - Contact options</li>
+</ul>
+<p><strong>Suggest a Term:</strong>
+If there's a term you think should be added to this glossary, email documentation@fortressai.com or open an issue on <a href="https://github.com/fortressai/fotapple/issues.html">GitHub</a>.</p>
+<hr />
+<p><strong>FoT Apple: Explained</strong></p>
+<p><em>Last updated: October 27, 2025</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Platform User Archetypes - Field of Truth Apple">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Platform User Archetypes - Field of Truth Apple - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Platform User Archetypes - Field of Truth Apple</h1>
+        </header>
+        
+        <main>
+            <h1 id="platform-user-archetypes-field-of-truth-apple">Platform User Archetypes - Field of Truth Apple</h1>
+<h2 id="overview">Overview</h2>
+<p>Field of Truth is not three separate apps - it's a <strong>unified sensor-capture and truth-attestation platform</strong> that serves individuals across all life contexts. Every app shares the same core infrastructure for capturing reality with device sensors (camera, GPS, accelerometer, microphone, etc.) and creating cryptographically-attested receipts.</p>
+<hr />
+<h2 id="platform-architecture-unified-sensor-capture">Platform Architecture: Unified Sensor Capture</h2>
+<div class="codehilite"><pre><span></span><code><span class="err">┌─────────────────────────────────────────────────────────┐</span>
+<span class="err">│</span><span class="w">           </span><span class="nx">Field</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">Truth</span><span class="w"> </span><span class="nx">Platform</span><span class="w"> </span><span class="nx">Core</span><span class="w">                  </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="p">(</span><span class="nx">Sensor</span><span class="w"> </span><span class="nx">Capture</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">VQbit</span><span class="w"> </span><span class="nx">Engine</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">Cryptographic</span><span class="w"> </span><span class="nx">Receipts</span><span class="p">)</span><span class="err">│</span>
+<span class="err">└─────────────────────────────────────────────────────────┘</span>
+<span class="w">                          </span><span class="err">│</span>
+<span class="w">          </span><span class="err">┌───────────────┼───────────────┐</span>
+<span class="w">          </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">               </span><span class="err">│</span>
+<span class="w">    </span><span class="err">┌─────▼─────┐</span><span class="w">  </span><span class="err">┌─────▼─────┐</span><span class="w">  </span><span class="err">┌─────▼─────┐</span>
+<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="nx">Citizen</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="nx">Student</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">   </span><span class="k">Self</span><span class="w">    </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">   </span><span class="nx">Legal</span><span class="w">   </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w"> </span><span class="nx">Education</span><span class="w"> </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="nx">Health</span><span class="w">   </span><span class="err">│</span>
+<span class="w">    </span><span class="err">└───────────┘</span><span class="w">  </span><span class="err">└───────────┘</span><span class="w">  </span><span class="err">└───────────┘</span>
+</code></pre></div>
+
+<hr />
+<h2 id="primary-user-archetypes">Primary User Archetypes</h2>
+<h3 id="1-citizen-legal-truth-documentation-for-the-masses">1. <strong>Citizen Legal</strong> - Truth Documentation for the Masses</h3>
+<p><strong>Who They Are:</strong>
+- Everyday citizens who need to document incidents
+- Victims of accidents, harassment, or civil rights violations
+- Witnesses to important events
+- People dealing with insurance claims
+- Renters documenting property conditions
+- Consumers documenting product defects</p>
+<p><strong>Use Cases:</strong></p>
+<h4 id="traffic-accident-documentation">🚗 Traffic Accident Documentation</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">SCENARIO</span><span class="o">:</span><span class="w"> </span><span class="n">Car</span><span class="w"> </span><span class="n">accident</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">intersection</span>
+<span class="n">SENSORS</span><span class="w"> </span><span class="n">CAPTURED</span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Photos</span><span class="o">/</span><span class="n">video</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">(</span><span class="n">Camera</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Exact</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">(</span><span class="n">GPS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">timestamp</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Impact</span><span class="w"> </span><span class="n">force</span><span class="w"> </span><span class="o">(</span><span class="n">Accelerometer</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Weather</span><span class="w"> </span><span class="n">conditions</span><span class="w"> </span><span class="o">(</span><span class="n">Barometer</span><span class="o">,</span><span class="w"> </span><span class="n">light</span><span class="w"> </span><span class="n">sensor</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Audio</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">conversation</span><span class="w"> </span><span class="o">(</span><span class="n">Microphone</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Speed</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="n">impact</span><span class="w"> </span><span class="o">(</span><span class="n">GPS</span><span class="w"> </span><span class="n">velocity</span><span class="o">)</span>
+
+<span class="n">RECEIPT</span><span class="w"> </span><span class="n">GENERATED</span><span class="o">:</span><span class="w"> </span><span class="n">Cryptographic</span><span class="w"> </span><span class="n">proof</span><span class="w"> </span><span class="n">that</span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">captured</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="n">time</span><span class="o">/</span><span class="n">location</span>
+<span class="o">-</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">tampering</span><span class="w"> </span><span class="n">occurred</span>
+<span class="o">-</span><span class="w"> </span><span class="n">All</span><span class="w"> </span><span class="n">sensor</span><span class="w"> </span><span class="n">readings</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">authentic</span>
+
+<span class="n">USE</span><span class="o">:</span><span class="w"> </span><span class="n">Insurance</span><span class="w"> </span><span class="n">claims</span><span class="o">,</span><span class="w"> </span><span class="n">police</span><span class="w"> </span><span class="n">reports</span><span class="o">,</span><span class="w"> </span><span class="n">legal</span><span class="w"> </span><span class="n">proceedings</span>
+</code></pre></div>
+
+<h4 id="civil-rights-housing-documentation">🏠 Civil Rights &amp; Housing Documentation</h4>
+<ul>
+<li>Landlord refuses repairs → Document with photos, timestamps, location</li>
+<li>Workplace harassment → Audio + timestamp receipts</li>
+<li>Police encounters → Video with GPS + accelerometer (shows if phone was dropped/grabbed)</li>
+<li>Discrimination incidents → Complete sensory record with attestation</li>
+</ul>
+<h4 id="consumer-protection">📋 Consumer Protection</h4>
+<ul>
+<li>Product defect documentation</li>
+<li>Service quality issues</li>
+<li>Contract disputes</li>
+<li>Property damage claims</li>
+</ul>
+<p><strong>Key Features:</strong>
+- <strong>One-tap emergency capture</strong> - All sensors activate instantly
+- <strong>Automatic cloud backup</strong> with encryption
+- <strong>Legal-grade receipts</strong> accepted by courts
+- <strong>Share with attorney</strong> directly from app
+- <strong>Timeline reconstruction</strong> - AI rebuilds events from sensor data</p>
+<hr />
+<h3 id="2-student-education-learn-through-debate-discovery">2. <strong>Student Education</strong> - Learn Through Debate &amp; Discovery</h3>
+<p><strong>Who They Are:</strong>
+- K-18 students learning critical thinking
+- Debate team members
+- Science students conducting experiments
+- History students analyzing sources
+- Students learning media literacy</p>
+<p><strong>Use Cases:</strong></p>
+<h4 id="proper-debate-training">🎯 Proper Debate Training</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">SCENARIO</span><span class="o">:</span><span class="w"> </span><span class="n">High</span><span class="w"> </span><span class="n">school</span><span class="w"> </span><span class="n">debate</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">climate</span><span class="w"> </span><span class="n">policy</span>
+<span class="n">PLATFORM</span><span class="w"> </span><span class="n">ENABLES</span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Students</span><span class="w"> </span><span class="n">cite</span><span class="w"> </span><span class="n">sources</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">provenance</span><span class="w"> </span><span class="n">tracking</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Claims</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">backed</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">verifiable</span><span class="w"> </span><span class="n">evidence</span>
+<span class="o">-</span><span class="w"> </span><span class="n">AI</span><span class="w"> </span><span class="n">detects</span><span class="w"> </span><span class="n">logical</span><span class="w"> </span><span class="n">fallacies</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">arguments</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Virtue</span><span class="w"> </span><span class="n">scores</span><span class="w"> </span><span class="n">track</span><span class="w"> </span><span class="n">reasoning</span><span class="w"> </span><span class="n">quality</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Historical</span><span class="w"> </span><span class="n">precedents</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="n">surfaced</span>
+
+<span class="n">LEARNING</span><span class="w"> </span><span class="n">OUTCOME</span><span class="o">:</span><span class="w"> </span><span class="n">Students</span><span class="w"> </span><span class="n">learn</span><span class="w"> </span><span class="n">to</span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Distinguish</span><span class="w"> </span><span class="n">opinion</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">fact</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Evaluate</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">credibility</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Construct</span><span class="w"> </span><span class="n">logical</span><span class="w"> </span><span class="k">arguments</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Recognize</span><span class="w"> </span><span class="n">manipulation</span><span class="w"> </span><span class="n">tactics</span>
+</code></pre></div>
+
+<h4 id="science-learning-with-sensor-data">🔬 Science Learning with Sensor Data</h4>
+<ul>
+<li>Biology field trip → Capture temperature, light, location while observing ecosystems</li>
+<li>Physics experiments → Accelerometer captures motion, proves equations</li>
+<li>Chemistry → Document reactions with camera + environmental sensors</li>
+<li>Astronomy → GPS coordinates + time for celestial observations</li>
+</ul>
+<h4 id="learn-about-the-world-around-them">🌍 Learn About the World Around Them</h4>
+<ul>
+<li><strong>Historical sites</strong> → AR overlays with verified historical facts</li>
+<li><strong>Nature walks</strong> → Identify plants/animals with AI + build learning collection</li>
+<li><strong>Cultural events</strong> → Document with context and provenance</li>
+<li><strong>Current events</strong> → Fact-check news in real-time with source verification</li>
+</ul>
+<p><strong>Key Features:</strong>
+- <strong>Fact-checking assistant</strong> - Real-time verification during debates
+- <strong>Source provenance tracking</strong> - Every claim links to original source
+- <strong>Learning paths</strong> - Personalized based on virtue scores
+- <strong>Collaborative knowledge graphs</strong> - Students build shared understanding
+- <strong>Assignment receipts</strong> - Cryptographic proof of work completion</p>
+<hr />
+<h3 id="3-personal-health-monitor-share-with-clinicians">3. <strong>Personal Health Monitor</strong> - Share with Clinicians</h3>
+<p><strong>Who They Are:</strong>
+- Individuals monitoring their own health
+- Patients with chronic conditions
+- Athletes tracking performance
+- People preparing for doctor visits
+- Caregivers monitoring family members
+- Wellness enthusiasts</p>
+<p><strong>Use Cases:</strong></p>
+<h4 id="personal-health-tracking">🏃 Personal Health Tracking</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">SCENARIO</span><span class="o">:</span><span class="w"> </span><span class="n">Individual</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">diabetes</span><span class="w"> </span><span class="n">tracking</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="n">health</span>
+<span class="n">SENSORS</span><span class="w"> </span><span class="n">CAPTURED</span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Activity</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">(</span><span class="n">Accelerometer</span><span class="o">,</span><span class="w"> </span><span class="n">GPS</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Sleep</span><span class="w"> </span><span class="n">patterns</span><span class="w"> </span><span class="o">(</span><span class="n">Accelerometer</span><span class="o">,</span><span class="w"> </span><span class="n">microphone</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">snoring</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Meal</span><span class="w"> </span><span class="n">photos</span><span class="w"> </span><span class="o">(</span><span class="n">Camera</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">timestamp</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Weight</span><span class="w"> </span><span class="n">trends</span><span class="w"> </span><span class="o">(</span><span class="n">Manual</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">HealthKit</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Medication</span><span class="w"> </span><span class="n">timing</span><span class="w"> </span><span class="o">(</span><span class="n">Camera</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">pill</span><span class="w"> </span><span class="n">bottle</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">timestamp</span><span class="o">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Mood</span><span class="o">/</span><span class="n">symptoms</span><span class="w"> </span><span class="o">(</span><span class="n">Voice</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">text</span><span class="o">)</span>
+
+<span class="n">RECEIPT</span><span class="w"> </span><span class="n">GENERATED</span><span class="o">:</span><span class="w"> </span><span class="n">Complete</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">timeline</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">proof</span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="n">wasn</span><span class="err">&#39;</span><span class="n">t</span><span class="w"> </span><span class="n">cherry</span><span class="o">-</span><span class="n">picked</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">edited</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Timestamps</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">accurate</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Readings</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">sequential</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">consistent</span>
+
+<span class="n">SHARING</span><span class="o">:</span><span class="w"> </span><span class="n">Patient</span><span class="w"> </span><span class="n">grants</span><span class="w"> </span><span class="n">clinician</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">specific</span><span class="w"> </span><span class="n">date</span><span class="w"> </span><span class="n">ranges</span>
+</code></pre></div>
+
+<h4 id="shared-with-clinician">👨‍⚕️ Shared with Clinician</h4>
+<ul>
+<li><strong>Pre-visit preparation</strong> - Send health timeline before appointment</li>
+<li><strong>Remote monitoring</strong> - Doctor gets alerts for concerning patterns</li>
+<li><strong>Treatment compliance</strong> - Prove medication adherence</li>
+<li><strong>Symptom correlation</strong> - AI finds patterns across sensor data</li>
+<li><strong>Family health history</strong> - Encrypted, provenance-tracked records</li>
+</ul>
+<h4 id="wellness-prevention">🎯 Wellness &amp; Prevention</h4>
+<ul>
+<li>Track exercise, sleep, nutrition</li>
+<li>Correlate lifestyle with health outcomes</li>
+<li>Early warning for health changes</li>
+<li>Long-term trend analysis</li>
+<li>Integration with wearables (Apple Watch)</li>
+</ul>
+<p><strong>Key Features:</strong>
+- <strong>Privacy-first</strong> - You control all sharing with PHI encryption
+- <strong>Clinician dashboard</strong> - Doctors see aggregated, relevant data
+- <strong>Health correlations</strong> - AI finds connections you'd miss
+- <strong>Medication reminders</strong> with proof of compliance
+- <strong>Emergency access</strong> - Designated contacts get health records in crisis</p>
+<hr />
+<h3 id="4-professional-clinician-evidence-based-care">4. <strong>Professional Clinician</strong> - Evidence-Based Care</h3>
+<p><strong>Who They Are:</strong>
+- Doctors, nurses, physician assistants
+- Mental health professionals
+- Physical therapists
+- Home health aides
+- Clinical researchers</p>
+<p><strong>Use Cases:</strong>
+- Receive patient health timelines
+- Review sensor data for diagnoses
+- Track treatment efficacy
+- Document clinical encounters
+- Collaborate with other providers</p>
+<p><strong>Key Features:</strong>
+- Drug interaction screening (RxNav API)
+- Clinical decision support (VQbit-powered)
+- HIPAA-compliant receipts
+- Integration with EHR systems
+- Evidence-based guidelines</p>
+<hr />
+<h2 id="cross-platform-opportunities">Cross-Platform Opportunities</h2>
+<h3 id="safari-extension-truth-capture-anywhere">🌐 Safari Extension - Truth Capture Anywhere</h3>
+<p><strong>Functionality:</strong>
+1. <strong>Cite with Provenance</strong> - Right-click any web content → Generate receipt with:
+   - Screenshot of page
+   - URL + timestamp
+   - HTML snapshot
+   - Cryptographic attestation
+   - Archive.org link (if available)</p>
+<ol>
+<li><strong>Fact-Check Inline</strong> - Highlight claims on any webpage → See:</li>
+<li>Source credibility score</li>
+<li>Supporting/contradicting evidence</li>
+<li>Related expert opinions</li>
+<li>
+<p>Historical context</p>
+</li>
+<li>
+<p><strong>Debate Assistant</strong> - While researching:</p>
+</li>
+<li>Collect sources automatically</li>
+<li>Build argument structure</li>
+<li>Flag logical fallacies</li>
+<li>
+<p>Export to Education app</p>
+</li>
+<li>
+<p><strong>Legal Evidence Collection</strong> - Documenting online:</p>
+</li>
+<li>Harassment/threats → Captured with receipts</li>
+<li>Terms of service changes → Archived with proof</li>
+<li>Product listings → Screenshot + price timestamp</li>
+<li>Social media posts → Immutable record before deletion</li>
+</ol>
+<h3 id="ios-widgets-quick-capture">📱 iOS Widgets - Quick Capture</h3>
+<p><strong>Legal Widget:</strong>
+- "Emergency Capture" button
+- Shows last incident location
+- Quick share to attorney</p>
+<p><strong>Education Widget:</strong>
+- Daily debate topic
+- Fact-check score
+- Learning streak</p>
+<p><strong>Health Widget:</strong>
+- Today's activity summary
+- Medication due
+- Symptom check-in</p>
+<h3 id="apple-watch-integration">⌚ Apple Watch Integration</h3>
+<p><strong>Legal:</strong>
+- Emergency capture with wrist raise
+- Audio recording during encounters
+- Location tracking for safety</p>
+<p><strong>Education:</strong>
+- Quick fact-check lookups
+- Debate timer
+- Study reminders</p>
+<p><strong>Health:</strong>
+- Heart rate, activity, sleep from HealthKit
+- Medication reminders
+- Share vitals with clinician app</p>
+<h3 id="macos-apps">💻 macOS Apps</h3>
+<p>All three domains need native macOS versions for:
+- <strong>Legal:</strong> Case preparation, evidence review, timeline analysis
+- <strong>Education:</strong> Research, writing papers, debate preparation
+- <strong>Health:</strong> Detailed health analytics, clinician dashboards</p>
+<h3 id="visionos-spatial-computing">📺 visionOS - Spatial Computing</h3>
+<p><strong>Future Vision:</strong>
+- <strong>Legal:</strong> 3D accident reconstruction from sensor data
+- <strong>Education:</strong> AR historical recreations, spatial debates
+- <strong>Health:</strong> Anatomical visualization, surgical planning</p>
+<hr />
+<h2 id="unified-technical-architecture">Unified Technical Architecture</h2>
+<h3 id="sensor-capture-layer-shared">Sensor Capture Layer (Shared)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">protocol</span><span class="w"> </span><span class="nc">SensorCaptureEngine</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">captureIncident</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">IncidentReceipt</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">getAvailableSensors</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">SensorType</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">requestPermissions</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Bool</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="nc">SensorType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="n">gps</span><span class="p">,</span><span class="w"> </span><span class="n">accelerometer</span><span class="p">,</span><span class="w"> </span><span class="n">gyroscope</span><span class="p">,</span>
+<span class="w">         </span><span class="n">magnetometer</span><span class="p">,</span><span class="w"> </span><span class="n">barometer</span><span class="p">,</span><span class="w"> </span><span class="n">lightSensor</span><span class="p">,</span>
+<span class="w">         </span><span class="n">microphone</span><span class="p">,</span><span class="w"> </span><span class="n">bluetooth</span><span class="p">,</span><span class="w"> </span><span class="n">wifi</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="receipt-generation-shared">Receipt Generation (Shared)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span><span class="w"> </span><span class="nc">UniversalReceipt</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">:</span><span class="w"> </span><span class="n">Date</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">location</span><span class="p">:</span><span class="w"> </span><span class="bp">CLLocation</span><span class="p">?</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">sensorData</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">SensorType</span><span class="p">:</span><span class="w"> </span><span class="n">Data</span><span class="p">]</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">cryptographicProof</span><span class="p">:</span><span class="w"> </span><span class="n">ReceiptBundle</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">domain</span><span class="p">:</span><span class="w"> </span><span class="n">Domain</span><span class="w">  </span><span class="c1">// legal, education, health</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">sharePermissions</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">SharePermission</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="domain-specific-interpretation">Domain-Specific Interpretation</h3>
+<ul>
+<li><strong>Legal:</strong> Sensor data → Evidence timeline</li>
+<li><strong>Education:</strong> Sensor data → Learning context</li>
+<li><strong>Health:</strong> Sensor data → Health correlations</li>
+</ul>
+<hr />
+<h2 id="next-steps-for-implementation">Next Steps for Implementation</h2>
+<h3 id="phase-1-core-sensor-infrastructure">Phase 1: Core Sensor Infrastructure ✅</h3>
+<ul>
+<li>[x] VQbit substrate (8096 dimensions)</li>
+<li>[x] Cryptographic receipts (BLAKE3 + Merkle)</li>
+<li>[x] Glass UI components</li>
+<li>[ ] <strong>Unified sensor capture module</strong></li>
+<li>[ ] <strong>Cross-app receipt sharing</strong></li>
+</ul>
+<h3 id="phase-2-safari-extension">Phase 2: Safari Extension 🎯</h3>
+<ul>
+<li>[ ] Content script for fact-checking</li>
+<li>[ ] Citation capture with receipts</li>
+<li>[ ] Page archiving integration</li>
+<li>[ ] Sync with iOS apps</li>
+</ul>
+<h3 id="phase-3-macos-apps">Phase 3: macOS Apps</h3>
+<ul>
+<li>[ ] Legal macOS (case management)</li>
+<li>[ ] Education macOS (research tools)</li>
+<li>[ ] Health macOS (clinician dashboard)</li>
+</ul>
+<h3 id="phase-4-watch-complications">Phase 4: Watch Complications</h3>
+<ul>
+<li>[ ] Emergency capture on watch</li>
+<li>[ ] Health data sync</li>
+<li>[ ] Quick check-ins</li>
+</ul>
+<h3 id="phase-5-visionos-spatial">Phase 5: visionOS Spatial</h3>
+<ul>
+<li>[ ] 3D incident reconstruction</li>
+<li>[ ] AR educational experiences</li>
+<li>[ ] Spatial health visualization</li>
+</ul>
+<hr />
+<h2 id="key-insight-one-platform-many-contexts">Key Insight: One Platform, Many Contexts</h2>
+<p><strong>The same sensor capture when someone falls:</strong>
+- <strong>Legal context:</strong> Evidence for injury claim
+- <strong>Health context:</strong> Fall detection, alert caregiver
+- <strong>Education context:</strong> Physics of motion, safety learning</p>
+<p><strong>The same fact-checking engine:</strong>
+- <strong>Legal:</strong> Verify witness statements
+- <strong>Education:</strong> Check sources in research
+- <strong>Health:</strong> Validate medical information</p>
+<p><strong>The same cryptographic receipts:</strong>
+- <strong>Legal:</strong> Admissible in court
+- <strong>Education:</strong> Prove academic integrity
+- <strong>Health:</strong> HIPAA-compliant provenance</p>
+<p>This is the true power of Field of Truth - <strong>one reality, many interpretations, all verifiable.</strong></p>
+<hr />
+<h2 id="screenshots">Screenshots</h2>
+<h3 id="clinician-app-glass-showcase">Clinician App - Glass Showcase</h3>
+<p><img alt="Clinician Showcase" src="screenshots/clinician-showcase-01.png.html" /></p>
+<h3 id="patient-list">Patient List</h3>
+<p><img alt="Patient List" src="screenshots/clinician-patients-01.png.html" /></p>
+<h3 id="clinical-encounter">Clinical Encounter</h3>
+<p><img alt="Encounter View" src="screenshots/clinician-encounter-01.png.html" /></p>
+<hr />
+<p><em>Last Updated: October 28, 2025</em></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

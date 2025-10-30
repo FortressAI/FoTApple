@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AppleTitle" content="Field of Truth - Complete TestFlight User Guide">
+    <meta name="AppleIcon" content="images/FoT_core_128.png">
+    <title>Field of Truth - Complete TestFlight User Guide - FoT Apple Help</title>
+    <link rel="stylesheet" href="../css/apple-help.css">
+</head>
+<body>
+    <div class="help-container">
+        <header>
+            <img src="../images/FoT_core_128.png" alt="FoT" class="app-icon">
+            <h1>Field of Truth - Complete TestFlight User Guide</h1>
+        </header>
+        
+        <main>
+            <h1 id="field-of-truth-complete-testflight-user-guide">Field of Truth - Complete TestFlight User Guide</h1>
+<p><strong>🚀 Welcome to Field of Truth Beta Testing!</strong></p>
+<p>This guide covers everything you need to use the FoT apps currently available in TestFlight.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#getting-started-with-testflight.html">Getting Started with TestFlight</a></li>
+<li><a href="#personal-health-app.html">Personal Health App</a></li>
+<li><a href="#fot-clinician-app.html">FoT Clinician App</a></li>
+<li><a href="#fot-education-k-18-app.html">FoT Education K-18 App</a></li>
+<li><a href="#fot-legal-us-app.html">FoT Legal US App</a></li>
+<li><a href="#voice-commands-siri-integration.html">Voice Commands (Siri Integration)</a></li>
+<li><a href="#common-scenarios-by-user-type.html">Common Scenarios by User Type</a></li>
+<li><a href="#troubleshooting.html">Troubleshooting</a></li>
+<li><a href="#privacy--security.html">Privacy &amp; Security</a></li>
+</ol>
+<hr />
+<h2 id="getting-started-with-testflight">Getting Started with TestFlight</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><strong>Device Requirements:</strong></li>
+<li>iOS 17.0+ (iPhone/iPad)</li>
+<li>macOS 14.0+ (Mac)</li>
+<li>
+<p>watchOS 10.0+ (Apple Watch)</p>
+</li>
+<li>
+<p><strong>Apple ID:</strong> You need an Apple ID to use TestFlight</p>
+</li>
+</ul>
+<h3 id="installing-testflight-apps">Installing TestFlight Apps</h3>
+<ol>
+<li><strong>Download TestFlight</strong> (if not already installed)</li>
+<li>iOS/iPadOS: <a href="https://apps.apple.com/us/app/testflight/id899247664.html">App Store - TestFlight</a></li>
+<li>
+<p>macOS: <a href="https://apps.apple.com/us/app/testflight/id899247664.html">Mac App Store - TestFlight</a></p>
+</li>
+<li>
+<p><strong>Accept Your Invitation</strong></p>
+</li>
+<li>Open the email invitation from TestFlight</li>
+<li>Tap "View in TestFlight"</li>
+<li>
+<p>Tap "Accept" then "Install"</p>
+</li>
+<li>
+<p><strong>First Launch</strong></p>
+</li>
+<li>Open the app from your home screen</li>
+<li>Grant necessary permissions (camera, location, health data)</li>
+<li>Complete initial setup</li>
+</ol>
+<h3 id="available-apps">Available Apps</h3>
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>iOS</th>
+<th>macOS</th>
+<th>watchOS</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Personal Health</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>🚧 Coming</td>
+<td>Beta</td>
+</tr>
+<tr>
+<td><strong>FoT Clinician</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>Beta</td>
+</tr>
+<tr>
+<td><strong>FoT Education K-18</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>Beta</td>
+</tr>
+<tr>
+<td><strong>FoT Legal US</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>Beta</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="personal-health-app">Personal Health App</h2>
+<h3 id="overview">Overview</h3>
+<p>Track your physical and mental health with cryptographic proof for every entry. Designed for individuals managing their own wellness.</p>
+<h3 id="key-features">Key Features</h3>
+<h4 id="1-daily-health-check-in">1. Daily Health Check-In</h4>
+<p><strong>What it does:</strong> Log your mood, symptoms, and overall wellness each day</p>
+<p><strong>How to use:</strong>
+1. Open Personal Health app
+2. Tap "Daily Check-In" or say <strong>"Hey Siri, record my health check-in"</strong>
+3. Rate your mood (1-10 scale)
+4. Enter any symptoms you're experiencing
+5. Add notes if desired
+6. Tap "Save" → Receive cryptographic receipt</p>
+<p><strong>Siri Command:</strong> "Record my health check-in"</p>
+<p><strong>Example scenario:</strong></p>
+<div class="codehilite"><pre><span></span><code>User: &quot;Hey Siri, record my health check-in&quot;
+Siri: &quot;How&#39;s your mood today, on a scale of 1 to 10?&quot;
+User: &quot;7&quot;
+Siri: &quot;Any symptoms to note?&quot;
+User: &quot;Mild headache&quot;
+Siri: &quot;Check-in recorded. Receipt ID: A3F2B91C&quot;
+</code></pre></div>
+
+<h4 id="2-vital-signs-tracking">2. Vital Signs Tracking</h4>
+<p><strong>What it does:</strong> Record temperature, heart rate, blood pressure, oxygen saturation</p>
+<p><strong>How to use:</strong>
+1. Tap "Record Vitals" or use Siri
+2. Enter measurements:
+   - <strong>Temperature:</strong> 35.0-42.0°C
+   - <strong>Heart Rate:</strong> 40-200 BPM
+   - <strong>Blood Pressure:</strong> Systolic/Diastolic
+   - <strong>SpO2:</strong> 70-100%
+3. Save with cryptographic timestamp</p>
+<p><strong>Siri Command:</strong> "Record my vitals"</p>
+<p><strong>Example scenario:</strong></p>
+<div class="codehilite"><pre><span></span><code>&quot;Hey Siri, record my vitals: temperature 37.2, heart rate 72, blood pressure 120 over 80&quot;
+</code></pre></div>
+
+<h4 id="3-mental-health-wellness">3. Mental Health &amp; Wellness</h4>
+<p><strong>What it does:</strong> Private mood journal with crisis support</p>
+<p><strong>Features:</strong>
+- <strong>Mood Tracking:</strong> 1-10 scale with trend analysis
+- <strong>Sleep Monitoring:</strong> Track hours slept vs. mood correlation
+- <strong>Stress Assessment:</strong> 5-level scale (Calm → Severe)
+- <strong>Gratitude Practice:</strong> Evidence-based positive psychology
+- <strong>Private Journal:</strong> Encrypted, cryptographically timestamped
+- <strong>Crisis Support:</strong> Instant access to 988, Crisis Text Line, resources</p>
+<p><strong>How to use:</strong>
+1. Tap "Mental Health Check-In"
+2. Log your mood, sleep quality, stress level
+3. Optional: Write in private journal
+4. Optional: Record gratitude</p>
+<p><strong>Siri Commands:</strong>
+- "Log my mood"
+- "I need crisis support"</p>
+<p><strong>Crisis Resources (Always Available):</strong>
+- <strong>988 Suicide &amp; Crisis Lifeline</strong> - Call or text
+- <strong>Crisis Text Line</strong> - Text HOME to 741741
+- <strong>Veterans Crisis Line</strong> - 988, press 1
+- <strong>Emergency Services</strong> - 911</p>
+<h4 id="4-interactive-health-navigator">4. Interactive Health Navigator</h4>
+<p><strong>What it does:</strong> AI-guided triage to help you decide if you need medical care</p>
+<p><strong>How to use:</strong>
+1. Say <strong>"Hey Siri, do I need a doctor?"</strong>
+2. Answer 10 guided questions about:
+   - Symptoms and severity
+   - Duration
+   - Pain level
+   - Previous conditions
+3. Receive recommendation:
+   - <strong>Emergency:</strong> Call 911 immediately
+   - <strong>Urgent Care:</strong> See doctor within 24 hours
+   - <strong>Schedule Appointment:</strong> See doctor this week
+   - <strong>Self-Care:</strong> Monitor at home</p>
+<p><strong>Siri Command:</strong> "Do I need a doctor?"</p>
+<h4 id="5-health-summary">5. Health Summary</h4>
+<p><strong>What it does:</strong> View trends and statistics over time</p>
+<p><strong>Siri Command:</strong> "Summarize my health"</p>
+<p><strong>What you get:</strong>
+- Mood trends (past week/month)
+- Vital sign averages
+- Symptom patterns
+- AI insights</p>
+<h3 id="common-scenarios-personal-health">Common Scenarios - Personal Health</h3>
+<h4 id="scenario-1-morning-wellness-routine">Scenario 1: Morning Wellness Routine</h4>
+<div class="codehilite"><pre><span></span><code><span class="mi">7</span><span class="o">:</span><span class="mi">00</span><span class="w"> </span><span class="n">AM</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;Hey Siri, record my health check-in&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Log</span><span class="w"> </span><span class="n">mood</span><span class="o">:</span><span class="w"> </span><span class="mi">8</span><span class="o">,</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">symptoms</span><span class="o">,</span><span class="w"> </span><span class="n">slept</span><span class="w"> </span><span class="n">well</span>
+
+<span class="mi">7</span><span class="o">:</span><span class="mi">05</span><span class="w"> </span><span class="n">AM</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;Hey Siri, record my vitals&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">HR</span><span class="o">:</span><span class="w"> </span><span class="mi">65</span><span class="o">,</span><span class="w"> </span><span class="n">BP</span><span class="o">:</span><span class="w"> </span><span class="mi">118</span><span class="o">/</span><span class="mi">75</span><span class="o">,</span><span class="w"> </span><span class="n">feeling</span><span class="w"> </span><span class="n">good</span>
+</code></pre></div>
+
+<h4 id="scenario-2-managing-chronic-condition">Scenario 2: Managing Chronic Condition</h4>
+<div class="codehilite"><pre><span></span><code><span class="nv">User</span><span class="w"> </span><span class="nv">logs</span><span class="w"> </span><span class="nv">vitals</span><span class="w"> </span><span class="nv">daily</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">hypertension</span>
+→<span class="w"> </span><span class="nv">Builds</span><span class="w"> </span><span class="mi">30</span><span class="o">-</span><span class="nv">day</span><span class="w"> </span><span class="nv">BP</span><span class="w"> </span><span class="nv">trend</span>
+→<span class="w"> </span><span class="nv">Exports</span><span class="w"> </span><span class="nv">cryptographically</span><span class="o">-</span><span class="nv">signed</span><span class="w"> </span><span class="nv">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">doctor</span>
+→<span class="w"> </span><span class="nv">Shows</span><span class="w"> </span><span class="nv">compliance</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">patterns</span>
+</code></pre></div>
+
+<h4 id="scenario-3-mental-health-support">Scenario 3: Mental Health Support</h4>
+<div class="codehilite"><pre><span></span><code><span class="nv">Evening</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">Feeling</span><span class="w"> </span><span class="nv">down</span>
+→<span class="w"> </span><span class="s2">&quot;Log my mood&quot;</span><span class="w"> </span><span class="ss">(</span><span class="nv">score</span>:<span class="w"> </span><span class="mi">3</span><span class="ss">)</span>
+→<span class="w"> </span><span class="nv">App</span><span class="w"> </span><span class="nv">shows</span><span class="w"> </span><span class="nv">positive</span><span class="w"> </span><span class="nv">past</span><span class="w"> </span><span class="nv">entries</span>
+→<span class="w"> </span><span class="nv">Suggests</span>:<span class="w"> </span><span class="s2">&quot;Practice gratitude&quot;</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="s2">&quot;Call crisis line&quot;</span>
+→<span class="w"> </span><span class="nv">User</span><span class="w"> </span><span class="nv">writes</span><span class="w"> </span><span class="nv">private</span><span class="w"> </span><span class="nv">journal</span><span class="w"> </span><span class="nv">entry</span>
+→<span class="w"> </span><span class="nv">Receives</span><span class="w"> </span><span class="nv">cryptographic</span><span class="w"> </span><span class="nv">receipt</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">therapy</span><span class="w"> </span><span class="nv">records</span>
+</code></pre></div>
+
+<h4 id="scenario-4-post-surgery-monitoring">Scenario 4: Post-Surgery Monitoring</h4>
+<div class="codehilite"><pre><span></span><code><span class="nv">Day</span><span class="w"> </span><span class="mi">1</span>:<span class="w"> </span><span class="nv">Log</span><span class="w"> </span><span class="nv">pain</span><span class="w"> </span><span class="nv">level</span>,<span class="w"> </span><span class="nv">vitals</span>,<span class="w"> </span><span class="nv">symptoms</span>
+<span class="nv">Day</span><span class="w"> </span><span class="mi">2</span>:<span class="w"> </span><span class="nv">Compare</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">Day</span><span class="w"> </span><span class="mi">1</span>,<span class="w"> </span><span class="nv">note</span><span class="w"> </span><span class="nv">improvement</span>
+<span class="nv">Day</span><span class="w"> </span><span class="mi">7</span>:<span class="w"> </span><span class="nv">Generate</span><span class="w"> </span><span class="nv">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">follow</span><span class="o">-</span><span class="nv">up</span><span class="w"> </span><span class="nv">appointment</span>
+→<span class="w"> </span><span class="nv">Cryptographic</span><span class="w"> </span><span class="nv">proof</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">recovery</span><span class="w"> </span><span class="nv">timeline</span>
+</code></pre></div>
+
+<hr />
+<h2 id="fot-clinician-app">FoT Clinician App</h2>
+<h3 id="overview_1">Overview</h3>
+<p>HIPAA-compliant clinical documentation for healthcare professionals. Supports patient encounters, SOAP notes, drug interaction checking, and cryptographic attestation.</p>
+<h3 id="key-features_1">Key Features</h3>
+<h4 id="1-patient-management">1. Patient Management</h4>
+<p><strong>Sample Patients Included:</strong></p>
+<p><strong>Patient 1: John Doe</strong>
+- MRN: MRN001, Age: 45, Male
+- Allergies: Penicillin (Rash, Moderate)
+- Active Problems: Hypertension (I10), Type 2 Diabetes (E11.9)
+- Medications: Metformin 1000mg PO BID, Lisinopril 10mg PO QD</p>
+<p><strong>Patient 2: Jane Smith</strong>
+- MRN: MRN002, Age: 32, Female
+- Allergies: None
+- Active Problems: Asthma (J45.9)
+- Medications: Albuterol 90mcg INH PRN</p>
+<h4 id="2-clinical-encounters">2. Clinical Encounters</h4>
+<p><strong>Start an Encounter:</strong></p>
+<p><strong>Via App:</strong>
+1. Tap patient from list
+2. "Encounter" tab appears
+3. Enter chief complaint</p>
+<p><strong>Via Siri:</strong> "Hey Siri, start patient encounter"</p>
+<p><strong>Encounter Sections:</strong>
+1. <strong>Chief Complaint</strong> - Why patient is being seen
+2. <strong>Vitals</strong> - HR, BP, temp, RR, SpO2, weight, height
+3. <strong>Assessment</strong> - Differential diagnosis with ICD-10 codes
+4. <strong>Medications</strong> - Current and new prescriptions
+5. <strong>Plan</strong> - Treatment plan and follow-up
+6. <strong>SOAP Note</strong> - Auto-generated documentation</p>
+<h4 id="3-vital-signs">3. Vital Signs</h4>
+<p><strong>Siri Command:</strong> "Add patient vitals: heart rate 90, blood pressure 120 over 80"</p>
+<p><strong>What it records:</strong>
+- Temperature, HR, BP, RR, SpO2
+- Automatic BMI calculation
+- Abnormality warnings</p>
+<h4 id="4-diagnosis-documentation">4. Diagnosis Documentation</h4>
+<p><strong>Siri Command:</strong> "Record diagnosis E11.9 Type 2 diabetes"</p>
+<p><strong>Features:</strong>
+- ICD-10 code validation
+- Status tracking (Active/Resolved)
+- VQbit confidence scoring</p>
+<h4 id="5-medication-management">5. Medication Management</h4>
+<p><strong>Siri Command:</strong> "Prescribe Lisinopril 20 mg once daily"</p>
+<p><strong>Features:</strong>
+- RxNorm (NDC) validation
+- Dose, route, frequency
+- Automatic drug interaction check</p>
+<h4 id="6-drug-interaction-checking">6. Drug Interaction Checking</h4>
+<p><strong>Siri Command:</strong> "Check drug interactions"</p>
+<p><strong>What it does:</strong>
+- Queries RxNav API (NIH/NLM)
+- Returns interaction severity:
+  - 🔴 <strong>Contraindicated</strong> - Do not prescribe
+  - 🟠 <strong>Major</strong> - Consult physician
+  - 🟡 <strong>Moderate</strong> - Monitor patient
+  - 🟢 <strong>Minor</strong> - Document and proceed</p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code>Warfarin + Aspirin
+⚠️ MAJOR INTERACTION
+Risk: Bleeding
+Recommendation: Avoid or monitor INR closely
+VQbit Safety Score: 0.35/1.0
+</code></pre></div>
+
+<h4 id="7-soap-note-generation">7. SOAP Note Generation</h4>
+<p><strong>Siri Command:</strong> "Generate SOAP note"</p>
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">SOAP</span><span class="w"> </span><span class="n">NOTE</span>
+<span class="nl">Patient</span><span class="p">:</span><span class="w"> </span><span class="n">John</span><span class="w"> </span><span class="n">Doe</span><span class="p">,</span><span class="w"> </span><span class="n">MRN</span><span class="o">:</span><span class="w"> </span><span class="n">MRN001</span>
+<span class="nl">Date</span><span class="p">:</span><span class="w"> </span><span class="n">October</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">2025</span>
+
+<span class="nl">SUBJECTIVE</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Chief</span><span class="w"> </span><span class="n">Complaint</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">Your</span><span class="w"> </span><span class="n">entry</span><span class="p">]</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Encounter</span><span class="w"> </span><span class="n">Type</span><span class="o">:</span><span class="w"> </span><span class="n">Routine</span>
+
+<span class="nl">OBJECTIVE</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Temperature</span><span class="o">:</span><span class="w"> </span><span class="mf">37.0</span><span class="err">°</span><span class="n">C</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Heart</span><span class="w"> </span><span class="n">Rate</span><span class="o">:</span><span class="w"> </span><span class="mi">72</span><span class="w"> </span><span class="n">BPM</span>
+<span class="err">•</span><span class="w"> </span><span class="n">BP</span><span class="o">:</span><span class="w"> </span><span class="mi">120</span><span class="o">/</span><span class="mi">80</span><span class="w"> </span><span class="n">mmHg</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Weight</span><span class="o">:</span><span class="w"> </span><span class="mf">75.0</span><span class="w"> </span><span class="n">kg</span><span class="p">,</span><span class="w"> </span><span class="n">Height</span><span class="o">:</span><span class="w"> </span><span class="mi">175</span><span class="w"> </span><span class="n">cm</span><span class="p">,</span><span class="w"> </span><span class="n">BMI</span><span class="o">:</span><span class="w"> </span><span class="mf">24.5</span>
+
+<span class="nl">ASSESSMENT</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Hypertension</span><span class="w"> </span><span class="p">(</span><span class="n">I10</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Active</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">Diabetes</span><span class="w"> </span><span class="p">(</span><span class="n">E11</span><span class="mf">.9</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Active</span>
+
+<span class="nl">PLAN</span><span class="p">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Continue</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">medications</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Follow</span><span class="o">-</span><span class="n">up</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">months</span>
+
+<span class="err">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="n">Receipt</span><span class="w"> </span><span class="n">ID</span><span class="o">:</span><span class="w"> </span><span class="mo">01</span><span class="n">HGKPQRSTUVWXYZ</span>
+<span class="n">VQbit</span><span class="w"> </span><span class="n">Dimension</span><span class="o">:</span><span class="w"> </span><span class="mi">8096</span>
+<span class="nl">Coherence</span><span class="p">:</span><span class="w"> </span><span class="mf">0.87</span>
+</code></pre></div>
+
+<h4 id="8-patient-summary">8. Patient Summary</h4>
+<p><strong>Siri Command:</strong> "Patient summary"</p>
+<p><strong>Returns:</strong>
+- Active problems
+- Current medications
+- Allergies (prominent warnings)
+- Recent labs
+- Vital trends</p>
+<h4 id="9-end-encounter">9. End Encounter</h4>
+<p><strong>Siri Command:</strong> "End encounter"</p>
+<p><strong>What happens:</strong>
+- SOAP note finalized
+- Cryptographic signature applied
+- Merkle root calculated
+- Blockchain attestation (optional)
+- Legally admissible record created</p>
+<h3 id="common-scenarios-clinician">Common Scenarios - Clinician</h3>
+<h4 id="scenario-1-routine-office-visit">Scenario 1: Routine Office Visit</h4>
+<div class="codehilite"><pre><span></span><code><span class="mi">9</span><span class="o">:</span><span class="mi">00</span><span class="w"> </span><span class="n">AM</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Patient</span><span class="w"> </span><span class="n">arrives</span>
+<span class="err">→</span><span class="w"> </span><span class="s2">&quot;Hey Siri, start patient encounter for John Doe&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Enter</span><span class="w"> </span><span class="n">chief</span><span class="w"> </span><span class="n">complaint</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Follow-up for diabetes&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="s2">&quot;Add patient vitals: BP 128/82, HR 78, temp 36.8&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Review</span><span class="w"> </span><span class="n">medications</span>
+<span class="err">→</span><span class="w"> </span><span class="s2">&quot;Check drug interactions&quot;</span><span class="w"> </span><span class="o">(</span><span class="n">all</span><span class="w"> </span><span class="n">clear</span><span class="o">)</span>
+<span class="err">→</span><span class="w"> </span><span class="s2">&quot;Generate SOAP note&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Review</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">sign</span>
+<span class="err">→</span><span class="w"> </span><span class="s2">&quot;End encounter&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Receipt</span><span class="w"> </span><span class="n">generated</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">blockchain</span><span class="w"> </span><span class="n">proof</span>
+</code></pre></div>
+
+<h4 id="scenario-2-new-prescription-with-interaction-check">Scenario 2: New Prescription with Interaction Check</h4>
+<div class="codehilite"><pre><span></span><code>Patient on Warfarin, needs pain relief
+→ &quot;Prescribe ibuprofen 400mg three times daily&quot;
+→ &quot;Check drug interactions&quot;
+→ ⚠️ WARNING: Warfarin + Ibuprofen = Bleeding risk
+→ Change to acetaminophen instead
+→ No interaction detected
+→ Safe to prescribe
+</code></pre></div>
+
+<h4 id="scenario-3-multi-device-clinical-workflow">Scenario 3: Multi-Device Clinical Workflow</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Watch</span><span class="o">:</span><span class="w"> </span><span class="n">Quick</span><span class="w"> </span><span class="n">vital</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="n">during</span><span class="w"> </span><span class="n">rounds</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Syncs</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">iPhone</span>
+<span class="n">iPhone</span><span class="o">:</span><span class="w"> </span><span class="n">Document</span><span class="w"> </span><span class="n">encounter</span><span class="o">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">medications</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Syncs</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">iPad</span>
+<span class="n">iPad</span><span class="o">:</span><span class="w"> </span><span class="n">Review</span><span class="w"> </span><span class="n">charts</span><span class="o">,</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">SOAP</span><span class="w"> </span><span class="n">note</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Syncs</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">Mac</span>
+<span class="n">Mac</span><span class="o">:</span><span class="w"> </span><span class="n">Print</span><span class="o">/</span><span class="n">export</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">external</span><span class="w"> </span><span class="n">EHR</span>
+<span class="err">→</span><span class="w"> </span><span class="n">All</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">cryptographic</span><span class="w"> </span><span class="n">receipts</span>
+</code></pre></div>
+
+<h4 id="scenario-4-emergency-documentation">Scenario 4: Emergency Documentation</h4>
+<div class="codehilite"><pre><span></span><code>ER patient, allergic reaction
+→ &quot;Start patient encounter&quot;
+→ &quot;Add patient vitals&quot; (rapid entry)
+→ &quot;Record diagnosis T78.40 Allergy unspecified&quot;
+→ &quot;Prescribe epinephrine 0.3mg IM stat&quot;
+→ All timestamped with millisecond precision
+→ Legally defensible timeline
+</code></pre></div>
+
+<hr />
+<h2 id="fot-education-k-18-app">FoT Education K-18 App</h2>
+<h3 id="overview_2">Overview</h3>
+<p>FERPA-compliant educational platform for teachers, students, and parents. Tracks academic progress, virtue development, IEP accommodations, and assignments.</p>
+<h3 id="key-features_2">Key Features</h3>
+<h4 id="1-student-profiles">1. Student Profiles</h4>
+<p><strong>Sample Students:</strong></p>
+<p><strong>Alice Johnson</strong> - 5th Grade
+- Age: 10, Learning Style: Visual
+- Strengths: Mathematics, Science
+- Challenges: Reading comprehension
+- Accommodations: Extended time (1.5x), preferential seating
+- IEP: Yes
+- Assignments: Math worksheet (in progress), Science project (assigned)</p>
+<p><strong>Bob Smith</strong> - 8th Grade
+- Age: 13, Learning Style: Auditory
+- Strengths: English, History
+- Challenges: Mathematics
+- Assignments: Essay on American Revolution (in progress)</p>
+<h4 id="2-assignment-tracking">2. Assignment Tracking</h4>
+<p><strong>For Teachers - Add Assignment:</strong></p>
+<p><strong>Siri Command:</strong> "Add assignment for Emma Johnson: Math homework, due Friday"</p>
+<p><strong>Assignment Details:</strong>
+- Title, subject, due date
+- Point value
+- Standards alignment
+- Attachments (PDFs, links)</p>
+<p><strong>For Students - Submit Assignment:</strong></p>
+<p><strong>Siri Command:</strong> "Submit my homework"</p>
+<p><strong>Features:</strong>
+- Upload photo/scan/video
+- Cryptographic receipt (proves submission time)
+- Tamper-proof timestamp
+- Teacher notification</p>
+<h4 id="3-virtue-development-tracking">3. Virtue Development Tracking</h4>
+<p><strong>What it tracks:</strong> Aristotelian cardinal virtues</p>
+<p><strong>Four Virtues:</strong></p>
+<ol>
+<li><strong>Justice (Fairness)</strong></li>
+<li>Fair play with peers</li>
+<li>Sharing resources</li>
+<li>
+<p>Respecting others' ideas</p>
+</li>
+<li>
+<p><strong>Temperance (Self-Control)</strong></p>
+</li>
+<li>Emotional regulation</li>
+<li>Waiting turn to speak</li>
+<li>
+<p>Managing frustration</p>
+</li>
+<li>
+<p><strong>Prudence (Planning)</strong></p>
+</li>
+<li>Starting assignments early</li>
+<li>Organization skills</li>
+<li>
+<p>Anticipating consequences</p>
+</li>
+<li>
+<p><strong>Fortitude (Courage)</strong></p>
+</li>
+<li>Persistence on hard tasks</li>
+<li>Trying new challenges</li>
+<li>Resilience after failure</li>
+</ol>
+<p><strong>Siri Command:</strong> "Track virtue score for Alice: prudence 0.90, excellent planning"</p>
+<p><strong>Virtue Dashboard:</strong></p>
+<div class="codehilite"><pre><span></span><code>Alice Johnson - Virtue Development
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Justice:     ████████░░  0.80  (Strong)
+Temperance:  ███████░░░  0.70  (Developing)
+Prudence:    █████████░  0.90  (Excellent)
+Fortitude:   ████████░░  0.85  (Strong)
+</code></pre></div>
+
+<h4 id="4-iep504-management">4. IEP/504 Management</h4>
+<p><strong>Siri Command:</strong> "Check IEP accommodations for Alice"</p>
+<p><strong>Returns:</strong>
+- Extended time requirements
+- Preferential seating
+- Read-aloud support
+- Quiet testing location
+- Implementation reminders</p>
+<h4 id="5-schedule-progress">5. Schedule &amp; Progress</h4>
+<p><strong>Student Commands:</strong>
+- "What's my schedule?" - View classes and due dates
+- "How am I doing?" - Check grades, virtue scores, progress
+- "View my grades" - GPA and subject breakdown</p>
+<p><strong>Teacher Commands:</strong>
+- "Record class attendance"
+- "Schedule parent meeting"
+- "Document behavior incident"
+- "Update progress report"</p>
+<h3 id="common-scenarios-education">Common Scenarios - Education</h3>
+<h4 id="scenario-1-teacher-morning-routine">Scenario 1: Teacher Morning Routine</h4>
+<div class="codehilite"><pre><span></span><code><span class="mi">7</span><span class="o">:</span><span class="mi">30</span><span class="w"> </span><span class="n">AM</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s2">&quot;Hey Siri, what&#39;s today&#39;s schedule?&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="n">classes</span><span class="o">,</span><span class="w"> </span><span class="n">assignments</span><span class="w"> </span><span class="n">due</span><span class="o">,</span><span class="w"> </span><span class="n">meetings</span>
+
+<span class="mi">8</span><span class="o">:</span><span class="mi">00</span><span class="w"> </span><span class="n">AM</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">First</span><span class="w"> </span><span class="n">period</span><span class="w"> </span><span class="n">starts</span>
+<span class="err">→</span><span class="w"> </span><span class="s2">&quot;Record class attendance for Period 1 Math&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Mark</span><span class="w"> </span><span class="n">present</span><span class="o">/</span><span class="n">absent</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Auto</span><span class="o">-</span><span class="n">notify</span><span class="w"> </span><span class="n">parents</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">absences</span>
+</code></pre></div>
+
+<h4 id="scenario-2-student-homework-submission">Scenario 2: Student Homework Submission</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Student</span><span class="w"> </span><span class="n">completes</span><span class="w"> </span><span class="n">math</span><span class="w"> </span><span class="n">worksheet</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Takes</span><span class="w"> </span><span class="n">photo</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">phone</span>
+<span class="err">→</span><span class="w"> </span><span class="s2">&quot;Hey Siri, submit my homework&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Uploads</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">cryptographic</span><span class="w"> </span><span class="n">timestamp</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Proves</span><span class="w"> </span><span class="n">submission</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="s2">&quot;dog ate my homework&quot;</span><span class="p">)</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="n">notified</span>
+</code></pre></div>
+
+<h4 id="scenario-3-parent-monitoring-child-progress">Scenario 3: Parent Monitoring Child Progress</h4>
+<div class="codehilite"><pre><span></span><code>Parent opens FoT Education (Parent View)
+→ &quot;How is my child doing in school?&quot;
+→ Sees: Grades (A-, B+, A), Attendance (98%), Virtue scores
+→ &quot;What homework does my child have?&quot;
+→ Lists: Math worksheet due Wed, Science project due Fri
+→ &quot;Schedule parent-teacher meeting&quot;
+→ Request sent to teacher
+</code></pre></div>
+
+<h4 id="scenario-4-virtue-development-tracking">Scenario 4: Virtue Development Tracking</h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Teacher</span><span class="w"> </span><span class="nx">observes</span><span class="w"> </span><span class="nx">Alice</span><span class="w"> </span><span class="nx">helping</span><span class="w"> </span><span class="nx">struggling</span><span class="w"> </span><span class="nx">peer</span>
+<span class="err">→</span><span class="w"> </span><span class="s">&quot;Track virtue score: Alice, justice 0.95, helped classmate&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="nx">Logs</span><span class="w"> </span><span class="nx">positive</span><span class="w"> </span><span class="nx">behavior</span>
+<span class="err">→</span><span class="w"> </span><span class="nx">Contributes</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">overall</span><span class="w"> </span><span class="nx">virtue</span><span class="w"> </span><span class="nx">assessment</span>
+<span class="err">→</span><span class="w"> </span><span class="nx">Shared</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">parents</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">progress</span><span class="w"> </span><span class="nx">report</span>
+</code></pre></div>
+
+<h4 id="scenario-5-iep-compliance">Scenario 5: IEP Compliance</h4>
+<div class="codehilite"><pre><span></span><code><span class="nv">Alice</span><span class="w"> </span><span class="nv">has</span><span class="w"> </span><span class="nv">test</span><span class="w"> </span><span class="nv">today</span>,<span class="w"> </span><span class="nv">needs</span><span class="w"> </span><span class="nv">extended</span><span class="w"> </span><span class="nv">time</span>
+→<span class="w"> </span><span class="nv">Teacher</span>:<span class="w"> </span><span class="s2">&quot;Check IEP accommodations for Alice&quot;</span>
+→<span class="w"> </span><span class="nv">Reminder</span>:<span class="w"> </span><span class="mi">1</span>.<span class="mi">5</span><span class="nv">x</span><span class="w"> </span><span class="nv">time</span>,<span class="w"> </span><span class="nv">quiet</span><span class="w"> </span><span class="nv">room</span>,<span class="w"> </span><span class="nv">read</span><span class="o">-</span><span class="nv">aloud</span>
+→<span class="w"> </span><span class="nv">Accommodations</span><span class="w"> </span><span class="nv">provided</span>
+→<span class="w"> </span><span class="nv">Cryptographic</span><span class="w"> </span><span class="nv">record</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">compliance</span>
+→<span class="w"> </span><span class="nv">Protection</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">student</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">school</span>
+</code></pre></div>
+
+<h4 id="scenario-6-standards-based-reporting">Scenario 6: Standards-Based Reporting</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">End</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">quarter</span>
+→<span class="w"> </span><span class="nv">Teacher</span>:<span class="w"> </span><span class="s2">&quot;Update progress report for Alice&quot;</span>
+→<span class="w"> </span><span class="nv">Academic</span><span class="w"> </span><span class="nv">summary</span>:<span class="w"> </span>
+<span class="w">  </span>•<span class="w"> </span><span class="nv">Math</span>:<span class="w"> </span><span class="nv">Proficient</span><span class="w"> </span><span class="ss">(</span><span class="mi">90</span><span class="o">%</span><span class="ss">)</span>
+<span class="w">  </span>•<span class="w"> </span><span class="nv">Reading</span>:<span class="w"> </span><span class="nv">Developing</span><span class="w"> </span><span class="ss">(</span><span class="mi">72</span><span class="o">%</span><span class="ss">)</span>
+→<span class="w"> </span><span class="nv">Standards</span><span class="w"> </span><span class="nv">assessment</span>:
+<span class="w">  </span>•<span class="w"> </span><span class="mi">5</span>.<span class="nv">NF</span>.<span class="nv">A</span>.<span class="mi">1</span><span class="w"> </span><span class="ss">(</span><span class="nv">Fractions</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Proficient</span>
+<span class="w">  </span>•<span class="w"> </span><span class="nv">RL</span>.<span class="mi">5</span>.<span class="mi">2</span><span class="w"> </span><span class="ss">(</span><span class="nv">Theme</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Developing</span>
+→<span class="w"> </span><span class="nv">Virtue</span><span class="w"> </span><span class="nv">analysis</span>:<span class="w"> </span><span class="nv">Strong</span><span class="w"> </span><span class="nv">overall</span>
+→<span class="w"> </span><span class="nv">Report</span><span class="w"> </span><span class="nv">signed</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">shared</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">parents</span>
+</code></pre></div>
+
+<hr />
+<h2 id="fot-legal-us-app">FoT Legal US App</h2>
+<h3 id="overview_3">Overview</h3>
+<p>Legal practice management for both individuals (personal cases) and attorneys (client representation). Features evidence capture, case management, deadline tracking, and citation database.</p>
+<h3 id="key-features_3">Key Features</h3>
+<h4 id="1-evidence-capture">1. Evidence Capture</h4>
+<p><strong>Siri Command:</strong> "Capture legal evidence"</p>
+<p><strong>What it records:</strong>
+- Photo or video
+- GPS coordinates (tamper-proof location)
+- Timestamp (millisecond precision)
+- Device information
+- Cryptographic receipt</p>
+<p><strong>Use cases:</strong>
+- Accident scenes
+- Property damage
+- Workplace conditions
+- Contract signatures
+- Physical evidence</p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code>At car accident scene
+→ &quot;Hey Siri, capture legal evidence&quot;
+→ Takes photo
+→ Records: GPS (37.7749°N, 122.4194°W), Time (2025-10-28T14:32:18.445Z)
+→ Receipt: 01HGKPQRST... (BLAKE3 hash)
+→ Legally admissible proof of when/where photo taken
+</code></pre></div>
+
+<h4 id="2-incident-documentation">2. Incident Documentation</h4>
+<p><strong>Siri Command:</strong> "Document incident"</p>
+<p><strong>What to record:</strong>
+- Incident type (workplace injury, harassment, discrimination)
+- Date, time, location
+- Description
+- Witnesses
+- Evidence photos</p>
+<p><strong>Example scenario:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">Workplace</span><span class="w"> </span><span class="nv">injury</span>
+→<span class="w"> </span><span class="s2">&quot;Hey Siri, document workplace injury&quot;</span>
+→<span class="w"> </span><span class="nv">Describe</span>:<span class="w"> </span><span class="s2">&quot;Slipped on wet floor, bruised left knee&quot;</span>
+→<span class="w"> </span><span class="nv">Location</span>:<span class="w"> </span><span class="s2">&quot;Loading dock, ABC Warehouse&quot;</span>
+→<span class="w"> </span><span class="nv">Witnesses</span>:<span class="w"> </span><span class="s2">&quot;John Smith, supervisor&quot;</span>
+→<span class="w"> </span><span class="nv">Add</span><span class="w"> </span><span class="nv">photos</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">scene</span>
+→<span class="w"> </span><span class="nv">Cryptographic</span><span class="w"> </span><span class="nv">receipt</span><span class="w"> </span><span class="nv">generated</span>
+→<span class="w"> </span><span class="nv">Proves</span><span class="w"> </span><span class="nv">documentation</span><span class="w"> </span><span class="nv">timing</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">workers</span><span class="err">&#39; comp claim</span>
+</code></pre></div>
+
+<h4 id="3-case-management">3. Case Management</h4>
+<p><strong>Personal User:</strong> "Create personal case"
+<strong>Attorney:</strong> "Create client case"</p>
+<p><strong>Case Types:</strong>
+- <strong>Civil:</strong> Contract disputes, torts, property
+- <strong>Criminal:</strong> Federal/state prosecutions, appeals
+- <strong>Administrative:</strong> Agency proceedings, licensing</p>
+<p><strong>Sample Case:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Case</span><span class="o">:</span><span class="w"> </span><span class="n">Smith</span><span class="w"> </span><span class="n">v</span><span class="o">.</span><span class="w"> </span><span class="n">Johnson</span>
+<span class="err">━━━━━━━━━━━━━━━━━━</span>
+<span class="n">Case</span><span class="w"> </span><span class="n">Number</span><span class="o">:</span><span class="w"> </span><span class="n">CV</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">001</span>
+<span class="n">Type</span><span class="o">:</span><span class="w"> </span><span class="n">Civil</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Contract</span><span class="w"> </span><span class="n">Dispute</span>
+<span class="n">Court</span><span class="o">:</span><span class="w"> </span><span class="n">U</span><span class="o">.</span><span class="na">S</span><span class="o">.</span><span class="w"> </span><span class="n">District</span><span class="w"> </span><span class="n">Court</span><span class="o">,</span><span class="w"> </span><span class="n">N</span><span class="o">.</span><span class="na">D</span><span class="o">.</span><span class="w"> </span><span class="n">Cal</span><span class="o">.</span>
+<span class="n">Status</span><span class="o">:</span><span class="w"> </span><span class="n">Active</span>
+<span class="n">Filed</span><span class="o">:</span><span class="w"> </span><span class="n">October</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">2025</span>
+
+<span class="n">Key</span><span class="w"> </span><span class="n">Deadlines</span><span class="o">:</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Answer</span><span class="w"> </span><span class="n">Due</span><span class="o">:</span><span class="w"> </span><span class="n">Oct</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="o">(</span><span class="n">FRCP</span><span class="w"> </span><span class="mi">12</span><span class="o">(</span><span class="n">a</span><span class="o">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">DAYS</span><span class="o">!</span>
+<span class="err">•</span><span class="w"> </span><span class="n">Discovery</span><span class="w"> </span><span class="n">Conference</span><span class="o">:</span><span class="w"> </span><span class="n">Dec</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="o">(</span><span class="n">FRCP</span><span class="w"> </span><span class="mi">26</span><span class="o">(</span><span class="n">f</span><span class="o">))</span>
+</code></pre></div>
+
+<h4 id="4-deadline-management">4. Deadline Management</h4>
+<p><strong>Features:</strong>
+- <strong>Federal Rules-based calculation</strong> (FRCP, Fed. R. Crim. P.)
+- <strong>Automatic time computation</strong> (excludes weekends/holidays)
+- <strong>Multi-level alerts:</strong>
+  - 🔴 Urgent: 0-3 days
+  - 🟠 Important: 4-7 days
+  - 🟡 Upcoming: 8-14 days</p>
+<p><strong>Common Deadlines:</strong>
+- FRCP 12(a)(1)(A): Answer due 21 days after service
+- FRCP 26(f): Meet and confer 21 days before conference
+- FRCP 56(c): Summary judgment briefing (court-set)</p>
+<h4 id="5-citation-database">5. Citation Database</h4>
+<p><strong>Bluebook-compliant legal citations</strong></p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Citation</span><span class="o">:</span><span class="w"> </span><span class="n">Bell</span><span class="w"> </span><span class="n">Atlantic</span><span class="w"> </span><span class="n">Corp</span><span class="o">.</span><span class="w"> </span><span class="n">v</span><span class="o">.</span><span class="w"> </span><span class="n">Twombly</span>
+<span class="n">Full</span><span class="w"> </span><span class="n">Cite</span><span class="o">:</span><span class="w"> </span><span class="mi">550</span><span class="w"> </span><span class="n">U</span><span class="o">.</span><span class="na">S</span><span class="o">.</span><span class="w"> </span><span class="mi">544</span><span class="w"> </span><span class="o">(</span><span class="mi">2007</span><span class="o">)</span>
+<span class="n">Short</span><span class="w"> </span><span class="n">Cite</span><span class="o">:</span><span class="w"> </span><span class="n">Twombly</span><span class="o">,</span><span class="w"> </span><span class="mi">550</span><span class="w"> </span><span class="n">U</span><span class="o">.</span><span class="na">S</span><span class="o">.</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mi">555</span>
+
+<span class="n">Area</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Law</span><span class="o">:</span><span class="w"> </span><span class="n">Civil</span><span class="w"> </span><span class="n">Procedure</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Pleading</span><span class="w"> </span><span class="n">Standards</span>
+<span class="n">Issue</span><span class="o">:</span><span class="w"> </span><span class="n">Motion</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">Dismiss</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Rule</span><span class="w"> </span><span class="mi">12</span><span class="o">(</span><span class="n">b</span><span class="o">)(</span><span class="mi">6</span><span class="o">)</span>
+<span class="n">Holding</span><span class="o">:</span><span class="w"> </span><span class="n">Plausibility</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">pleadings</span>
+
+<span class="n">Key</span><span class="w"> </span><span class="n">Quote</span><span class="o">:</span>
+<span class="s2">&quot;Factual allegations must be enough to raise a</span>
+<span class="s2">right to relief above the speculative level.&quot;</span>
+<span class="mi">550</span><span class="w"> </span><span class="n">U</span><span class="o">.</span><span class="na">S</span><span class="o">.</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mi">555</span><span class="o">.</span>
+</code></pre></div>
+
+<h4 id="6-communication-logging">6. Communication Logging</h4>
+<p><strong>Siri Command:</strong> "Log communication with opposing counsel"</p>
+<p><strong>What to record:</strong>
+- Party name
+- Method (phone, email, in-person)
+- Date/time
+- Summary
+- Follow-up needed</p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code>&quot;Hey Siri, log communication&quot;
+Siri: &quot;Who did you communicate with?&quot;
+User: &quot;Opposing counsel, John Smith&quot;
+Siri: &quot;What method?&quot;
+User: &quot;Phone call&quot;
+Siri: &quot;Summary?&quot;
+User: &quot;Discussed settlement offer of $50,000&quot;
+→ Communication logged with timestamp
+→ Cryptographic proof of when discussion occurred
+</code></pre></div>
+
+<h4 id="7-legal-research">7. Legal Research</h4>
+<p><strong>Siri Command:</strong> "Ask legal question: What are my rights as a tenant?"</p>
+<p><strong>Disclaimer:</strong> This provides general information, not legal advice</p>
+<p><strong>Topics covered:</strong>
+- Tenant rights
+- Consumer protection
+- Employment law
+- Family law
+- Immigration
+- Criminal defense</p>
+<h4 id="8-finding-legal-aid">8. Finding Legal Aid</h4>
+<p><strong>Siri Command:</strong> "Find legal aid near me"</p>
+<p><strong>Returns:</strong>
+- Pro-bono services
+- Legal aid organizations
+- Bar association referrals
+- Contact information
+- Hours of operation</p>
+<h3 id="common-scenarios-legal">Common Scenarios - Legal</h3>
+<h4 id="scenario-1-personal-injury-evidence-collection">Scenario 1: Personal Injury Evidence Collection</h4>
+<div class="codehilite"><pre><span></span><code>Car accident
+→ Immediately: &quot;Capture legal evidence&quot; (photos of damage)
+→ &quot;Document incident: Rear-ended at intersection&quot;
+→ Record witness names, license plates
+→ &quot;Create personal case: Auto accident v. John Doe&quot;
+→ All evidence timestamped and geotagged
+→ Share with attorney, insurance company
+→ Cryptographic proof prevents falsification
+</code></pre></div>
+
+<h4 id="scenario-2-attorney-client-intake">Scenario 2: Attorney Client Intake</h4>
+<div class="codehilite"><pre><span></span><code><span class="nv">New</span><span class="w"> </span><span class="nv">client</span><span class="w"> </span><span class="nv">consultation</span>
+→<span class="w"> </span><span class="s2">&quot;Create client case: Smith v. ABC Corp, employment discrimination&quot;</span>
+→<span class="w"> </span><span class="s2">&quot;Record client consultation, 1 hour&quot;</span>
+→<span class="w"> </span><span class="nv">Time</span><span class="w"> </span><span class="nv">automatically</span><span class="w"> </span><span class="nv">logged</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">billable</span>
+→<span class="w"> </span><span class="s2">&quot;Document incident: Wrongful termination&quot;</span>
+→<span class="w"> </span><span class="s2">&quot;Add timeline event: Termination date March 15&quot;</span>
+→<span class="w"> </span><span class="nv">Case</span><span class="w"> </span><span class="nv">file</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">documentation</span>
+→<span class="w"> </span><span class="nv">Cryptographic</span><span class="w"> </span><span class="nv">receipts</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">entries</span>
+</code></pre></div>
+
+<h4 id="scenario-3-workplace-harassment-documentation">Scenario 3: Workplace Harassment Documentation</h4>
+<div class="codehilite"><pre><span></span><code><span class="nv">Employee</span><span class="w"> </span><span class="nv">experiencing</span><span class="w"> </span><span class="nv">harassment</span>
+→<span class="w"> </span><span class="nv">Day</span><span class="w"> </span><span class="mi">1</span>:<span class="w"> </span><span class="s2">&quot;Document incident: Inappropriate comment by supervisor&quot;</span>
+→<span class="w"> </span><span class="nv">Day</span><span class="w"> </span><span class="mi">3</span>:<span class="w"> </span><span class="s2">&quot;Document incident: Second occurrence&quot;</span>
+→<span class="w"> </span><span class="nv">Day</span><span class="w"> </span><span class="mi">5</span>:<span class="w"> </span><span class="s2">&quot;Log communication with HR department&quot;</span>
+→<span class="w"> </span><span class="nv">Day</span><span class="w"> </span><span class="mi">10</span>:<span class="w"> </span><span class="s2">&quot;Capture legal evidence&quot;</span><span class="w"> </span><span class="ss">(</span><span class="nv">screenshot</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="nv">message</span><span class="ss">)</span>
+→<span class="w"> </span><span class="nv">Builds</span><span class="w"> </span><span class="nv">pattern</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">tamper</span><span class="o">-</span><span class="nv">proof</span><span class="w"> </span><span class="nv">timeline</span>
+→<span class="w"> </span><span class="nv">Can</span><span class="w"> </span><span class="nv">prove</span><span class="w"> </span><span class="nv">chronology</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">case</span><span class="w"> </span><span class="nv">proceeds</span>
+</code></pre></div>
+
+<h4 id="scenario-4-deadline-tracking-for-attorney">Scenario 4: Deadline Tracking for Attorney</h4>
+<div class="codehilite"><pre><span></span><code><span class="nv">Complaint</span><span class="w"> </span><span class="nv">filed</span>
+→<span class="w"> </span><span class="nv">App</span><span class="w"> </span><span class="nv">auto</span><span class="o">-</span><span class="nv">calculates</span>:<span class="w"> </span><span class="nv">Answer</span><span class="w"> </span><span class="nv">due</span><span class="w"> </span><span class="mi">21</span><span class="w"> </span><span class="nv">days</span>
+→<span class="w"> </span><span class="mi">14</span><span class="w"> </span><span class="nv">days</span><span class="w"> </span><span class="nv">before</span>:<span class="w"> </span>🟡<span class="w"> </span><span class="s2">&quot;Answer due in 2 weeks&quot;</span>
+→<span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="nv">days</span><span class="w"> </span><span class="nv">before</span>:<span class="w"> </span>🔴<span class="w"> </span><span class="s2">&quot;URGENT: Answer due in 3 days&quot;</span>
+→<span class="w"> </span><span class="nv">Attorney</span><span class="w"> </span><span class="nv">files</span><span class="w"> </span><span class="nv">answer</span><span class="w"> </span><span class="nv">via</span><span class="w"> </span><span class="nv">court</span><span class="w"> </span><span class="nv">e</span><span class="o">-</span><span class="nv">filing</span>
+→<span class="w"> </span><span class="s2">&quot;Add timeline event: Answer filed Oct 22&quot;</span>
+→<span class="w"> </span><span class="nv">Deadline</span><span class="w"> </span><span class="nv">satisfied</span>,<span class="w"> </span><span class="k">next</span><span class="w"> </span><span class="nv">deadline</span><span class="w"> </span><span class="nv">calculated</span>
+</code></pre></div>
+
+<h4 id="scenario-5-legal-research-for-brief">Scenario 5: Legal Research for Brief</h4>
+<div class="codehilite"><pre><span></span><code>Writing motion to dismiss
+→ &quot;Search case law: motion to dismiss plausibility standard&quot;
+→ Returns: Twombly, Iqbal, recent circuit cases
+→ Add citations to case database
+→ &quot;Add citation to case&quot;
+→ Used in brief
+→ Cryptographic proof of research performed
+</code></pre></div>
+
+<hr />
+<h2 id="voice-commands-siri-integration">Voice Commands (Siri Integration)</h2>
+<h3 id="universal-commands">Universal Commands</h3>
+<p>These work across all FoT apps:</p>
+<ul>
+<li>"What can I do in [App Name]?"</li>
+<li>"Open [App Name]"</li>
+<li>"Show my recent activity"</li>
+</ul>
+<h3 id="personal-health-commands">Personal Health Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What It Does</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Record my health check-in"</td>
+<td>Daily wellness log</td>
+<td>Mood, symptoms, notes</td>
+</tr>
+<tr>
+<td>"Record my vitals"</td>
+<td>Log vital signs</td>
+<td>Temp, HR, BP, SpO2</td>
+</tr>
+<tr>
+<td>"Log my mood"</td>
+<td>Quick mood entry</td>
+<td>1-10 scale</td>
+</tr>
+<tr>
+<td>"I need crisis support"</td>
+<td>Emergency resources</td>
+<td>None (immediate)</td>
+</tr>
+<tr>
+<td>"Do I need a doctor?"</td>
+<td>Health triage navigator</td>
+<td>Symptoms, severity</td>
+</tr>
+<tr>
+<td>"Summarize my health"</td>
+<td>View trends</td>
+<td>Time period</td>
+</tr>
+</tbody>
+</table>
+<h3 id="clinician-commands">Clinician Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What It Does</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Start patient encounter"</td>
+<td>Begin documentation</td>
+<td>Patient name/MRN</td>
+</tr>
+<tr>
+<td>"Add patient vitals"</td>
+<td>Record vital signs</td>
+<td>HR, BP, temp, etc.</td>
+</tr>
+<tr>
+<td>"Record diagnosis"</td>
+<td>Add ICD-10 diagnosis</td>
+<td>Code, description</td>
+</tr>
+<tr>
+<td>"Prescribe medication"</td>
+<td>Add prescription</td>
+<td>Drug, dose, frequency</td>
+</tr>
+<tr>
+<td>"Check drug interactions"</td>
+<td>Query RxNav</td>
+<td>Current meds</td>
+</tr>
+<tr>
+<td>"Generate SOAP note"</td>
+<td>Create clinical note</td>
+<td>Encounter data</td>
+</tr>
+<tr>
+<td>"Patient summary"</td>
+<td>View patient overview</td>
+<td>Patient identifier</td>
+</tr>
+<tr>
+<td>"End encounter"</td>
+<td>Finalize and sign</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="education-commands">Education Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What It Does</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Add assignment"</td>
+<td>Create homework</td>
+<td>Student, subject, due date</td>
+</tr>
+<tr>
+<td>"Track virtue score"</td>
+<td>Log character development</td>
+<td>Student, virtue, score</td>
+</tr>
+<tr>
+<td>"Check IEP accommodations"</td>
+<td>View student IEP</td>
+<td>Student name</td>
+</tr>
+<tr>
+<td>"What's my schedule?"</td>
+<td>View classes/assignments</td>
+<td>Date (optional)</td>
+</tr>
+<tr>
+<td>"How am I doing?"</td>
+<td>Check grades/progress</td>
+<td>Time period</td>
+</tr>
+<tr>
+<td>"Submit my homework"</td>
+<td>Upload assignment</td>
+<td>Document/photo</td>
+</tr>
+<tr>
+<td>"Find help with math"</td>
+<td>Request tutoring</td>
+<td>Subject, urgency</td>
+</tr>
+<tr>
+<td>"Record class attendance"</td>
+<td>Mark present/absent</td>
+<td>Class, period</td>
+</tr>
+<tr>
+<td>"Schedule parent meeting"</td>
+<td>Arrange conference</td>
+<td>Student, date</td>
+</tr>
+</tbody>
+</table>
+<h3 id="legal-commands">Legal Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What It Does</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Capture legal evidence"</td>
+<td>Photo/video with proof</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>"Document incident"</td>
+<td>Record legal event</td>
+<td>Type, details</td>
+</tr>
+<tr>
+<td>"Add case event"</td>
+<td>Timeline entry</td>
+<td>Case, event type, date</td>
+</tr>
+<tr>
+<td>"Ask legal question"</td>
+<td>General legal info</td>
+<td>Topic</td>
+</tr>
+<tr>
+<td>"Find legal aid"</td>
+<td>Locate services</td>
+<td>Case type</td>
+</tr>
+<tr>
+<td>"Log communication"</td>
+<td>Record conversation</td>
+<td>Party, method, summary</td>
+</tr>
+<tr>
+<td>"Summarize my case"</td>
+<td>Case overview</td>
+<td>Case ID/name</td>
+</tr>
+<tr>
+<td>"Create personal case"</td>
+<td>Start new case</td>
+<td>Title, type, parties</td>
+</tr>
+<tr>
+<td>"Create client case"</td>
+<td>Attorney: New case</td>
+<td>Client, type, billing</td>
+</tr>
+<tr>
+<td>"Record billable time"</td>
+<td>Log attorney time</td>
+<td>Case, activity, duration</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-to-use-siri-commands">How to Use Siri Commands</h3>
+<p><strong>Method 1: Voice Activation</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="s2">&quot;Hey Siri, record my health check-in&quot;</span>
+→<span class="w"> </span><span class="nv">Siri</span><span class="w"> </span><span class="nv">prompts</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">parameters</span>
+→<span class="w"> </span><span class="nv">You</span><span class="w"> </span><span class="nv">respond</span>
+→<span class="w"> </span><span class="nv">Action</span><span class="w"> </span><span class="nv">completed</span>
+</code></pre></div>
+
+<p><strong>Method 2: Type to Siri</strong></p>
+<div class="codehilite"><pre><span></span><code>Long-press Siri button
+→ Type command instead of speaking
+→ Useful in quiet environments
+</code></pre></div>
+
+<p><strong>Method 3: Shortcuts App</strong></p>
+<div class="codehilite"><pre><span></span><code>Open Shortcuts app
+→ Browse FoT shortcuts
+→ Add to home screen
+→ Tap to run
+</code></pre></div>
+
+<p><strong>Method 4: Lock Screen Access</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">Some</span><span class="w"> </span><span class="nv">commands</span><span class="w"> </span><span class="ss">(</span><span class="nv">crisis</span><span class="w"> </span><span class="nv">support</span>,<span class="w"> </span><span class="nv">evidence</span><span class="w"> </span><span class="nv">capture</span><span class="ss">)</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">lock</span><span class="w"> </span><span class="nv">screen</span>
+→<span class="w"> </span><span class="nv">No</span><span class="w"> </span><span class="nv">authentication</span><span class="w"> </span><span class="nv">needed</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">emergencies</span>
+</code></pre></div>
+
+<hr />
+<h2 id="common-scenarios-by-user-type">Common Scenarios by User Type</h2>
+<h3 id="individual-managing-personal-health">Individual - Managing Personal Health</h3>
+<p><strong>Daily Routine:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">Morning</span>:
+→<span class="w"> </span><span class="s2">&quot;Record my health check-in&quot;</span>
+→<span class="w"> </span><span class="nv">Log</span><span class="w"> </span><span class="nv">mood</span>,<span class="w"> </span><span class="nv">how</span><span class="w"> </span><span class="nv">I</span><span class="w"> </span><span class="nv">slept</span>,<span class="w"> </span><span class="nv">any</span><span class="w"> </span><span class="nv">symptoms</span>
+→<span class="w"> </span><span class="nv">Build</span><span class="w"> </span><span class="nv">longitudinal</span><span class="w"> </span><span class="nv">health</span><span class="w"> </span><span class="nv">record</span>
+
+<span class="nv">Weekly</span>:
+→<span class="w"> </span><span class="s2">&quot;Summarize my health this week&quot;</span>
+→<span class="w"> </span><span class="nv">Review</span><span class="w"> </span><span class="nv">trends</span>
+→<span class="w"> </span><span class="nv">Share</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">therapist</span><span class="o">/</span><span class="nv">doctor</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">needed</span>
+
+<span class="nv">Monthly</span>:
+→<span class="w"> </span><span class="nv">Export</span><span class="w"> </span><span class="nv">health</span><span class="w"> </span><span class="nv">summary</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">medical</span><span class="w"> </span><span class="nv">appointment</span>
+→<span class="w"> </span><span class="nv">Cryptographic</span><span class="w"> </span><span class="nv">proof</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">consistency</span>
+</code></pre></div>
+
+<p><strong>Benefits:</strong>
+- Verifiable health timeline
+- Prove symptoms for disability claims
+- Track medication effectiveness
+- Support therapy progress</p>
+<h3 id="parent-monitoring-childs-education">Parent - Monitoring Child's Education</h3>
+<p><strong>Weekly Check-In:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Sunday</span><span class="w"> </span><span class="nl">evening:</span>
+<span class="err">→</span><span class="w"> </span><span class="s">&quot;How is my child doing in school?&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Review</span><span class="w"> </span><span class="n">grades</span><span class="p">,</span><span class="w"> </span><span class="n">assignments</span><span class="p">,</span><span class="w"> </span><span class="n">behavior</span>
+<span class="err">→</span><span class="w"> </span><span class="s">&quot;What homework does my child have?&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Help</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="n">plan</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">week</span>
+</code></pre></div>
+
+<p><strong>Ongoing:</strong></p>
+<div class="codehilite"><pre><span></span><code>→<span class="w"> </span><span class="nv">Receive</span><span class="w"> </span><span class="nv">notifications</span><span class="w"> </span><span class="k">for</span>:
+<span class="w">  </span>•<span class="w"> </span><span class="nv">Assignment</span><span class="w"> </span><span class="nv">submissions</span>
+<span class="w">  </span>•<span class="w"> </span><span class="nv">Grade</span><span class="w"> </span><span class="nv">updates</span>
+<span class="w">  </span>•<span class="w"> </span><span class="nv">Behavior</span><span class="w"> </span><span class="nv">incidents</span><span class="w"> </span><span class="ss">(</span><span class="nv">positive</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">concerns</span><span class="ss">)</span>
+<span class="w">  </span>•<span class="w"> </span><span class="nv">Teacher</span><span class="w"> </span><span class="nv">messages</span>
+</code></pre></div>
+
+<p><strong>Benefits:</strong>
+- Stay informed without constant teacher contact
+- Support child's time management
+- Identify issues early
+- Celebrate successes</p>
+<h3 id="teacher-managing-classroom">Teacher - Managing Classroom</h3>
+<p><strong>Daily Workflow:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Start</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nl">day:</span>
+<span class="err">→</span><span class="w"> </span><span class="s">&quot;What&#39;s today&#39;s schedule?&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Review</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">assignments</span><span class="w"> </span><span class="n">due</span><span class="p">,</span><span class="w"> </span><span class="n">meetings</span>
+
+<span class="n">During</span><span class="w"> </span><span class="nl">class:</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Quick</span><span class="w"> </span><span class="nl">observations:</span>
+<span class="w">  </span><span class="s">&quot;Track virtue score: Emma, fortitude 0.85, persisted on challenge&quot;</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Hands</span><span class="o">-</span><span class="n">free</span><span class="w"> </span><span class="n">documentation</span>
+
+<span class="n">End</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nl">day:</span>
+<span class="err">→</span><span class="w"> </span><span class="s">&quot;Update progress report&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">struggling</span><span class="w"> </span><span class="n">students</span>
+<span class="err">→</span><span class="w"> </span><span class="n">Plan</span><span class="w"> </span><span class="n">tomorrow</span><span class="p">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">lessons</span>
+</code></pre></div>
+
+<p><strong>Benefits:</strong>
+- Document while teaching (not after)
+- Track growth over time
+- Objective data for parent conferences
+- IEP compliance proof</p>
+<h3 id="clinician-patient-care-documentation">Clinician - Patient Care Documentation</h3>
+<p><strong>During Rounds:</strong></p>
+<div class="codehilite"><pre><span></span><code>Bedside (using Apple Watch):
+→ Quick vital check
+→ Syncs to iPhone
+
+At nursing station (iPhone):
+→ &quot;Start patient encounter&quot;
+→ Document assessment
+→ &quot;Check drug interactions&quot;
+→ &quot;Prescribe medication&quot;
+
+At desk (iPad/Mac):
+→ Review charts
+→ &quot;Generate SOAP note&quot;
+→ Sign and finalize
+</code></pre></div>
+
+<p><strong>Benefits:</strong>
+- Document at point of care
+- Reduce medical errors
+- Legal defensibility
+- Less time on paperwork</p>
+<h3 id="attorney-case-management">Attorney - Case Management</h3>
+<p><strong>Client Meeting:</strong></p>
+<div class="codehilite"><pre><span></span><code>→<span class="w"> </span><span class="s2">&quot;Create client case&quot;</span>
+→<span class="w"> </span><span class="s2">&quot;Record client consultation&quot;</span>
+→<span class="w"> </span><span class="nv">Time</span><span class="w"> </span><span class="nv">auto</span><span class="o">-</span><span class="nv">logged</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">billable</span>
+→<span class="w"> </span><span class="s2">&quot;Document incident&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">client</span><span class="err">&#39;s matter</span>
+</code></pre></div>
+
+<p><strong>At Scene:</strong></p>
+<div class="codehilite"><pre><span></span><code>Accident scene
+→ &quot;Capture legal evidence&quot; (multiple photos)
+→ GPS + timestamp automatically recorded
+→ &quot;Document incident: Details of accident&quot;
+→ &quot;Log communication with witness&quot;
+</code></pre></div>
+
+<p><strong>In Office:</strong></p>
+<div class="codehilite"><pre><span></span><code>→<span class="w"> </span><span class="s2">&quot;Add case event: Deposition scheduled&quot;</span>
+→<span class="w"> </span><span class="nv">Review</span><span class="w"> </span><span class="nv">deadlines</span><span class="w"> </span><span class="ss">(</span><span class="nv">auto</span><span class="o">-</span><span class="nv">calculated</span><span class="ss">)</span>
+→<span class="w"> </span><span class="nv">Research</span><span class="w"> </span><span class="nv">citations</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">brief</span>
+→<span class="w"> </span><span class="nv">Generate</span><span class="w"> </span><span class="nv">case</span><span class="w"> </span><span class="nv">summary</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">client</span>
+</code></pre></div>
+
+<p><strong>Benefits:</strong>
+- Real-time evidence capture
+- Tamper-proof documentation
+- Deadline management
+- Billable time tracking</p>
+<h3 id="individual-documenting-legal-matter">Individual - Documenting Legal Matter</h3>
+<p><strong>Workplace Issue:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">Day</span><span class="w"> </span><span class="mi">1</span>:<span class="w"> </span><span class="s2">&quot;Document incident: Supervisor yelled in meeting&quot;</span>
+<span class="nv">Day</span><span class="w"> </span><span class="mi">3</span>:<span class="w"> </span><span class="s2">&quot;Document incident: Second occurrence&quot;</span>
+<span class="nv">Day</span><span class="w"> </span><span class="mi">5</span>:<span class="w"> </span><span class="s2">&quot;Log communication with HR&quot;</span>
+→<span class="w"> </span><span class="nv">Builds</span><span class="w"> </span><span class="nv">tamper</span><span class="o">-</span><span class="nv">proof</span><span class="w"> </span><span class="nv">timeline</span>
+→<span class="w"> </span><span class="nv">Proves</span><span class="w"> </span><span class="nv">pattern</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">needed</span>
+→<span class="w"> </span><span class="nv">Can</span><span class="w"> </span><span class="nv">share</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">attorney</span><span class="w"> </span><span class="nv">later</span>
+</code></pre></div>
+
+<p><strong>Benefits:</strong>
+- Contemporary documentation
+- Cryptographic proof of timing
+- Can't be accused of fabrication
+- Empowers individual</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues-solutions">Common Issues &amp; Solutions</h3>
+<h4 id="app-wont-launch">App Won't Launch</h4>
+<p><strong>Symptoms:</strong> App crashes on startup or blank screen</p>
+<p><strong>Solutions:</strong>
+1. Check device OS version:
+   - iOS 17.0+ required
+   - macOS 14.0+ required
+   - watchOS 10.0+ required
+2. Restart device
+3. Delete and reinstall from TestFlight
+4. Check device storage (need 100MB+ free)</p>
+<h4 id="siri-commands-not-working">Siri Commands Not Working</h4>
+<p><strong>Symptoms:</strong> Siri doesn't recognize FoT commands</p>
+<p><strong>Solutions:</strong>
+1. <strong>Enable Siri:</strong>
+   - Settings → Siri &amp; Search → Enable
+2. <strong>Enable App in Siri:</strong>
+   - Settings → [App Name] → Siri &amp; Search → Enable
+3. <strong>Re-add Shortcuts:</strong>
+   - Open Shortcuts app
+   - Browse FoT shortcuts
+   - Re-add to Siri
+4. <strong>Physical Device Required:</strong>
+   - Siri integration only works on real devices, not simulator</p>
+<h4 id="cryptographic-receipt-not-generating">Cryptographic Receipt Not Generating</h4>
+<p><strong>Symptoms:</strong> No receipt ID after saving entry</p>
+<p><strong>Solutions:</strong>
+1. Check VQbit engine status (console logs)
+2. Ensure device has free memory (64MB+)
+3. Restart app
+4. Check for engine initialization errors</p>
+<h4 id="data-not-syncing-across-devices">Data Not Syncing Across Devices</h4>
+<p><strong>Symptoms:</strong> Entry on iPhone not appearing on iPad</p>
+<p><strong>Solutions:</strong>
+1. Verify iCloud signed in on all devices
+2. Check iCloud Drive enabled
+3. Ensure all devices on same Apple ID
+4. Manual sync: Pull down to refresh
+5. Check network connection</p>
+<h4 id="drug-interaction-check-fails-clinician">Drug Interaction Check Fails (Clinician)</h4>
+<p><strong>Symptoms:</strong> "Network error" or "RxNav unavailable"</p>
+<p><strong>Solutions:</strong>
+1. Check internet connection
+2. Verify RxNav API status: https://rxnav.nlm.nih.gov
+3. Retry in 5 minutes (API may be temporarily down)
+4. Use manual drug reference as backup</p>
+<h4 id="photosevidence-not-capturing-legal">Photos/Evidence Not Capturing (Legal)</h4>
+<p><strong>Symptoms:</strong> Camera won't open or photo fails to save</p>
+<p><strong>Solutions:</strong>
+1. Grant camera permission:
+   - Settings → [App Name] → Camera → Enable
+2. Grant location permission (for GPS):
+   - Settings → [App Name] → Location → While Using
+3. Check storage space
+4. Restart camera: Force quit app, reopen</p>
+<h4 id="performance-issues-lag">Performance Issues / Lag</h4>
+<p><strong>Symptoms:</strong> App running slow</p>
+<p><strong>Solutions:</strong>
+1. <strong>Reduce VQbit dimension</strong> (in Settings):
+   - Lower from 8096 → 2048 for older devices
+2. <strong>Disable GPU acceleration</strong> if causing issues
+3. <strong>Clear old data:</strong>
+   - Archive old encounters/cases
+   - Export and delete audit logs
+4. <strong>Update to latest TestFlight build</strong></p>
+<h4 id="privacypermission-dialogs-keep-appearing">Privacy/Permission Dialogs Keep Appearing</h4>
+<p><strong>Symptoms:</strong> Repeated permission requests</p>
+<p><strong>Solutions:</strong>
+1. Grant permissions permanently:
+   - Settings → [App Name] → Grant all required permissions
+2. Permissions needed:
+   - Camera (evidence capture)
+   - Location (GPS for evidence)
+   - Health (vitals sync - optional)
+   - Microphone (audio evidence - optional)</p>
+<h4 id="watch-app-not-syncing">Watch App Not Syncing</h4>
+<p><strong>Symptoms:</strong> Apple Watch app not showing iPhone data</p>
+<p><strong>Solutions:</strong>
+1. Check Watch paired and connected
+2. Open iPhone app first (triggers sync)
+3. Force sync: Pull down in Watch app
+4. Reinstall Watch app from iPhone</p>
+<h3 id="getting-help">Getting Help</h3>
+<p><strong>In TestFlight:</strong>
+1. Open TestFlight app
+2. Select FoT app
+3. Tap "Send Beta Feedback"
+4. Describe issue + attach screenshot</p>
+<p><strong>GitHub Issues:</strong>
+- Report bugs: https://github.com/[repo]/issues</p>
+<p><strong>Documentation:</strong>
+- Wiki: https://github.com/[repo]/wiki
+- User guides for each app</p>
+<hr />
+<h2 id="privacy-security">Privacy &amp; Security</h2>
+<h3 id="data-protection">Data Protection</h3>
+<h4 id="whats-encrypted">What's Encrypted</h4>
+<p>✅ <strong>At Rest:</strong>
+- All health records (HIPAA-compliant)
+- All student data (FERPA-compliant)
+- All legal evidence
+- All patient records
+- Private journals
+- Medication lists</p>
+<p>✅ <strong>In Transit:</strong>
+- TLS 1.3 for all network communications
+- End-to-end encrypted sync
+- SafeAICoin blockchain attestation</p>
+<h4 id="whats-stored-locally">What's Stored Locally</h4>
+<p><strong>On Your Device:</strong>
+- All entries and records
+- Cryptographic receipts
+- Audit trails
+- Evidence photos/videos</p>
+<p><strong>NOT on Cloud Servers:</strong>
+- FoT uses <strong>zero server architecture</strong>
+- Optional: iCloud sync (encrypted)
+- Optional: SafeAICoin blockchain anchoring (hash only, not content)</p>
+<h3 id="cryptographic-receipts">Cryptographic Receipts</h3>
+<p><strong>Every action generates a receipt:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01HGKPQRSTUVWXYZ&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-10-28T14:30:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;operation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;health_checkin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;content_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;blake3_abc123...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ed25519_signature...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;merkle_root&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;merkle_xyz789...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;device_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iPhone15Pro&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;vqbit_dimension&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8096</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>What This Proves:</strong>
+- <strong>When:</strong> Exact time of entry (millisecond precision)
+- <strong>What:</strong> Content fingerprint (not content itself)
+- <strong>Who:</strong> Device that created it
+- <strong>Integrity:</strong> Hasn't been altered since creation</p>
+<p><strong>Legal Admissibility:</strong>
+- Meets Federal Rules of Evidence
+- Proves contemporaneous documentation
+- Cannot be falsified
+- Defensible in court</p>
+<h3 id="hipaa-compliance-health-clinician-apps">HIPAA Compliance (Health &amp; Clinician Apps)</h3>
+<p>✅ <strong>Technical Safeguards:</strong>
+- Access controls (device PIN/biometric)
+- Audit trails (every action logged)
+- Encryption at rest
+- Encryption in transit
+- Session management (auto-lock)</p>
+<p>✅ <strong>Administrative Safeguards:</strong>
+- User training (this guide!)
+- Policies &amp; procedures
+- Incident response procedures</p>
+<p>✅ <strong>Physical Safeguards:</strong>
+- Device security required
+- Access logs maintained
+- Failed login tracking</p>
+<h3 id="ferpa-compliance-education-apps">FERPA Compliance (Education Apps)</h3>
+<p>✅ <strong>Consent Tracking:</strong>
+- Digital consent forms with timestamps
+- Cryptographic proof of consent</p>
+<p>✅ <strong>Access Controls:</strong>
+- Only authorized users see student data
+- Every access logged</p>
+<p>✅ <strong>Disclosure Controls:</strong>
+- No sharing without explicit consent
+- Parents can review records</p>
+<p>✅ <strong>Data Retention:</strong>
+- Configurable retention periods
+- Secure deletion</p>
+<h3 id="attorney-client-privilege-legal-apps">Attorney-Client Privilege (Legal Apps)</h3>
+<p>✅ <strong>Confidentiality:</strong>
+- Client communications encrypted
+- Work product protected
+- Privileged material flagged</p>
+<p>✅ <strong>Ethics Compliance:</strong>
+- ABA Model Rules alignment
+- State bar requirements
+- Audit trails for malpractice defense</p>
+<h3 id="user-control">User Control</h3>
+<p><strong>You decide:</strong>
+- ✅ What data to collect
+- ✅ What data to share
+- ✅ Who can access your data
+- ✅ When to delete data
+- ✅ How long to retain data</p>
+<p><strong>Sharing with Professionals:</strong>
+1. Generate access code
+2. Choose duration (24 hours, 7 days, 30 days)
+3. Grant access
+4. Monitor usage (see when they viewed)
+5. Revoke anytime (instant)</p>
+<h3 id="data-export">Data Export</h3>
+<p><strong>Available Formats:</strong>
+- <strong>PDF:</strong> Human-readable reports
+- <strong>CSV:</strong> Data analysis
+- <strong>FHIR:</strong> Standard medical record format
+- <strong>JSON:</strong> Full data with receipts
+- <strong>Blockchain proof:</strong> Merkle tree verification</p>
+<p><strong>Use cases:</strong>
+- Doctor appointments
+- Legal proceedings
+- Insurance claims
+- Disability applications
+- Research participation</p>
+<hr />
+<h2 id="providing-feedback">Providing Feedback</h2>
+<h3 id="testflight-beta-feedback">TestFlight Beta Feedback</h3>
+<p><strong>How to submit:</strong>
+1. Open TestFlight app
+2. Select FoT app
+3. Tap "Send Beta Feedback"
+4. Describe:
+   - What you were trying to do
+   - What happened
+   - What you expected
+   - Steps to reproduce
+5. Attach screenshot if helpful
+6. Submit</p>
+<p><strong>What to report:</strong>
+- Bugs and crashes
+- Confusing UI/UX
+- Feature requests
+- Performance issues
+- Documentation errors</p>
+<h3 id="what-we-need-to-know">What We Need to Know</h3>
+<p><strong>Helpful bug reports include:</strong>
+1. <strong>Device info:</strong>
+   - Model (iPhone 15 Pro, iPad Air, etc.)
+   - OS version (iOS 17.1, macOS 14.0, etc.)
+2. <strong>Steps to reproduce:</strong>
+   - Exact actions taken
+   - What data was entered
+3. <strong>Expected vs. actual:</strong>
+   - What should have happened
+   - What actually happened
+4. <strong>Frequency:</strong>
+   - Always, sometimes, once</p>
+<p><strong>Example good report:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Title</span><span class="o">:</span><span class="w"> </span><span class="n">Drug</span><span class="w"> </span><span class="n">interaction</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="n">fails</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Warfarin</span>
+
+<span class="n">Device</span><span class="o">:</span><span class="w"> </span><span class="n">iPhone</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="n">Pro</span><span class="o">,</span><span class="w"> </span><span class="n">iOS</span><span class="w"> </span><span class="mf">17.1</span>
+<span class="n">Steps</span><span class="o">:</span>
+<span class="mi">1</span><span class="o">.</span><span class="w"> </span><span class="n">Start</span><span class="w"> </span><span class="n">encounter</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">John</span><span class="w"> </span><span class="n">Doe</span>
+<span class="mi">2</span><span class="o">.</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">medication</span><span class="o">:</span><span class="w"> </span><span class="n">Warfarin</span>
+<span class="mi">3</span><span class="o">.</span><span class="w"> </span><span class="n">Add</span><span class="w"> </span><span class="n">medication</span><span class="o">:</span><span class="w"> </span><span class="n">Aspirin</span>
+<span class="mi">4</span><span class="o">.</span><span class="w"> </span><span class="n">Tap</span><span class="w"> </span><span class="s2">&quot;Check drug interactions&quot;</span>
+<span class="mi">5</span><span class="o">.</span><span class="w"> </span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Network unavailable&quot;</span>
+
+<span class="n">Expected</span><span class="o">:</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">show</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="n">interaction</span><span class="w"> </span><span class="n">warning</span>
+<span class="n">Actual</span><span class="o">:</span><span class="w"> </span><span class="n">Error</span><span class="w"> </span><span class="n">message</span><span class="o">,</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">interaction</span><span class="w"> </span><span class="n">data</span>
+<span class="n">Frequency</span><span class="o">:</span><span class="w"> </span><span class="n">Every</span><span class="w"> </span><span class="n">time</span>
+<span class="n">Network</span><span class="o">:</span><span class="w"> </span><span class="n">WiFi</span><span class="w"> </span><span class="n">connected</span><span class="o">,</span><span class="w"> </span><span class="n">internet</span><span class="w"> </span><span class="n">working</span>
+</code></pre></div>
+
+<hr />
+<h2 id="whats-next">What's Next</h2>
+<h3 id="upcoming-features-future-testflight-builds">Upcoming Features (Future TestFlight Builds)</h3>
+<p><strong>Q1 2026:</strong>
+- Apple Watch full app (currently limited)
+- Medication reminders
+- Appointment scheduling
+- Parent portal (Education)</p>
+<p><strong>Q2 2026:</strong>
+- visionOS app
+- Advanced AI tutoring (Education)
+- Legal research integration (Legal)
+- EHR integration (Clinician)</p>
+<p><strong>Q3 2026:</strong>
+- Multi-user team features
+- Collaborative case management
+- Research data contribution (opt-in)</p>
+<h3 id="current-focus">Current Focus</h3>
+<p>We're prioritizing:
+1. <strong>Stability</strong> - Fix crashes, improve performance
+2. <strong>Usability</strong> - Make features easier to discover
+3. <strong>Documentation</strong> - Improve help and tutorials
+4. <strong>Voice Control</strong> - Perfect Siri integration</p>
+<h3 id="your-input-matters">Your Input Matters</h3>
+<p>Your feedback directly shapes the product. We read every TestFlight submission and prioritize based on:
+- Frequency of reports
+- Severity of issues
+- User impact
+- Feasibility</p>
+<hr />
+<h2 id="quick-reference-card">Quick Reference Card</h2>
+<h3 id="personal-health">Personal Health</h3>
+<ul>
+<li>Check-in: "Record my health check-in"</li>
+<li>Vitals: "Record my vitals"</li>
+<li>Crisis: "I need crisis support"</li>
+<li>Guidance: "Do I need a doctor?"</li>
+</ul>
+<h3 id="clinician">Clinician</h3>
+<ul>
+<li>Start: "Start patient encounter"</li>
+<li>Vitals: "Add patient vitals"</li>
+<li>Diagnosis: "Record diagnosis"</li>
+<li>Prescribe: "Prescribe medication"</li>
+<li>Interactions: "Check drug interactions"</li>
+<li>SOAP: "Generate SOAP note"</li>
+<li>End: "End encounter"</li>
+</ul>
+<h3 id="education">Education</h3>
+<ul>
+<li>Schedule: "What's my schedule?"</li>
+<li>Progress: "How am I doing?"</li>
+<li>Submit: "Submit my homework"</li>
+<li>Help: "Find help with math"</li>
+<li>Attendance: "Record class attendance"</li>
+</ul>
+<h3 id="legal">Legal</h3>
+<ul>
+<li>Evidence: "Capture legal evidence"</li>
+<li>Incident: "Document incident"</li>
+<li>Case: "Create personal case"</li>
+<li>Communication: "Log communication"</li>
+<li>Aid: "Find legal aid"</li>
+<li>Question: "Ask legal question"</li>
+</ul>
+<hr />
+<p><strong>Welcome to the future of professional documentation. Every word spoken creates cryptographically-verified, legally admissible records. You control your data. You own your proof.</strong></p>
+<p><strong>🚀 Start exploring and let us know what you think!</strong></p>
+        </main>
+        
+        <footer>
+            <p>© 2025 Fortress AI. All rights reserved.</p>
+            <p><a href="index.html">Help Index</a> | <a href="support.html">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>
