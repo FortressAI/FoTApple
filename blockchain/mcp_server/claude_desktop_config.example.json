@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "qfot": {
+      "command": "node",
+      "args": [
+        "/Users/richardgillespie/Documents/FoTApple/blockchain/mcp_server/qfot_mcp_server.js"
+      ],
+      "env": {
+        "QFOT_API_URL": "http://94.130.97.66/api",
+        "QFOT_ALIAS": "@Domain-Packs.md",
+        "QFOT_WALLET_ID": "your_wallet_id_here"
+      }
+    }
+  }
+}
+

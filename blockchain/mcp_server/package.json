@@ -1,0 +1,48 @@
+{
+  "name": "qfot-mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for QFOT blockchain - enables AI agents to query validated knowledge",
+  "type": "module",
+  "main": "qfot_mcp_server.js",
+  "bin": {
+    "qfot-mcp": "./qfot_mcp_server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node qfot_mcp_server.js",
+    "dev": "ts-node qfot_mcp_server.ts"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "blockchain",
+    "qfot",
+    "knowledge-graph",
+    "ai-integration",
+    "claude",
+    "anthropic"
+  ],
+  "author": "FoT Apple / QFOT",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FoTApple/qfot-mcp-server"
+  },
+  "bugs": {
+    "url": "https://github.com/FoTApple/qfot-mcp-server/issues"
+  },
+  "homepage": "https://safeaicoin.org"
+}
+
