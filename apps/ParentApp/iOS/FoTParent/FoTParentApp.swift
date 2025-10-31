@@ -22,21 +22,18 @@ struct FoTParentApp: App {
         WindowGroup {
             ZStack {
                 if !hasCompletedOnboarding {
-                    ParentOnboardingFlow {
+                    ParentOnboardingView {
                         hasCompletedOnboarding = true
                     }
                 } else {
                     ParentContentView()
                         .environmentObject(appState)
-                        .interactiveHelp(.parentDashboard)
                         .voiceContext(.parentDashboard, message: "Welcome to FoT Parent. Your family management assistant.")
                         .onAppear {
-                            // Greet user every time app opens
                             voiceAssistant.greetUser(appName: "FoT Parent")
                         }
                 }
                 
-                // Floating voice assistant indicator
                 VStack {
                     Spacer()
                     HStack {
@@ -45,6 +42,62 @@ struct FoTParentApp: App {
                             .padding()
                     }
                 }
+            }
+        }
+    }
+}
+
+// Inline onboarding view
+struct ParentOnboardingView: View {
+    let onComplete: () -> Void
+    @State private var showingSplash = true
+    @State private var showingOnboarding = false
+    
+    var body: some View {
+        ZStack {
+            if showingSplash {
+                AnimatedSplashScreen(
+                    appName: "FoT Parent",
+                    appIcon: "figure.2.and.child.holdinghands",
+                    primaryColor: Color.purple,
+                    secondaryColor: Color.pink,
+                    onComplete: {
+                        showingSplash = false
+                        showingOnboarding = true
+                    }
+                )
+            } else if showingOnboarding {
+                SiriGuidedOnboarding(
+                    appName: "FoT Parent",
+                    features: [
+                        OnboardingFeature(
+                            icon: "star.fill",
+                            title: "Milestone Tracking",
+                            description: "Record and celebrate your child's development milestones",
+                            siriCommand: "Log milestone in Parent"
+                        ),
+                        OnboardingFeature(
+                            icon: "heart.text.square.fill",
+                            title: "Health Records",
+                            description: "Manage vaccinations and medical history securely",
+                            siriCommand: "Show health records in Parent"
+                        ),
+                        OnboardingFeature(
+                            icon: "building.2.fill",
+                            title: "School Updates",
+                            description: "Stay connected with teachers and school announcements",
+                            siriCommand: "Show school updates in Parent"
+                        ),
+                        OnboardingFeature(
+                            icon: "lightbulb.fill",
+                            title: "Parenting Advice",
+                            description: "Get personalized guidance powered by AI",
+                            siriCommand: "Get parenting advice in Parent"
+                        )
+                    ],
+                    primaryColor: Color.purple,
+                    onComplete: onComplete
+                )
             }
         }
     }

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QFOT Knowledge Wiki</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .domain-list {
+            list-style: none;
+        }
+        
+        .domain-list li {
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .domain-list li:hover {
+            background: #f5f5f5;
+        }
+        
+        .domain-list li.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .domain-count {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        /* Content Area */
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 600px;
+        }
+        
+        .breadcrumbs {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumbs a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .page-meta {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        /* Fact Cards */
+        .fact-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .fact-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .fact-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .fact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        
+        .fact-domain {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .fact-domain.medical { background: #e3f2fd; color: #1976d2; }
+        .fact-domain.legal { background: #f3e5f5; color: #7b1fa2; }
+        .fact-domain.education { background: #e8f5e9; color: #388e3c; }
+        .fact-domain.general { background: #fff3e0; color: #f57c00; }
+        
+        .fact-meta {
+            text-align: right;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .fact-content {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .fact-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .fact-creator {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        .fact-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #999;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Loading & Empty States */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 24px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            border-color: #667eea;
+        }
+        
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        /* Stats Banner */
+        .stats-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>📚 QFOT Knowledge Wiki</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search facts, topics, or concepts..." />
+                <button class="search-btn" onclick="searchFacts()">🔍</button>
+            </div>
+            <div class="user-actions">
+                <button class="btn btn-secondary" onclick="window.location.href='wallet.html'">💰 Wallet</button>
+                <button class="btn btn-primary" onclick="submitFact()">+ Add Fact</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Domains</h3>
+            <ul class="domain-list">
+                <li class="active" onclick="filterDomain('all')">
+                    <span>📖 All Topics</span>
+                    <span class="domain-count" id="count-all">0</span>
+                </li>
+                <li onclick="filterDomain('education')">
+                    <span>🎓 Education</span>
+                    <span class="domain-count" id="count-education">0</span>
+                </li>
+                <li onclick="filterDomain('medical')">
+                    <span>⚕️ Medical</span>
+                    <span class="domain-count" id="count-medical">0</span>
+                </li>
+                <li onclick="filterDomain('legal')">
+                    <span>⚖️ Legal</span>
+                    <span class="domain-count" id="count-legal">0</span>
+                </li>
+                <li onclick="filterDomain('general')">
+                    <span>📝 General</span>
+                    <span class="domain-count" id="count-general">0</span>
+                </li>
+            </ul>
+            
+            <h3 style="margin-top: 30px;">Sort By</h3>
+            <ul class="domain-list">
+                <li onclick="sortBy('recent')">📅 Most Recent</li>
+                <li onclick="sortBy('popular')">🔥 Most Popular</li>
+                <li onclick="sortBy('earnings')">💰 Top Earning</li>
+            </ul>
+        </aside>
+        
+        <!-- Content -->
+        <main class="content">
+            <div class="breadcrumbs">
+                <a href="#" onclick="window.location.reload()">Home</a> / <span id="currentDomain">All Topics</span>
+            </div>
+            
+            <h1 class="page-title" id="pageTitle">All Knowledge Facts</h1>
+            <div class="page-meta" id="pageMeta">
+                Explore validated facts across all domains
+            </div>
+            
+            <!-- Stats Banner -->
+            <div class="stats-banner">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalFacts">0</div>
+                    <div class="stat-label">Total Facts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalQueries">0</div>
+                    <div class="stat-label">Queries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalCreators">0</div>
+                    <div class="stat-label">Contributors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalEarnings">0</div>
+                    <div class="stat-label">QFOT Earned</div>
+                </div>
+            </div>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterGrade('all')">All Grades</button>
+                <button class="filter-btn" onclick="filterGrade('k-5')">K-5 Elementary</button>
+                <button class="filter-btn" onclick="filterGrade('6-8')">6-8 Middle School</button>
+                <button class="filter-btn" onclick="filterGrade('9-12')">9-12 High School</button>
+            </div>
+            
+            <!-- Facts Grid -->
+            <div id="factsContainer" class="fact-grid">
+                <div class="loading">
+                    Loading facts...
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        const API_BASE = '/api';
+        let allFacts = [];
+        let currentDomain = 'all';
+        let currentGrade = 'all';
+        
+        // Load facts on page load
+        async function loadFacts() {
+            try {
+                const resp = await fetch(`${API_BASE}/facts/search?limit=1000`);
+                const data = await resp.json();
+                
+                allFacts = data.results || [];
+                
+                // Update counts
+                updateDomainCounts();
+                updateStats();
+                renderFacts();
+                
+            } catch (error) {
+                console.error('Error loading facts:', error);
+                document.getElementById('factsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <h3>⚠️ Error Loading Facts</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function updateDomainCounts() {
+            const counts = {all: allFacts.length};
+            
+            allFacts.forEach(fact => {
+                const domain = fact.domain || 'general';
+                counts[domain] = (counts[domain] || 0) + 1;
+            });
+            
+            Object.keys(counts).forEach(domain => {
+                const el = document.getElementById(`count-${domain}`);
+                if (el) el.textContent = counts[domain];
+            });
+        }
+        
+        function updateStats() {
+            const totalQueries = allFacts.reduce((sum, f) => sum + (f.query_count || 0), 0);
+            const creators = new Set(allFacts.map(f => f.creator)).size;
+            const earnings = (totalQueries * 0.007).toFixed(2);
+            
+            document.getElementById('totalFacts').textContent = allFacts.length;
+            document.getElementById('totalQueries').textContent = totalQueries.toLocaleString();
+            document.getElementById('totalCreators').textContent = creators;
+            document.getElementById('totalEarnings').textContent = earnings;
+        }
+        
+        function renderFacts() {
+            let filtered = allFacts;
+            
+            // Filter by domain
+            if (currentDomain !== 'all') {
+                filtered = filtered.filter(f => f.domain === currentDomain);
+            }
+            
+            // Filter by grade level (if education)
+            if (currentGrade !== 'all' && currentDomain === 'education') {
+                filtered = filtered.filter(f => {
+                    const content = f.content.toLowerCase();
+                    if (currentGrade === 'k-5') {
+                        return content.includes('elementary') || content.includes('k-5') || 
+                               content.includes('kindergarten') || content.includes('grade 1') ||
+                               content.includes('grade 2') || content.includes('grade 3') ||
+                               content.includes('grade 4') || content.includes('grade 5');
+                    } else if (currentGrade === '6-8') {
+                        return content.includes('middle school') || content.includes('grade 6') ||
+                               content.includes('grade 7') || content.includes('grade 8');
+                    } else if (currentGrade === '9-12') {
+                        return content.includes('high school') || content.includes('grade 9') ||
+                               content.includes('grade 10') || content.includes('grade 11') ||
+                               content.includes('grade 12');
+                    }
+                    return true;
+                });
+            }
+            
+            const container = document.getElementById('factsContainer');
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>📭 No Facts Found</h3>
+                        <p>Be the first to contribute knowledge in this domain!</p>
+                        <button class="btn btn-primary" onclick="submitFact()">+ Add First Fact</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filtered.map(fact => `
+                <div class="fact-card" onclick="viewFact('${fact.id}')">
+                    <div class="fact-header">
+                        <span class="fact-domain ${fact.domain || 'general'}">${fact.domain || 'general'}</span>
+                        <div class="fact-meta">
+                            ID: ${fact.id}
+                        </div>
+                    </div>
+                    <div class="fact-content">
+                        ${fact.content}
+                    </div>
+                    <div class="fact-footer">
+                        <div class="fact-creator">By ${fact.creator || 'Anonymous'}</div>
+                        <div class="fact-stats">
+                            <span class="stat">👁️ ${fact.query_count || 0}</span>
+                            <span class="stat">⭐ ${fact.stake || 0} QFOT</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function filterDomain(domain) {
+            currentDomain = domain;
+            
+            // Update active state
+            document.querySelectorAll('.domain-list li').forEach(li => {
+                li.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Update breadcrumbs
+            const domainNames = {
+                all: 'All Topics',
+                education: 'Education',
+                medical: 'Medical',
+                legal: 'Legal',
+                general: 'General'
+            };
+            
+            document.getElementById('currentDomain').textContent = domainNames[domain];
+            document.getElementById('pageTitle').textContent = domainNames[domain] + ' Facts';
+            
+            renderFacts();
+        }
+        
+        function filterGrade(grade) {
+            currentGrade = grade;
+            
+            // Update active state
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            renderFacts();
+        }
+        
+        async function searchFacts() {
+            const query = document.getElementById('searchInput').value;
+            if (!query) {
+                loadFacts();
+                return;
+            }
+            
+            try {
+                const resp = await fetch(`${API_BASE}/facts/search?query=${encodeURIComponent(query)}&limit=100`);
+                const data = await resp.json();
+                allFacts = data.results || [];
+                renderFacts();
+            } catch (error) {
+                console.error('Search error:', error);
+            }
+        }
+        
+        function viewFact(factId) {
+            // Redirect to fact detail page (requires wallet)
+            window.location.href = `review.html?fact=${factId}`;
+        }
+        
+        function submitFact() {
+            // Redirect to wallet to ensure user has balance
+            window.location.href = 'wallet.html';
+        }
+        
+        function sortBy(method) {
+            if (method === 'recent') {
+                allFacts.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+            } else if (method === 'popular') {
+                allFacts.sort((a, b) => (b.query_count || 0) - (a.query_count || 0));
+            } else if (method === 'earnings') {
+                allFacts.sort((a, b) => ((b.query_count || 0) * 0.007) - ((a.query_count || 0) * 0.007));
+            }
+            renderFacts();
+        }
+        
+        // Search on Enter
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchFacts();
+        });
+        
+        // Load on page ready
+        window.onload = loadFacts;
+    </script>
+</body>
+</html>
+

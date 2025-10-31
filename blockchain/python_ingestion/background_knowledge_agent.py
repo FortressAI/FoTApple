@@ -31,7 +31,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Configuration
-API_BASE = "https://94.130.97.66/api"
+API_BASE = "http://94.130.97.66/api"
 VERIFY_SSL = False
 CREATOR_ID = "FoT Apple Knowledge Extraction Agent"
 STAKE_AMOUNT = 30.0

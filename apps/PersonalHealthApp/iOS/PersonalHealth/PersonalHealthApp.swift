@@ -19,13 +19,12 @@ struct PersonalHealthApp: App {
         WindowGroup {
             ZStack {
                 if !hasCompletedOnboarding {
-                    PersonalHealthOnboardingFlow {
+                    PersonalHealthOnboardingView {
                         hasCompletedOnboarding = true
                     }
                 } else {
                     PersonalHealthContentView()
                         .environmentObject(healthState)
-                        .interactiveHelp(.personalHealthDashboard)
                         .voiceContext(.healthTracking, message: "Welcome to My Health. Your personal health companion.")
                         .onAppear {
                             // Greet user every time app opens
@@ -72,9 +71,27 @@ class HealthState: ObservableObject {
         ]
     }
     
-    func captureHealthIncident() {
-        // This will capture ALL sensors and generate receipt
-        FoTLogger.app.info("Capturing health incident with sensors...")
+    func captureHealthIncident() async {
+        // REAL sensor capture - NO MOCKS
+        FoTLogger.app.info("🚨 EMERGENCY: Capturing ALL sensors...")
+        
+        do {
+            let receipt = try await SensorCaptureEngine.shared.emergencyCapture()
+            
+            // Store receipt with health record
+            let healthRecord = HealthRecord(
+                date: Date(),
+                type: .injury,
+                notes: "Emergency capture",
+                receiptID: receipt.id
+            )
+            healthRecords.append(healthRecord)
+            
+            FoTLogger.app.info("✅ Health incident captured successfully - Receipt: \(receipt.id)")
+            
+        } catch {
+            FoTLogger.app.error("❌ Failed to capture incident: \(error.localizedDescription)")
+        }
     }
     
     func shareWithClinician(_ clinicianID: String, duration: TimeInterval) {
@@ -127,3 +144,55 @@ struct MedicationLog: Identifiable {
     let taken: Bool
 }
 
+
+// Temporary inline onboarding view until Xcode project updated
+struct PersonalHealthOnboardingView: View {
+    let onComplete: () -> Void
+    @State private var showingSplash = true
+    @State private var showingOnboarding = false
+    
+    var body: some View {
+        ZStack {
+            if showingSplash {
+                AnimatedSplashScreen(
+                    appName: "My Health",
+                    appIcon: "heart.fill",
+                    primaryColor: .pink,
+                    secondaryColor: .purple,
+                    onComplete: {
+                        withAnimation {
+                            showingSplash = false
+                            showingOnboarding = true
+                        }
+                    }
+                )
+            } else if showingOnboarding {
+                SiriGuidedOnboarding(
+                    appName: "My Health",
+                    features: [
+                        OnboardingFeature(
+                            icon: "heart.fill",
+                            title: "Track Your Health",
+                            description: "Monitor your mental and physical wellbeing with daily check-ins",
+                            siriCommand: "Log my mood in My Health"
+                        ),
+                        OnboardingFeature(
+                            icon: "phone.fill",
+                            title: "Crisis Support",
+                            description: "Access immediate help when you need it most",
+                            siriCommand: "Get crisis support in My Health"
+                        ),
+                        OnboardingFeature(
+                            icon: "questionmark.circle",
+                            title: "Health Guidance",
+                            description: "Get AI-powered guidance on whether you should seek professional care",
+                            siriCommand: "Should I see a doctor in My Health"
+                        )
+                    ],
+                    primaryColor: .pink,
+                    onComplete: onComplete
+                )
+            }
+        }
+    }
+}

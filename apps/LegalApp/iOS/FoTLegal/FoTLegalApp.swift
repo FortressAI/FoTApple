@@ -22,13 +22,12 @@ struct FoTLegalApp: App {
         WindowGroup {
             ZStack {
                 if !hasCompletedOnboarding {
-                    LegalOnboardingFlow {
+                    LegalOnboardingView {
                         hasCompletedOnboarding = true
                     }
                 } else {
                     LegalContentView()
                         .environmentObject(appState)
-                        .interactiveHelp(.legalDashboard)
                         .voiceContext(.dashboard, message: "Welcome to Field of Truth Legal. Your case management dashboard.")
                         .onAppear {
                             // Greet user every time app opens
@@ -183,3 +182,55 @@ struct Evidence: Identifiable {
     }
 }
 
+
+// Inline onboarding view
+struct LegalOnboardingView: View {
+    let onComplete: () -> Void
+    @State private var showingSplash = true
+    @State private var showingOnboarding = false
+    
+    var body: some View {
+        ZStack {
+            if showingSplash {
+                AnimatedSplashScreen(
+                    appName: "FoT Legal",
+                    appIcon: "scale.3d",
+                    primaryColor: .blue,
+                    secondaryColor: .cyan,
+                    onComplete: {
+                        withAnimation {
+                            showingSplash = false
+                            showingOnboarding = true
+                        }
+                    }
+                )
+            } else if showingOnboarding {
+                SiriGuidedOnboarding(
+                    appName: "FoT Legal",
+                    features: [
+                        OnboardingFeature(
+                            icon: "folder.badge.plus",
+                            title: "Case Management",
+                            description: "Create and manage legal cases with AI-powered assistance",
+                            siriCommand: "Create new case in FoT Legal"
+                        ),
+                        OnboardingFeature(
+                            icon: "magnifyingglass",
+                            title: "Legal Research",
+                            description: "Search case law and legal precedents instantly",
+                            siriCommand: "Search case law in FoT Legal"
+                        ),
+                        OnboardingFeature(
+                            icon: "calendar.badge.clock",
+                            title: "Deadline Tracking",
+                            description: "Never miss a filing deadline with smart reminders",
+                            siriCommand: "Show my deadlines in FoT Legal"
+                        )
+                    ],
+                    primaryColor: .blue,
+                    onComplete: onComplete
+                )
+            }
+        }
+    }
+}

@@ -22,21 +22,18 @@ struct FoTEducationApp: App {
         WindowGroup {
             ZStack {
                 if !hasCompletedOnboarding {
-                    EducationOnboardingFlow {
+                    EducationOnboardingView {
                         hasCompletedOnboarding = true
                     }
                 } else {
                     EducationContentView()
                         .environmentObject(appState)
-                        .interactiveHelp(.educationDashboard)
                         .voiceContext(.education, message: "Welcome to FoT Education. Your personal learning assistant.")
                         .onAppear {
-                            // Greet user every time app opens
                             voiceAssistant.greetUser(appName: "FoT Education")
                         }
                 }
                 
-                // Floating voice assistant indicator
                 VStack {
                     Spacer()
                     HStack {
@@ -45,6 +42,62 @@ struct FoTEducationApp: App {
                             .padding()
                     }
                 }
+            }
+        }
+    }
+}
+
+// Inline onboarding view
+struct EducationOnboardingView: View {
+    let onComplete: () -> Void
+    @State private var showingSplash = true
+    @State private var showingOnboarding = false
+    
+    var body: some View {
+        ZStack {
+            if showingSplash {
+                AnimatedSplashScreen(
+                    appName: "FoT Education",
+                    appIcon: "book.fill",
+                    primaryColor: Color.green,
+                    secondaryColor: Color.mint,
+                    onComplete: {
+                        showingSplash = false
+                        showingOnboarding = true
+                    }
+                )
+            } else if showingOnboarding {
+                SiriGuidedOnboarding(
+                    appName: "FoT Education",
+                    features: [
+                        OnboardingFeature(
+                            icon: "book.fill",
+                            title: "Standards-Aligned",
+                            description: "K-18 education aligned with Common Core and NGSS",
+                            siriCommand: "Show my students in Education"
+                        ),
+                        OnboardingFeature(
+                            icon: "chart.line.uptrend.xyaxis",
+                            title: "Learning Insights",
+                            description: "AI-powered progress tracking and personalized recommendations",
+                            siriCommand: "Show learning insights in Education"
+                        ),
+                        OnboardingFeature(
+                            icon: "doc.text.magnifyingglass",
+                            title: "IEP Support",
+                            description: "Special education planning with FERPA-compliant records",
+                            siriCommand: "Show IEPs in Education"
+                        ),
+                        OnboardingFeature(
+                            icon: "envelope.fill",
+                            title: "Parent Communication",
+                            description: "Secure messaging with cryptographic audit trails",
+                            siriCommand: "Message parents in Education"
+                        )
+                    ],
+                    primaryColor: Color.green,
+                    onComplete: onComplete
+                )
             }
         }
     }

@@ -11,91 +11,80 @@ struct ParentAppShortcutsProvider: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         return [
             AppShortcut(
-                intent: ViewStudentProgressIntent(),
+                intent: LogMilestoneIntent(),
                 phrases: [
-                    "How is my child doing in school in \(.applicationName)",
-                    "Check my child's grades in \(.applicationName)",
-                    "Show student progress in \(.applicationName)"
+                    "Log milestone in \(.applicationName)",
+                    "Record child milestone in \(.applicationName)",
+                    "Track development in \(.applicationName)"
                 ],
-                shortTitle: "Student Progress",
-                systemImageName: "chart.bar.fill"
+                shortTitle: "Log Milestone",
+                systemImageName: "star.fill"
             ),
             
             AppShortcut(
-                intent: CheckAssignmentsDueIntent(),
+                intent: ShowHealthRecordsIntent(),
                 phrases: [
-                    "What homework does my child have in \(.applicationName)",
-                    "Check assignments due in \(.applicationName)",
-                    "Show upcoming homework in \(.applicationName)"
+                    "Show health records in \(.applicationName)",
+                    "View medical history in \(.applicationName)",
+                    "Check health info in \(.applicationName)"
                 ],
-                shortTitle: "Assignments Due",
-                systemImageName: "book.fill"
+                shortTitle: "Health Records",
+                systemImageName: "heart.text.square.fill"
             ),
             
             AppShortcut(
-                intent: ParentScheduleTeacherMeetingIntent(),
+                intent: LogVaccinationIntent(),
                 phrases: [
-                    "Schedule parent teacher meeting in \(.applicationName)",
-                    "Request teacher conference in \(.applicationName)",
-                    "Meet with teacher in \(.applicationName)"
+                    "Log vaccination in \(.applicationName)",
+                    "Record immunization in \(.applicationName)",
+                    "Add vaccine record in \(.applicationName)"
                 ],
-                shortTitle: "Teacher Meeting",
-                systemImageName: "person.2.fill"
+                shortTitle: "Log Vaccination",
+                systemImageName: "cross.case.fill"
             ),
             
             AppShortcut(
-                intent: ViewBehaviorReportsIntent(),
+                intent: ShowFamilyCalendarIntent(),
                 phrases: [
-                    "Check my child's behavior in \(.applicationName)",
-                    "Show behavior reports in \(.applicationName)",
-                    "Any behavior incidents in \(.applicationName)"
+                    "Show family calendar in \(.applicationName)",
+                    "View family schedule in \(.applicationName)",
+                    "Check family events in \(.applicationName)"
                 ],
-                shortTitle: "Behavior Reports",
-                systemImageName: "hand.raised.fill"
+                shortTitle: "Family Calendar",
+                systemImageName: "calendar"
             ),
             
             AppShortcut(
-                intent: UpdateEmergencyContactIntent(),
+                intent: AddFamilyEventIntent(),
                 phrases: [
-                    "Update emergency contact in \(.applicationName)",
-                    "Change emergency phone number in \(.applicationName)",
-                    "Modify emergency info in \(.applicationName)"
+                    "Add family event in \(.applicationName)",
+                    "Schedule family activity in \(.applicationName)",
+                    "Create family event in \(.applicationName)"
                 ],
-                shortTitle: "Emergency Contact",
-                systemImageName: "phone.circle.fill"
+                shortTitle: "Add Event",
+                systemImageName: "calendar.badge.plus"
             ),
             
             AppShortcut(
-                intent: ViewAttendanceIntent(),
+                intent: GetParentingAdviceIntent(),
                 phrases: [
-                    "Check my child's attendance in \(.applicationName)",
-                    "Show attendance record in \(.applicationName)",
-                    "Any absences in \(.applicationName)"
+                    "Get parenting advice in \(.applicationName)",
+                    "Ask parenting question in \(.applicationName)",
+                    "Help with parenting in \(.applicationName)"
                 ],
-                shortTitle: "Attendance",
-                systemImageName: "calendar.badge.checkmark"
+                shortTitle: "Parenting Advice",
+                systemImageName: "lightbulb.fill"
             ),
             
             AppShortcut(
-                intent: ApproveFieldTripIntent(),
+                intent: ShowSchoolUpdatesIntent(),
                 phrases: [
-                    "Approve field trip in \(.applicationName)",
-                    "Grant field trip permission in \(.applicationName)",
-                    "Sign permission slip in \(.applicationName)"
+                    "Show school updates in \(.applicationName)",
+                    "Check school news in \(.applicationName)",
+                    "View school announcements in \(.applicationName)"
                 ],
-                shortTitle: "Field Trip",
-                systemImageName: "bus.fill"
-            ),
-            
-            AppShortcut(
-                intent: ViewIEPPlanIntent(),
-                phrases: [
-                    "Show my child's IEP in \(.applicationName)",
-                    "View IEP plan in \(.applicationName)",
-                    "Check IEP progress in \(.applicationName)"
-                ],
-                shortTitle: "View IEP",
-                systemImageName: "doc.text.fill"
+                shortTitle: "School Updates",
+                systemImageName: "building.2.fill"
             )
         ]
     }

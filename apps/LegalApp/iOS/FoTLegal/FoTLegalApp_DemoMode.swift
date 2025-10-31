@@ -41,7 +41,6 @@ struct FoTLegalApp: App {
                 // Show main app briefly before restarting onboarding
                 LegalContentView()
                     .environmentObject(appState)
-                    .interactiveHelp(.legalDashboard)
             }
         }
     }

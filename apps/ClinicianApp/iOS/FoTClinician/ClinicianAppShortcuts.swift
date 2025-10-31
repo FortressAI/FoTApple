@@ -22,58 +22,58 @@ struct ClinicianAppShortcutsProvider: AppShortcutsProvider {
             ),
             
             AppShortcut(
-                intent: AddPatientVitalsIntent(),
+                intent: CreatePatientIntent(),
                 phrases: [
-                    "Add patient vitals in \(.applicationName)",
-                    "Record vital signs in \(.applicationName)",
-                    "Log patient vitals in \(.applicationName)"
+                    "Create new patient in \(.applicationName)",
+                    "Add new patient in \(.applicationName)",
+                    "Register patient in \(.applicationName)"
                 ],
-                shortTitle: "Add Vitals",
-                systemImageName: "heart.text.square"
+                shortTitle: "Create Patient",
+                systemImageName: "person.crop.circle.badge.plus"
             ),
             
             AppShortcut(
-                intent: RecordDiagnosisIntent(),
+                intent: GenerateDiagnosisIntent(),
                 phrases: [
-                    "Record diagnosis in \(.applicationName)",
-                    "Document diagnosis in \(.applicationName)",
-                    "Add diagnosis in \(.applicationName)"
+                    "Generate diagnosis in \(.applicationName)",
+                    "Get diagnostic suggestions in \(.applicationName)",
+                    "Analyze symptoms in \(.applicationName)"
                 ],
-                shortTitle: "Record Diagnosis",
-                systemImageName: "note.text"
+                shortTitle: "Generate Diagnosis",
+                systemImageName: "stethoscope"
             ),
             
             AppShortcut(
-                intent: RecordMedicationIntent(),
+                intent: GenerateSOAPNoteIntent(),
                 phrases: [
-                    "Prescribe medication in \(.applicationName)",
-                    "Record prescription in \(.applicationName)",
-                    "Add medication in \(.applicationName)"
+                    "Generate SOAP note in \(.applicationName)",
+                    "Create clinical note in \(.applicationName)",
+                    "Document encounter in \(.applicationName)"
                 ],
-                shortTitle: "Prescribe",
-                systemImageName: "pills"
-            ),
-            
-            AppShortcut(
-                intent: SummarizePatientIntent(),
-                phrases: [
-                    "Summarize patient in \(.applicationName)",
-                    "Patient summary in \(.applicationName)",
-                    "Show patient overview in \(.applicationName)"
-                ],
-                shortTitle: "Patient Summary",
+                shortTitle: "SOAP Note",
                 systemImageName: "doc.text"
             ),
             
             AppShortcut(
-                intent: EndEncounterIntent(),
+                intent: CheckDrugInteractionsIntent(),
                 phrases: [
-                    "End encounter in \(.applicationName)",
-                    "Finish consultation in \(.applicationName)",
-                    "Complete visit in \(.applicationName)"
+                    "Check drug interactions in \(.applicationName)",
+                    "Verify medication safety in \(.applicationName)",
+                    "Check prescription interactions in \(.applicationName)"
                 ],
-                shortTitle: "End Encounter",
-                systemImageName: "checkmark.circle"
+                shortTitle: "Check Interactions",
+                systemImageName: "pills.circle"
+            ),
+            
+            AppShortcut(
+                intent: ShowAuditTrailIntent(),
+                phrases: [
+                    "Show audit trail in \(.applicationName)",
+                    "View medical history in \(.applicationName)",
+                    "Show patient record history in \(.applicationName)"
+                ],
+                shortTitle: "Audit Trail",
+                systemImageName: "clock.arrow.circlepath"
             )
         ]
     }

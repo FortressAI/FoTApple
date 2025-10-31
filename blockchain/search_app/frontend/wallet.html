@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QFOT Wallet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { color: #667eea; margin-bottom: 10px; font-size: 32px; }
+        h2 { color: #333; margin: 30px 0 15px; font-size: 20px; }
+        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
+        
+        .section { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
+        .section:last-child { border-bottom: none; }
+        
+        input, select, button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        button:active { transform: translateY(0); }
+        
+        .wallet-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .wallet-display h2 { color: white; margin-top: 0; }
+        .wallet-info { margin: 10px 0; }
+        .wallet-info strong { display: inline-block; width: 120px; }
+        .balance {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .balance small { font-size: 24px; opacity: 0.8; }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .alert-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        
+        .hidden { display: none; }
+        
+        .faucet-amounts {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .faucet-amounts div { margin: 8px 0; }
+        .faucet-amounts strong { color: #667eea; }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🪙 QFOT Wallet</h1>
+        <p>Connect your wallet to query facts, claim free tokens, and earn from your knowledge!</p>
+        
+        <div id="alertContainer"></div>
+        
+        <!-- New User Section -->
+        <div id="newUserSection" class="section">
+            <h2>🆕 Create New Wallet</h2>
+            <input type="text" id="newAlias" placeholder="@YourAlias" />
+            <select id="userType">
+                <option value="general">General User (100 QFOT)</option>
+                <option value="developer">Developer (1,000 QFOT)</option>
+                <option value="ai_agent">AI Agent (500 QFOT)</option>
+                <option value="validator">Validator (500 QFOT)</option>
+            </select>
+            <input type="email" id="email" placeholder="Email (optional)" />
+            <button onclick="createWallet()">Create Wallet & Claim Free Tokens</button>
+        </div>
+        
+        <!-- Existing User Section -->
+        <div id="existingUserSection" class="section">
+            <h2>🔑 Connect Existing Wallet</h2>
+            <input type="text" id="existingAlias" placeholder="@YourAlias" />
+            <button onclick="connectWallet()">Connect</button>
+        </div>
+        
+        <!-- Wallet Display -->
+        <div id="walletDisplay" class="hidden">
+            <div class="wallet-display">
+                <h2>✅ Wallet Connected</h2>
+                <div class="balance">
+                    <div id="displayBalance">0</div>
+                    <small>QFOT</small>
+                </div>
+                <div class="wallet-info">
+                    <strong>Alias:</strong> <span id="displayAlias"></span>
+                </div>
+                <div class="wallet-info">
+                    <strong>Wallet ID:</strong> <span id="displayWallet" style="font-size: 12px;"></span>
+                </div>
+                <div class="wallet-info">
+                    <strong>Total Earned:</strong> <span id="displayEarned">0</span> QFOT
+                </div>
+            </div>
+            
+            <button onclick="window.location.href='review.html'">🔍 Search & Query Facts</button>
+            <button onclick="showFaucet()" class="btn-secondary">🚰 Claim More Tokens</button>
+            <button onclick="disconnect()" class="btn-secondary">🚪 Disconnect</button>
+        </div>
+        
+        <!-- Faucet Claim (hidden by default) -->
+        <div id="faucetSection" class="section hidden">
+            <h2>🚰 Claim Free Tokens</h2>
+            <div class="faucet-amounts">
+                <div>💻 <strong>Developer:</strong> 1,000 QFOT (5x refills)</div>
+                <div>🤖 <strong>AI Agent:</strong> 500 QFOT (3x refills)</div>
+                <div>✅ <strong>Validator:</strong> 500 QFOT (unlimited)</div>
+                <div>👤 <strong>General:</strong> 100 QFOT (one-time)</div>
+            </div>
+            <p>Cooldown: 30 days between claims</p>
+            <button onclick="claimFromFaucet()">Claim Tokens</button>
+            <button onclick="hideFaucet()" class="btn-secondary">Cancel</button>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = '/api';
+        
+        function showAlert(message, type = 'info') {
+            const container = document.getElementById('alertContainer');
+            container.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            setTimeout(() => container.innerHTML = '', 5000);
+        }
+        
+        async function createWallet() {
+            const alias = document.getElementById('newAlias').value.trim();
+            const userType = document.getElementById('userType').value;
+            const email = document.getElementById('email').value.trim();
+            
+            if (!alias) {
+                showAlert('Please enter an alias', 'error');
+                return;
+            }
+            
+            if (!alias.startsWith('@')) {
+                showAlert('Alias must start with @', 'error');
+                return;
+            }
+            
+            try {
+                // Create wallet
+                const walletResp = await fetch(`${API_BASE}/wallets/create`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ alias, email, user_type: userType })
+                });
+                
+                const wallet = await walletResp.json();
+                
+                if (!wallet.success && !wallet.wallet_id) {
+                    showAlert('Failed to create wallet', 'error');
+                    return;
+                }
+                
+                // Claim faucet tokens
+                const faucetResp = await fetch(`${API_BASE}/faucet/claim`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ alias, user_type: userType })
+                });
+                
+                const faucet = await faucetResp.json();
+                
+                if (faucet.success) {
+                    // Store in localStorage
+                    localStorage.setItem('qfot_alias', alias);
+                    localStorage.setItem('qfot_wallet', wallet.wallet_id);
+                    
+                    showAlert(`✅ Wallet created! You received ${faucet.amount} QFOT`, 'success');
+                    
+                    setTimeout(() => loadWallet(alias), 1000);
+                } else {
+                    showAlert('Wallet created but faucet claim failed: ' + faucet.error, 'error');
+                    localStorage.setItem('qfot_alias', alias);
+                    localStorage.setItem('qfot_wallet', wallet.wallet_id);
+                    setTimeout(() => loadWallet(alias), 1000);
+                }
+                
+            } catch (error) {
+                showAlert('Error: ' + error.message, 'error');
+            }
+        }
+        
+        async function connectWallet() {
+            let alias = document.getElementById('existingAlias').value.trim();
+            
+            if (!alias) {
+                showAlert('Please enter your alias', 'error');
+                return;
+            }
+            
+            if (!alias.startsWith('@')) {
+                alias = '@' + alias;
+            }
+            
+            await loadWallet(alias);
+        }
+        
+        async function loadWallet(alias) {
+            try {
+                const resp = await fetch(`${API_BASE}/wallets/${alias}`);
+                
+                if (!resp.ok) {
+                    showAlert('Wallet not found. Please create a new wallet.', 'error');
+                    return;
+                }
+                
+                const data = await resp.json();
+                
+                // Store in localStorage
+                localStorage.setItem('qfot_alias', alias);
+                localStorage.setItem('qfot_wallet', data.wallet_id);
+                
+                // Display wallet
+                document.getElementById('displayAlias').textContent = data.alias;
+                document.getElementById('displayWallet').textContent = data.wallet_id;
+                document.getElementById('displayBalance').textContent = data.balance.toFixed(4);
+                document.getElementById('displayEarned').textContent = data.earned.toFixed(4);
+                
+                // Hide forms, show wallet
+                document.getElementById('newUserSection').classList.add('hidden');
+                document.getElementById('existingUserSection').classList.add('hidden');
+                document.getElementById('walletDisplay').classList.remove('hidden');
+                
+            } catch (error) {
+                showAlert('Error loading wallet: ' + error.message, 'error');
+            }
+        }
+        
+        function showFaucet() {
+            document.getElementById('faucetSection').classList.remove('hidden');
+        }
+        
+        function hideFaucet() {
+            document.getElementById('faucetSection').classList.add('hidden');
+        }
+        
+        async function claimFromFaucet() {
+            const alias = localStorage.getItem('qfot_alias');
+            const userType = document.getElementById('userType').value;
+            
+            try {
+                const resp = await fetch(`${API_BASE}/faucet/claim`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ alias, user_type: userType })
+                });
+                
+                const result = await resp.json();
+                
+                if (result.success) {
+                    showAlert(`✅ Claimed ${result.amount} QFOT! New balance: ${result.new_balance}`, 'success');
+                    hideFaucet();
+                    setTimeout(() => loadWallet(alias), 1000);
+                } else {
+                    showAlert('Faucet claim failed: ' + result.error, 'error');
+                }
+                
+            } catch (error) {
+                showAlert('Error: ' + error.message, 'error');
+            }
+        }
+        
+        function disconnect() {
+            localStorage.removeItem('qfot_alias');
+            localStorage.removeItem('qfot_wallet');
+            location.reload();
+        }
+        
+        // Auto-connect on page load
+        window.onload = () => {
+            const alias = localStorage.getItem('qfot_alias');
+            if (alias) {
+                document.getElementById('existingAlias').value = alias;
+                loadWallet(alias);
+            }
+        };
+    </script>
+</body>
+</html>
+

@@ -10,45 +10,10 @@ import FoTAppIntents
 struct LegalAppShortcutsProvider: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         return [
-            // Personal Legal shortcuts
             AppShortcut(
-                intent: DocumentIncidentIntent(),
+                intent: CreateCaseIntent(),
                 phrases: [
-                    "Document incident in \(.applicationName)",
-                    "Record incident in \(.applicationName)",
-                    "Log incident in \(.applicationName)"
-                ],
-                shortTitle: "Document Incident",
-                systemImageName: "exclamationmark.triangle"
-            ),
-            
-            AppShortcut(
-                intent: CaptureEvidenceIntent(),
-                phrases: [
-                    "Record evidence in \(.applicationName)",
-                    "Document evidence in \(.applicationName)",
-                    "Save evidence in \(.applicationName)"
-                ],
-                shortTitle: "Record Evidence",
-                systemImageName: "camera"
-            ),
-            
-            AppShortcut(
-                intent: FindLegalAidIntent(),
-                phrases: [
-                    "Find legal help in \(.applicationName)",
-                    "Get legal assistance in \(.applicationName)",
-                    "Find a lawyer in \(.applicationName)"
-                ],
-                shortTitle: "Find Help",
-                systemImageName: "magnifyingglass"
-            ),
-            
-            // Attorney shortcuts
-            AppShortcut(
-                intent: CreateClientCaseIntent(),
-                phrases: [
-                    "Create client case in \(.applicationName)",
+                    "Create new case in \(.applicationName)",
                     "New case in \(.applicationName)",
                     "Start case in \(.applicationName)"
                 ],
@@ -57,14 +22,36 @@ struct LegalAppShortcutsProvider: AppShortcutsProvider {
             ),
             
             AppShortcut(
-                intent: RecordBillableTimeIntent(),
+                intent: SearchCaseLawIntent(),
                 phrases: [
-                    "Record billable time in \(.applicationName)",
-                    "Log time in \(.applicationName)",
-                    "Track hours in \(.applicationName)"
+                    "Search case law in \(.applicationName)",
+                    "Research legal precedent in \(.applicationName)",
+                    "Find statute in \(.applicationName)"
                 ],
-                shortTitle: "Log Time",
-                systemImageName: "clock"
+                shortTitle: "Legal Research",
+                systemImageName: "magnifyingglass"
+            ),
+            
+            AppShortcut(
+                intent: ShowDeadlinesIntent(),
+                phrases: [
+                    "Show my deadlines in \(.applicationName)",
+                    "Check filing deadlines in \(.applicationName)",
+                    "Upcoming deadlines in \(.applicationName)"
+                ],
+                shortTitle: "Deadlines",
+                systemImageName: "calendar.badge.clock"
+            ),
+            
+            AppShortcut(
+                intent: MessageClientIntent(),
+                phrases: [
+                    "Message client in \(.applicationName)",
+                    "Contact client in \(.applicationName)",
+                    "Send client message in \(.applicationName)"
+                ],
+                shortTitle: "Message Client",
+                systemImageName: "envelope.fill"
             ),
             
             AppShortcut(

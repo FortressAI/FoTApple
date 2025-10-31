@@ -1,1 +1,104 @@
-// This is a diagnostic and fix guide, no code file to update.
+Build Errors Diagnosis and Fix Steps
+
+1) Test targets failing due to missing Info.plist (hard failure)
+
+Error:
+  error: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically. Apply an Info.plist file to the target using the INFOPLIST_FILE build setting or generate one automatically by setting the GENERATE_INFOPLIST_FILE build setting to YES (recommended). (in target 'FoTClinicianUITests' ...)
+  error: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically. (in target 'FoTClinicianTests' ...)
+
+Why it happens:
+  Xcode now expects test bundles to have an Info.plist (even for Simulator). If none is supplied, it can auto-generate one.
+
+How to fix:
+  For each test target (FoTClinicianUITests and FoTClinicianTests):
+    - In Xcode, select the target > Build Settings
+    - Set GENERATE_INFOPLIST_FILE = YES
+  (Alternatively, add a minimal Info.plist to each test target and set INFOPLIST_FILE to point to it. Auto-generation is simpler.)
+
+
+2) “Multiple commands produce …” (duplicate build steps for FoTClinician)
+
+Errors (examples):
+  error: Multiple commands produce '.../ExtractedAppShortcutsMetadata.stringsdata'
+  error: Multiple commands produce '.../FoTClinician.swiftmodule/...'
+  error: Multiple commands produce '.../FoTClinician_lto.o'
+  ...
+Notes show the same target repeated in the target graph:
+  note: Target 'FoTClinician' (project 'FoTClinician'): ExtractAppIntentsMetadata
+  note: Target 'FoTClinician' (project 'FoTClinician'): ExtractAppIntentsMetadata
+
+Why it happens:
+  The app target is effectively being built twice in the same graph, commonly due to:
+    - The same SPM product linked twice in “Frameworks, Libraries, and Embedded Content”.
+    - Duplicate entries in “Target Dependencies”.
+    - A name collision between your app target and an SPM product (both named “FoTClinician”), which can duplicate build phases like ExtractAppIntentsMetadata.
+
+How to fix in Xcode project (apps/ClinicianApp/iOS/FoTClinician.xcodeproj):
+  - Select the app target > Build Phases
+    - Target Dependencies: ensure “FoTClinician” is listed only once.
+    - Link Binary With Libraries: ensure the “FoTClinician” product is linked only once.
+  - Project navigator > Package Dependencies
+    - Ensure the SPM product “FoTClinician” is not added twice to the app target.
+  - Avoid name collisions:
+    - Prefer renaming the SPM product to “FoTClinicianKit” (or similar), or rename the app target to “FoTClinicianApp”. This removes ambiguity and resolves duplicate command issues.
+  - After cleanup:
+    - Product > Clean Build Folder
+    - Delete Derived Data
+    - Rebuild
+
+
+3) Scheme/script inconsistencies (can cause test selection failures)
+
+Observation:
+  - Scripts and logs disagree on scheme names. Script sometimes sets APP_SCHEME="FoTClinicianApp" while logs show -scheme FoTClinician.
+  - The -only-testing argument uses "${APP_SCHEME}UITests/...". If APP_SCHEME is “FoTClinicianApp”, Xcode searches for “FoTClinicianAppUITests”, but your bundle appears to be “FoTClinicianUITests”.
+
+How to fix:
+  - Pick one canonical scheme name (e.g., “FoTClinicianApp”) and use it consistently.
+  - Ensure the scheme actually includes the correct test targets.
+  - Adjust the -only-testing path to match the real test bundle name:
+      -only-testing:"FoTClinicianUITests/${TEST_CLASS}/${TEST_METHOD}"
+    or rename the test bundle to match the scheme if you prefer the current script pattern.
+  - Verify test files (e.g., UAT_DrugInteractionTests.swift) are members of the correct UITest target.
+
+
+4) SPM test layout warning (informational)
+
+Note:
+  Source files for target RulesEngineTests should be located under 'Tests/RulesEngineTests', 'Tests', or specify a custom path in Package.swift.
+
+Impact:
+  Typically harmless if your custom path is correct. To fully silence it, use the conventional layout under packages/RulesEngine/Tests/RulesEngineTests and remove the custom path, or ensure no nested Package.swift conflicts exist.
+
+
+Quick checklist to unblock builds
+
+[ ] Enable Info.plist auto-generation for test targets:
+    - FoTClinicianUITests → Build Settings → GENERATE_INFOPLIST_FILE = YES
+    - FoTClinicianTests   → Build Settings → GENERATE_INFOPLIST_FILE = YES
+
+[ ] Remove duplicate target/product links:
+    - Target Dependencies: no duplicates
+    - Link Binary With Libraries: no duplicate FoTClinician product
+
+[ ] Resolve name collisions:
+    - Rename SPM product to “FoTClinicianKit” or app target to “FoTClinicianApp”
+
+[ ] Align scheme and script:
+    - Use one scheme name everywhere (e.g., FoTClinicianApp)
+    - Match -only-testing to the actual UITest bundle name
+
+[ ] Clean and retry:
+    - Product > Clean Build Folder
+    - Delete Derived Data
+    - Rebuild, then re-run run_uat_automated.sh
+
+
+Optional: I can apply these fixes
+
+I can:
+  - Set GENERATE_INFOPLIST_FILE=YES for FoTClinicianUITests and FoTClinicianTests.
+  - Update the run_uat_automated.sh to use a single canonical scheme and correct -only-testing paths.
+  - Rename the SPM product to “FoTClinicianKit” (or rename the app target to “FoTClinicianApp”) to remove name collisions.
+
+Tell me your preferred scheme name and whether you want to rename the SPM product or the app target, and I’ll apply the changes.

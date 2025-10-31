@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+#if canImport(WebKit)
 import WebKit
+#endif
 
 // MARK: - Help View (Main Interface)
 
@@ -44,7 +46,13 @@ public struct HelpView: View {
                     }
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            #if os(iOS)
+            .background(Color(uiColor: .systemGroupedBackground))
+            #elseif os(macOS)
+            .background(Color(nsColor: .controlBackgroundColor))
+            #else
+            .background(Color(red: 0.11, green: 0.11, blue: 0.12))
+            #endif
         }
         .task {
             await viewModel.loadHelpData()
@@ -97,7 +105,13 @@ public struct HelpView: View {
             }
         }
         .padding(12)
-        .background(Color(.systemBackground))
+        #if os(iOS)
+        .background(Color(uiColor: .systemBackground))
+        #elseif os(macOS)
+        .background(Color(nsColor: .windowBackgroundColor))
+        #else
+        .background(Color.black)
+        #endif
         .cornerRadius(10)
         .shadow(color: .black.opacity(0.05), radius: 5)
         .padding()
@@ -179,7 +193,13 @@ struct HelpCategoryView: View {
                             .font(.caption)
                     }
                     .padding()
-                    .background(Color(.systemBackground))
+                    #if os(iOS)
+                    .background(Color(uiColor: .systemBackground))
+                    #elseif os(macOS)
+                    .background(Color(nsColor: .windowBackgroundColor))
+                    #else
+                    .background(Color.black)
+                    #endif
                     .cornerRadius(12)
                     .shadow(color: .black.opacity(0.05), radius: 5)
                 }
@@ -189,7 +209,13 @@ struct HelpCategoryView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.secondarySystemGroupedBackground))
+                #if os(iOS)
+                .fill(Color(uiColor: .secondarySystemGroupedBackground))
+                #elseif os(macOS)
+                .fill(Color(nsColor: .controlBackgroundColor))
+                #else
+                .fill(Color.gray.opacity(0.2))
+                #endif
         )
     }
 }
@@ -223,7 +249,13 @@ struct HelpSearchResultRow: View {
                     .font(.caption)
             }
             .padding()
-            .background(Color(.systemBackground))
+            #if os(iOS)
+            .background(Color(uiColor: .systemBackground))
+            #elseif os(macOS)
+            .background(Color(nsColor: .windowBackgroundColor))
+            #else
+            .background(Color.black)
+            #endif
             .cornerRadius(12)
             .shadow(color: .black.opacity(0.05), radius: 5)
         }
@@ -239,6 +271,7 @@ struct HelpTopicDetailView: View {
     
     var body: some View {
         NavigationStack {
+            #if canImport(WebKit) && canImport(UIKit)
             WebView(htmlFileName: topic.id)
                 .navigationTitle(topic.title)
                 .navigationBarTitleDisplayMode(.inline)
@@ -249,12 +282,28 @@ struct HelpTopicDetailView: View {
                         }
                     }
                 }
+            #else
+            VStack {
+                Text(topic.title)
+                    .font(.headline)
+                Text("Web content not available on this platform")
+                    .foregroundColor(.secondary)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
+            #endif
         }
     }
 }
 
 // MARK: - Web View (HTML Renderer)
 
+#if canImport(WebKit) && canImport(UIKit)
 struct WebView: UIViewRepresentable {
     let htmlFileName: String
     
@@ -297,6 +346,7 @@ struct WebView: UIViewRepresentable {
         webView.loadFileURL(htmlURL, allowingReadAccessTo: htmlURL.deletingLastPathComponent())
     }
 }
+#endif
 
 // MARK: - View Model
 

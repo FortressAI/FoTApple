@@ -10,16 +10,37 @@ import FoTAppIntents
 struct EducationAppShortcutsProvider: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         return [
-            // Teacher shortcuts
             AppShortcut(
-                intent: RecordAttendanceIntent(),
+                intent: ShowStudentsIntent(),
                 phrases: [
-                    "Record attendance in \(.applicationName)",
-                    "Take attendance in \(.applicationName)",
-                    "Mark attendance in \(.applicationName)"
+                    "Show my students in \(.applicationName)",
+                    "View student roster in \(.applicationName)",
+                    "List my class in \(.applicationName)"
                 ],
-                shortTitle: "Attendance",
-                systemImageName: "checklist"
+                shortTitle: "Show Students",
+                systemImageName: "person.3.fill"
+            ),
+            
+            AppShortcut(
+                intent: AddStudentIntent(),
+                phrases: [
+                    "Add student in \(.applicationName)",
+                    "Enroll new student in \(.applicationName)",
+                    "Register student in \(.applicationName)"
+                ],
+                shortTitle: "Add Student",
+                systemImageName: "person.badge.plus"
+            ),
+            
+            AppShortcut(
+                intent: CreateAssignmentIntent(),
+                phrases: [
+                    "Create assignment in \(.applicationName)",
+                    "Make new homework in \(.applicationName)",
+                    "Add assignment in \(.applicationName)"
+                ],
+                shortTitle: "Create Assignment",
+                systemImageName: "doc.badge.plus"
             ),
             
             AppShortcut(
@@ -33,105 +54,37 @@ struct EducationAppShortcutsProvider: AppShortcutsProvider {
                 systemImageName: "pencil"
             ),
             
-            // Student shortcuts
             AppShortcut(
-                intent: LogAssignmentStatusIntent(),
+                intent: ShowLearningInsightsIntent(),
                 phrases: [
-                    "Log assignment status in \(.applicationName)",
-                    "Update homework progress in \(.applicationName)",
-                    "Mark assignment complete in \(.applicationName)"
+                    "Show learning insights in \(.applicationName)",
+                    "View student progress in \(.applicationName)",
+                    "Check learning analytics in \(.applicationName)"
                 ],
-                shortTitle: "Assignment Status",
-                systemImageName: "checkmark.circle"
+                shortTitle: "Learning Insights",
+                systemImageName: "chart.bar.xaxis"
             ),
             
             AppShortcut(
-                intent: ViewGradesIntent(),
+                intent: ShowIEPsIntent(),
                 phrases: [
-                    "View my grades in \(.applicationName)",
-                    "Check my scores in \(.applicationName)",
-                    "Show my grades in \(.applicationName)"
+                    "Show IEPs in \(.applicationName)",
+                    "View IEP plans in \(.applicationName)",
+                    "Check special education plans in \(.applicationName)"
                 ],
-                shortTitle: "My Grades",
-                systemImageName: "chart.bar"
+                shortTitle: "IEPs",
+                systemImageName: "doc.text.magnifyingglass"
             ),
             
             AppShortcut(
-                intent: LogStudySessionIntent(),
+                intent: MessageParentsIntent(),
                 phrases: [
-                    "Log study session in \(.applicationName)",
-                    "Record study time in \(.applicationName)",
-                    "Track studying in \(.applicationName)"
+                    "Message parents in \(.applicationName)",
+                    "Send parent communication in \(.applicationName)",
+                    "Contact parents in \(.applicationName)"
                 ],
-                shortTitle: "Study Session",
-                systemImageName: "book.closed"
-            ),
-            
-            AppShortcut(
-                intent: CheckScheduleIntent(),
-                phrases: [
-                    "Check my schedule in \(.applicationName)",
-                    "Show my classes in \(.applicationName)",
-                    "View my timetable in \(.applicationName)"
-                ],
-                shortTitle: "My Schedule",
-                systemImageName: "calendar"
-            ),
-            
-            // NEW: Intelligent Helper Shortcuts (Transform from Record-Keeper to Learning Partner)
-            AppShortcut(
-                intent: ExplainConceptIntent(),
-                phrases: [
-                    "Explain \(\.conceptName) in \(.applicationName)",
-                    "Help me understand \(\.conceptName) in \(.applicationName)",
-                    "What is \(\.conceptName) in \(.applicationName)"
-                ],
-                shortTitle: "Explain Concept",
-                systemImageName: "brain.head.profile"
-            ),
-            
-            AppShortcut(
-                intent: AnswerQuestionIntent(),
-                phrases: [
-                    "Answer my question in \(.applicationName)",
-                    "Help me with \(\.question) in \(.applicationName)",
-                    "Explain \(\.question) in \(.applicationName)"
-                ],
-                shortTitle: "Ask Question",
-                systemImageName: "questionmark.circle.fill"
-            ),
-            
-            AppShortcut(
-                intent: GenerateLearningPathIntent(),
-                phrases: [
-                    "Create learning path for \(\.topic) in \(.applicationName)",
-                    "Help me learn \(\.topic) in \(.applicationName)",
-                    "Generate study plan for \(\.topic) in \(.applicationName)"
-                ],
-                shortTitle: "Learning Path",
-                systemImageName: "map.fill"
-            ),
-            
-            AppShortcut(
-                intent: GetTutoringHelpIntent(),
-                phrases: [
-                    "Tutor me on \(\.topic) in \(.applicationName)",
-                    "Help me with \(\.topic) in \(.applicationName)",
-                    "I'm struggling with \(\.topic) in \(.applicationName)"
-                ],
-                shortTitle: "Get Tutoring",
-                systemImageName: "person.2.fill"
-            ),
-            
-            AppShortcut(
-                intent: ExploreTopicConnectionsIntent(),
-                phrases: [
-                    "How does \(\.topic1) relate to \(\.topic2) in \(.applicationName)",
-                    "Connect \(\.topic1) and \(\.topic2) in \(.applicationName)",
-                    "Show connections between topics in \(.applicationName)"
-                ],
-                shortTitle: "Topic Connections",
-                systemImageName: "network"
+                shortTitle: "Message Parents",
+                systemImageName: "envelope.fill"
             )
         ]
     }
