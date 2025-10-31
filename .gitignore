@@ -61,3 +61,23 @@ node_modules/
 
 # Logs
 *.log
+
+# Blockchain Secrets (DO NOT COMMIT!)
+**/*wallet*.json
+blockchain/python_ingestion/*wallet*.json
+blockchain/qfot_wallets.db*
+**/*_token.txt
+**/*_api_key*
+**/token.txt
+**/api_key.txt
+**/*hcloud*
+**/.qfot-production/
+**/deployment.json
+**/*_ed25519
+**/*_rsa
+~/.ssh/qfot_*
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
