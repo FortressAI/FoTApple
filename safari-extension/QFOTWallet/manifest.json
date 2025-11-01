@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "QFOT Wallet Manager",
+  "version": "1.0.0",
+  "description": "Secure wallet management for QFOT blockchain - quantum supremacy tokenomics",
+  "icons": {
+    "16": "Resources/images/icon-16.png",
+    "32": "Resources/images/icon-32.png",
+    "48": "Resources/images/icon-48.png",
+    "128": "Resources/images/icon-128.png"
+  },
+  "action": {
+    "default_popup": "Resources/popup.html",
+    "default_icon": {
+      "16": "Resources/images/icon-16.png",
+      "32": "Resources/images/icon-32.png"
+    },
+    "default_title": "QFOT Wallet"
+  },
+  "background": {
+    "service_worker": "Resources/scripts/background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://safeaicoin.org/*",
+    "http://94.130.97.66/*",
+    "http://46.224.42.20/*",
+    "http://localhost:8000/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://safeaicoin.org/*"
+      ],
+      "js": ["Resources/scripts/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["Resources/scripts/injected.js"],
+      "matches": ["https://safeaicoin.org/*"]
+    }
+  ]
+}
+

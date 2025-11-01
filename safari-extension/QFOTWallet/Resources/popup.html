@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QFOT Wallet</title>
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen">
+        <div class="logo">⚛️</div>
+        <h2>QFOT Wallet Manager</h2>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Welcome Screen (First Time) -->
+    <div id="welcome-screen" class="screen hidden">
+        <div class="logo">⚛️</div>
+        <h2>Welcome to QFOT</h2>
+        <p>Quantum Field of Truth blockchain wallet</p>
+        <button id="create-wallet-btn" class="primary">Create New Wallet</button>
+        <button id="import-wallet-btn" class="secondary">Import Existing Wallet</button>
+    </div>
+
+    <!-- Create Wallet Screen -->
+    <div id="create-wallet-screen" class="screen hidden">
+        <h2>Create Wallet</h2>
+        <div class="form-group">
+            <label for="wallet-name">Wallet Name:</label>
+            <input type="text" id="wallet-name" placeholder="e.g., @Domain-Packs.md">
+        </div>
+        <div class="form-group">
+            <label for="wallet-type">Type:</label>
+            <select id="wallet-type">
+                <option value="creator">Creator</option>
+                <option value="miner">Miner</option>
+                <option value="validator">Validator</option>
+                <option value="platform">Platform</option>
+                <option value="governance">Governance</option>
+                <option value="ethics">Ethics</option>
+                <option value="community">Community</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="wallet-password">Password (encrypt keys):</label>
+            <input type="password" id="wallet-password" placeholder="Strong password">
+        </div>
+        <button id="confirm-create-btn" class="primary">Create Wallet</button>
+        <button id="cancel-create-btn" class="secondary">Cancel</button>
+    </div>
+
+    <!-- Backup Seed Screen -->
+    <div id="backup-screen" class="screen hidden">
+        <h2>⚠️ Backup Your Seed Phrase</h2>
+        <p class="warning">Write down these 24 words in order. Keep them safe!</p>
+        <div id="seed-phrase" class="seed-phrase"></div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="confirm-backup">
+            <label for="confirm-backup">I have written down my seed phrase</label>
+        </div>
+        <button id="confirm-backup-btn" class="primary" disabled>Continue</button>
+    </div>
+
+    <!-- Main Wallet Screen -->
+    <div id="wallet-screen" class="screen hidden">
+        <div class="header">
+            <div class="wallet-selector">
+                <select id="active-wallet-select"></select>
+                <button id="add-wallet-btn" class="icon-btn" title="Add Wallet">➕</button>
+            </div>
+        </div>
+
+        <div class="balance-card">
+            <div class="balance-label">Balance</div>
+            <div class="balance-amount" id="balance-amount">0.00</div>
+            <div class="balance-currency">QFOT</div>
+            <div class="balance-usd" id="balance-usd">$0.00 USD</div>
+        </div>
+
+        <div class="wallet-info">
+            <div class="info-row">
+                <span class="label">Address:</span>
+                <span class="value" id="wallet-address">QFOT...</span>
+                <button class="copy-btn" id="copy-address-btn" title="Copy">📋</button>
+            </div>
+            <div class="info-row">
+                <span class="label">Type:</span>
+                <span class="value" id="wallet-type-display">Creator</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="send-btn" class="action-btn">
+                <span class="icon">↗️</span>
+                <span>Send</span>
+            </button>
+            <button id="receive-btn" class="action-btn">
+                <span class="icon">↙️</span>
+                <span>Receive</span>
+            </button>
+            <button id="validate-btn" class="action-btn">
+                <span class="icon">✅</span>
+                <span>Validate</span>
+            </button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="transactions">Transactions</button>
+            <button class="tab" data-tab="mining">Mining</button>
+            <button class="tab" data-tab="settings">Settings</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- Transactions Tab -->
+            <div id="transactions-tab" class="tab-panel active">
+                <div id="transactions-list"></div>
+            </div>
+
+            <!-- Mining Tab -->
+            <div id="mining-tab" class="tab-panel hidden">
+                <div class="mining-status">
+                    <h3>Mining Status</h3>
+                    <div class="stat-row">
+                        <span>Facts Mined:</span>
+                        <span id="facts-mined">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Rewards Earned:</span>
+                        <span id="mining-rewards">0 QFOT</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Stake:</span>
+                        <span id="current-stake">0 QFOT</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-panel hidden">
+                <div class="settings-section">
+                    <h3>Security</h3>
+                    <button id="export-keys-btn" class="secondary">Export Private Key</button>
+                    <button id="backup-wallet-btn" class="secondary">Backup Wallet</button>
+                    <button id="change-password-btn" class="secondary">Change Password</button>
+                </div>
+                <div class="settings-section">
+                    <h3>Network</h3>
+                    <div class="form-group">
+                        <label>RPC Endpoint:</label>
+                        <input type="text" id="rpc-endpoint" value="https://safeaicoin.org/api">
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Danger Zone</h3>
+                    <button id="delete-wallet-btn" class="danger">Delete This Wallet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Modal -->
+    <div id="send-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Send QFOT</h2>
+            <div class="form-group">
+                <label>To Address:</label>
+                <input type="text" id="send-to-address" placeholder="QFOT...">
+            </div>
+            <div class="form-group">
+                <label>Amount:</label>
+                <input type="number" id="send-amount" placeholder="0.00" step="0.01">
+                <span class="currency-label">QFOT</span>
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="send-password" placeholder="Confirm with password">
+            </div>
+            <div class="modal-actions">
+                <button id="confirm-send-btn" class="primary">Send</button>
+                <button id="cancel-send-btn" class="secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receive Modal -->
+    <div id="receive-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Receive QFOT</h2>
+            <div class="qr-code" id="qr-code"></div>
+            <div class="receive-address">
+                <input type="text" id="receive-address" readonly>
+                <button class="copy-btn" id="copy-receive-btn">Copy</button>
+            </div>
+            <button id="close-receive-btn" class="secondary">Close</button>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/popup.js"></script>
+</body>
+</html>
+
