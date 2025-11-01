@@ -54,11 +54,14 @@ class LegalAppState: ObservableObject {
     @Published var currentCase: LegalCase?
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
-        // Sample legal cases for demonstration
+        // Sample legal cases for demonstration (TRAINING MODE ONLY)
         cases = [
             LegalCase(
                 id: UUID(),

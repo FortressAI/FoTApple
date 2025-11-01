@@ -108,11 +108,14 @@ class EducationAppState: ObservableObject {
     @Published var currentStudent: Student?
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
-        // Sample students for demonstration
+        // Sample students for demonstration (TRAINING MODE ONLY)
         students = [
             Student(
                 studentId: "STU001",

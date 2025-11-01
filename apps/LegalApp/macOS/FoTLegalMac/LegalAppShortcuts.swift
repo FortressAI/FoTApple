@@ -9,7 +9,10 @@ import FoTAppIntents
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 struct LegalAppShortcutsProvider: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
-        return [
+        // Shortcuts temporarily disabled for macOS build
+        // TODO: Implement FoTAppIntents for macOS
+        return []
+        /*return [
             // Personal Legal shortcuts
             AppShortcut(
                 intent: DocumentIncidentIntent(),
@@ -77,7 +80,7 @@ struct LegalAppShortcutsProvider: AppShortcutsProvider {
                 shortTitle: "Constitutional Analysis",
                 systemImageName: "building.columns"
             )
-        ]
+        ]*/
     }
 }
 

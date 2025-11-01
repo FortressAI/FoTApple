@@ -43,10 +43,14 @@ class EducationMacAppState: ObservableObject {
     @Published var searchText = ""
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
+        // Sample students (TRAINING MODE ONLY)
         let student1 = Student(
             studentId: "STU001",
             firstName: "Alice",

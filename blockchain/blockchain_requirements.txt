@@ -1,0 +1,22 @@
+# QFOT Secure Blockchain Server - Python Requirements
+# Production-grade dependencies
+
+# Web Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.9
+
+# Security
+cryptography==42.0.0
+slowapi==0.1.9
+
+# Database
+python-arango==7.8.1
+
+# Utilities
+pydantic==2.6.0
+
+# Multimedia Support
+Pillow==10.1.0
+aiofiles==23.2.1
+

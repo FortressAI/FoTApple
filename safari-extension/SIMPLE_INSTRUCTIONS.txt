@@ -1,0 +1,95 @@
+
+════════════════════════════════════════════════════════════════════════════════
+✅ QFOT WALLET - SIMPLE INSTRUCTIONS
+════════════════════════════════════════════════════════════════════════════════
+
+GOOD NEWS: I already built and ran the app for you!
+You don't need to use Xcode at all!
+
+════════════════════════════════════════════════════════════════════════════════
+📋 FOLLOW THESE 6 STEPS (60 seconds)
+════════════════════════════════════════════════════════════════════════════════
+
+☐ STEP 1: Open Safari
+      • Click Safari icon in your Dock
+      • OR press ⌘Space, type "Safari", Enter
+
+☐ STEP 2: Open Preferences
+      • At top of screen, click "Safari"
+      • Click "Preferences..."
+      • OR just press ⌘,  (Command + Comma)
+
+☐ STEP 3: Click "Extensions"
+      • In the window that opened
+      • Look at the top
+      • Click "Extensions" (🧩 puzzle icon)
+
+☐ STEP 4: Find "QFOT Wallet"
+      • Look at the list on the left
+      • Find "QFOT Wallet"
+      • (If you don't see it, quit Safari and reopen)
+
+☐ STEP 5: Enable It
+      • Click the checkbox next to "QFOT Wallet"
+      • Click "Allow on Every Website"
+
+☐ STEP 6: Test It
+      • Close preferences window
+      • Look for ⚛️ icon in Safari toolbar
+      • Click it
+      • You'll see your wallet!
+
+════════════════════════════════════════════════════════════════════════════════
+🎯 THAT'S IT!
+════════════════════════════════════════════════════════════════════════════════
+
+Once you enable it in Safari Preferences, you can:
+
+  • Create a new wallet
+  • Import your creator wallet (200M QFOT)
+  • Send/receive tokens
+  • Validate facts
+  • Connect to your blockchain
+
+════════════════════════════════════════════════════════════════════════════════
+❓ TROUBLESHOOTING
+════════════════════════════════════════════════════════════════════════════════
+
+"I don't see QFOT Wallet in Extensions list"
+  → Quit Safari completely (⌘Q)
+  → Wait 2 seconds
+  → Reopen Safari
+  → Try again
+
+"I don't see the ⚛️ icon"
+  → Right-click Safari toolbar
+  → Click "Customize Toolbar..."
+  → Drag QFOT Wallet icon to toolbar
+
+"Nothing happens when I click the icon"
+  → Tell me and I'll help troubleshoot
+
+════════════════════════════════════════════════════════════════════════════════
+💰 YOUR WALLET INFO
+════════════════════════════════════════════════════════════════════════════════
+
+Once installed, you can import your creator wallet:
+
+  Alias:   @Domain-Packs.md
+  Balance: 200,000,000 QFOT (20% of total supply)
+  
+  Wallet info location:
+  ~/Documents/FoTApple/safari-extension/genesis_wallets.json
+
+════════════════════════════════════════════════════════════════════════════════
+✅ DONE!
+════════════════════════════════════════════════════════════════════════════════
+
+No Xcode needed.
+No deployment needed.
+No store needed.
+
+Just enable in Safari Preferences and use it!
+
+════════════════════════════════════════════════════════════════════════════════
+

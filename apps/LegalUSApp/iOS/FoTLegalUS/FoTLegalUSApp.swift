@@ -28,11 +28,14 @@ class LegalAppState: ObservableObject {
     @Published var cases: [LegalCase] = []
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
-        // Sample cases for demonstration
+        // Sample cases for demonstration (TRAINING MODE ONLY)
         let case1 = LegalCase(
             caseNumber: "CV-2024-001",
             title: "Smith v. Johnson",

@@ -1,0 +1,127 @@
+{
+    "manifest_version": 3,
+    "name": "FoT Suite",
+    "description": "Field of Truth Suite - Medical, Legal, Education, and Health web enhancements with QFOT blockchain integration",
+    "version": "1.0.0",
+    
+    "icons": {
+        "48": "images/icon-48.png",
+        "96": "images/icon-96.png",
+        "128": "images/icon-128.png",
+        "256": "images/icon-256.png",
+        "512": "images/icon-512.png"
+    },
+    
+    "permissions": [
+        "storage",
+        "activeTab",
+        "contextMenus",
+        "nativeMessaging"
+    ],
+    
+    "host_permissions": [
+        "*://pubmed.ncbi.nlm.nih.gov/*",
+        "*://clinicaltrials.gov/*",
+        "*://rxnav.nlm.nih.gov/*",
+        "*://www.drugs.com/*",
+        "*://www.webmd.com/*",
+        "*://courtlistener.com/*",
+        "*://www.pacer.gov/*",
+        "*://scholar.google.com/*",
+        "*://casetext.com/*",
+        "*://www.law.cornell.edu/*",
+        "*://www.khanacademy.org/*",
+        "*://classroom.google.com/*",
+        "*://www.ixl.com/*",
+        "*://www.pearsonrealize.com/*",
+        "*://www.myfitnesspal.com/*",
+        "*://www.strava.com/*",
+        "*://www.fitbit.com/*",
+        "*://safeaicoin.org/*"
+    ],
+    
+    "background": {
+        "service_worker": "scripts/background.js",
+        "type": "module"
+    },
+    
+    "content_scripts": [
+        {
+            "matches": [
+                "*://pubmed.ncbi.nlm.nih.gov/*",
+                "*://clinicaltrials.gov/*",
+                "*://www.drugs.com/*",
+                "*://www.webmd.com/*"
+            ],
+            "js": ["scripts/browser-polyfill.js", "scripts/domains/clinician.js"],
+            "css": ["styles/clinician.css"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "*://courtlistener.com/*",
+                "*://www.pacer.gov/*",
+                "*://scholar.google.com/*",
+                "*://casetext.com/*",
+                "*://www.law.cornell.edu/*"
+            ],
+            "js": ["scripts/browser-polyfill.js", "scripts/domains/legal.js"],
+            "css": ["styles/legal.css"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "*://www.khanacademy.org/*",
+                "*://classroom.google.com/*",
+                "*://www.ixl.com/*",
+                "*://www.pearsonrealize.com/*"
+            ],
+            "js": ["scripts/browser-polyfill.js", "scripts/domains/education.js"],
+            "css": ["styles/education.css"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "*://www.myfitnesspal.com/*",
+                "*://www.strava.com/*",
+                "*://www.fitbit.com/*"
+            ],
+            "js": ["scripts/browser-polyfill.js", "scripts/domains/health.js"],
+            "css": ["styles/health.css"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://safeaicoin.org/*"],
+            "js": ["scripts/browser-polyfill.js", "scripts/qfot-integration.js"],
+            "css": ["styles/qfot.css"],
+            "run_at": "document_start"
+        }
+    ],
+    
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "images/toolbar-icon.svg",
+        "default_title": "FoT Suite"
+    },
+    
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+F",
+                "mac": "Command+Shift+F"
+            }
+        }
+    },
+    
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "scripts/injected.js",
+                "styles/*.css",
+                "images/*"
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}
+

@@ -1,0 +1,9 @@
+{
+    "name": "com.fotapple.health",
+    "description": "Personal Health Native Messaging Host",
+    "path": "/Applications/Personal Health.app/Contents/MacOS/Personal Health",
+    "type": "stdio",
+    "allowed_extensions": [
+        "com.fotapple.fotsuite"
+    ]
+}

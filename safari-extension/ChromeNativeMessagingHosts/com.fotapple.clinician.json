@@ -1,0 +1,9 @@
+{
+    "name": "com.fotapple.clinician",
+    "description": "FoT Clinician Native Messaging Host",
+    "path": "/Applications/FoT Clinician.app/Contents/MacOS/FoT Clinician",
+    "type": "stdio",
+    "allowed_origins": [
+        "chrome-extension://EXTENSION_ID_HERE/"
+    ]
+}

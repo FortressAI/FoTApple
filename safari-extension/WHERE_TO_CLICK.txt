@@ -1,0 +1,144 @@
+
+════════════════════════════════════════════════════════════════════════════════
+🎯 EXACTLY WHERE TO CLICK IN XCODE
+════════════════════════════════════════════════════════════════════════════════
+
+
+XCODE WINDOW - TOP LEFT CORNER:
+┌────────────────────────────────────────────────────────────────────────────┐
+│  [<]  ▶️  [QFOT Wallet (iOS) ▼] [iPhone 16 Pro ▼]   [QFOT Wallet]       │
+│       👆                                                                    │
+│       │                                                                     │
+│       │  1. CLICK HERE (the dropdown that says "iOS")                      │
+│       │                                                                     │
+│       └─────────────────────────────────────────────────────────          │
+│                                                                             │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+WHEN YOU CLICK, YOU'LL SEE A MENU:
+┌────────────────────────────────────┐
+│  QFOT Wallet (iOS)            ✓   │  ← Currently selected (WRONG!)
+│  QFOT Wallet (macOS)               │  ← CLICK THIS ONE!
+│  FoT Wallet (iOS)                  │
+│  FoT Wallet (macOS)                │  ← Or this if you don't see QFOT
+└────────────────────────────────────┘
+
+
+AFTER YOU SELECT macOS:
+┌────────────────────────────────────────────────────────────────────────────┐
+│  [<]  ▶️  [QFOT Wallet (macOS) ▼] [My Mac ▼]       [QFOT Wallet]        │
+│       👆                                                                    │
+│       │                                                                     │
+│       │  2. NOW CLICK THE PLAY BUTTON (or press ⌘R)                       │
+│       │                                                                     │
+│       └─────────────────────────────────────────────────────────          │
+│                                                                             │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+WHEN IT'S RUNNING:
+┌────────────────────────────────────────────────────────────────────────────┐
+│  [<]  ⏹  [QFOT Wallet (macOS) ▼] [My Mac ▼]       [QFOT Wallet]         │
+│       👆                                                                    │
+│       │                                                                     │
+│       └── Stop button (means it's running!)                                │
+│                                                                             │
+│  Status: Running QFOT Wallet  ← You'll see this!                          │
+│                                                                             │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+THEN IN SAFARI:
+┌────────────────────────────────────────────────────────────────────────────┐
+│  Safari  File  Edit  View  History  Bookmarks  Develop  Window  Help      │
+│  👆                                                                         │
+│  └── Click "Safari" → Preferences (or press ⌘,)                           │
+└────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│  General  Tabs  AutoFill  Passwords  Search  Security  [Extensions]  ...  │
+│                                                              👆              │
+│                                                              └── Click here │
+└────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│  Extensions:                   │  QFOT Wallet                               │
+│                                │  ┌───────────────────────────────────┐    │
+│  ☐ AdBlock                     │  │ ☑ Enable QFOT Wallet             │    │
+│  ☐ Grammarly                   │  │                                   │    │
+│  ☐ QFOT Wallet  ← Check this! │  │ Allows access to:                 │    │
+│  ☐ Other Extension             │  │                                   │    │
+│                                │  │ ⦿ Always Allow on Every Website   │    │
+│                                │  │ ○ Allow on specific websites...   │    │
+│                                │  │                                   │    │
+│                                │  └───────────────────────────────────┘    │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+FINALLY IN SAFARI TOOLBAR:
+┌────────────────────────────────────────────────────────────────────────────┐
+│  ← → 🏠 safeaicoin.org                           🔍  ⚛️  👤  ⚙️         │
+│                                                      👆                     │
+│                                                      └── QFOT Wallet icon!  │
+│                                                          Click to use!      │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+════════════════════════════════════════════════════════════════════════════════
+🎯 QUICK CHECKLIST
+════════════════════════════════════════════════════════════════════════════════
+
+□ 1. Open Xcode (should be open)
+□ 2. Click dropdown at top left (says "iOS")
+□ 3. Select "QFOT Wallet (macOS)" from menu
+□ 4. Press ⌘R or click Play ▶️ button
+□ 5. Wait for "Running QFOT Wallet" status
+□ 6. Quit Safari (⌘Q)
+□ 7. Reopen Safari
+□ 8. Safari → Preferences → Extensions
+□ 9. Check box for "QFOT Wallet"
+□ 10. Select "Always Allow on Every Website"
+□ 11. Click ⚛️ icon in Safari toolbar
+□ 12. Create or import wallet
+□ 13. Success!
+
+
+════════════════════════════════════════════════════════════════════════════════
+❓ COMMON QUESTIONS
+════════════════════════════════════════════════════════════════════════════════
+
+Q: I don't see "QFOT Wallet (macOS)" in the dropdown
+A: Try "FoT Wallet (macOS)" - same thing, different name
+
+Q: The dropdown only shows iOS options
+A: Product → Scheme → Manage Schemes → Enable macOS schemes
+
+Q: Build still fails
+A: Product → Clean Build Folder (⌘⇧K), then try again
+
+Q: I don't see the extension in Safari
+A: Make sure the app is RUNNING in Xcode (see "Running..." status)
+
+Q: Do I need to deploy this?
+A: NO! It runs locally. Blockchain is already deployed.
+
+Q: Do I need App Store?
+A: NO! Not for personal use. Only if you want public distribution.
+
+
+════════════════════════════════════════════════════════════════════════════════
+✅ YOU'RE READY!
+════════════════════════════════════════════════════════════════════════════════
+
+Everything is built and ready.
+Blockchain is running.
+Wallets are created.
+
+Just click that dropdown, select macOS, and press ⌘R!
+
+That's literally all you need to do! 🚀
+
+
+════════════════════════════════════════════════════════════════════════════════
+

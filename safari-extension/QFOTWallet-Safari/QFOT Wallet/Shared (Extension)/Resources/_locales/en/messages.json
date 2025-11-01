@@ -1,0 +1,10 @@
+{
+    "extension_name": {
+        "message": "QFOT Wallet",
+        "description": "The display name for the extension."
+    },
+    "extension_description": {
+        "message": "Secure QFOT token wallet with Ed25519 encryption. Manage, send, and receive QFOT tokens on the Quantum Field of Truth blockchain.",
+        "description": "Description of what the extension does."
+    }
+}

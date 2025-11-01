@@ -38,13 +38,23 @@ public struct HelpView: View {
                 }
             }
             .navigationTitle("Help")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
+            #endif
             .toolbar {
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
                         dismiss()
                     }
                 }
+                #else
+                ToolbarItem(placement: .automatic) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+                #endif
             }
             #if os(iOS)
             .background(Color(uiColor: .systemGroupedBackground))
@@ -274,13 +284,23 @@ struct HelpTopicDetailView: View {
             #if canImport(WebKit) && canImport(UIKit)
             WebView(htmlFileName: topic.id)
                 .navigationTitle(topic.title)
+                #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
+                #endif
                 .toolbar {
+                    #if os(iOS)
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Done") {
                             dismiss()
                         }
                     }
+                    #else
+                    ToolbarItem(placement: .automatic) {
+                        Button("Done") {
+                            dismiss()
+                        }
+                    }
+                    #endif
                 }
             #else
             VStack {
@@ -290,11 +310,19 @@ struct HelpTopicDetailView: View {
                     .foregroundColor(.secondary)
             }
             .toolbar {
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
                         dismiss()
                     }
                 }
+                #else
+                ToolbarItem(placement: .automatic) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+                #endif
             }
             #endif
         }

@@ -1,0 +1,9 @@
+{
+    "name": "com.fotapple.legal",
+    "description": "FoT Legal Native Messaging Host",
+    "path": "/Applications/FoT Legal.app/Contents/MacOS/FoT Legal",
+    "type": "stdio",
+    "allowed_extensions": [
+        "com.fotapple.fotsuite"
+    ]
+}

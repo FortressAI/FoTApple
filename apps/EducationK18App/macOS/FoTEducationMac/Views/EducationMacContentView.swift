@@ -24,16 +24,42 @@ struct EducationMacContentView: View {
             }
             .navigationTitle("Education K-18")
         } content: {
-            // Middle panel - Student list
-            StudentListMac()
+            // Middle panel - Content based on selected tab
+            switch selectedTab {
+            case .students:
+                StudentListMac()
+            case .assignments:
+                AllAssignmentsView()
+            case .assessments:
+                AllAssessmentsView()
+            case .gradeBook:
+                GradeBookView()
+            case .virtues:
+                VirtuesOverviewView()
+            }
         } detail: {
-            // Detail panel - Student details
-            if let student = appState.selectedStudent {
-                StudentDetailMac(student: student)
-            } else {
-                Text("Select a student")
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // Detail panel - Context-specific details
+            switch selectedTab {
+            case .students:
+                if let student = appState.selectedStudent {
+                    StudentDetailMac(student: student)
+                } else {
+                    EmptyStateView(
+                        icon: "person.fill.questionmark",
+                        title: "No Student Selected",
+                        message: "Select a student from the list to view their details"
+                    )
+                }
+            case .assignments, .assessments, .gradeBook, .virtues:
+                if let student = appState.selectedStudent {
+                    StudentDetailMac(student: student)
+                } else {
+                    EmptyStateView(
+                        icon: icon(for: selectedTab),
+                        title: "Select a Student",
+                        message: "Choose a student to view \(selectedTab.rawValue.lowercased()) details"
+                    )
+                }
             }
         }
         .navigationSplitViewStyle(.balanced)
@@ -678,6 +704,398 @@ extension Student {
         let first = String(firstName.prefix(1))
         let last = String(lastName.prefix(1))
         return "\(first)\(last)"
+    }
+}
+
+// MARK: - Additional Views for Navigation
+
+struct EmptyStateView: View {
+    let icon: String
+    let title: String
+    let message: String
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: icon)
+                .font(.system(size: 60))
+                .foregroundColor(.secondary)
+            Text(title)
+                .font(.title2)
+                .fontWeight(.semibold)
+            Text(message)
+                .font(.body)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+struct AllAssignmentsView: View {
+    @EnvironmentObject var appState: EducationMacAppState
+    
+    var allAssignments: [(student: Student, assignment: Assignment)] {
+        appState.students.flatMap { student in
+            student.assignments.map { (student: student, assignment: $0) }
+        }
+        .sorted { $0.assignment.dueDate < $1.assignment.dueDate }
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header
+            HStack {
+                Text("All Assignments")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Spacer()
+                Text("\(allAssignments.count) total")
+                    .foregroundColor(.secondary)
+            }
+            .padding()
+            
+            Divider()
+            
+            // Assignment list
+            if allAssignments.isEmpty {
+                EmptyStateView(
+                    icon: "doc.text.fill",
+                    title: "No Assignments",
+                    message: "No assignments found across all students"
+                )
+            } else {
+                List(allAssignments, id: \.assignment.id) { item in
+                    AssignmentRowWithStudent(student: item.student, assignment: item.assignment)
+                        .onTapGesture {
+                            appState.selectedStudent = item.student
+                        }
+                }
+            }
+        }
+        .navigationTitle("Assignments")
+    }
+}
+
+struct AssignmentRowWithStudent: View {
+    let student: Student
+    let assignment: Assignment
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(assignment.title)
+                    .font(.headline)
+                Spacer()
+                StatusBadgeEducation(status: assignment.status)
+            }
+            
+            HStack {
+                Text(student.fullName)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                Spacer()
+                Label(formatDate(assignment.dueDate), systemImage: "calendar")
+                    .font(.caption)
+                    .foregroundColor(assignment.isOverdue ? .red : .secondary)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+    
+    private func formatDate(_ date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        return formatter.localizedString(for: date, relativeTo: Date())
+    }
+}
+
+struct AllAssessmentsView: View {
+    @EnvironmentObject var appState: EducationMacAppState
+    
+    var allAssessments: [(student: Student, assessment: Assessment)] {
+        appState.students.flatMap { student in
+            student.assessments.map { (student: student, assessment: $0) }
+        }
+        .sorted { $0.assessment.date > $1.assessment.date }
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header
+            HStack {
+                Text("All Assessments")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Spacer()
+                Text("\(allAssessments.count) total")
+                    .foregroundColor(.secondary)
+            }
+            .padding()
+            
+            Divider()
+            
+            // Assessment list
+            if allAssessments.isEmpty {
+                EmptyStateView(
+                    icon: "checkmark.circle.fill",
+                    title: "No Assessments",
+                    message: "No assessments found across all students"
+                )
+            } else {
+                List(allAssessments, id: \.assessment.id) { item in
+                    AssessmentRowWithStudent(student: item.student, assessment: item.assessment)
+                        .onTapGesture {
+                            appState.selectedStudent = item.student
+                        }
+                }
+            }
+        }
+        .navigationTitle("Assessments")
+    }
+}
+
+struct AssessmentRowWithStudent: View {
+    let student: Student
+    let assessment: Assessment
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(assessment.title)
+                    .font(.headline)
+                Text(student.fullName)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                Text(formatDate(assessment.date))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
+            VStack(spacing: 4) {
+                Text(assessment.letterGrade)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(gradeColor(assessment.letterGrade))
+                Text("\(Int(assessment.percentage))%")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+    
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
+    }
+    
+    private func gradeColor(_ grade: String) -> Color {
+        switch grade {
+        case "A": return .green
+        case "B": return .blue
+        case "C": return .orange
+        default: return .red
+        }
+    }
+}
+
+struct GradeBookView: View {
+    @EnvironmentObject var appState: EducationMacAppState
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header
+            HStack {
+                Text("Grade Book")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Spacer()
+                Button(action: {}) {
+                    Label("Export", systemImage: "square.and.arrow.up")
+                }
+            }
+            .padding()
+            
+            Divider()
+            
+            // Grade table
+            if appState.students.isEmpty {
+                EmptyStateView(
+                    icon: "book.fill",
+                    title: "No Students",
+                    message: "Add students to view grades"
+                )
+            } else {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ForEach(appState.students) { student in
+                            GradeBookRow(student: student)
+                                .onTapGesture {
+                                    appState.selectedStudent = student
+                                }
+                            Divider()
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("Grade Book")
+    }
+}
+
+struct GradeBookRow: View {
+    let student: Student
+    
+    var averageGrade: Double {
+        guard !student.assessments.isEmpty else { return 0 }
+        let total = student.assessments.reduce(0.0) { $0 + $1.percentage }
+        return total / Double(student.assessments.count)
+    }
+    
+    var body: some View {
+        HStack {
+            Text(student.fullName)
+                .font(.headline)
+                .frame(width: 200, alignment: .leading)
+            
+            Text(student.gradeLevel.rawValue)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .frame(width: 100, alignment: .leading)
+            
+            Spacer()
+            
+            Text("\(student.assessments.count) assessments")
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .frame(width: 120, alignment: .trailing)
+            
+            Text(String(format: "%.1f%%", averageGrade))
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundColor(averageGrade >= 90 ? .green : averageGrade >= 70 ? .blue : .orange)
+                .frame(width: 80, alignment: .trailing)
+        }
+        .padding()
+    }
+}
+
+struct VirtuesOverviewView: View {
+    @EnvironmentObject var appState: EducationMacAppState
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header
+            HStack {
+                Text("Character Development")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Spacer()
+                Text("Aristotelian Virtues")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            .padding()
+            
+            Divider()
+            
+            // Virtues grid
+            if appState.students.isEmpty {
+                EmptyStateView(
+                    icon: "star.fill",
+                    title: "No Students",
+                    message: "Add students to track character development"
+                )
+            } else {
+                ScrollView {
+                    VStack(spacing: 16) {
+                        ForEach(appState.students) { student in
+                            VirtueCardMac(student: student)
+                                .onTapGesture {
+                                    appState.selectedStudent = student
+                                }
+                        }
+                    }
+                    .padding()
+                }
+            }
+        }
+        .navigationTitle("Virtues")
+    }
+}
+
+struct VirtueCardMac: View {
+    let student: Student
+    
+    var body: some View {
+        GroupBox {
+            VStack(alignment: .leading, spacing: 16) {
+                Text(student.fullName)
+                    .font(.headline)
+                
+                Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: 12) {
+                    GridRow {
+                        VirtueIndicator(name: "Justice", value: student.virtueScores.justice, color: .blue)
+                        VirtueIndicator(name: "Temperance", value: student.virtueScores.temperance, color: .green)
+                    }
+                    GridRow {
+                        VirtueIndicator(name: "Prudence", value: student.virtueScores.prudence, color: .orange)
+                        VirtueIndicator(name: "Fortitude", value: student.virtueScores.fortitude, color: .purple)
+                    }
+                }
+                
+                HStack {
+                    Text("Average:")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("\(Int(student.virtueScores.average * 100))%")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.green)
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+struct VirtueIndicator: View {
+    let name: String
+    let value: Double
+    let color: Color
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text(name)
+                    .font(.subheadline)
+                Spacer()
+                Text("\(Int(value * 100))%")
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundColor(color)
+            }
+            
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(height: 6)
+                        .cornerRadius(3)
+                    
+                    Rectangle()
+                        .fill(color)
+                        .frame(width: geometry.size.width * CGFloat(value), height: 6)
+                        .cornerRadius(3)
+                }
+            }
+            .frame(height: 6)
+        }
     }
 }
 

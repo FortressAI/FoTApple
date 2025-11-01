@@ -1,0 +1,32 @@
+# ================================================================
+# 🔑 APP STORE CONNECT API CONFIGURATION
+# ================================================================
+# This file contains the configuration for automated deployment
+# to App Store Connect using the App Store Connect API
+# ================================================================
+
+# API Key Configuration
+API_KEY_ID="A746Z2JSK2"
+API_KEY_PATH="private_keys/AuthKey_A746Z2JSK2.p8"
+API_ISSUER_ID="0be0b98b-ed15-45d9-a644-9a1a26b22d31"
+
+# Team Configuration
+TEAM_ID="WWQQB728U5"
+DEVELOPER_ID="0be0b98b-ed15-45d9-a644-9a1a26b22d31"
+
+# Version Configuration
+CURRENT_VERSION="9"
+
+# Deployment Status
+IOS_APPS_DEPLOYED="true"
+WATCH_APPS_DEPLOYED="false"
+
+# Deployed Apps
+DEPLOYED_IOS_APPS="PersonalHealthApp,FoTLegalApp,FoTEducationApp,FoTParentApp,FoTClinicianApp"
+
+# ================================================================
+# NOTES:
+# - This API key (A746Z2JSK2) should have App Manager role
+# - Use for Watch app deployment after iOS apps are live
+# - Never commit private_keys/ directory to git
+# ================================================================

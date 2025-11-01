@@ -1,0 +1,9 @@
+{
+    "name": "com.fotapple.education",
+    "description": "FoT Education Native Messaging Host",
+    "path": "/Applications/FoT Education.app/Contents/MacOS/FoT Education",
+    "type": "stdio",
+    "allowed_extensions": [
+        "com.fotapple.fotsuite"
+    ]
+}

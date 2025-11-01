@@ -111,12 +111,14 @@ class AppState: ObservableObject {
     @Published var patients: [Patient] = []
     
     init() {
-        // Load sample data for development
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
-        // Create sample patients
+        // Create sample patients (TRAINING MODE ONLY)
         let patient1 = Patient(
             mrn: "MRN001",
             firstName: "John",

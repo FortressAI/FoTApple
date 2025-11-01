@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoT Suite</title>
+    <style>
+        body {
+            width: 360px;
+            min-height: 400px;
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .domains {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .domain-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .domain-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .domain-card .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        .domain-card .name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .domain-card .status {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .status.connected {
+            color: #10b981;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .qfot-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚛️ FoT Suite</h1>
+        <p>Field of Truth Web Enhancements</p>
+    </div>
+    
+    <div class="domains">
+        <div class="domain-card" data-domain="clinician">
+            <div class="icon">⚕️</div>
+            <div class="name">Clinician</div>
+            <div class="status" id="clinician-status">Checking...</div>
+        </div>
+        <div class="domain-card" data-domain="legal">
+            <div class="icon">⚖️</div>
+            <div class="name">Legal</div>
+            <div class="status" id="legal-status">Checking...</div>
+        </div>
+        <div class="domain-card" data-domain="education">
+            <div class="icon">📚</div>
+            <div class="name">Education</div>
+            <div class="status" id="education-status">Checking...</div>
+        </div>
+        <div class="domain-card" data-domain="health">
+            <div class="icon">💪</div>
+            <div class="name">Health</div>
+            <div class="status" id="health-status">Checking...</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="qfot-badge">⚛️ QFOT Blockchain Integrated</div>
+    </div>
+    
+    <script>
+        // Check app connection status
+        browser.runtime.sendMessage({ action: 'get_app_status' }).then(status => {
+            document.getElementById('clinician-status').textContent = status.clinician ? '✓ Connected' : '○ Not Running';
+            document.getElementById('clinician-status').className = status.clinician ? 'status connected' : 'status';
+            
+            document.getElementById('legal-status').textContent = status.legal ? '✓ Connected' : '○ Not Running';
+            document.getElementById('legal-status').className = status.legal ? 'status connected' : 'status';
+            
+            document.getElementById('education-status').textContent = status.education ? '✓ Connected' : '○ Not Running';
+            document.getElementById('education-status').className = status.education ? 'status connected' : 'status';
+            
+            document.getElementById('health-status').textContent = status.health ? '✓ Connected' : '○ Not Running';
+            document.getElementById('health-status').className = status.health ? 'status connected' : 'status';
+        });
+        
+        // Open Mac app on click
+        document.querySelectorAll('.domain-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const domain = card.dataset.domain;
+                // TODO: Open Mac app via deep link
+                alert(`Opening FoT ${domain.charAt(0).toUpperCase() + domain.slice(1)} app...`);
+            });
+        });
+    </script>
+</body>
+</html>

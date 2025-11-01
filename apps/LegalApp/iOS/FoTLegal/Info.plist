@@ -21,15 +21,19 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>13</string>
+	<string>19</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>
-	<string>Capture evidence photos and documents for legal cases</string>
+	<string>This app requires camera access for document scanning and visual content creation in your professional workflow.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Record location for incident documentation</string>
+	<string>Location access helps provide location-aware features and improves app functionality.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save legal evidence and documentation</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Voice commands for hands-free operation and Siri integration</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record audio evidence with cryptographic receipts and voice commands</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

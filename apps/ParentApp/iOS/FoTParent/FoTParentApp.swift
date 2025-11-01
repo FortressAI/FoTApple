@@ -108,11 +108,14 @@ class ParentAppState: ObservableObject {
     @Published var selectedChild: StudentInfo?
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
-        // Sample children for demonstration
+        // Sample children for demonstration (TRAINING MODE ONLY)
         children = [
             StudentInfo(
                 name: "Emma Smith",

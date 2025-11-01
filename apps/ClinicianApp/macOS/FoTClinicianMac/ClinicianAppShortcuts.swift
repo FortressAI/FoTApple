@@ -9,7 +9,10 @@ import FoTAppIntents
 @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
 struct ClinicianAppShortcutsProvider: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
-        return [
+        // Shortcuts temporarily disabled for macOS build
+        // TODO: Implement FoTAppIntents for macOS
+        return []
+        /*return [
             AppShortcut(
                 intent: StartEncounterIntent(),
                 phrases: [
@@ -75,6 +78,6 @@ struct ClinicianAppShortcutsProvider: AppShortcutsProvider {
                 shortTitle: "End Encounter",
                 systemImageName: "checkmark.circle"
             )
-        ]
+        ]*/
     }
 }

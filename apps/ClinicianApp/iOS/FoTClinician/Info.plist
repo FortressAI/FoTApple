@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>24</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
@@ -39,6 +39,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires camera access for document scanning and visual content creation in your professional workflow.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location access helps provide location-aware features and improves app functionality.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Voice commands and dictation for clinical documentation</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Voice commands for hands-free operation and Siri integration</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

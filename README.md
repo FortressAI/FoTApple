@@ -4,6 +4,16 @@
 
 Field of Truth provides domain-specific AI applications with cryptographic proof generation, virtue-guided optimization, and audit knowledge graphs for clinicians, educators, and legal professionals.
 
+## 🆕 Latest Updates (November 2025)
+
+- ✅ **Training/Live Mode System** - Toggle between sample data (training) and real production data (live - NO MOCKS)
+- ✅ **Full Siri Integration** - Voice commands working across all apps with proper permissions
+- ✅ **Education Mac App** - Complete navigation flow with 5 functional sections
+- ✅ **Voice Assistant** - Apps now speak to users with contextual guidance
+- ✅ **35 Voice Commands** - Hands-free operation across all domains
+
+**See:** `COMPREHENSIVE_FIXES_SUMMARY.md` and `QUICK_FIX_REFERENCE.md` for details.
+
 ## 🎯 Overview
 
 FoT is a quantum-inspired multi-objective optimization platform that runs natively on iOS, iPadOS, macOS, watchOS, and visionOS. It combines:
@@ -12,6 +22,8 @@ FoT is a quantum-inspired multi-objective optimization platform that runs native
 - **Audit Knowledge Graph (AKG)**: Cryptographic proof generation for every decision
 - **Virtue-Guided Reasoning**: Aristotelian virtues (justice, temperance, prudence, fortitude) embedded in optimization
 - **Domain Packs**: Specialized modules for healthcare, education, and legal domains
+- **Voice-First AI**: Siri integration with 35+ voice commands
+- **Training/Live Modes**: Sample data for learning, real data for production
 
 ## 📱 Applications
 

@@ -168,10 +168,18 @@ public struct HelpScreenView: View {
                 }
             }
             .navigationTitle("Help & Support")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
+            #endif
             .toolbar {
-                #if !os(watchOS)
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+                #elseif os(macOS)
+                ToolbarItem(placement: .automatic) {
                     Button("Done") {
                         dismiss()
                     }
@@ -287,7 +295,9 @@ struct HelpTopicDetail: View {
             }
         }
         .navigationTitle(topic.title)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

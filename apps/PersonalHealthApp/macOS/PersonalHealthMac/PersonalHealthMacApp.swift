@@ -25,11 +25,14 @@ class HealthStateMac: ObservableObject {
     @Published var currentDate = Date()
     
     init() {
-        // Load sample health data
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     func loadSampleData() {
+        // Sample health data (TRAINING MODE ONLY)
         healthRecords = [
             HealthRecord(
                 date: Date().addingTimeInterval(-86400 * 7),

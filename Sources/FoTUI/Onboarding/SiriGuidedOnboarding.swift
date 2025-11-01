@@ -51,10 +51,11 @@ public struct SiriGuidedOnboarding: View {
                             .tag(index)
                         }
                     }
+                    #if os(iOS)
                     .tabViewStyle(.page(indexDisplayMode: .always))
-                    #if !os(watchOS)
                     .indexViewStyle(.page(backgroundDisplayMode: .always))
-                    #else
+                    #elseif os(watchOS)
+                    .tabViewStyle(.page(indexDisplayMode: .always))
                     .indexViewStyle(.page(backgroundDisplayMode: .automatic))
                     #endif
                     .transition(.opacity)

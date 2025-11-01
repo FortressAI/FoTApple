@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>14</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -33,13 +33,19 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>Add parent-teacher meetings and school events to your calendar</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Take photos of school documents and permission slips</string>
+	<string>This app requires camera access for document scanning and visual content creation in your professional workflow.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Update emergency contact information</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location access helps provide location-aware features and improves app functionality.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save and share school-related documents</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>Set reminders for assignment deadlines and school events</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Voice commands for hands-free operation and Siri integration</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Voice commands for family management and reminders</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

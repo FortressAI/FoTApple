@@ -43,11 +43,14 @@ class MacAppState: ObservableObject {
     @Published var searchText = ""
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
-        // Sample patients
+        // Sample patients (TRAINING MODE ONLY)
         let patient1 = Patient(
             mrn: "MRN001",
             firstName: "John",

@@ -43,10 +43,14 @@ class LegalMacAppState: ObservableObject {
     @Published var searchText = ""
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     private func loadSampleData() {
+        // Sample cases (TRAINING MODE ONLY)
         let case1 = LegalCase(
             caseNumber: "CV-2024-001",
             title: "Smith v. Johnson",

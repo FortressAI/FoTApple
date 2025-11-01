@@ -1,0 +1,494 @@
+/* QFOT Wallet - Safari Extension Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --success-color: #48bb78;
+    --danger-color: #f56565;
+    --warning-color: #ed8936;
+    --bg-color: #1a202c;
+    --surface-color: #2d3748;
+    --text-primary: #f7fafc;
+    --text-secondary: #a0aec0;
+    --border-color: #4a5568;
+}
+
+body {
+    width: 400px;
+    min-height: 500px;
+    max-height: 600px;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-y: auto;
+}
+
+/* Screen Management */
+.screen {
+    padding: 20px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo */
+.logo {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+/* Typography */
+h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+p {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Buttons */
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+button.primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+button.primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+button.secondary {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+button.secondary:hover {
+    background: var(--border-color);
+}
+
+button.danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+button.icon-btn {
+    width: auto;
+    padding: 8px 12px;
+    margin: 0 0 0 8px;
+    font-size: 16px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Balance Card */
+.balance-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.balance-label {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.balance-amount {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.balance-currency {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.balance-usd {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Wallet Info */
+.wallet-info {
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.info-row .label {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.info-row .value {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: monospace;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+    width: auto;
+    margin: 0 0 0 8px;
+}
+
+/* Actions */
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 8px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    gap: 8px;
+}
+
+.action-btn .icon {
+    font-size: 24px;
+}
+
+.action-btn span:last-child {
+    font-size: 12px;
+}
+
+.action-btn:hover {
+    background: var(--border-color);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 0;
+    margin: 0;
+    width: auto;
+    position: relative;
+}
+
+.tab.active {
+    color: var(--primary-color);
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+.tab-panel {
+    min-height: 200px;
+}
+
+.tab-panel.hidden {
+    display: none;
+}
+
+/* Transactions List */
+#transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.transaction-item {
+    background: var(--surface-color);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-item.empty {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px 12px;
+}
+
+.transaction-type {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.transaction-details {
+    flex: 1;
+}
+
+.transaction-address {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+.transaction-amount {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.transaction-amount.positive {
+    color: var(--success-color);
+}
+
+.transaction-amount.negative {
+    color: var(--danger-color);
+}
+
+/* Mining Stats */
+.mining-status {
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+/* Settings */
+.settings-section {
+    margin-bottom: 24px;
+}
+
+.settings-section h3 {
+    margin-bottom: 12px;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Seed Phrase */
+.seed-phrase {
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.seed-word {
+    background: var(--bg-color);
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.seed-word-number {
+    color: var(--text-secondary);
+    font-size: 10px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+}
+
+.warning {
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
+/* Header */
+.header {
+    margin-bottom: 20px;
+}
+
+.wallet-selector {
+    display: flex;
+    align-items: center;
+}
+
+.wallet-selector select {
+    flex: 1;
+    margin: 0;
+}
+
+/* QR Code */
+.qr-code {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.receive-address {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.receive-address input {
+    flex: 1;
+}
+
+.receive-address .copy-btn {
+    width: auto;
+    padding: 10px 16px;
+}
+
+/* Currency Label */
+.currency-label {
+    color: var(--text-secondary);
+    margin-left: 8px;
+}
+

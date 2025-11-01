@@ -54,11 +54,14 @@ class HealthState: ObservableObject {
     @Published var sharedWithClinicians: [String] = [] // Clinician IDs who have access
     
     init() {
-        loadSampleData()
+        // Load sample data only in training mode
+        if AppConfig.shared.features.dataMode == .training {
+            loadSampleData()
+        }
     }
     
     func loadSampleData() {
-        // Load user's own health data
+        // Load user's own health data (TRAINING MODE ONLY)
         healthRecords = [
             HealthRecord(
                 date: Date(),
