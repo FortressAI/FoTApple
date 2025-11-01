@@ -6,13 +6,14 @@ Field of Truth provides domain-specific AI applications with cryptographic proof
 
 ## 🆕 Latest Updates (November 2025)
 
+- 🚗 **CarPlay Integration** - Legal app now supports accident documentation from your car! (NEW!)
 - ✅ **Training/Live Mode System** - Toggle between sample data (training) and real production data (live - NO MOCKS)
 - ✅ **Full Siri Integration** - Voice commands working across all apps with proper permissions
 - ✅ **Education Mac App** - Complete navigation flow with 5 functional sections
 - ✅ **Voice Assistant** - Apps now speak to users with contextual guidance
 - ✅ **35 Voice Commands** - Hands-free operation across all domains
 
-**See:** `COMPREHENSIVE_FIXES_SUMMARY.md` and `QUICK_FIX_REFERENCE.md` for details.
+**See:** `COMPREHENSIVE_FIXES_SUMMARY.md`, `QUICK_FIX_REFERENCE.md`, and **NEW** `CARPLAY_LEGAL_APP_DESIGN.md` for details.
 
 ## 🎯 Overview
 
@@ -84,17 +85,19 @@ Deploy all apps across all available platforms to TestFlight:
 See [docs/testflight/MULTI_PLATFORM_DEPLOYMENT.md](docs/testflight/MULTI_PLATFORM_DEPLOYMENT.md) for complete documentation.
 
 ### FoT Legal US
-**US legal practice management**
+**US legal practice management with CarPlay accident documentation**
 
 Features:
+- 🚗 **CarPlay Integration** - Emergency accident/traffic stop documentation from your car
 - Case management (civil, criminal, administrative)
 - Citation tracking with proper Bluebook format
 - Deadline management tied to Federal Rules (100% FRCP accuracy)
 - Jurisdiction-aware workflows
 - Legal research with cryptographic provenance
 - Document generation with audit trails
+- Voice-activated evidence capture with GPS + cryptographic proof
 
-**Platforms:** iOS, iPadOS, macOS
+**Platforms:** iOS, iPadOS, macOS, **CarPlay** 🆕
 
 ### FoT Education K-18
 **FERPA-compliant educational platform**
